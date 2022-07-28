@@ -1,4 +1,4 @@
-package com.uxstate.countriespad.ui.theme
+package com.uxstate.countriespad.presentation.ui.theme
 
 import android.app.Activity
 import android.os.Build

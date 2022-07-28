@@ -1,4 +1,4 @@
-package com.uxstate.countriespad.ui.theme
+package com.uxstate.countriespad.presentation.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
