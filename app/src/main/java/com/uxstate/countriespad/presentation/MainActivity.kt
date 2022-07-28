@@ -1,4 +1,4 @@
-package com.uxstate.countriespad
+package com.uxstate.countriespad.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
