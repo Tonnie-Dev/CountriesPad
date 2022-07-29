@@ -4,12 +4,11 @@ import com.uxstate.countriespad.domain.model.Country
 import org.json.JSONArray
 
 
+fun parseJsonString(jsonString: String): List<Country> {
 
-fun parseJsonString(jsonString: String):List<Country> {
+    val numbers = arrayOf(1, 2, 3)
 
-    val numbers = arrayOf(1,2,3)
-
-    for(number in numbers){
+    for (number in numbers) {
 
         println(number)
     }
@@ -32,15 +31,17 @@ fun parseJsonString(jsonString: String):List<Country> {
         val currencyData = countryJsonObj.getJSONObject("currencies")
 
 
-         currencyData.keys().forEach { curr ->
+        currencyData.keys()
+                .forEach { curr ->
 
-            val currencyNameObj = currencyData.getJSONObject(curr)
+                    val currencyNameObj = currencyData.getJSONObject(curr)
 
-            val currency = currencyNameObj.getString("name")
-            currencyList.add(currency)
-        }
+                    val currency = currencyNameObj.getString("name")
+                    currencyList.add(currency)
+                }
 
-        val capital = countryJsonObj.getJSONArray("capital").get(0)
+        val capital = countryJsonObj.getJSONArray("capital")
+                .getString(0)
 
         val region = countryJsonObj.getString("region")
 
@@ -48,10 +49,11 @@ fun parseJsonString(jsonString: String):List<Country> {
 
         val languagesData = countryJsonObj.getJSONObject("languages")
 
-        languagesData.keys().forEach {  langKey ->
+        languagesData.keys()
+                .forEach { langKey ->
 
-            languagesList.add(languagesData.getString(langKey))
-        }
+                    languagesList.add(languagesData.getString(langKey))
+                }
 
 
         val latLngArray = countryJsonObj.getJSONArray("latlng")
@@ -59,7 +61,7 @@ fun parseJsonString(jsonString: String):List<Country> {
         val lat = latLngArray.getDouble(0)
         val lng = latLngArray.getDouble(1)
 
-        val latLng = Pair(lat,lng)
+        val latLng = Pair(lat, lng)
 
         val area = countryJsonObj.getInt("area")
 
@@ -74,6 +76,24 @@ fun parseJsonString(jsonString: String):List<Country> {
         val coatOfArmsUrl = coatOfArmsDataObj.getString("png")
 
 
+        //construct country object from the above data points
+        val country = Country(
+                name = name,
+                currencies = currencyList,
+                capital = capital,
+                region = region,
+                subRegion = subRegion,
+                languages = languagesList,
+                latLng = latLng,
+                flagUrl = flagUrl,
+                coatOfArmsUrl = coatOfArmsUrl,
+                ciocCode = ciocCode,
+                area = area,
+                population = population
+        )
+
+
+
     }
 
 
@@ -83,9 +103,9 @@ fun parseJsonString(jsonString: String):List<Country> {
 }
 
 
-
-
 operator fun <T> JSONArray.iterator(): Iterator<T> =
-    (0 until this.length()).asSequence().map { this.get(it) as T }.iterator()
+    (0 until this.length()).asSequence()
+            .map { this.get(it) as T }
+            .iterator()
 
 

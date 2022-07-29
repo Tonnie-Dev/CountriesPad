@@ -10,7 +10,7 @@ data class Country(
     val latLng: Pair<Double, Double>,
     val flagUrl: String,
     val coatOfArmsUrl: String,
-    val cioc: String,
+    val ciocCode: String,
     val area: Int,
     val population: Int
 )
