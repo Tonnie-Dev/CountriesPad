@@ -94,6 +94,10 @@ fun parseJsonString(jsonString: String): List<Country> {
 
 
 
+        //add country object to countries list
+
+        countriesList.add(country)
+
     }
 
 
