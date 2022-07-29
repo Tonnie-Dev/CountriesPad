@@ -14,13 +14,65 @@ fun parseJsonString(jsonString: String):List<Country> {
         println(number)
     }
 
+    //lists
     val countriesList = mutableListOf<Country>()
+    val currencyList = mutableListOf<String>()
+    val languagesList = mutableListOf<String>()
     val countriesJsonArray = JSONArray(jsonString)
 
     //iterate through the jsonArray
     (0..countriesJsonArray.length()).forEach { i ->
 
-        val countryJson = countriesJsonArray.getJSONObject(i)
+        val countryJsonObj = countriesJsonArray.getJSONObject(i)
+
+        val nameData = countryJsonObj.getJSONObject("name")
+
+        val name = nameData.getString("common")
+        val ciocCode = countryJsonObj.getString("cioc")
+        val currencyData = countryJsonObj.getJSONObject("currencies")
+
+
+         currencyData.keys().forEach { curr ->
+
+            val currencyNameObj = currencyData.getJSONObject(curr)
+
+            val currency = currencyNameObj.getString("name")
+            currencyList.add(currency)
+        }
+
+        val capital = countryJsonObj.getJSONArray("capital").get(0)
+
+        val region = countryJsonObj.getString("region")
+
+        val subRegion = countryJsonObj.getString("subregion")
+
+        val languagesData = countryJsonObj.getJSONObject("languages")
+
+        languagesData.keys().forEach {  langKey ->
+
+            languagesList.add(languagesData.getString(langKey))
+        }
+
+
+        val latLngArray = countryJsonObj.getJSONArray("latlng")
+
+        val lat = latLngArray.getDouble(0)
+        val lng = latLngArray.getDouble(1)
+
+        val latLng = Pair(lat,lng)
+
+        val area = countryJsonObj.getInt("area")
+
+        val population = countryJsonObj.getInt("population")
+
+        val flagsDataObj = countryJsonObj.getJSONObject("flags")
+
+        val flagUrl = flagsDataObj.getString("png")
+
+        val coatOfArmsDataObj = countryJsonObj.getJSONObject("coatOfArms")
+
+        val coatOfArmsUrl = coatOfArmsDataObj.getString("png")
+
 
     }
 

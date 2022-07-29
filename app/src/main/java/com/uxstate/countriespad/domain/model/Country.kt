@@ -7,10 +7,13 @@ data class Country(
     val region: String,
     val subRegion: String,
     val languages: List<String>,
-    val latLng: List<Int>,
+    val latLng: Pair<Double, Double>,
     val flagUrl: String,
     val coatOfArmsUrl: String,
     val cioc: String,
     val area: Int,
     val population: Int
 )
+
+
+
