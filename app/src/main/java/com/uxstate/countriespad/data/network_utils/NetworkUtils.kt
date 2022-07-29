@@ -17,15 +17,20 @@ fun parseJsonString(jsonString: String):List<Country> {
     val countriesList = mutableListOf<Country>()
     val countriesJsonArray = JSONArray(jsonString)
 
-    (0..countriesJsonArray.length()).forEach {  i ->
+    //iterate through the jsonArray
+    (0..countriesJsonArray.length()).forEach { i ->
 
-        val country = countriesJsonArray.getJSONObject(i)
+        val countryJson = countriesJsonArray.getJSONObject(i)
+
     }
+
 
     return countriesList
 
 
 }
+
+
 
 
 operator fun <T> JSONArray.iterator(): Iterator<T> =
