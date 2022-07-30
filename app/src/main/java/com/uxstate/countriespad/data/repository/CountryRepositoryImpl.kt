@@ -37,18 +37,31 @@ class CountryRepositoryImpl @Inject constructor(
         dao.insertCountriesData()
     }
 
-    override fun getCountriesData(query:String,fetchFromRemote: Boolean): Flow<Resource<List<Country>>> = flow {
+    override fun getCountriesData(
+        query: String,
+        fetchFromRemote: Boolean
+    ): Flow<Resource<List<Country>>> = flow {
 
         //emit loading status true
         emit(Resource.Loading(isLoading = true))
 
         //get countries from the cache
-        val localCachedData = dao.getCountriesData("")
+        val localCachedData = dao.getCountriesData(query)
 
-        //check if the cached data is empty
+
+        /*At this point we have successfully loaded the cache,
+         if the database is empty then localCachedData will
+        be an empty list*/
+
+        //therefore we emit a success
+
+        emit(Resource.Success(localCachedData.map {  }))
+        /*Check if we actually need API Call*/
+
+        val isDbEmpty = localCachedData.isEmpty() && query.isBlank()
+
 
         val isCacheEmpty = localCachedData.isEmpty()
-
 
 
         //if not emit local cached data

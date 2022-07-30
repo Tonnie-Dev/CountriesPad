@@ -27,5 +27,5 @@ OR
 UPPER(:query)==ciocCode
     """
     )
-    suspend fun getCountriesData(query: String):List<Country>
+    suspend fun getCountriesData(query: String):List<CountryEntity>
 }
