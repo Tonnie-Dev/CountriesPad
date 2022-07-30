@@ -22,7 +22,7 @@ class CountryRepositoryImpl @Inject constructor(
     }
 
     override suspend fun insertCountriesData() {
-        TODO("Not yet implemented")
+        dao.insertCountriesData()
     }
 
     override suspend fun getCountriesData(fetchFromRemote: Boolean) {
