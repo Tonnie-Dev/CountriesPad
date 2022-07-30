@@ -6,7 +6,9 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class CountryEntity(
-    @PrimaryKey val id: Int? = null, val name: String,
+    @PrimaryKey(autoGenerate = true) //generate unique ids
+    val id: Int? = null,
+    val name: String,
     val currencies: List<String>,
     val capital: String,
     val region: String,
