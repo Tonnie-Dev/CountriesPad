@@ -7,7 +7,7 @@ import javax.inject.Singleton
 
 
 /*We need an inject annotation in front of the constructor
-  so that dagger hilt knows how to create a CompanyListing
+  so that dagger hilt knows how to create a CountriesListParser
   object and provide it for other dependencies
 
 * We use singleton annotation to force one single instance
