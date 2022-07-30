@@ -2,7 +2,7 @@ package com.uxstate.countriespad.data.remote
 
 import retrofit2.http.GET
 
-interface CountriesAPI {
+interface CountryAPI {
 
     @GET("v3.1/all")
     fun getCountriesJsonString():String
