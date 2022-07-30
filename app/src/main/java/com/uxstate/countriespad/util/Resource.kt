@@ -10,7 +10,7 @@ sealed class Resource<T>(val data: T? = null, val errorMessage: String? = null) 
     class Success<T>(data: T?) : Resource<T>(data)
 
     //it has a property which will be called from ViewModel
-    class Loading(val isLoading: Boolean) : Resource<T>()
+    class Loading<T>(val isLoading: Boolean = true) :Resource<T>()
 }
 
 

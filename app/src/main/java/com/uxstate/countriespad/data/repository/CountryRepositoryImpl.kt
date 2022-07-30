@@ -2,7 +2,10 @@ package com.uxstate.countriespad.data.repository
 
 import com.uxstate.countriespad.data.local.CountryDAO
 import com.uxstate.countriespad.data.remote.CountryAPI
+import com.uxstate.countriespad.domain.model.Country
 import com.uxstate.countriespad.domain.repository.CountryRepository
+import com.uxstate.countriespad.util.Resource
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -25,7 +28,9 @@ class CountryRepositoryImpl @Inject constructor(
         dao.insertCountriesData()
     }
 
-    override suspend fun getCountriesData(fetchFromRemote: Boolean) {
+    override fun getCountriesData(fetchFromRemote: Boolean): Flow<Resource<List<Country>>> {
         TODO("Not yet implemented")
     }
+
+
 }

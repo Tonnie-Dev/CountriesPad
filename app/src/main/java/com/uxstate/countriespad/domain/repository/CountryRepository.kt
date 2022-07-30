@@ -1,5 +1,10 @@
 package com.uxstate.countriespad.domain.repository
 
+import com.uxstate.countriespad.domain.model.Country
+import com.uxstate.countriespad.util.Resource
+import kotlinx.coroutines.flow.Flow
+
+
 interface CountryRepository {
 
     //delete country data
@@ -9,5 +14,5 @@ interface CountryRepository {
     suspend fun insertCountriesData()
 
     //get country data
-    suspend fun getCountriesData(fetchFromRemote: Boolean)
+    fun getCountriesData(fetchFromRemote: Boolean): Flow<Resource<List<Country>>>
 }
