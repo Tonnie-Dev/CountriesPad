@@ -12,5 +12,3 @@ interface CountriesAPI {
         val BASE_URL = "https://restcountries.com/"
     }
 }
-
-//https://restcountries.com/v3.1/all
