@@ -7,7 +7,7 @@ interface CountryRepository {
 
     //insert country data
     suspend fun insertCountriesData()
-    
+
     //get country data
-    suspend fun getCountriesData(fetchFromRemote:Boolean)
+    suspend fun getCountriesData(fetchFromRemote: Boolean)
 }
