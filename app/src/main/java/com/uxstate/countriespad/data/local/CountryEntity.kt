@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 
-@Entity
+@Entity(tableName = "countries_table")
 data class CountryEntity(
     @PrimaryKey(autoGenerate = true) //generate unique ids
     val id: Int? = null,
