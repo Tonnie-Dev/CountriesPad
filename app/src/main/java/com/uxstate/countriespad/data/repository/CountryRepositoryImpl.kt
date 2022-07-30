@@ -12,9 +12,13 @@ import javax.inject.Singleton
 //use @Inject so that Hilt knows how to create AstroRepositoryImpl object
 
 //always favor/depend on abstractions instead of concrete classes
-class CountryRepositoryImpl @Inject constructor(private val dao: CountryDAO, private val api:CountryAPI) : CountryRepository {
+class CountryRepositoryImpl @Inject constructor(
+    private val dao: CountryDAO,
+    private val api: CountryAPI
+) : CountryRepository {
+
     override suspend fun clearCountriesData() {
-        TODO("Not yet implemented")
+        dao.clearCountriesData()
     }
 
     override suspend fun insertCountriesData() {
