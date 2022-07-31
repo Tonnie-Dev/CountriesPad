@@ -11,7 +11,7 @@ interface CountryRepository {
     suspend fun clearCountriesData()
 
     //insert country data
-    suspend fun insertCountriesData()
+    suspend fun insertCountriesData(countries: List<Country>)
 
     //get country data
     fun getCountriesData(query:String,fetchFromRemote: Boolean): Flow<Resource<List<Country>>>
