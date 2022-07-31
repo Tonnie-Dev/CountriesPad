@@ -34,21 +34,21 @@ class OverviewViewModel @Inject constructor(private val useCase:GetCountryDataUs
 
         countryJob = useCase(query, fetchFromRemote).onEach {
            result ->
-           when(result){
+            state = when(result){
 
-               is Resource.Loading -> {
+                is Resource.Loading -> {
 
-                   state = state.copy(isLoading = result.isLoading)
-               }
-               is Resource.Error -> {
+                    state.copy(isLoading = result.isLoading)
+                }
+                is Resource.Error -> {
 
-                   state = state.copy(errorMessage = result.errorMessage ?: "Unknown Error Occurred")
-               }
-               is Resource.Success-> {
+                    state.copy(errorMessage = result.errorMessage ?: "Unknown Error Occurred")
+                }
+                is Resource.Success-> {
 
-                   state = state.copy(countriesData = result.data ?: emptyList())
-               }
-           }
+                    state.copy(countriesData = result.data ?: emptyList())
+                }
+            }
 
 
        }.launchIn(viewModelScope)
