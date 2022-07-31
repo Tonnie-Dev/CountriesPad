@@ -24,7 +24,14 @@ class Converters {
         return currencyList.joinToString(separator = ",")
     }
 
-    
+    /*takes the string stored in Room and converts it back to
+    a String List*/
+    @TypeConverter
+    fun fromString(roomString: String): List<String> {
+        return roomString.split(",").map { it }
+    }
+
+ 
 
 }
 
