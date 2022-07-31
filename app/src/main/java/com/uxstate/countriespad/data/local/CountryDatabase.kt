@@ -1,8 +1,15 @@
 package com.uxstate.countriespad.data.local
 
+
+
+
+import androidx.room.Database
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 
-abstract class CountryDatabase :RoomDatabase(){
+@Database(entities = [CountryEntity::class], version = 1)
+@TypeConverters(Converters::class)
+abstract class CountryDatabase : RoomDatabase() {
 
-    abstract val countryDAO:CountryDAO
+    abstract val countryDAO: CountryDAO
 }
