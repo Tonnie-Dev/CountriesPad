@@ -5,5 +5,6 @@ import com.uxstate.countriespad.domain.model.Country
 data class OverviewState(
     val query: String = "",
     val countriesData: List<Country> = emptyList(),
-    val isLoading: Boolean = false
+    val isLoading: Boolean = false,
+val errorMessage:String = ""
 )
