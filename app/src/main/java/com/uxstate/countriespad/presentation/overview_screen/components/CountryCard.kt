@@ -1,11 +1,17 @@
 package com.uxstate.countriespad.presentation.overview_screen.components
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.style.TextAlign
 import androidx.core.net.toUri
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
@@ -27,14 +33,29 @@ fun CountryCard(modifier: Modifier = Modifier, country: Country, onClickCountry:
                     .data(flagUrl)
                     .placeholder(
                             R.drawable.loading_animation
-                    ).build()
+                    )
+                    .build()
     )
     Card(
-            modifier = modifier,
+            modifier = modifier.clickable {  onClickCountry()}. padding(spacing.spaceSmall),
             colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
-            shape = MaterialTheme.shapes.large
+            shape = MaterialTheme.shapes.medium
     ) {
+        Column(
+                modifier = Modifier
+                        .fillMaxWidth()
+                        .aspectRatio(3f / 2f)
+        ) {
 
+            Image(
+                    painter = painter,
+                    contentDescription = "${country.name} flag",
+                    contentScale = ContentScale.Fit
+            )
+
+            Spacer(modifier = Modifier.height(spacing.spaceSmall))
+            Text(text = country.name, textAlign = TextAlign.Center)
+        }
 
     }
 }
