@@ -12,7 +12,7 @@ interface CountryDAO {
     //insert query
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertCountriesData()
+    suspend fun insertCountriesData(countries:List<CountryEntity>)
 
     @Query("DELETE  FROM countries_table ")
     suspend fun clearCountriesData()

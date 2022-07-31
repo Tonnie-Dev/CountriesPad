@@ -2,6 +2,8 @@ package com.uxstate.countriespad.data.repository
 
 import com.uxstate.countriespad.data.json.JsonStringParser
 import com.uxstate.countriespad.data.local.CountryDatabase
+import com.uxstate.countriespad.data.mapper.toCountry
+import com.uxstate.countriespad.data.mapper.toCountryEntity
 import com.uxstate.countriespad.data.remote.CountryAPI
 import com.uxstate.countriespad.domain.model.Country
 import com.uxstate.countriespad.domain.repository.CountryRepository
@@ -54,29 +56,29 @@ class CountryRepositoryImpl @Inject constructor(
         be an empty list*/
 
         //therefore we emit a success
+        emit(Resource.Success(localCachedData.map { it.toCountry() }))
 
-        emit(Resource.Success(localCachedData.map {  }))
-        /*Check if we actually need API Call*/
+        /*Check if we actually need API Call. Blank query matches all
+        entries in the db and returns all entries*/
 
         val isDbEmpty = localCachedData.isEmpty() && query.isBlank()
 
+        //!isDbEmpty means the database is well populated
+        val shouldStickWithCache = !isDbEmpty && !fetchFromRemote
 
-        val isCacheEmpty = localCachedData.isEmpty()
 
+        if (shouldStickWithCache) {
 
-        //if not emit local cached data
-        if (!isCacheEmpty) {
+            //stop loading
 
-            //emit loading status false
             emit(Resource.Loading(isLoading = false))
 
-            emit(Resource.Success(data = localCachedData))
-
+            //and return control to flow
+            return@flow
         }
 
-        //assess if should make an api call
-        val shouldFetchFromRemote = isCacheEmpty && fetchFromRemote
 
+        /*past this point we need to initiate an api call*/
         val remoteData =
 
             try {
@@ -84,13 +86,57 @@ class CountryRepositoryImpl @Inject constructor(
                 val jsonString = api.getCountriesJsonString()
                 countryJsonParser.parseJson(jsonString = jsonString)
 
-            } catch (e: HttpException) {
+            }
+            //invalid http response or incomplete
+            catch (e: HttpException) {
                 e.printStackTrace()
-                null
-            } catch (e: IOException) {
-                e.printStackTrace()
+                emit(
+                        Resource.Error(
+                                errorMessage = e.localizedMessage ?: """
+                    Unknown Error Occurred, please try again
+                """.trimIndent()
+                        )
+                )
+
+                //return null indicating no data
                 null
             }
+
+            //parsing issue e.g. no internet connection
+            catch (e: IOException) {
+                e.printStackTrace()
+
+                emit(
+                        Resource.Error(
+                                errorMessage = e.localizedMessage ?: """
+                
+                    Could not load data, please check your internet connection
+                """.trimIndent()
+                        )
+                )
+
+                //return null indicating no data
+                null
+            }
+
+
+        //insert the remote data into cache
+
+        remoteData?.let {
+            //delete existing entries
+            dao.clearCountriesData()
+            //insert updated remote countries
+            dao.insertCountriesData(it.map { country -> country.toCountryEntity() })
+
+            //sticking to ONE-SINGLE-SOURCE-OF-TRUTH we emit from cache
+            emit(
+                    Resource.Success(
+                            dao.getCountriesData("")
+                                    .map { countryEntity -> countryEntity.toCountry() })
+            )
+            emit(Resource.Loading(isLoading = false))
+        }
+
 
 
     }
