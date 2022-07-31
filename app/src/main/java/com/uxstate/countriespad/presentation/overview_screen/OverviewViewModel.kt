@@ -15,5 +15,8 @@ class OverviewViewModel @Inject constructor(private val useCase:GetCountryDataUs
     var state by mutableStateOf(OverviewState())
     private set
 
-    
+    init {
+        getCountries()
+    }
+
 }
