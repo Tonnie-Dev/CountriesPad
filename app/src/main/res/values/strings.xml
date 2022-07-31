@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">CountriesPad</string>
+    <string name="search_tag">Search …</string>
+    <string name="clear_tag">Clear</string>
 </resources>
