@@ -17,7 +17,14 @@ have the same character and it can be a mess.*/
 
 class Converters {
 
-   
+    /* takes a list of string e.g. Currency list and stores it in
+    ROOM database as a string */
+    @TypeConverter
+    fun toString(currencyList: List<String>): String {
+        return currencyList.joinToString(separator = ",")
+    }
+
+    
 
 }
 
