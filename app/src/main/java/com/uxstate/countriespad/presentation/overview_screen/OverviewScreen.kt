@@ -1,5 +1,6 @@
 package com.uxstate.countriespad.presentation.overview_screen
 
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ramcosta.composedestinations.annotation.Destination
@@ -14,4 +15,5 @@ fun OverviewScreen(
     viewModel: OverviewViewModel = hiltViewModel()
 ) {
 
+    Text(text = "This is me")
 }
