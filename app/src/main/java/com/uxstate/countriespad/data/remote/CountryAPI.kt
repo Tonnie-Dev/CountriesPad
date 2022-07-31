@@ -5,7 +5,7 @@ import retrofit2.http.GET
 interface CountryAPI {
 
     @GET("v3.1/all")
-    fun getCountriesJsonString():String
+    suspend fun getCountriesJsonString():String
 
     companion object {
 

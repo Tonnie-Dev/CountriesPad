@@ -13,6 +13,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
+import retrofit2.converter.scalars.ScalarsConverterFactory
 import retrofit2.create
 import javax.inject.Singleton
 
@@ -26,6 +27,7 @@ object AppModule {
         //no converter as Retrofit is just returning raw JSON String
         return Retrofit.Builder()
                 .baseUrl(CountryAPI.BASE_URL)
+                .addConverterFactory(ScalarsConverterFactory.create())
                 .build()
                 .create()
     }
