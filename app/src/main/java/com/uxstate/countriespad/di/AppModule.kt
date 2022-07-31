@@ -4,6 +4,8 @@ import android.app.Application
 import androidx.room.Room
 import com.uxstate.countriespad.data.local.CountryDatabase
 import com.uxstate.countriespad.data.remote.CountryAPI
+import com.uxstate.countriespad.domain.repository.CountryRepository
+import com.uxstate.countriespad.domain.use_cases.GetCountryDataUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -34,6 +36,14 @@ object AppModule {
         //doesn't include TypeConverters as we leave Room to do the initialization
         return Room.databaseBuilder(app, CountryDatabase::class.java, "country_database")
                 .build()
+    }
+
+    @Provides
+    @Singleton
+
+    fun provideGetCountryDataUseCase(repository: CountryRepository): GetCountryDataUseCase{
+
+        return GetCountryDataUseCase(repository)
     }
 
 }
