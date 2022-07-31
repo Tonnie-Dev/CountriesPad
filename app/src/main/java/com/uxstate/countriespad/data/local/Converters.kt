@@ -1,12 +1,6 @@
 package com.uxstate.countriespad.data.local
 
-import androidx.room.ProvidedTypeConverter
 import androidx.room.TypeConverter
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
-import java.lang.reflect.Type
-import java.util.*
-import kotlin.collections.ArrayList
 
 
 /*Be ware of using "," as separator as sometimes your string may
@@ -28,17 +22,30 @@ class Converters {
     a String List*/
     @TypeConverter
     fun fromString(roomString: String): List<String> {
-        return roomString.split(",").map { it }
+        return roomString.split(",")
+                .map { it }
     }
 
     //write pair to Room and store it as a String
     @TypeConverter
-    fun writeFromPair(pair:Pair<Double,Double>):String {
+    fun writeFromPair(pair: Pair<Double, Double>): String {
         val stringList = mutableListOf<String>()
         stringList.add(pair.first.toString())
         stringList.add(pair.second.toString())
 
         return stringList.joinToString(separator = ",")
+
+    }
+
+    @TypeConverter
+    fun readStringPair(roomString: String): Pair<Double, Double> {
+
+        val stringDoublesList = roomString.split(",")
+
+        return Pair(
+                first = stringDoublesList[0].toDouble(),
+                second = stringDoublesList[1].toDouble()
+        )
 
     }
 
