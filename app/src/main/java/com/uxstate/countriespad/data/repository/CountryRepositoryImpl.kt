@@ -32,14 +32,7 @@ class CountryRepositoryImpl @Inject constructor(
 ) : CountryRepository {
 
     private val dao = db.countryDAO
-    override suspend fun clearCountriesData() {
-        dao.clearCountriesData()
-    }
-
-    override suspend fun insertCountriesData(countries:List<Country>) {
-        dao.insertCountriesData(countries.map { it.toCountryEntity() })
-    }
-
+ 
     override fun getCountriesData(
         query: String,
         fetchFromRemote: Boolean

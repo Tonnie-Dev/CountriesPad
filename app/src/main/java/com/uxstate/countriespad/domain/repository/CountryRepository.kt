@@ -7,11 +7,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface CountryRepository {
 
-    //delete country data
-    suspend fun clearCountriesData()
 
-    //insert country data
-    suspend fun insertCountriesData(countries: List<Country>)
 
     //get country data
     fun getCountriesData(query:String,fetchFromRemote: Boolean): Flow<Resource<List<Country>>>
