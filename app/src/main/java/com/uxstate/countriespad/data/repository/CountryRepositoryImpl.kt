@@ -1,5 +1,6 @@
 package com.uxstate.countriespad.data.repository
 
+import com.uxstate.countriespad.data.json.CountriesListParser
 import com.uxstate.countriespad.data.json.JsonStringParser
 import com.uxstate.countriespad.data.local.CountryDatabase
 import com.uxstate.countriespad.data.mapper.toCountry
@@ -35,8 +36,8 @@ class CountryRepositoryImpl @Inject constructor(
         dao.clearCountriesData()
     }
 
-    override suspend fun insertCountriesData() {
-        dao.insertCountriesData()
+    override suspend fun insertCountriesData(countries:List<Country>) {
+        dao.insertCountriesData(countries.map { it.toCountryEntity() })
     }
 
     override fun getCountriesData(
