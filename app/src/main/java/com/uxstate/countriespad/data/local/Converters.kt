@@ -31,7 +31,16 @@ class Converters {
         return roomString.split(",").map { it }
     }
 
- 
+    //write pair to Room and store it as a String
+    @TypeConverter
+    fun writeFromPair(pair:Pair<Double,Double>):String {
+        val stringList = mutableListOf<String>()
+        stringList.add(pair.first.toString())
+        stringList.add(pair.second.toString())
+
+        return stringList.joinToString(separator = ",")
+
+    }
 
 }
 
