@@ -32,7 +32,7 @@ class CountryRepositoryImpl @Inject constructor(
 ) : CountryRepository {
 
     private val dao = db.countryDAO
- 
+
     override fun getCountriesData(
         query: String,
         fetchFromRemote: Boolean
