@@ -64,15 +64,23 @@ class CountriesListParser @Inject constructor():JsonStringParser<Country> {
 
             val region = countryJsonObj.getString("region")
 
-            val subRegion = countryJsonObj.optString("subregion","unspecified")
+            val subRegion = countryJsonObj.optString("subregion",region)
 
-            val languagesData = countryJsonObj.getJSONObject("languages")
+            
+            if (countryJsonObj.has("languages")) {
+                val languagesData = countryJsonObj.getJSONObject("languages")
 
-            languagesData.keys()
-                    .forEach { langKey ->
+                languagesData.keys()
+                        .forEach { langKey ->
 
-                        languagesList.add(languagesData.getString(langKey))
-                    }
+                            languagesList.add(languagesData.getString(langKey))
+                        }
+
+            }else {
+
+                languagesList.add("No Languages found")
+            }
+
 
 
             val latLngArray = countryJsonObj.getJSONArray("latlng")
