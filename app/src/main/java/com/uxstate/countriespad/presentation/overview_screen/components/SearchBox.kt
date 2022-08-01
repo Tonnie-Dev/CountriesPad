@@ -1,6 +1,7 @@
 package com.uxstate.countriespad.presentation.overview_screen.components
 
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Clear
@@ -25,7 +26,7 @@ fun SearchBox(
 
     OutlinedTextField(
             modifier = modifier
-                    .fillMaxSize()
+                    .fillMaxWidth()
                     .padding(spacing.spaceMedium),
             value = value,
             onValueChange = onQueryTextChange,

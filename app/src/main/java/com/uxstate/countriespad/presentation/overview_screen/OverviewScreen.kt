@@ -29,7 +29,7 @@ fun OverviewScreen(
     val state = viewModel.state
 
 Scaffold(topBar = {
-    LargeTopAppBar(  colors = TopAppBarDefaults.largeTopAppBarColors(
+    MediumTopAppBar(  colors = TopAppBarDefaults.largeTopAppBarColors(
             containerColor = MaterialTheme.colorScheme.surfaceVariant,
             titleContentColor = MaterialTheme.colorScheme.onSurfaceVariant), title = {}, actions = {
 

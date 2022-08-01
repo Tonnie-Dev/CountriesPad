@@ -49,7 +49,7 @@ fun CountryCard(modifier: Modifier = Modifier, country: Country, onClickCountry:
                 modifier = Modifier
                         .fillMaxWidth()
                         .aspectRatio(3f / 2f).padding(spacing.spaceExtraSmall),
-                verticalArrangement = Arrangement.Center
+                verticalArrangement = Arrangement.SpaceBetween
         ) {
 
             Image(
