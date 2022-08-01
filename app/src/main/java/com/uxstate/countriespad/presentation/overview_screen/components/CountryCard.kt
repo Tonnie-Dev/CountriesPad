@@ -50,7 +50,8 @@ fun CountryCard(modifier: Modifier = Modifier, country: Country, onClickCountry:
             Image(
                     painter = painter,
                     contentDescription = "${country.name} flag",
-                    contentScale = ContentScale.Fit
+                    contentScale = ContentScale.Fit,
+                    modifier = Modifier.fillMaxWidth().aspectRatio(2f/1f).padding(spacing.spaceSmall)
             )
 
             Spacer(modifier = Modifier.height(spacing.spaceSmall))
