@@ -58,9 +58,9 @@ class CountriesListParser @Inject constructor():JsonStringParser<Country> {
                 countryJsonObj.getJSONArray("capital")
                         .getString(0)
 
-            }else ""
+            }else "not found"
 
-            //val capital =
+
 
             val region = countryJsonObj.getString("region")
 
