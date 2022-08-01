@@ -33,7 +33,14 @@ class CountriesListParser @Inject constructor():JsonStringParser<Country> {
             val nameData = countryJsonObj.getJSONObject("name")
 
             val name = nameData.getString("common")
-            val ciocCode = countryJsonObj.getString("cca3")
+
+            val cca3Code = countryJsonObj.getString("cca3")
+            val ciocCode = if (countryJsonObj.has("cioc")) {
+                countryJsonObj.getString("cioc")
+            }else{
+
+                countryJsonObj.getString("cca3")
+            }
 
             if (countryJsonObj.has("currencies")){
 
