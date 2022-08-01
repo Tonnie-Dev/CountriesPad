@@ -26,26 +26,41 @@ class CountriesListParser @Inject constructor():JsonStringParser<Country> {
         //iterate through the jsonArray
         (0..countriesJsonArray.length()).forEach { i ->
 
+            
+
             val countryJsonObj = countriesJsonArray.getJSONObject(i)
 
             val nameData = countryJsonObj.getJSONObject("name")
 
             val name = nameData.getString("common")
             val ciocCode = countryJsonObj.getString("cca3")
-            val currencyData = countryJsonObj.getJSONObject("currencies")
+
+            if (countryJsonObj.has("currencies")){
+
+                val currencyData = countryJsonObj.getJSONObject("currencies")
 
 
-            currencyData.keys()
-                    .forEach { curr ->
+                currencyData.keys()
+                        .forEach { curr ->
 
-                        val currencyNameObj = currencyData.getJSONObject(curr)
+                            val currencyNameObj = currencyData.getJSONObject(curr)
 
-                        val currency = currencyNameObj.getString("name")
-                        currencyList.add(currency)
-                    }
+                            val currency = currencyNameObj.getString("name")
+                            currencyList.add(currency)
+                        }
+            }else {
 
-            val capital = countryJsonObj.getJSONArray("capital")
-                    .getString(0)
+                currencyList.add("No Currency Found")
+            }
+           
+
+            val capital = if (countryJsonObj.has("capital")){
+                countryJsonObj.getJSONArray("capital")
+                        .getString(0)
+
+            }else ""
+
+            //val capital =
 
             val region = countryJsonObj.getString("region")
 
@@ -78,7 +93,7 @@ class CountriesListParser @Inject constructor():JsonStringParser<Country> {
 
             val coatOfArmsDataObj = countryJsonObj.getJSONObject("coatOfArms")
 
-            val coatOfArmsUrl = coatOfArmsDataObj.getString("svg")?: flagUrl
+            //val coatOfArmsUrl = coatOfArmsDataObj.getString("svg")?: ""
 
 
             //construct country object from the above data points
@@ -91,7 +106,7 @@ class CountriesListParser @Inject constructor():JsonStringParser<Country> {
                     languages = languagesList,
                     latLng = latLng,
                     flagUrl = flagUrl,
-                    coatOfArmsUrl = coatOfArmsUrl,
+                    coatOfArmsUrl = "",
                     ciocCode = ciocCode,
                     area = area,
                     population = population
