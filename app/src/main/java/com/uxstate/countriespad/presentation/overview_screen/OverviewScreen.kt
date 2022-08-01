@@ -39,13 +39,13 @@ fun OverviewScreen(
         ), title = {}, actions = {
 
             Column() {
-                Spacer(modifier = Modifier.height(spacing.spaceLarge))
+                Spacer(modifier = Modifier.height(spacing.spaceExtraLarge))
                 SearchBox(
                         value = state.query,
                         placeholderText = stringResource(id = R.string.search_tag),
-                        onQueryTextChange = { viewModel.onEvent(OverviewEvent.OnQueryChange(state.query)) },
-
-                        )
+                        onQueryTextChange = { viewModel.onEvent(OverviewEvent.OnQueryChange(it)) },
+                        onClearText = { viewModel.onEvent(OverviewEvent.OnClearSearchBox) }
+                )
                 Spacer(modifier = Modifier.height(spacing.spaceExtraSmall))
             }
 

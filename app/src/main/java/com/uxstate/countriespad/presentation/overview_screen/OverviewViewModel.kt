@@ -9,48 +9,64 @@ import com.uxstate.countriespad.domain.use_cases.GetCountryDataUseCase
 import com.uxstate.countriespad.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class OverviewViewModel @Inject constructor(private val useCase:GetCountryDataUseCase) : ViewModel() {
+class OverviewViewModel @Inject constructor(private val useCase: GetCountryDataUseCase) : ViewModel() {
 
 
     var state by mutableStateOf(OverviewState())
-    private set
+        private set
 
     private var countryJob: Job? = null
 
     init {
-       getCountries()
+        getCountries()
     }
 
-    fun onEvent(event: OverviewEvent){
+    fun onEvent(event: OverviewEvent) {
 
-        when (event){
+        when (event) {
 
             is OverviewEvent.OnClearSearchBox -> {
 
                 state = state.copy(query = "")
             }
-            is OverviewEvent.OnQueryChange-> {
+            is OverviewEvent.OnQueryChange -> {
+                //update query value
+                state = state.copy(query = event.query)
 
-                state = state.copy( query = event.query)
+                //cancel existing job
+                countryJob?.cancel()
+
+                //start a new job
+
+                countryJob =
+
+                //get viewModelScope for delay suspend function
+                viewModelScope.launch {
+
+                    delay(500)
+                    //called only after a delay of 500 ms
+                    getCountries()
+                }
+
             }
             is OverviewEvent.OnClickCountry -> {}
         }
     }
 
-    private fun getCountries(query:String = "", fetchFromRemote:Boolean = false
+    private fun getCountries(
+        query: String = state.query, fetchFromRemote: Boolean = false
     ) {
 
-        countryJob?.cancel()
 
-        countryJob = useCase(query, fetchFromRemote).onEach {
-           result ->
-            state = when(result){
+        useCase(query, fetchFromRemote).onEach { result ->
+            state = when (result) {
 
                 is Resource.Loading -> {
 
@@ -60,14 +76,15 @@ class OverviewViewModel @Inject constructor(private val useCase:GetCountryDataUs
 
                     state.copy(errorMessage = result.errorMessage ?: "Unknown Error Occurred")
                 }
-                is Resource.Success-> {
+                is Resource.Success -> {
 
                     state.copy(countriesData = result.data ?: emptyList())
                 }
             }
 
 
-       }.launchIn(viewModelScope)
+        }
+                .launchIn(viewModelScope)
     }
 
 }

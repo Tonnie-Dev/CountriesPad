@@ -41,7 +41,7 @@ onClearText:() -> Unit
                 )
             },
             trailingIcon = {
-                IconButton(onClick = { /*TODO*/ }) {
+                IconButton(onClick = {onClearText() }) {
                     Icon(
                             imageVector = Icons.Default.Clear,
                             contentDescription = stringResource(id = R.string.clear_tag)
