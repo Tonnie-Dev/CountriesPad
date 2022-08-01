@@ -24,7 +24,7 @@ class CountriesListParser @Inject constructor():JsonStringParser<Country> {
         val countriesJsonArray = JSONArray(jsonString)
 
         //iterate through the jsonArray
-        (0..countriesJsonArray.length()).forEach { i ->
+        (0 until countriesJsonArray.length()).forEach { i ->
 
             
 
@@ -66,7 +66,7 @@ class CountriesListParser @Inject constructor():JsonStringParser<Country> {
 
             val subRegion = countryJsonObj.optString("subregion",region)
 
-            
+
             if (countryJsonObj.has("languages")) {
                 val languagesData = countryJsonObj.getJSONObject("languages")
 
