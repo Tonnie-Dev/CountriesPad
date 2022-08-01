@@ -8,6 +8,8 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -37,25 +39,31 @@ fun CountryCard(modifier: Modifier = Modifier, country: Country, onClickCountry:
                     .build()
     )
     Card(
-            modifier = modifier.clickable {  onClickCountry()}. padding(spacing.spaceSmall),
+            modifier = modifier
+                    .clickable { onClickCountry() }.padding(spacing.spaceMedium)
+                   ,
             colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
             shape = MaterialTheme.shapes.medium
     ) {
         Column(
                 modifier = Modifier
                         .fillMaxWidth()
-                        .aspectRatio(3f / 2f)
+                        .aspectRatio(3f / 2f).padding(spacing.spaceExtraSmall),
+                verticalArrangement = Arrangement.Center
         ) {
 
             Image(
                     painter = painter,
                     contentDescription = "${country.name} flag",
                     contentScale = ContentScale.Fit,
-                    modifier = Modifier.fillMaxWidth().aspectRatio(2f/1f).padding(spacing.spaceSmall)
+                    modifier = Modifier
+                            .fillMaxWidth()
+                            .aspectRatio(2f / 1f)
+                            .padding(spacing.spaceSmall)
             )
 
-            Spacer(modifier = Modifier.height(spacing.spaceSmall))
-            Text(text = country.name, textAlign = TextAlign.Center)
+          //  Spacer(modifier = Modifier.height(spacing.spaceSmall))
+            Text(text = country.name, textAlign = TextAlign.Center, modifier = Modifier.align(CenterHorizontally))
         }
 
     }
