@@ -35,6 +35,7 @@ class OverviewViewModel @Inject constructor(private val useCase: GetCountryDataU
             is OverviewEvent.OnClearSearchBox -> {
 
                 state = state.copy(query = "")
+                getCountries()
             }
             is OverviewEvent.OnQueryChange -> {
                 //update query value
