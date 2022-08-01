@@ -19,7 +19,8 @@ fun SearchBox(
     modifier: Modifier = Modifier,
     value: String,
     placeholderText: String,
-    onQueryTextChange: (String) -> Unit
+    onQueryTextChange: (String) -> Unit,
+onClearText:() -> Unit
 ) {
 
     val spacing = LocalSpacing.current

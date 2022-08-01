@@ -1,13 +1,14 @@
 package com.uxstate.countriespad.presentation.overview_screen
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -37,17 +38,16 @@ fun OverviewScreen(
                 titleContentColor = MaterialTheme.colorScheme.onSurfaceVariant
         ), title = {}, actions = {
 
-Column() {
-    Spacer(modifier = Modifier.height(spacing.spaceLarge))
-    SearchBox(
-            value = state.query,
-            placeholderText = stringResource(id = R.string.search_tag),
-            onQueryTextChange = {},
-            //modifier = Modifier.align(CenterVertically)
-    )
-    Spacer(modifier = Modifier.height(spacing.spaceExtraSmall))
-}
+            Column() {
+                Spacer(modifier = Modifier.height(spacing.spaceLarge))
+                SearchBox(
+                        value = state.query,
+                        placeholderText = stringResource(id = R.string.search_tag),
+                        onQueryTextChange = { viewModel.onEvent(OverviewEvent.OnQueryChange(state.query)) },
 
+                        )
+                Spacer(modifier = Modifier.height(spacing.spaceExtraSmall))
+            }
 
 
         }, modifier = Modifier.padding(1.dp)

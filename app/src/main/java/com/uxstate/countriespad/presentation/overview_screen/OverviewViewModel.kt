@@ -27,6 +27,22 @@ class OverviewViewModel @Inject constructor(private val useCase:GetCountryDataUs
        getCountries()
     }
 
+    fun onEvent(event: OverviewEvent){
+
+        when (event){
+
+            is OverviewEvent.OnClearSearchBox -> {
+
+                state = state.copy(query = "")
+            }
+            is OverviewEvent.OnQueryChange-> {
+
+                state = state.copy( query = event.query)
+            }
+            is OverviewEvent.OnClickCountry -> {}
+        }
+    }
+
     private fun getCountries(query:String = "", fetchFromRemote:Boolean = false
     ) {
 
