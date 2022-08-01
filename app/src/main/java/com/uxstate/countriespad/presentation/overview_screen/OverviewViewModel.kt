@@ -24,7 +24,7 @@ class OverviewViewModel @Inject constructor(private val useCase:GetCountryDataUs
     private var countryJob: Job? = null
 
     init {
-       getCountries()
+       //getCountries()
     }
 
     private fun getCountries(query:String = "", fetchFromRemote:Boolean = false
