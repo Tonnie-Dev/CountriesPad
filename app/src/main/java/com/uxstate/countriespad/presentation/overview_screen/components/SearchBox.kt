@@ -27,7 +27,7 @@ fun SearchBox(
     OutlinedTextField(
             modifier = modifier
                     .fillMaxWidth()
-                    .padding(spacing.spaceMedium),
+                    .padding(spacing.spaceSmall),
             value = value,
             onValueChange = onQueryTextChange,
             singleLine = true,
