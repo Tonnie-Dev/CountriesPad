@@ -44,6 +44,7 @@ class CountriesListParser @Inject constructor():JsonStringParser<Country> {
 
             if (countryJsonObj.has("currencies")){
 
+                currencyList.clear()
                 val currencyData = countryJsonObj.getJSONObject("currencies")
 
 
@@ -57,7 +58,7 @@ class CountriesListParser @Inject constructor():JsonStringParser<Country> {
                         }
             }else {
 
-                currencyList.add("No Currency Found")
+                currencyList.add("Not Found")
             }
            
 
