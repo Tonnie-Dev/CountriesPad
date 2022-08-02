@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.uxstate.countriespad.domain.use_cases.GetCountryDataUseCase
 import com.uxstate.countriespad.util.CountryOrderFormat
+import com.uxstate.countriespad.util.OrderType
 import com.uxstate.countriespad.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
@@ -86,7 +87,7 @@ class OverviewViewModel @Inject constructor(private val useCase: GetCountryDataU
     private fun getCountries(
         query: String = state.query,
         fetchFromRemote: Boolean = false,
-        countryOrderFormat: CountryOrderFormat
+        countryOrderFormat: CountryOrderFormat = CountryOrderFormat.ByName(OrderType.Ascending)
     ) {
 
 
