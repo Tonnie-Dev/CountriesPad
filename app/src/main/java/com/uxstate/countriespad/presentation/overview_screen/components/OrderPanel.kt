@@ -3,12 +3,14 @@ package com.uxstate.countriespad.presentation.overview_screen.components
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.uxstate.countriespad.R
 import com.uxstate.countriespad.util.CountryOrderFormat
 import com.uxstate.countriespad.util.OrderType
 
 @Composable
-fun OrderSection(
+fun OrderPanel(
     modifier: Modifier = Modifier,
     countryOrder: CountryOrderFormat = CountryOrderFormat.ByName(OrderType.Ascending),
     onOrderChange: (CountryOrderFormat) -> Unit
@@ -20,9 +22,9 @@ fun OrderSection(
         //ROW_1
         Row(modifier = modifier.fillMaxWidth()) {
             //R1
-            CustomRadioButton(text = "Title",
-                    selected = countryOrder is NoteOrder.Title,
-                    onSelected = { onOrderChange(NoteOrder.Title(countryOrder.orderType)) })
+            CustomRadioButton(text = stringResource(id = R.string.name_label),
+                    selected = countryOrder is CountryOrderFormat.ByName,
+                    onSelected = { onOrderChange(CountryOrderFormat.ByName(countryOrder.orderType)) })
 
 
 
@@ -31,9 +33,9 @@ fun OrderSection(
             //R2
 
             CustomRadioButton(
-                    text = "Date",
-                    selected = countryOrder is NoteOrder.Date,
-                    onSelected = { onOrderChange(NoteOrder.Date(countryOrder.orderType)) }
+                    text = stringResource(id = R.string.area_label),
+                    selected = countryOrder is CountryOrderFormat.ByArea,
+                    onSelected = { onOrderChange(CountryOrderFormat.ByArea(countryOrder.orderType)) }
             )
 
             Spacer(modifier = Modifier.width(8.dp))
@@ -41,9 +43,9 @@ fun OrderSection(
             //R3
 
             CustomRadioButton(
-                    text = "Color",
-                    selected = countryOrder is NoteOrder.Color,
-                    onSelected = { onOrderChange(NoteOrder.Color(countryOrder.orderType)) }
+                    text = stringResource(id = R.string.population_label),
+                    selected = countryOrder is CountryOrderFormat.ByPopulation,
+                    onSelected = { onOrderChange(CountryOrderFormat.ByArea(countryOrder.orderType)) }
             )
 
         }
