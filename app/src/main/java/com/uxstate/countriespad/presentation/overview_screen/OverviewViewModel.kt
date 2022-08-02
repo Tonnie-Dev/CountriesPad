@@ -6,6 +6,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.uxstate.countriespad.domain.use_cases.GetCountryDataUseCase
+import com.uxstate.countriespad.util.CountryOrderFormat
 import com.uxstate.countriespad.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
@@ -48,32 +49,44 @@ class OverviewViewModel @Inject constructor(private val useCase: GetCountryDataU
 
                 countryJob =
 
-                //get viewModelScope for delay suspend function
-                viewModelScope.launch {
+                        //get viewModelScope for delay suspend function
+                    viewModelScope.launch {
 
-                    delay(500)
-                    //called only after a delay of 500 ms
-                    getCountries()
-                }
+                        delay(500)
+                        //called only after a delay of 500 ms
+                        getCountries()
+                    }
 
             }
 
             is OverviewEvent.OnChangeOrder -> {
 
+                if (event.countryOrderFormat::class == state.countryOrderFormat::class
+                    && event.countryOrderFormat.orderType == state.countryOrderFormat.orderType
+                ) {
+
+                    //do nothing since the order hasn't changed
+                    return Unit
+                }
+
+                //else
+                getCountries(countryOrderFormat = event.countryOrderFormat)
 
             }
             is OverviewEvent.toggleSelectionPane -> {
-
-
                 //toggle boolean status
                 state = state.copy(isOrderPaneVisible = !state.isOrderPaneVisible)
             }
+
+
             is OverviewEvent.OnClickCountry -> {}
         }
     }
 
     private fun getCountries(
-        query: String = state.query, fetchFromRemote: Boolean = false
+        query: String = state.query,
+        fetchFromRemote: Boolean = false,
+        countryOrderFormat: CountryOrderFormat
     ) {
 
 
