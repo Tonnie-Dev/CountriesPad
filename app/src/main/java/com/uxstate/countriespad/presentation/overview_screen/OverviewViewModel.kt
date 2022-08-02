@@ -57,6 +57,17 @@ class OverviewViewModel @Inject constructor(private val useCase: GetCountryDataU
                 }
 
             }
+
+            is OverviewEvent.OnChangeOrder -> {
+
+
+            }
+            is OverviewEvent.toggleSelectionPane -> {
+
+
+                //toggle boolean status
+                state = state.copy(isOrderPaneVisible = !state.isOrderPaneVisible)
+            }
             is OverviewEvent.OnClickCountry -> {}
         }
     }
