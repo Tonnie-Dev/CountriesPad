@@ -1,9 +1,6 @@
 package com.uxstate.countriespad.presentation.overview_screen
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
@@ -56,19 +53,32 @@ fun OverviewScreen(
 
     }) { paddingValues ->
 
-        LazyVerticalGrid(
-                modifier = Modifier.padding(paddingValues),
-                columns = GridCells.Fixed(2),
-                content = {
 
-                    items(state.countriesData) { country ->
-                        CountryCard(country = country) {
+        Column(modifier = Modifier.fillMaxSize().padding(paddingValues)) {
+
+
+            
+
+            LazyVerticalGrid(
+                    columns = GridCells.Fixed(2),
+                    content = {
+
+                        items(state.countriesData) { country ->
+                            CountryCard(country = country) {
+
+                            }
 
                         }
 
-                    }
+
+                    })
 
 
-                })
+
+           //End of Column
+        }
+
+
+        //End of Scaffold
     }
 }
