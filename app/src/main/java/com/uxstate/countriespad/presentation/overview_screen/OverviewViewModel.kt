@@ -6,6 +6,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.uxstate.countriespad.domain.use_cases.GetCountryDataUseCase
+import com.uxstate.countriespad.domain.use_cases.UseCaseContainer
 import com.uxstate.countriespad.util.CountryOrderFormat
 import com.uxstate.countriespad.util.OrderType
 import com.uxstate.countriespad.util.Resource
@@ -15,10 +16,11 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
-class OverviewViewModel @Inject constructor(private val useCase: GetCountryDataUseCase) : ViewModel() {
+class OverviewViewModel @Inject constructor(private val container: UseCaseContainer) : ViewModel() {
 
 
     var state by mutableStateOf(OverviewState())
@@ -62,6 +64,7 @@ class OverviewViewModel @Inject constructor(private val useCase: GetCountryDataU
 
             is OverviewEvent.OnChangeOrder -> {
 
+
                 if (event.countryOrderFormat::class == state.countryOrderFormat::class
                     && event.countryOrderFormat.orderType == state.countryOrderFormat.orderType
                 ) {
@@ -91,7 +94,7 @@ class OverviewViewModel @Inject constructor(private val useCase: GetCountryDataU
     ) {
 
 
-        useCase(query, fetchFromRemote).onEach { result ->
+       container.getCountryDataUseCase(query, fetchFromRemote).onEach { result ->
             state = when (result) {
 
                 is Resource.Loading -> {

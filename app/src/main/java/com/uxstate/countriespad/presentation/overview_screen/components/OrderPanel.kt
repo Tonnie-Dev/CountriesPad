@@ -46,7 +46,7 @@ val spacing = LocalSpacing.current
             CustomRadioButton(
                     text = stringResource(id = R.string.population_label),
                     selected = countryOrder is CountryOrderFormat.ByPopulation,
-                    onSelected = { onOrderChange(CountryOrderFormat.ByArea(countryOrder.orderType)) }
+                    onSelected = { onOrderChange(CountryOrderFormat.ByPopulation(countryOrder.orderType)) }
             )
 
         }

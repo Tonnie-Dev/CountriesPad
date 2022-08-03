@@ -12,13 +12,18 @@ import kotlinx.coroutines.flow.map
 //always depend on abstractions
 class GetCountryDataUseCase(
     private val repository: CountryRepository,
-    countryOrderFormat: CountryOrderFormat = CountryOrderFormat.ByName(
+    private val countryOrderFormat: CountryOrderFormat = CountryOrderFormat.ByName(
             orderType = OrderType.Ascending
     )
 ) {
 
     operator fun invoke(query: String, fetchFromRemote: Boolean): Flow<Resource<List<Country>>> {
-        return mapCountryResponse(repository.getCountriesData(query, fetchFromRemote = fetchFromRemote))
+        return mapCountryResponse(
+                response = repository.getCountriesData(
+                        query,
+                        fetchFromRemote = fetchFromRemote
+                ), countryOrderFormat = countryOrderFormat
+        )
     }
 
     private fun mapCountryResponse(
@@ -28,50 +33,51 @@ class GetCountryDataUseCase(
         )
     ): Flow<Resource<List<Country>>> = flow {
 
-response.map {
-    it.data
-
-}.map { countries ->
-    when(countryOrderFormat.orderType){
-
-        is OrderType.Ascending -> {
-
-            when(countryOrderFormat){
-
-                is CountryOrderFormat.ByName -> {
-
-                    emit(Resource.Success(countries?.sortedBy { it.name.lowercase() }))
-                }
-                is CountryOrderFormat.ByPopulation -> {
-                    emit(Resource.Success(countries?.sortedBy { it.population }))
-
-                }
-                is CountryOrderFormat.ByArea -> {
-                    emit(Resource.Success(countries?.sortedBy { it.area}))
-
-                }
-            }
+        response.map {
+            it.data
 
         }
-        is OrderType.Descending -> {
-            when(countryOrderFormat){
+                .map { countries ->
+                    when (countryOrderFormat.orderType) {
 
-                is CountryOrderFormat.ByName -> {
-                    emit(Resource.Success(countries?.sortedByDescending { it.name.lowercase() }))
+                        is OrderType.Ascending -> {
 
+                            when (countryOrderFormat) {
+
+                                is CountryOrderFormat.ByName -> {
+
+                                    emit(Resource.Success(countries?.sortedBy { it.name.lowercase() }))
+                                }
+                                is CountryOrderFormat.ByPopulation -> {
+                                    emit(Resource.Success(countries?.sortedBy { it.population }))
+
+                                }
+                                is CountryOrderFormat.ByArea -> {
+                                    emit(Resource.Success(countries?.sortedBy { it.area }))
+
+                                }
+                            }
+
+                        }
+                        is OrderType.Descending -> {
+                            when (countryOrderFormat) {
+
+                                is CountryOrderFormat.ByName -> {
+                                    emit(Resource.Success(countries?.sortedByDescending { it.name.lowercase() }))
+
+                                }
+                                is CountryOrderFormat.ByPopulation -> {
+
+                                    emit(Resource.Success(countries?.sortedByDescending { it.population }))
+                                }
+                                is CountryOrderFormat.ByArea -> {
+
+                                    emit(Resource.Success(countries?.sortedByDescending { it.area }))
+                                }
+                            }
+                        }
+                    }
                 }
-                is CountryOrderFormat.ByPopulation -> {
-
-                    emit(Resource.Success(countries?.sortedByDescending { it.population }))
-                }
-                is CountryOrderFormat.ByArea -> {
-
-                    emit(Resource.Success(countries?.sortedByDescending { it.area }))
-                }
-            }
-        }
-    }
-}
     }
 
 }
