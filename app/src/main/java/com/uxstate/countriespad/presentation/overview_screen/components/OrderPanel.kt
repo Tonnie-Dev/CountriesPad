@@ -51,7 +51,7 @@ val spacing = LocalSpacing.current
 
         }
 
-        Spacer(modifier = Modifier.height(spacing.spaceSmall))
+        Spacer(modifier = Modifier.height(spacing.spaceExtraSmall))
 
         //ROW_2
         Row(modifier = modifier.fillMaxWidth()) {

@@ -7,6 +7,7 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Build
+import androidx.compose.material.icons.filled.List
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -70,15 +71,16 @@ fun OverviewScreen(
                     modifier = Modifier
                             .fillMaxWidth()
                             .align(Alignment.End),
-                    verticalAlignment = Alignment.CenterVertically
+                    horizontalArrangement = Arrangement.End
+                    //verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(
+               /* Text(
                         text = stringResource(id = R.string.sort_countries_label),
                         style = MaterialTheme.typography.labelSmall
-                )
-                IconButton(onClick = { viewModel.onEvent(OverviewEvent.OnToggleSelectionPane) }) {
+                )*/
+                IconButton(  onClick = { viewModel.onEvent(OverviewEvent.OnToggleSelectionPane) }) {
                     Icon(
-                            imageVector = Icons.Default.Build,
+                            imageVector = Icons.Default.List,
                             contentDescription = stringResource(id = R.string.sort_countries_label)
                     )
                 }
