@@ -1,5 +1,9 @@
 package com.uxstate.countriespad.domain.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Country(
     val name: String,
     val currencies: List<String>,
@@ -13,7 +17,7 @@ data class Country(
     val ciocCode: String,
     val area: Int,
     val population: Int
-)
+):Parcelable
 
 
 

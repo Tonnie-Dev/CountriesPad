@@ -22,7 +22,7 @@ import com.uxstate.countriespad.domain.model.Country
 import com.uxstate.countriespad.util.LocalSpacing
 
 @Composable
-fun CountryCard(modifier: Modifier = Modifier, country: Country, onClickCountry: () -> Unit) {
+fun CountryCard(modifier: Modifier = Modifier, country: Country, onClickCountry: (Country) -> Unit) {
 
     val spacing = LocalSpacing.current
     val flagUrl = country.flagUrl.toUri()
@@ -40,7 +40,7 @@ fun CountryCard(modifier: Modifier = Modifier, country: Country, onClickCountry:
     )
     Card(
             modifier = modifier
-                    .clickable { onClickCountry() }.padding(spacing.spaceMedium)
+                    .clickable { onClickCountry(country) }.padding(spacing.spaceMedium)
                    ,
             colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
             shape = MaterialTheme.shapes.medium

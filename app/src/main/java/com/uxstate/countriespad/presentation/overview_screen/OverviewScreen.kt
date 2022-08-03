@@ -18,15 +18,13 @@ import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootNavGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.uxstate.countriespad.R
+import com.uxstate.countriespad.presentation.destinations.DetailsScreenDestination
 import com.uxstate.countriespad.presentation.overview_screen.components.CountryCard
 import com.uxstate.countriespad.presentation.overview_screen.components.OrderPanel
 import com.uxstate.countriespad.presentation.overview_screen.components.SearchBox
 import com.uxstate.countriespad.util.LocalSpacing
 
 @OptIn(ExperimentalMaterial3Api::class)
-
-
-
 
 
 @RootNavGraph(start = true)
@@ -106,7 +104,7 @@ fun OverviewScreen(
                                 .fillMaxWidth()
                                 .padding(spacing.spaceSmall),
 
-                )
+                        )
             }
 
             Spacer(modifier = Modifier.height(spacing.spaceMedium))
@@ -117,7 +115,7 @@ fun OverviewScreen(
 
                         items(state.countriesData) { country ->
                             CountryCard(country = country) {
-
+                           navigator.navigate(DetailsScreenDestination(it))
                             }
 
                         }
