@@ -1,11 +1,15 @@
 package com.uxstate.countriespad.presentation.overview_screen
 
+import androidx.compose.animation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Build
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -54,10 +58,33 @@ fun OverviewScreen(
     }) { paddingValues ->
 
 
-        Column(modifier = Modifier.fillMaxSize().padding(paddingValues)) {
+        Column(
+                modifier = Modifier
+                        .fillMaxSize()
+                        .padding(paddingValues)
+        ) {
 
+            //HEADER_SECTION
+            Row(
+                    modifier = Modifier
+                            .fillMaxWidth()
+                            .align(Alignment.End),
+                    verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                        text = stringResource(id = R.string.sort_countries_label),
+                        style = MaterialTheme.typography.labelSmall
+                )
+                IconButton(onClick = { viewModel.onEvent(OverviewEvent.OnToggleSelectionPane) }) {
+                    Icon(
+                            imageVector = Icons.Default.Build,
+                            contentDescription = stringResource(id = R.string.sort_countries_label)
+                    )
+                }
+            }
 
-            
+          
+
 
             LazyVerticalGrid(
                     columns = GridCells.Fixed(2),
@@ -74,8 +101,7 @@ fun OverviewScreen(
                     })
 
 
-
-           //End of Column
+            //End of Column
         }
 
 

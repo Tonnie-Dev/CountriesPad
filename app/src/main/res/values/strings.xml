@@ -5,4 +5,5 @@
     <string name="population_label">Population</string>
     <string name="area_label">Area</string>
     <string name="name_label">Name</string>
+    <string name="sort_countries_label">Click to sort countries</string>
 </resources>

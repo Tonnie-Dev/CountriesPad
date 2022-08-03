@@ -8,6 +8,6 @@ sealed class OverviewEvent (){
     data class OnQueryChange(val query:String):OverviewEvent()
     object OnClearSearchBox:OverviewEvent()
     data class OnClickCountry (val country: Country):OverviewEvent()
-    object toggleSelectionPane:OverviewEvent()
+    object OnToggleSelectionPane:OverviewEvent()
     data class OnChangeOrder(val countryOrderFormat: CountryOrderFormat):OverviewEvent()
 }
