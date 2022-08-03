@@ -7,6 +7,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.uxstate.countriespad.R
 import com.uxstate.countriespad.util.CountryOrderFormat
+import com.uxstate.countriespad.util.LocalSpacing
 import com.uxstate.countriespad.util.OrderType
 
 @Composable
@@ -16,7 +17,7 @@ fun OrderPanel(
     onOrderChange: (CountryOrderFormat) -> Unit
 ) {
 
-
+val spacing = LocalSpacing.current
     Column(modifier = modifier) {
 
         //ROW_1
@@ -28,7 +29,7 @@ fun OrderPanel(
 
 
 
-            Spacer(modifier = Modifier.width(8.dp))
+            Spacer(modifier = Modifier.width(spacing.spaceSmall))
 
             //R2
 
@@ -38,7 +39,7 @@ fun OrderPanel(
                     onSelected = { onOrderChange(CountryOrderFormat.ByArea(countryOrder.orderType)) }
             )
 
-            Spacer(modifier = Modifier.width(8.dp))
+            Spacer(modifier = Modifier.width(spacing.spaceSmall))
 
             //R3
 
@@ -50,7 +51,7 @@ fun OrderPanel(
 
         }
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(spacing.spaceSmall))
 
         //ROW_2
         Row(modifier = modifier.fillMaxWidth()) {
@@ -62,7 +63,7 @@ fun OrderPanel(
                     selected = countryOrder.orderType is OrderType.Ascending,
                     onSelected = { onOrderChange(countryOrder.copy(OrderType.Ascending)) }
             )
-            Spacer(modifier = Modifier.width(8.dp))
+            Spacer(modifier = Modifier.width(spacing.spaceSmall))
 
             //R5
 
