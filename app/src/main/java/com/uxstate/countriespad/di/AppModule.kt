@@ -1,16 +1,16 @@
 package com.uxstate.countriespad.di
 
 import android.app.Application
-import android.content.Context
 import androidx.room.Room
 import com.uxstate.countriespad.data.local.CountryDatabase
 import com.uxstate.countriespad.data.remote.CountryAPI
 import com.uxstate.countriespad.domain.repository.CountryRepository
+import com.uxstate.countriespad.domain.use_cases.FilterUseCase
 import com.uxstate.countriespad.domain.use_cases.GetCountryDataUseCase
+import com.uxstate.countriespad.domain.use_cases.UseCaseContainer
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.scalars.ScalarsConverterFactory
@@ -38,7 +38,7 @@ object AppModule {
     //Database
     @Provides
     @Singleton
-    fun provideCountryDatabase(app:Application): CountryDatabase {
+    fun provideCountryDatabase(app: Application): CountryDatabase {
 
         //doesn't include TypeConverters as we leave Room to do the initialization
         return Room.databaseBuilder(app, CountryDatabase::class.java, "country_database")
@@ -46,6 +46,15 @@ object AppModule {
     }
 
     //Use Case Container
-   
+
+    @Provides
+    @Singleton
+    fun provideUseCaseContainer(repository: CountryRepository): UseCaseContainer {
+
+        return UseCaseContainer(
+                filterUseCase = FilterUseCase(),
+                getCountryDataUseCase = GetCountryDataUseCase(repository = repository)
+        )
+    }
 
 }
