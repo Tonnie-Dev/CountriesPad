@@ -21,6 +21,8 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object AppModule {
 
+
+    //API
     @Provides
     @Singleton
     fun provideCountryAPI(): CountryAPI {
@@ -32,9 +34,10 @@ object AppModule {
                 .create()
     }
 
+
+    //Database
     @Provides
     @Singleton
-//@ApplicationContext app:Context
     fun provideCountryDatabase(app:Application): CountryDatabase {
 
         //doesn't include TypeConverters as we leave Room to do the initialization
@@ -42,12 +45,7 @@ object AppModule {
                 .build()
     }
 
-    @Provides
-    @Singleton
-
-    fun provideGetCountryDataUseCase(repository: CountryRepository): GetCountryDataUseCase{
-
-        return GetCountryDataUseCase(repository)
-    }
+    //Use Case Container
+   
 
 }
