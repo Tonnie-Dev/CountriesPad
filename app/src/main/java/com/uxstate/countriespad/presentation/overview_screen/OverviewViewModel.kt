@@ -81,7 +81,7 @@ class OverviewViewModel @Inject constructor(private val container: UseCaseContai
             }
 
 
-            is OverviewEvent.OnClickCountry -> {}
+
         }
     }
 
