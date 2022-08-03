@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.uxstate.countriespad.domain.use_cases.UseCaseContainer
 import com.uxstate.countriespad.util.CountryOrderFormat
-import com.uxstate.countriespad.util.OrderType
 import com.uxstate.countriespad.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
@@ -27,7 +26,7 @@ class OverviewViewModel @Inject constructor(private val container: UseCaseContai
     private var countryJob: Job? = null
 
     init {
-        getCountries()
+        getCountries(countryOrderFormat = state.countryOrderFormat)
     }
 
     fun onEvent(event: OverviewEvent) {
@@ -37,7 +36,7 @@ class OverviewViewModel @Inject constructor(private val container: UseCaseContai
             is OverviewEvent.OnClearSearchBox -> {
 
                 state = state.copy(query = "")
-                getCountries()
+                getCountries(countryOrderFormat = state.countryOrderFormat)
             }
             is OverviewEvent.OnQueryChange -> {
                 //update query value
@@ -55,7 +54,7 @@ class OverviewViewModel @Inject constructor(private val container: UseCaseContai
 
                         delay(500)
                         //called only after a delay of 500 ms
-                        getCountries()
+                        getCountries(countryOrderFormat = state.countryOrderFormat)
                     }
 
             }
@@ -63,16 +62,17 @@ class OverviewViewModel @Inject constructor(private val container: UseCaseContai
             is OverviewEvent.OnChangeOrder -> {
 
 
-                if (event.countryOrderFormat::class == state.countryOrderFormat::class
-                    && event.countryOrderFormat.orderType == state.countryOrderFormat.orderType
+                if (state.countryOrderFormat::class==event.countryOrderFormat::class
+                    && state.countryOrderFormat.orderType==event.countryOrderFormat.orderType
                 ) {
 
                     //do nothing since the order hasn't changed
-                    return Unit
+                    return
                 }
 
-                //else
-                getCountries(countryOrderFormat = event.countryOrderFormat)
+                //else load countries with the new event's order
+                state = state.copy(countryOrderFormat = event.countryOrderFormat)
+                getCountries(countryOrderFormat = state.countryOrderFormat)
 
             }
             is OverviewEvent.OnToggleSelectionPane -> {
@@ -88,8 +88,8 @@ class OverviewViewModel @Inject constructor(private val container: UseCaseContai
     private fun getCountries(
         query: String = state.query,
         fetchFromRemote: Boolean = false,
-        countryOrderFormat: CountryOrderFormat = CountryOrderFormat.ByName(OrderType.Ascending)
-    ) {
+        countryOrderFormat: CountryOrderFormat)
+     {
 
 
         container.getCountryDataUseCase(query, fetchFromRemote)

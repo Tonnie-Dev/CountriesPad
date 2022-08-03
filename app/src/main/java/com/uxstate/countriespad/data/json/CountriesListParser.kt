@@ -109,7 +109,7 @@ class CountriesListParser @Inject constructor():JsonStringParser<Country> {
 
             val coatOfArmsDataObj = countryJsonObj.getJSONObject("coatOfArms")
 
-            val coatOfArmsUrl = coatOfArmsDataObj.getString("svg")
+            val coatOfArmsUrl = coatOfArmsDataObj.optString("png",flagUrl)
 
 
             //construct country object from the above data points

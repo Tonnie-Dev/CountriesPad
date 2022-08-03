@@ -9,6 +9,6 @@ data class OverviewState(
     val countriesData: List<Country> = emptyList(),
     val isLoading: Boolean = false,
     val errorMessage: String = "",
-    val isOrderPaneVisible:Boolean= false,
-val countryOrderFormat: CountryOrderFormat = CountryOrderFormat.ByName(OrderType.Ascending)
+    val isOrderPaneVisible: Boolean = false,
+    val countryOrderFormat: CountryOrderFormat = CountryOrderFormat.ByName(OrderType.Ascending)
 )
