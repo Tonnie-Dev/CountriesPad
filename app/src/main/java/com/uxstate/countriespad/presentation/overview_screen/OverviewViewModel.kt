@@ -74,7 +74,7 @@ class OverviewViewModel @Inject constructor(private val useCase: GetCountryDataU
                 getCountries(countryOrderFormat = event.countryOrderFormat)
 
             }
-            is OverviewEvent.toggleSelectionPane -> {
+            is OverviewEvent.OnToggleSelectionPane -> {
                 //toggle boolean status
                 state = state.copy(isOrderPaneVisible = !state.isOrderPaneVisible)
             }

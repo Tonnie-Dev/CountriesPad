@@ -18,6 +18,7 @@ import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.uxstate.countriespad.R
 import com.uxstate.countriespad.presentation.overview_screen.components.CountryCard
+import com.uxstate.countriespad.presentation.overview_screen.components.OrderPanel
 import com.uxstate.countriespad.presentation.overview_screen.components.SearchBox
 import com.uxstate.countriespad.util.LocalSpacing
 
@@ -83,8 +84,18 @@ fun OverviewScreen(
                 }
             }
 
-          
+            AnimatedVisibility(
+                    visible = state.isOrderPaneVisible,
+                    enter = fadeIn() + slideInVertically(),
+                    exit = fadeOut() + slideOutVertically()
+            ) {
+                OrderPanel(onOrderChange = {
 
+                    viewModel.onEvent(OverviewEvent.OnChangeOrder(it))
+                }, modifier = Modifier.fillMaxWidth())
+            }
+
+            Spacer(modifier = Modifier.height(spacing.spaceMedium))
 
             LazyVerticalGrid(
                     columns = GridCells.Fixed(2),

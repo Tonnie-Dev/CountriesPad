@@ -39,7 +39,7 @@ fun CustomRadioButton(text:String,
         Spacer(modifier = Modifier.width(8.dp))
 
         //2nd child - Text
-        Text(text = text, style = MaterialTheme.typography.headlineSmall)
+        Text(text = text, style = MaterialTheme.typography.titleSmall)
 
     }
 }
