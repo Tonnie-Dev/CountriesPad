@@ -5,7 +5,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.uxstate.countriespad.domain.use_cases.GetCountryDataUseCase
 import com.uxstate.countriespad.domain.use_cases.UseCaseContainer
 import com.uxstate.countriespad.util.CountryOrderFormat
 import com.uxstate.countriespad.util.OrderType
@@ -16,7 +15,6 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
-import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -94,25 +92,38 @@ class OverviewViewModel @Inject constructor(private val container: UseCaseContai
     ) {
 
 
-       container.getCountryDataUseCase(query, fetchFromRemote).onEach { result ->
-            state = when (result) {
+        container.getCountryDataUseCase(query, fetchFromRemote)
+                .onEach { result ->
+                    state = when (result) {
 
-                is Resource.Loading -> {
+                        is Resource.Loading -> {
 
-                    state.copy(isLoading = result.isLoading)
+                            state.copy(isLoading = result.isLoading)
+                        }
+                        is Resource.Error -> {
+
+                            state.copy(
+                                    errorMessage = result.errorMessage ?: "Unknown Error Occurred"
+                            )
+                        }
+                        is Resource.Success -> {
+                            // state.copy(countriesData = container.filterUseCase(it,countryOrderFormat))
+
+                            //state.copy(countriesData = result.data?: emptyList())
+
+
+                            state.copy(
+                                    countriesData = container.filterUseCase(
+                                            result.data ?: emptyList(), countryOrderFormat
+                                    )
+                            )
+
+
+                        }
+                    }
+
+
                 }
-                is Resource.Error -> {
-
-                    state.copy(errorMessage = result.errorMessage ?: "Unknown Error Occurred")
-                }
-                is Resource.Success -> {
-
-                    state.copy(countriesData = result.data ?: emptyList())
-                }
-            }
-
-
-        }
                 .launchIn(viewModelScope)
     }
 

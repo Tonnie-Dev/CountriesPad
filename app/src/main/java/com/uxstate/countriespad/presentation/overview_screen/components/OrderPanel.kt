@@ -9,6 +9,7 @@ import com.uxstate.countriespad.R
 import com.uxstate.countriespad.util.CountryOrderFormat
 import com.uxstate.countriespad.util.LocalSpacing
 import com.uxstate.countriespad.util.OrderType
+import timber.log.Timber
 
 @Composable
 fun OrderPanel(
@@ -34,8 +35,10 @@ val spacing = LocalSpacing.current
             //R2
 
             CustomRadioButton(
+
                     text = stringResource(id = R.string.area_label),
                     selected = countryOrder is CountryOrderFormat.ByArea,
+
                     onSelected = { onOrderChange(CountryOrderFormat.ByArea(countryOrder.orderType)) }
             )
 

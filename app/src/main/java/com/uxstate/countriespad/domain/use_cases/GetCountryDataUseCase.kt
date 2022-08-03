@@ -18,12 +18,14 @@ class GetCountryDataUseCase(
 ) {
 
     operator fun invoke(query: String, fetchFromRemote: Boolean): Flow<Resource<List<Country>>> {
-        return mapCountryResponse(
+
+        return repository.getCountriesData(query = query, fetchFromRemote = fetchFromRemote)
+       /* return mapCountryResponse(
                 response = repository.getCountriesData(
                         query,
                         fetchFromRemote = fetchFromRemote
                 ), countryOrderFormat = countryOrderFormat
-        )
+        )*/
     }
 
     private fun mapCountryResponse(

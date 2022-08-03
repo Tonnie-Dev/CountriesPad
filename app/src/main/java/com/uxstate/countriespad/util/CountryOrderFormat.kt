@@ -1,6 +1,6 @@
 package com.uxstate.countriespad.util
 
-import com.uxstate.countriespad.domain.model.Country
+
 
 sealed class CountryOrderFormat(val orderType: OrderType){
 
