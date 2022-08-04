@@ -23,12 +23,14 @@ fun CoatOfArms(country: Country, modifier: Modifier = Modifier) {
         val context = LocalContext.current
         val imageUrl = country.coatOfArmsUrl.toUri()
                 .buildUpon()
-                .scheme("https")
+                .scheme("https").build()
 
         val painter = rememberAsyncImagePainter(
                 model = ImageRequest.Builder(context)
-                        .data(imageUrl)
+                        .data(country.coatOfArmsUrl)
                         .crossfade(true)
+                        .placeholder(R.drawable.loading_animation)
+                        .fallback(R.drawable.ic_empty_flag)
                         .error(R.drawable.ic_empty_flag)
                         .build()
         )
@@ -36,7 +38,7 @@ fun CoatOfArms(country: Country, modifier: Modifier = Modifier) {
                 painter = painter,
                 contentDescription = stringResource(id = R.string.coat_of_arms_label),
                 modifier = Modifier
-                        .fillMaxHeight()
+                        .fillMaxWidth()
                         .aspectRatio(3f / 2f)
         )
 

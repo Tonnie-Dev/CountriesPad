@@ -2,6 +2,7 @@ package com.uxstate.countriespad.presentation.details_screen
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -13,6 +14,7 @@ import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.uxstate.countriespad.domain.model.Country
 import com.uxstate.countriespad.R
+import com.uxstate.countriespad.presentation.details_screen.components.CoatOfArms
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Destination()
@@ -34,6 +36,7 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
                 }},
                 actions = {
 
+                    CoatOfArms(country = country, modifier = Modifier.fillMaxWidth())
 
                 }
         )
