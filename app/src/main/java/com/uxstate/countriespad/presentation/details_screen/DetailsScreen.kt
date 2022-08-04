@@ -19,11 +19,11 @@ fun DetailsScreen(country: Country) {
                 colors = TopAppBarDefaults.largeTopAppBarColors(
                         titleContentColor = MaterialTheme.colorScheme.onSurfaceVariant,
                         containerColor = MaterialTheme.colorScheme.surfaceVariant
-                ), title = {}, actions = {
+                ), title = {},
+                actions = {
 
 
-                    
-        }
+                }
         )
     }) { paddingValues ->
         Column(
