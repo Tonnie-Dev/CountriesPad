@@ -7,4 +7,5 @@
     <string name="name_label">Name</string>
     <string name="sort_countries_label">Reorder</string>
     <string name="back_label">Back</string>
+    <string name="coat_of_arms_label">Back</string>
 </resources>
