@@ -2,6 +2,7 @@ package com.uxstate.countriespad.data.json
 
 import com.uxstate.countriespad.domain.model.Country
 import org.json.JSONArray
+import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -14,19 +15,20 @@ import javax.inject.Singleton
 * of this class for the entire app*/
 
 @Singleton
-class CountriesListParser @Inject constructor():JsonStringParser<Country> {
+class CountriesListParser @Inject constructor() : JsonStringParser<Country> {
     override fun parseJson(jsonString: String): List<Country> {
 
         //lists
         val countriesList = mutableListOf<Country>()
-        val currencyList = mutableListOf<String>()
-        val languagesList = mutableListOf<String>()
         val countriesJsonArray = JSONArray(jsonString)
 
         //iterate through the jsonArray
-        (0 until countriesJsonArray.length()).forEach { i ->
+        (0 until countriesJsonArray.length()).forEach { i->
 
-            
+            //re-initialize lang and currency with each iteration
+            val currencyList = mutableListOf<String>()
+            val languagesList = mutableListOf<String>()
+
 
             val countryJsonObj = countriesJsonArray.getJSONObject(i)
 
@@ -37,42 +39,42 @@ class CountriesListParser @Inject constructor():JsonStringParser<Country> {
             val cca3Code = countryJsonObj.getString("cca3")
             val ciocCode = if (countryJsonObj.has("cioc")) {
                 countryJsonObj.getString("cioc")
-            }else{
+            } else {
 
-                countryJsonObj.getString("cca3")
+                cca3Code
             }
 
-            if (countryJsonObj.has("currencies")){
+            if (countryJsonObj.has("currencies")) {
 
-                currencyList.clear()
+
                 val currencyData = countryJsonObj.getJSONObject("currencies")
 
 
                 currencyData.keys()
                         .forEach { curr ->
-
+                            //Timber.i("before iterationx currencyList is $currencyList")
                             val currencyNameObj = currencyData.getJSONObject(curr)
 
                             val currency = currencyNameObj.getString("name")
                             currencyList.add(currency)
+                           // Timber.i("After iterationx currencyList is $currencyList")
                         }
-            }else {
+            } else {
 
                 currencyList.add("Not Found")
             }
-           
 
-            val capital = if (countryJsonObj.has("capital")){
+
+            val capital = if (countryJsonObj.has("capital")) {
                 countryJsonObj.getJSONArray("capital")
                         .getString(0)
 
-            }else "not found"
-
+            } else "not found"
 
 
             val region = countryJsonObj.getString("region")
 
-            val subRegion = countryJsonObj.optString("subregion",region)
+            val subRegion = countryJsonObj.optString("subregion", region)
 
 
             if (countryJsonObj.has("languages")) {
@@ -84,11 +86,10 @@ class CountriesListParser @Inject constructor():JsonStringParser<Country> {
                             languagesList.add(languagesData.getString(langKey))
                         }
 
-            }else {
+            } else {
 
                 languagesList.add("No Languages found")
             }
-
 
 
             val latLngArray = countryJsonObj.getJSONArray("latlng")
@@ -109,7 +110,7 @@ class CountriesListParser @Inject constructor():JsonStringParser<Country> {
 
             val coatOfArmsDataObj = countryJsonObj.getJSONObject("coatOfArms")
 
-            val coatOfArmsUrl = coatOfArmsDataObj.optString("png",flagUrl)
+            val coatOfArmsUrl = coatOfArmsDataObj.optString("png", flagUrl)
 
 
             //construct country object from the above data points
@@ -129,7 +130,7 @@ class CountriesListParser @Inject constructor():JsonStringParser<Country> {
             )
 
 
-
+            Timber.i("after clearing lists iterationx currencyList is $currencyList")
             //add country object to countries list
 
             countriesList.add(country)
@@ -143,10 +144,10 @@ class CountriesListParser @Inject constructor():JsonStringParser<Country> {
     }
 
 
-   /* operator fun <T> JSONArray.iterator(): Iterator<T> =
-        (0 until this.length()).asSequence()
-                .map { this.get(it) as T }
-                .iterator()*/
+    /* operator fun <T> JSONArray.iterator(): Iterator<T> =
+         (0 until this.length()).asSequence()
+                 .map { this.get(it) as T }
+                 .iterator()*/
 
 
 }
