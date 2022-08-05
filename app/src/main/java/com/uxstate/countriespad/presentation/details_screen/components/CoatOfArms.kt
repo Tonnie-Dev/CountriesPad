@@ -40,7 +40,7 @@ fun CoatOfArms(country: Country, modifier: Modifier = Modifier) {
         Image(
                 painter = painter,
                 contentDescription = stringResource(id = R.string.coat_of_arms_label),
-                contentScale = ContentScale.Fit,
+                contentScale = ContentScale.Crop,
                 modifier = Modifier.size(150.dp, 100.dp)
                        /* .fillMaxWidth(.6f)
                         .aspectRatio(3f / 2f)
