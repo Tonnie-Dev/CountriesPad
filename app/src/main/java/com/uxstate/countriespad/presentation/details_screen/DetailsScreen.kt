@@ -26,7 +26,7 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
                 colors = TopAppBarDefaults.largeTopAppBarColors(
                         titleContentColor = MaterialTheme.colorScheme.onSurfaceVariant,
                         containerColor = MaterialTheme.colorScheme.surfaceVariant
-                ), title = {},
+                ), title = { Text(text = "${country.name}")},
                 navigationIcon = { IconButton(onClick = { navigator.navigateUp()}) {
 
                     Icon(imageVector = Icons.Default.ArrowBack, contentDescription = stringResource(
