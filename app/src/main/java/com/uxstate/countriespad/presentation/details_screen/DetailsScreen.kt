@@ -22,7 +22,7 @@ import com.uxstate.countriespad.presentation.details_screen.components.CoatOfArm
 fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
 
     Scaffold(topBar = {
-        MediumTopAppBar(
+        SmallTopAppBar(
                 colors = TopAppBarDefaults.largeTopAppBarColors(
                         titleContentColor = MaterialTheme.colorScheme.onSurfaceVariant,
                         containerColor = MaterialTheme.colorScheme.surfaceVariant
@@ -36,7 +36,7 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
                 }},
                 actions = {
 
-                    CoatOfArms(country = country)
+                    //CoatOfArms(country = country)
 
                 }
         )
@@ -47,6 +47,27 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
                         .padding(paddingValues)
         ) {
 
+            
+            Column(modifier = Modifier.weight(.2f)) {
+                CoatOfArms(country = country)
+            }
+
+            Column(modifier = Modifier.weight(.5f)) {
+               Text(text = "Map")
+            }
+
+            Column(modifier = Modifier.weight(.3f)) {
+              Text(text = "Capital: ${country.capital}")
+              Text(text = "Subregion: ${country.subRegion}")
+              Text(text = "Region: ${country.region}")
+              Text(text = "Population: ${country.population}")
+              Text(text = "Area: ${country.area}")
+              Text(text = "Currencies: ${country.currencies.joinToString(", ")}")
+              Text(text = "Languages: ${country.languages.joinToString(", ")}")
+
+                
+            }
+            
         }
 
     }
