@@ -22,7 +22,7 @@ import com.uxstate.countriespad.presentation.details_screen.components.CoatOfArm
 fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
 
     Scaffold(topBar = {
-        LargeTopAppBar(
+        MediumTopAppBar(
                 colors = TopAppBarDefaults.largeTopAppBarColors(
                         titleContentColor = MaterialTheme.colorScheme.onSurfaceVariant,
                         containerColor = MaterialTheme.colorScheme.surfaceVariant
@@ -36,7 +36,7 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
                 }},
                 actions = {
 
-                    CoatOfArms(country = country, modifier = Modifier.fillMaxWidth())
+                    CoatOfArms(country = country)
 
                 }
         )
