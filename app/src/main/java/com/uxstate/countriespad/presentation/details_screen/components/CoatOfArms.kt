@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.uxstate.countriespad.R
@@ -55,7 +56,7 @@ fun CoatOfArms(country: Country, modifier: Modifier = Modifier) {
                 modifier = Modifier
                         .fillMaxHeight(.7f)
                         .aspectRatio(3f / 2f)
-                        .padding(spacing.spaceExtraSmall)
+                        .padding(spacing.spaceSmall)
         ) {
 
             Image(
@@ -78,20 +79,28 @@ fun CoatOfArms(country: Country, modifier: Modifier = Modifier) {
                 modifier = Modifier.padding(spacing.spaceMedium)
         ) {
             Text(text = country.name)
-            Text(text = country.ciocCode)
+            Text(text = country.ciocCode, textAlign = TextAlign.Center)
 
         }
 
-        Image(
-                painter = flagPainter,
-                contentDescription = stringResource(id = R.string.coat_of_arms_label),
-                contentScale = ContentScale.Fit,
+
+        Card(
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
                 modifier = Modifier
                         .fillMaxHeight(.7f)
                         .aspectRatio(3f / 2f)
+                        .padding(spacing.spaceSmall)
+        ) {
 
+            Image(
+                    painter = flagPainter,
+                    contentDescription = stringResource(id = R.string.coat_of_arms_label),
+                    contentScale = ContentScale.Fit,
+                    modifier = Modifier.fillMaxSize()
 
-        )
+            )
+        }
+
 
 
     }
