@@ -54,6 +54,8 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
 
             Column(modifier = Modifier.weight(.5f)) {
                Text(text = "Map")
+
+
             }
 
             Column(modifier = Modifier.weight(.3f)) {

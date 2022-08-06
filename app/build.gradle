@@ -111,7 +111,6 @@ dependencies {
     //Timber
     implementation 'com.jakewharton.timber:timber:5.0.1'
 
-
     //Flow Layout
     implementation 'com.google.accompanist:accompanist-flowlayout:0.24.9-beta'
 
@@ -121,6 +120,11 @@ dependencies {
     // Compose Nav Destinations
     implementation 'io.github.raamcosta.compose-destinations:core:1.5.15-beta'
     ksp 'io.github.raamcosta.compose-destinations:ksp:1.5.15-beta'
+
+    //Maps Compose library
+    implementation 'com.google.maps.android:maps-compose:2.5.3'
+    implementation 'com.google.android.gms:play-services-maps:18.0.2'
+
 
 }
 
