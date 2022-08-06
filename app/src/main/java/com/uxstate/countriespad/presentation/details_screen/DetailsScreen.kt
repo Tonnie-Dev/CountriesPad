@@ -2,7 +2,6 @@ package com.uxstate.countriespad.presentation.details_screen
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -10,10 +9,14 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import com.google.android.gms.maps.model.CameraPosition
+import com.google.android.gms.maps.model.LatLng
+import com.google.maps.android.compose.GoogleMap
+import com.google.maps.android.compose.rememberCameraPositionState
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import com.uxstate.countriespad.domain.model.Country
 import com.uxstate.countriespad.R
+import com.uxstate.countriespad.domain.model.Country
 import com.uxstate.countriespad.presentation.details_screen.components.CoatOfArms
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -26,14 +29,19 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
                 colors = TopAppBarDefaults.largeTopAppBarColors(
                         titleContentColor = MaterialTheme.colorScheme.onSurfaceVariant,
                         containerColor = MaterialTheme.colorScheme.surfaceVariant
-                ), title = { Text(text = "${country.name}")},
-                navigationIcon = { IconButton(onClick = { navigator.navigateUp()}) {
+                ), title = { Text(text = "${country.name}") },
+                navigationIcon = {
+                    IconButton(onClick = { navigator.navigateUp() }) {
 
-                    Icon(imageVector = Icons.Default.ArrowBack, contentDescription = stringResource(
-                            id = R.string.back_label
-                    ))
+                        Icon(
+                                imageVector = Icons.Default.ArrowBack,
+                                contentDescription = stringResource(
+                                        id = R.string.back_label
+                                )
+                        )
 
-                }},
+                    }
+                },
                 actions = {
 
                     //CoatOfArms(country = country)
@@ -47,29 +55,40 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
                         .padding(paddingValues)
         ) {
 
-            
+
             Column(modifier = Modifier.weight(.2f)) {
                 CoatOfArms(country = country)
             }
 
             Column(modifier = Modifier.weight(.5f)) {
-               Text(text = "Map")
+                Text(text = "Map")
 
+                val location = country.latLng
+                val countryLatLng = LatLng(location.first, location.first)
+
+                val cameraPositionState = rememberCameraPositionState {
+                    position = CameraPosition.fromLatLngZoom(countryLatLng, 7f)
+                }
+
+                GoogleMap(
+                        modifier = Modifier.fillMaxSize(),
+                        cameraPositionState = cameraPositionState
+                )
 
             }
 
             Column(modifier = Modifier.weight(.3f)) {
-              Text(text = "Capital: ${country.capital}")
-              Text(text = "Subregion: ${country.subRegion}")
-              Text(text = "Region: ${country.region}")
-              Text(text = "Population: ${country.population}")
-              Text(text = "Area: ${country.area}")
-              Text(text = "Currencies: ${country.currencies.joinToString(", ")}")
-              Text(text = "Languages: ${country.languages.joinToString(", ")}")
+                Text(text = "Capital: ${country.capital}")
+                Text(text = "Subregion: ${country.subRegion}")
+                Text(text = "Region: ${country.region}")
+                Text(text = "Population: ${country.population}")
+                Text(text = "Area: ${country.area}")
+                Text(text = "Currencies: ${country.currencies.joinToString(", ")}")
+                Text(text = "Languages: ${country.languages.joinToString(", ")}")
 
-                
+
             }
-            
+
         }
 
     }
