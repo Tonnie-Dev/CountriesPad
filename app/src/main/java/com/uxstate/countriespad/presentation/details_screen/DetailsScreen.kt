@@ -76,7 +76,11 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
                 CoatOfArms(country = country)
             }
 
-            Column(modifier = Modifier.weight(.6f).padding(spacing.spaceExtraSmall)) {
+            Column(
+                    modifier = Modifier
+                            .weight(.6f)
+                            .padding(spacing.spaceExtraSmall)
+            ) {
 
                 val location = country.latLng
                 val countryLatLng = LatLng(location.first, location.second)
@@ -193,8 +197,10 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.spacedBy(spacing.spaceMedium)
                 ) {
-                    Text(text = "Area:",style = MaterialTheme.typography.titleMedium,
-                            modifier = Modifier.width(spacing.spaceOneHundredDp))
+                    Text(
+                            text = "Area:", style = MaterialTheme.typography.titleMedium,
+                            modifier = Modifier.width(spacing.spaceOneHundredDp)
+                    )
                     Text(
                             text = stringResource(
                                     id = R.string.km_sup_string,
@@ -212,8 +218,10 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
                         horizontalArrangement = Arrangement.spacedBy(spacing.spaceMedium)
                 ) {
 
-                    Text(text = "Currencies:", style = MaterialTheme.typography.titleMedium,
-                            modifier = Modifier.width(spacing.spaceOneHundredDp))
+                    Text(
+                            text = "Currencies:", style = MaterialTheme.typography.titleMedium,
+                            modifier = Modifier.width(spacing.spaceOneHundredDp)
+                    )
                     Text(
                             text = "Currencies: ${
                                 country.currencies.joinToString(", ")
