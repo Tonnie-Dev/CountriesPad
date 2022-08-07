@@ -86,13 +86,13 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
                     .verticalScroll(rememberScrollState())) {
 
 
-                Text(text = "Capital: ${country.capital}")
-                Text(text = "Subregion: ${country.subRegion}")
-                Text(text = "Region: ${country.region}")
-                Text(text = "Population: ${country.population.applyDecimalSeparator()}")
-                Text(text = stringResource(id = R.string.km_sup_string, country.area.applyDecimalSeparator()))
-                Text(text = "Currencies: ${country.currencies.joinToString(", ")}")
-                Text(text = "Languages: ${country.languages.joinToString(", ")}")
+                Text(text = "Capital: ${country.capital}", style = MaterialTheme.typography.titleLarge)
+                Text(text = "Subregion: ${country.subRegion}", style = MaterialTheme.typography.titleMedium)
+                Text(text = "Region: ${country.region}", style = MaterialTheme.typography.titleMedium)
+                Text(text = "Population: ${country.population.applyDecimalSeparator()}", style = MaterialTheme.typography.titleMedium)
+                Text(text = stringResource(id = R.string.km_sup_string, country.area.applyDecimalSeparator()), style = MaterialTheme.typography.titleMedium)
+                Text(text = "Currencies: ${country.currencies.joinToString(", ")}", style = MaterialTheme.typography.titleMedium)
+                Text(text = "Languages: ${country.languages.joinToString(", ")}", style = MaterialTheme.typography.titleMedium)
 
 
             }
