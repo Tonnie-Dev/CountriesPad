@@ -33,9 +33,7 @@ class CountriesListParser @Inject constructor() : JsonStringParser<Country> {
             val capLat: Double
             val capLng: Double
 
-
             val countryJsonObj = countriesJsonArray.getJSONObject(i)
-
             val nameData = countryJsonObj.getJSONObject("name")
 
             val name = nameData.getString("common")
@@ -143,6 +141,7 @@ class CountriesListParser @Inject constructor() : JsonStringParser<Country> {
             //construct country object from the above data points
             val country = Country(
                     name = name,
+                    officialName = officialName,
                     currencies = currencyList,
                     capital = capital,
                     region = region,

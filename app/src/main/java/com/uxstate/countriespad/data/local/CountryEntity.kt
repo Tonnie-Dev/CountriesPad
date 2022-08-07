@@ -9,6 +9,7 @@ data class CountryEntity(
     @PrimaryKey(autoGenerate = true) //generate unique ids
     val id: Int? = null,
     val name: String,
+    val officialName:String,
     val currencies: List<String>,
     val capital: String,
     val region: String,
