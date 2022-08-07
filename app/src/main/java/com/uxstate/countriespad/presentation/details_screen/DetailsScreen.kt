@@ -18,6 +18,7 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.uxstate.countriespad.R
 import com.uxstate.countriespad.domain.model.Country
 import com.uxstate.countriespad.presentation.details_screen.components.CoatOfArms
+import com.uxstate.countriespad.util.applyDecimalSeparator
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Destination()
@@ -67,7 +68,7 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
                 val countryLatLng = LatLng(location.first, location.first)
 
                 val cameraPositionState = rememberCameraPositionState {
-                    position = CameraPosition.fromLatLngZoom(countryLatLng, 3f)
+                    position = CameraPosition.fromLatLngZoom(countryLatLng, 5f)
                 }
 
                 GoogleMap(
