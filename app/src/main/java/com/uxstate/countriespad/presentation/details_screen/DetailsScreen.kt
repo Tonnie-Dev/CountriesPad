@@ -1,8 +1,11 @@
 package com.uxstate.countriespad.presentation.details_screen
 
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.*
@@ -78,7 +81,9 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
 
             }
 
-            Column(modifier = Modifier.weight(0.2f)) {
+            Column(modifier = Modifier
+                    .weight(0.2f)
+                    .verticalScroll(rememberScrollState())) {
 
 
                 Text(text = "Capital: ${country.capital}")
@@ -91,6 +96,8 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
 
 
             }
+            
+
 
         }
 

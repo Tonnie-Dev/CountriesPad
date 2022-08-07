@@ -57,7 +57,7 @@ fun CoatOfArms(country: Country, modifier: Modifier = Modifier) {
                         .fillMaxHeight(.8f)
                         .aspectRatio(3f / 2f)
 
-                        
+
         ) {
 
             Image(
@@ -75,14 +75,14 @@ fun CoatOfArms(country: Country, modifier: Modifier = Modifier) {
 
 
 
-     /*   Column(
+       Column(
                 verticalArrangement = Arrangement.SpaceBetween,
                 modifier = Modifier.padding(spacing.spaceMedium)
         ) {
-            Text(text = country.name)
-            Text(text = country.ciocCode, textAlign = TextAlign.Center)
 
-        }*/
+            Text(text = country.ciocCode, textAlign = TextAlign.Center, style = MaterialTheme.typography.headlineMedium)
+
+        }
 
 
         Card(
@@ -101,6 +101,7 @@ fun CoatOfArms(country: Country, modifier: Modifier = Modifier) {
 
             )
         }
+
 
 
 
