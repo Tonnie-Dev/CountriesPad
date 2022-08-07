@@ -19,7 +19,8 @@ fun CountryEntity.toCountry():Country {
             coatOfArmsUrl = this.coatOfArmsUrl,
             ciocCode = this.ciocCode,
             area = this.area,
-            population = this.population
+            population = this.population,
+            officialName = this.officialName
     )
 }
 
@@ -27,6 +28,7 @@ fun Country.toCountryEntity():CountryEntity{
 
     return CountryEntity(
             name = this.name,
+            officialName = this.officialName,
             currencies = this.currencies,
             capital = this.capital,
             region = this.region,
@@ -37,6 +39,7 @@ fun Country.toCountryEntity():CountryEntity{
             coatOfArmsUrl = this.coatOfArmsUrl,
             ciocCode = this.ciocCode,
             area = this.area,
+
             population = this.population
     )
 }
