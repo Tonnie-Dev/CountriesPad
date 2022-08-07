@@ -19,6 +19,7 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.uxstate.countriespad.R
 import com.uxstate.countriespad.domain.model.Country
 import com.uxstate.countriespad.presentation.details_screen.components.CoatOfArms
+import com.uxstate.countriespad.util.capitalizeEachWord
 import com.uxstate.countriespad.util.LocalSpacing
 import com.uxstate.countriespad.util.applyDecimalSeparator
 
@@ -126,7 +127,7 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
                         ), style = MaterialTheme.typography.titleMedium
                 )
                 Text(
-                        text = "Currencies: ${country.currencies.joinToString(", ")}",
+                        text = "Currencies: ${country.currencies.joinToString(", ").capitalizeEachWord()}",
                         style = MaterialTheme.typography.titleMedium
                 )
                 Text(
