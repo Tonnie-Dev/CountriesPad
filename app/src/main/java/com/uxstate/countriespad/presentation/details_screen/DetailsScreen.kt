@@ -19,6 +19,7 @@ import com.uxstate.countriespad.R
 import com.uxstate.countriespad.domain.model.Country
 import com.uxstate.countriespad.presentation.details_screen.components.CoatOfArms
 import com.uxstate.countriespad.util.applyDecimalSeparator
+import timber.log.Timber
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Destination()
@@ -65,8 +66,8 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
                 Text(text = "Map")
 
                 val location = country.latLng
-                val countryLatLng = LatLng(location.first, location.first)
-
+                val countryLatLng = LatLng(location.first, location.second)
+               // Timber.i("Lat is ${location.first, }")
                 val cameraPositionState = rememberCameraPositionState {
                     position = CameraPosition.fromLatLngZoom(countryLatLng, 5f)
                 }
@@ -79,6 +80,8 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
             }
 
             Column(modifier = Modifier.weight(.3f)) {
+
+
                 Text(text = "Capital: ${country.capital}")
                 Text(text = "Subregion: ${country.subRegion}")
                 Text(text = "Region: ${country.region}")
