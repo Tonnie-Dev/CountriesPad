@@ -8,12 +8,12 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.core.net.toUri
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
@@ -22,7 +22,11 @@ import com.uxstate.countriespad.domain.model.Country
 import com.uxstate.countriespad.util.LocalSpacing
 
 @Composable
-fun CountryCard(modifier: Modifier = Modifier, country: Country, onClickCountry: (Country) -> Unit) {
+fun CountryCard(
+    modifier: Modifier = Modifier,
+    country: Country,
+    onClickCountry: (Country) -> Unit
+) {
 
     val spacing = LocalSpacing.current
     val flagUrl = country.flagUrl.toUri()
@@ -40,15 +44,16 @@ fun CountryCard(modifier: Modifier = Modifier, country: Country, onClickCountry:
     )
     Card(
             modifier = modifier
-                    .clickable { onClickCountry(country) }.padding(spacing.spaceMedium)
-                   ,
+                    .clickable { onClickCountry(country) }
+                    .padding(spacing.spaceMedium),
             colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
             shape = MaterialTheme.shapes.medium
     ) {
         Column(
                 modifier = Modifier
                         .fillMaxWidth()
-                        .aspectRatio(3f / 2f).padding(spacing.spaceExtraSmall),
+                        .aspectRatio(3f / 2f)
+                        .padding(spacing.spaceExtraSmall),
                 verticalArrangement = Arrangement.SpaceBetween
         ) {
 
@@ -62,8 +67,15 @@ fun CountryCard(modifier: Modifier = Modifier, country: Country, onClickCountry:
                             .padding(spacing.spaceSmall)
             )
 
-          //  Spacer(modifier = Modifier.height(spacing.spaceSmall))
-            Text(text = country.name, textAlign = TextAlign.Center, modifier = Modifier.align(CenterHorizontally))
+            //  Spacer(modifier = Modifier.height(spacing.spaceSmall))
+            Text(
+                    text = country.name,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.align(CenterHorizontally).padding(spacing.spaceExtraSmall),
+                    style = MaterialTheme.typography.titleMedium,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+            )
         }
 
     }
