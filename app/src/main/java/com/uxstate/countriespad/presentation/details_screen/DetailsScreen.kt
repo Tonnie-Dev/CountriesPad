@@ -7,6 +7,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
@@ -19,9 +20,9 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.uxstate.countriespad.R
 import com.uxstate.countriespad.domain.model.Country
 import com.uxstate.countriespad.presentation.details_screen.components.CoatOfArms
-import com.uxstate.countriespad.util.capitalizeEachWord
 import com.uxstate.countriespad.util.LocalSpacing
 import com.uxstate.countriespad.util.applyDecimalSeparator
+import com.uxstate.countriespad.util.capitalizeEachWord
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Destination()
@@ -98,42 +99,139 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
                             .padding(spacing.spaceLarge)
             ) {
 
-               Text(
+                Text(
                         text = "Official Name: ${country.officialName}",
                         style = MaterialTheme.typography.titleLarge
                 )
-                
-                Spacer(modifier = Modifier.height(spacing.spaceMedium))
-                Text(
-                        text = "Capital: ${country.capital}",
-                        style = MaterialTheme.typography.titleMedium
-                )
-                Text(
-                        text = "Subregion: ${country.subRegion}",
-                        style = MaterialTheme.typography.titleMedium
-                )
-                Text(
-                        text = "Region: ${country.region}",
-                        style = MaterialTheme.typography.titleMedium
-                )
-                Text(
-                        text = "Population: ${country.population.applyDecimalSeparator()}",
-                        style = MaterialTheme.typography.titleMedium
-                )
-                Text(
-                        text = stringResource(
-                                id = R.string.km_sup_string,
-                                country.area.applyDecimalSeparator()
-                        ), style = MaterialTheme.typography.titleMedium
-                )
-                Text(
-                        text = "Currencies: ${country.currencies.joinToString(", ").capitalizeEachWord()}",
-                        style = MaterialTheme.typography.titleMedium
-                )
-                Text(
-                        text = "Languages: ${country.languages.joinToString(", ")}",
-                        style = MaterialTheme.typography.titleMedium
-                )
+
+                Spacer(modifier = Modifier.height(spacing.spaceSmall))
+
+                Row(
+                        modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(spacing.spaceSmall),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+
+                    Text(
+                            text = "Capital:",
+                            style = MaterialTheme.typography.titleMedium
+                    )
+                    Text(
+                            text = country.capital,
+                            style = MaterialTheme.typography.bodyMedium
+                    )
+
+                }
+
+
+                Row(
+                        modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(spacing.spaceSmall),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+
+                    Text(
+                            text = "Subregion:",
+                            style = MaterialTheme.typography.titleMedium
+                    )
+                    Text(
+                            text = country.subRegion,
+                            style = MaterialTheme.typography.bodyMedium
+                    )
+                }
+
+                Row(
+                        modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(spacing.spaceSmall),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+
+
+                    Text(
+                            text = "Region:",
+                            style = MaterialTheme.typography.titleMedium
+                    )
+
+                    Text(
+                            text = country.region,
+                            style = MaterialTheme.typography.bodyMedium
+                    )
+                }
+
+                Row(
+                        modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(spacing.spaceSmall),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Text(
+                            text = "Population:",
+                            style = MaterialTheme.typography.titleMedium
+                    )
+                    Text(
+                            text = country.population.applyDecimalSeparator(),
+                            style = MaterialTheme.typography.bodyMedium
+                    )
+                }
+
+                Row(
+                        modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(spacing.spaceSmall),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Text(text = "Area:",style = MaterialTheme.typography.titleMedium)
+                    Text(
+                            text = stringResource(
+                                    id = R.string.km_sup_string,
+                                    country.area.applyDecimalSeparator()
+                            ), style = MaterialTheme.typography.bodyMedium
+                    )
+                }
+
+
+                Row(
+                        modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(spacing.spaceSmall),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+
+                    Text(text = "Currencies:", style = MaterialTheme.typography.titleMedium)
+                    Text(
+                            text = "Currencies: ${
+                                country.currencies.joinToString(", ")
+                                        .capitalizeEachWord()
+                            }",
+                            style = MaterialTheme.typography.bodyMedium
+                    )
+                }
+                Row(
+                        modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(spacing.spaceSmall),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+
+                    Text(
+                            text = "Languages:",
+                            style = MaterialTheme.typography.titleMedium
+                    )
+                    Text(
+                            text = country.languages.joinToString(", "),
+                            style = MaterialTheme.typography.bodyMedium
+                    )
+                }
 
 
             }

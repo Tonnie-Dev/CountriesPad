@@ -8,6 +8,6 @@
     <string name="sort_countries_label">Reorder</string>
     <string name="back_label">Back</string>
     <string name="coat_of_arms_label">Back</string>
-    <string name="km_sup_string">Area %s km\u00B2</string>
+    <string name="km_sup_string"> %s km\u00B2</string>
 
 </resources>
