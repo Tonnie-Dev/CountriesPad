@@ -27,7 +27,7 @@ import timber.log.Timber
 fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
 
     Scaffold(topBar = {
-        SmallTopAppBar(
+        CenterAlignedTopAppBar(
                 colors = TopAppBarDefaults.largeTopAppBarColors(
                         titleContentColor = MaterialTheme.colorScheme.onSurfaceVariant,
                         containerColor = MaterialTheme.colorScheme.surfaceVariant
