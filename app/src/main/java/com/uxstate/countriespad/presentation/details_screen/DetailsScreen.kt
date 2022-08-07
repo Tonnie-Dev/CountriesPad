@@ -109,14 +109,15 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
                 Row(
                         modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(spacing.spaceSmall),
+                                .padding(spacing.spaceExtraSmall),
                         verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.SpaceBetween
+                        horizontalArrangement = Arrangement.spacedBy(spacing.spaceMedium)
                 ) {
 
                     Text(
                             text = "Capital:",
-                            style = MaterialTheme.typography.titleMedium
+                            style = MaterialTheme.typography.titleMedium,
+                            modifier = Modifier.width(spacing.spaceOneHundredDp)
                     )
                     Text(
                             text = country.capital,
@@ -129,14 +130,15 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
                 Row(
                         modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(spacing.spaceSmall),
+                                .padding(spacing.spaceExtraSmall),
                         verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.SpaceBetween
+                        horizontalArrangement = Arrangement.spacedBy(spacing.spaceMedium)
                 ) {
 
                     Text(
                             text = "Subregion:",
-                            style = MaterialTheme.typography.titleMedium
+                            style = MaterialTheme.typography.titleMedium,
+                            modifier = Modifier.width(spacing.spaceOneHundredDp)
                     )
                     Text(
                             text = country.subRegion,
@@ -147,15 +149,16 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
                 Row(
                         modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(spacing.spaceSmall),
+                                .padding(spacing.spaceExtraSmall),
                         verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.SpaceBetween
+                        horizontalArrangement = Arrangement.spacedBy(spacing.spaceMedium)
                 ) {
 
 
                     Text(
                             text = "Region:",
-                            style = MaterialTheme.typography.titleMedium
+                            style = MaterialTheme.typography.titleMedium,
+                            modifier = Modifier.width(spacing.spaceOneHundredDp)
                     )
 
                     Text(
@@ -167,13 +170,14 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
                 Row(
                         modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(spacing.spaceSmall),
+                                .padding(spacing.spaceExtraSmall),
                         verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.SpaceBetween
+                        horizontalArrangement = Arrangement.spacedBy(spacing.spaceMedium)
                 ) {
                     Text(
                             text = "Population:",
-                            style = MaterialTheme.typography.titleMedium
+                            style = MaterialTheme.typography.titleMedium,
+                            modifier = Modifier.width(spacing.spaceOneHundredDp)
                     )
                     Text(
                             text = country.population.applyDecimalSeparator(),
@@ -184,11 +188,12 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
                 Row(
                         modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(spacing.spaceSmall),
+                                .padding(spacing.spaceExtraSmall),
                         verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.SpaceBetween
+                        horizontalArrangement = Arrangement.spacedBy(spacing.spaceMedium)
                 ) {
-                    Text(text = "Area:",style = MaterialTheme.typography.titleMedium)
+                    Text(text = "Area:",style = MaterialTheme.typography.titleMedium,
+                            modifier = Modifier.width(spacing.spaceOneHundredDp))
                     Text(
                             text = stringResource(
                                     id = R.string.km_sup_string,
@@ -201,12 +206,13 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
                 Row(
                         modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(spacing.spaceSmall),
+                                .padding(spacing.spaceExtraSmall),
                         verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.SpaceBetween
+                        horizontalArrangement = Arrangement.spacedBy(spacing.spaceMedium)
                 ) {
 
-                    Text(text = "Currencies:", style = MaterialTheme.typography.titleMedium)
+                    Text(text = "Currencies:", style = MaterialTheme.typography.titleMedium,
+                            modifier = Modifier.width(spacing.spaceOneHundredDp))
                     Text(
                             text = "Currencies: ${
                                 country.currencies.joinToString(", ")
@@ -218,14 +224,15 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
                 Row(
                         modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(spacing.spaceSmall),
+                                .padding(spacing.spaceExtraSmall),
                         verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.SpaceBetween
+                        horizontalArrangement = Arrangement.spacedBy(spacing.spaceMedium)
                 ) {
 
                     Text(
                             text = "Languages:",
-                            style = MaterialTheme.typography.titleMedium
+                            style = MaterialTheme.typography.titleMedium,
+                            modifier = Modifier.width(spacing.spaceOneHundredDp)
                     )
                     Text(
                             text = country.languages.joinToString(", "),
