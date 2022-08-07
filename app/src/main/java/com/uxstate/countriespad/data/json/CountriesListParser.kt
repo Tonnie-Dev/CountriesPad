@@ -30,8 +30,8 @@ class CountriesListParser @Inject constructor() : JsonStringParser<Country> {
             val languagesList = mutableListOf<String>()
 
             //re-initialize capitalLat and capitalLng with each iteration
-            var capLat = 0.0
-            var capLng = 0.0
+            val capLat: Double
+            val capLng: Double
 
 
             val countryJsonObj = countriesJsonArray.getJSONObject(i)
@@ -39,6 +39,7 @@ class CountriesListParser @Inject constructor() : JsonStringParser<Country> {
             val nameData = countryJsonObj.getJSONObject("name")
 
             val name = nameData.getString("common")
+            val officialName = nameData.getString("official")
 
             val cca3Code = countryJsonObj.getString("cca3")
             val ciocCode = if (countryJsonObj.has("cioc")) {
