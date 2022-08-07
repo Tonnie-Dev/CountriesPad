@@ -76,13 +76,14 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
                 CoatOfArms(country = country)
             }
 
-            Column(modifier = Modifier.weight(.6f)) {
+            Column(modifier = Modifier.weight(.6f).padding(spacing.spaceExtraSmall)) {
 
                 val location = country.latLng
                 val countryLatLng = LatLng(location.first, location.second)
 
                 val cameraPositionState = rememberCameraPositionState {
                     position = CameraPosition.fromLatLngZoom(countryLatLng, 5f)
+
                 }
 
                 GoogleMap(
@@ -100,7 +101,7 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
             ) {
 
                 Text(
-                        text = "Official Name: ${country.officialName}",
+                        text = country.officialName,
                         style = MaterialTheme.typography.titleLarge
                 )
 
