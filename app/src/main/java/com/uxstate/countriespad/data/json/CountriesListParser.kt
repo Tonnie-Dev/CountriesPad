@@ -106,8 +106,11 @@ class CountriesListParser @Inject constructor() : JsonStringParser<Country> {
 
 
                 val capitalInfoArray = capitalInfoObj.getJSONArray("latlng")
-                capLat = capitalInfoArray.getDouble(0)
-                capLng = capitalInfoArray.getDouble(1)
+
+                capLat = countryLat
+                capLng = countryLng
+               // capLat = capitalInfoArray.getDouble(0)
+               // capLng = capitalInfoArray.getDouble(1)
 
             }else {
                 capLat = countryLat

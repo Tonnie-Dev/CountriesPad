@@ -67,7 +67,7 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
 
                 val location = country.latLng
                 val countryLatLng = LatLng(location.first, location.second)
-               // Timber.i("Lat is ${location.first, }")
+
                 val cameraPositionState = rememberCameraPositionState {
                     position = CameraPosition.fromLatLngZoom(countryLatLng, 5f)
                 }
