@@ -23,11 +23,15 @@ class CountriesListParser @Inject constructor() : JsonStringParser<Country> {
         val countriesJsonArray = JSONArray(jsonString)
 
         //iterate through the jsonArray
-        (0 until countriesJsonArray.length()).forEach { i->
+        (0 until countriesJsonArray.length()).forEach { i ->
 
-            //re-initialize lang and currency with each iteration
+            //re-initialize language and currency lists with each iteration
             val currencyList = mutableListOf<String>()
             val languagesList = mutableListOf<String>()
+
+            //re-initialize capitalLat and capitalLng with each iteration
+            var capLat = 0.0
+            var capLng = 0.0
 
 
             val countryJsonObj = countriesJsonArray.getJSONObject(i)
@@ -57,7 +61,7 @@ class CountriesListParser @Inject constructor() : JsonStringParser<Country> {
 
                             val currency = currencyNameObj.getString("name")
                             currencyList.add(currency)
-                           // Timber.i("After iterationx currencyList is $currencyList")
+                            // Timber.i("After iterationx currencyList is $currencyList")
                         }
             } else {
 
@@ -69,7 +73,7 @@ class CountriesListParser @Inject constructor() : JsonStringParser<Country> {
                 countryJsonObj.getJSONArray("capital")
                         .getString(0)
 
-            } else "not found"
+            } else "Not Found"
 
 
             val region = countryJsonObj.getString("region")
@@ -94,10 +98,29 @@ class CountriesListParser @Inject constructor() : JsonStringParser<Country> {
 
             val latLngArray = countryJsonObj.getJSONArray("latlng")
 
-            val lat = latLngArray.getDouble(0)
-            val lng = latLngArray.getDouble(1)
+            val countryLat = latLngArray.getDouble(0)
+            val countryLng = latLngArray.getDouble(1)
+            val capitalInfoObj = countryJsonObj.getJSONObject("capitalInfo")
 
-            val latLng = Pair(lat, lng)
+            if (capitalInfoObj.has("latlng")){
+
+
+                val capitalInfoArray = capitalInfoObj.getJSONArray("latlng")
+                capLat = capitalInfoArray.getDouble(0)
+                capLng = capitalInfoArray.getDouble(1)
+
+            }else {
+                capLat = countryLat
+                capLng = countryLng
+
+            }
+
+
+
+
+
+
+            val latLng = Pair(capLat, capLng)
 
             val area = countryJsonObj.getInt("area")
 
