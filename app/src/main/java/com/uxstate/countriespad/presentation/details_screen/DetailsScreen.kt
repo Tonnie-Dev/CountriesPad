@@ -67,7 +67,7 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
                 val countryLatLng = LatLng(location.first, location.first)
 
                 val cameraPositionState = rememberCameraPositionState {
-                    position = CameraPosition.fromLatLngZoom(countryLatLng, 7f)
+                    position = CameraPosition.fromLatLngZoom(countryLatLng, 3f)
                 }
 
                 GoogleMap(
@@ -82,7 +82,7 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
                 Text(text = "Subregion: ${country.subRegion}")
                 Text(text = "Region: ${country.region}")
                 Text(text = "Population: ${country.population}")
-                Text(text = "Area: ${country.area}")
+                Text(text = stringResource(id = R.string.km_sup_string, country.area))
                 Text(text = "Currencies: ${country.currencies.joinToString(", ")}")
                 Text(text = "Languages: ${country.languages.joinToString(", ")}")
 

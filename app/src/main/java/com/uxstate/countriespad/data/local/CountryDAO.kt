@@ -24,7 +24,7 @@ interface CountryDAO {
 WHERE 
 LOWER(name) LIKE '%' || LOWER (:query)|| '%'
 OR
-UPPER(:query)==ciocCode
+UPPER(:query)==ciocCode 
     """
     )
     suspend fun getCountriesData(query: String):List<CountryEntity>
