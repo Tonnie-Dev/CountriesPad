@@ -6,6 +6,7 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Country(
     val name: String,
+    val officialName:String,
     val currencies: List<String>,
     val capital: String,
     val region: String,
