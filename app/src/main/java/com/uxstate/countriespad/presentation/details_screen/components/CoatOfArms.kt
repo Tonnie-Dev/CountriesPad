@@ -24,7 +24,7 @@ fun CoatOfArms(country: Country, modifier: Modifier = Modifier) {
 
     val spacing = LocalSpacing.current
     Row(
-            modifier = modifier.padding(
+            modifier = modifier.fillMaxSize().padding(
                     spacing.spaceSmall
             ), horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
@@ -35,35 +35,36 @@ fun CoatOfArms(country: Country, modifier: Modifier = Modifier) {
         val flagPainter = rememberAsyncImagePainter(
                 model = ImageRequest.Builder(context)
                         .data(country.flagUrl)
-                        .error(R.drawable.ic_empty_flag)
                         .placeholder(R.drawable.loading_animation)
                         .crossfade(true)
-                        .fallback(R.drawable.ic_empty_flag)
+                        .fallback(R.drawable.ic_flag_failed)
+                        .error(R.drawable.ic_flag_failed)
                         .build()
         )
-        val coaPainter = rememberAsyncImagePainter(
+        val coatOfArmsPainter = rememberAsyncImagePainter(
                 model = ImageRequest.Builder(context)
                         .data(country.coatOfArmsUrl)
                         .crossfade(true)
                         .placeholder(R.drawable.loading_animation)
-                        .fallback(R.drawable.ic_empty_flag)
-                        .error(R.drawable.ic_empty_flag)
+                        .fallback(R.drawable.ic_flag_failed)
+                        .error(R.drawable.ic_flag_failed)
                         .build()
         )
 
         Card(
                 colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
                 modifier = Modifier
-                        .fillMaxHeight(.7f)
+                        .fillMaxHeight(.8f)
                         .aspectRatio(3f / 2f)
-                        .padding(spacing.spaceSmall)
+
+                        
         ) {
 
             Image(
-                    painter = coaPainter,
+                    painter = coatOfArmsPainter,
                     contentDescription = stringResource(id = R.string.coat_of_arms_label),
                     contentScale = ContentScale.Fit,
-                    modifier = Modifier.fillMaxSize()
+                    modifier = Modifier.fillMaxSize().padding(spacing.spaceSmall)
 
 
             )
@@ -74,29 +75,29 @@ fun CoatOfArms(country: Country, modifier: Modifier = Modifier) {
 
 
 
-        Column(
+     /*   Column(
                 verticalArrangement = Arrangement.SpaceBetween,
                 modifier = Modifier.padding(spacing.spaceMedium)
         ) {
             Text(text = country.name)
             Text(text = country.ciocCode, textAlign = TextAlign.Center)
 
-        }
+        }*/
 
 
         Card(
                 colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
                 modifier = Modifier
-                        .fillMaxHeight(.7f)
+                        .fillMaxHeight(.8f)
                         .aspectRatio(3f / 2f)
-                        .padding(spacing.spaceSmall)
+
         ) {
 
             Image(
                     painter = flagPainter,
                     contentDescription = stringResource(id = R.string.coat_of_arms_label),
                     contentScale = ContentScale.Fit,
-                    modifier = Modifier.fillMaxSize()
+                    modifier = Modifier.fillMaxSize().padding(spacing.spaceSmall)
 
             )
         }

@@ -58,12 +58,11 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
         ) {
 
 
-            Column(modifier = Modifier.weight(.2f)) {
+            Column(modifier = Modifier.weight(0.2f)) {
                 CoatOfArms(country = country)
             }
 
-            Column(modifier = Modifier.weight(.5f)) {
-                Text(text = "Map")
+            Column(modifier = Modifier.weight(.6f)) {
 
                 val location = country.latLng
                 val countryLatLng = LatLng(location.first, location.second)
@@ -79,7 +78,7 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
 
             }
 
-            Column(modifier = Modifier.weight(.3f)) {
+            Column(modifier = Modifier.weight(0.2f)) {
 
 
                 Text(text = "Capital: ${country.capital}")
