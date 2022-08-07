@@ -29,7 +29,7 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
                 colors = TopAppBarDefaults.largeTopAppBarColors(
                         titleContentColor = MaterialTheme.colorScheme.onSurfaceVariant,
                         containerColor = MaterialTheme.colorScheme.surfaceVariant
-                ), title = { Text(text = "${country.name}") },
+                ), title = { Text(text = country.name) },
                 navigationIcon = {
                     IconButton(onClick = { navigator.navigateUp() }) {
 
@@ -81,8 +81,8 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
                 Text(text = "Capital: ${country.capital}")
                 Text(text = "Subregion: ${country.subRegion}")
                 Text(text = "Region: ${country.region}")
-                Text(text = "Population: ${country.population}")
-                Text(text = stringResource(id = R.string.km_sup_string, country.area))
+                Text(text = "Population: ${country.population.applyDecimalSeparator()}")
+                Text(text = stringResource(id = R.string.km_sup_string, country.area.applyDecimalSeparator()))
                 Text(text = "Currencies: ${country.currencies.joinToString(", ")}")
                 Text(text = "Languages: ${country.languages.joinToString(", ")}")
 
@@ -96,7 +96,3 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
 }
 
 
-/*val languages = country.languages
-       Text(text = "Capital City is ${country.capital}")
-       Text(text = "languages are: ${country.languages.map { "$it\n" }}")
-       Text(text = "currencies are: ${country.currencies.map { it }}")*/
