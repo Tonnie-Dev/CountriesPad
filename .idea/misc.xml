@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidStudioProjects/CountriesPad/app/src/main/res/drawable/ic_flag_failed.xml" value="0.181" />
         <entry key="..\:/AndroidStudioProjects/CountriesPad/app/src/main/res/drawable/loading_img.xml" value="0.181" />
       </map>
     </option>
