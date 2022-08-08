@@ -10,11 +10,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.Dp
 import com.uxstate.countriespad.R
 import com.uxstate.countriespad.util.Dimens
 
 @Composable
-fun LoadingAnimation(spacing: Dimens) {
+fun LoadingAnimation(size:Dp) {
     Column(
             modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -22,7 +23,7 @@ fun LoadingAnimation(spacing: Dimens) {
     ) {
         LottiePlaceHolder(
                 lottie = R.raw.loading_lottie_anim,
-                modifier = Modifier.size(spacing.spaceOneHundredDp)
+                modifier = Modifier.size(size)
         )
         Text(
                 text = stringResource(id = R.string.loading_text),
