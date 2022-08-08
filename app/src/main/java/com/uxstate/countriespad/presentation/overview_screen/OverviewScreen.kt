@@ -22,6 +22,8 @@ import com.uxstate.countriespad.presentation.destinations.DetailsScreenDestinati
 import com.uxstate.countriespad.presentation.overview_screen.components.CountryCard
 import com.uxstate.countriespad.presentation.overview_screen.components.OrderPanel
 import com.uxstate.countriespad.presentation.overview_screen.components.SearchBox
+import com.uxstate.countriespad.presentation.ui_components.LottiePlaceHolder
+import com.uxstate.countriespad.util.Dimens
 import com.uxstate.countriespad.util.LocalSpacing
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -38,6 +40,12 @@ fun OverviewScreen(
 
     val state = viewModel.state
     val spacing = LocalSpacing.current
+    
+    if(state.isLoading) {
+
+
+        LoadingAnimation(spacing)
+    } else{
     Scaffold(topBar = {
         MediumTopAppBar(colors = TopAppBarDefaults.largeTopAppBarColors(
                 containerColor = MaterialTheme.colorScheme.surfaceVariant,
@@ -129,5 +137,6 @@ fun OverviewScreen(
 
 
         //End of Scaffold
-    }
+    }}
 }
+
