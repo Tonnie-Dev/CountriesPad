@@ -78,12 +78,17 @@ Base URL
 
 ```http
 https://restcountries.com/
+
 ```
 
 #### Get Countries Json String
 
 ```http
 GET v3.1/all
+```
+
+```https 
+GET planetary/apod
 ```
 
 | Parameter | Type     | Description                |
