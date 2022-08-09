@@ -14,7 +14,7 @@ fun LottieAnimationDefinition(modifier: Modifier, @RawRes lottie: Int) {
 
     val spacing = LocalSpacing.current
     //spec to hold anim
-    val spec = LottieCompositionSpec.RawRes(R.raw.loading_lottie_anim)
+    val spec = LottieCompositionSpec.RawRes(lottie)
 
     //composition to render a Lottie
 
@@ -31,7 +31,7 @@ fun LottieAnimationDefinition(modifier: Modifier, @RawRes lottie: Int) {
     LottieAnimation(
             composition = lottieComposition,
             progress = state,
-            modifier = Modifier.size(spacing.spaceOneHundredDp)
+            modifier = modifier
     )
 
 }

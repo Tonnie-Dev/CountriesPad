@@ -11,9 +11,9 @@
         android:name=".CountryApp"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_globe_red"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_globe_red_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CountriesPad"
         tools:targetApi="31">

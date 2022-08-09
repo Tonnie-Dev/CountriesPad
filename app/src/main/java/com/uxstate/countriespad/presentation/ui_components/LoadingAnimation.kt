@@ -22,12 +22,12 @@ fun LoadingAnimation(size:Dp) {
             verticalArrangement = Arrangement.Center
     ) {
         LottiePlaceHolder(
-                lottie = R.raw.loading_lottie_anim,
+                lottie = R.raw.loading_lottie_anim_2,
                 modifier = Modifier.size(size)
         )
         Text(
                 text = stringResource(id = R.string.loading_text),
-                style = MaterialTheme.typography.headlineLarge,
+                style = MaterialTheme.typography.headlineSmall,
                 color = MaterialTheme.colorScheme.secondary,
                 modifier = Modifier.align(Alignment.CenterHorizontally)
         )
