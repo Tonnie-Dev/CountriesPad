@@ -36,10 +36,10 @@ There is a feature to search countryby name, cioc (or cca3) code.
 #### Details Screen
 This screen displays the country's Coat of Arms as well as the Country's Flag. It also
 displays a map showing the country's location on the globe.
+
+
 ![App Screenshot](https://github.com/Tonnie-Dev/CountriesPad/blob/master/media/scr_shot_azerjabain.png)
-
 ![App Screenshot](https://github.com/Tonnie-Dev/CountriesPad/blob/master/media/scr_shot_belize.png)
-
 
 
 
