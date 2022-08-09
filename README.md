@@ -16,7 +16,7 @@ on a map. Additionally you can filter countries by area, population or by name.
 
 
 
-<a href='https://play.google.com/store/apps/details?id=com.uxstate'><img alt='Get it on Google Play' src='https://github.com/Tonnie-Dev/AsteroidsInCompose/blob/master/media/google_play_store%20_badge.png' width="280"/></a>
+<a href='https://play.google.com/store/apps/details?id=com.uxstate.countriespad'><img alt='Get it on Google Play' src='https://github.com/Tonnie-Dev/AsteroidsInCompose/blob/master/media/google_play_store%20_badge.png' width="280"/></a>
 ## Architecture
 Countries Pad is implemented using Android Clean Architecture with these highlights:
 
@@ -31,7 +31,6 @@ This screen is based on a LazyVerticalGrid to display country flags in pgn forma
 There is a feature to search countryby name, cioc (or cca3) code.
 
 ![App Screenshot](https://github.com/Tonnie-Dev/CountriesPad/blob/master/media/scr_shot_%20kenya.png)
-
 ![App Screenshot](https://github.com/Tonnie-Dev/CountriesPad/blob/master/media/scr_shot_%20searching.png)
 
 #### Details Screen
