@@ -8,7 +8,7 @@
 </p>
 
 
-# Countries Pad
+# Countries Pad :earth_africa
 
 Countries Pad display a list of countries obtained from [Rest Countries API](https://restcountries.com/v3.1/all). You can view the selected country
 on a map. Additionally you can filter countries by area, population or by name.
@@ -87,9 +87,6 @@ https://restcountries.com/
 GET v3.1/all
 ```
 
-```https 
-GET planetary/apod
-```
 
 | Parameter | Type     | Description                |
 | :-------- | :------- | :------------------------- |
