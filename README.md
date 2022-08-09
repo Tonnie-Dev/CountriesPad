@@ -75,14 +75,15 @@ You don't need an API Key for Rest Countries API
 
 ###
 Base URL
+
 ```http
-  https://restcountries.com/
+https://restcountries.com/
 ```
 
 #### Get Countries Json String
 
 ```http
-  GET v3.1/all
+GET v3.1/all
 ```
 
 | Parameter | Type     | Description                |
