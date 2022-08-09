@@ -2,7 +2,7 @@
 ## Screenshots
 
 <p float="left">
-<img src="https://github.com/Tonnie-Dev/CountriesPad/blob/master/media/scr_shot_all.png"> &nbsp;&nbsp;&nbsp;&nbsp;
+<img src="https://github.com/Tonnie-Dev/CountriesPad/blob/master/media/scr_shot_flags.png"> &nbsp;&nbsp;&nbsp;&nbsp;
 <img src="https://github.com/Tonnie-Dev/CountriesPad/blob/master/media/scr_shot_%20searching.png"> &nbsp;&nbsp;&nbsp;&nbsp;   
 <img src="https://github.com/Tonnie-Dev/CountriesPad/blob/master/media/scr_shot_belize.png">   
 </p>
