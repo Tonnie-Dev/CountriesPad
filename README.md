@@ -1,12 +1,11 @@
 
 ## Screenshots
 
-![App Screenshot](https://github.com/Tonnie-Dev/AsteroidsInCompose/blob/master/media/screenshot_1.png)
-
-![App Screenshot](https://github.com/Tonnie-Dev/AsteroidsInCompose/blob/master/media/screenshot_2.png)
-
-![App Screenshot](https://github.com/Tonnie-Dev/AsteroidsInCompose/blob/master/media/screenshot_3.png)
-![Logo](https://github.com/Tonnie-Dev/CountriesPad/blob/master/media/icon.png)
+<p float="left">
+<img src="https://github.com/Tonnie-Dev/CountriesPad/blob/master/media/scr_shot_all.png"> &nbsp;&nbsp;&nbsp;&nbsp;
+<img src="https://github.com/Tonnie-Dev/CountriesPad/blob/master/media/scr_shot_%20searching.png"> &nbsp;&nbsp;&nbsp;&nbsp;   
+<img src="https://github.com/Tonnie-Dev/CountriesPad/blob/master/media/scr_shot_belize.png">   
+</p>
 
 
 # Countries Pad
