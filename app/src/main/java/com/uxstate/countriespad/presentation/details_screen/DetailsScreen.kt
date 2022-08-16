@@ -22,6 +22,7 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.uxstate.countriespad.R
 import com.uxstate.countriespad.domain.model.Country
 import com.uxstate.countriespad.presentation.details_screen.components.CoatOfArms
+import com.uxstate.countriespad.presentation.details_screen.components.MapComposable
 import com.uxstate.countriespad.util.LocalSpacing
 import com.uxstate.countriespad.util.applyDecimalSeparator
 import com.uxstate.countriespad.util.capitalizeEachWord
@@ -86,6 +87,12 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
                             .padding(spacing.spaceExtraSmall)
             ) {
 
+                MapComposable(
+                        country = country,
+                        initialZoom = 0f,
+                        finalZoom = 5f,
+                        animationDuration = 3000
+                )
 
             }
 
