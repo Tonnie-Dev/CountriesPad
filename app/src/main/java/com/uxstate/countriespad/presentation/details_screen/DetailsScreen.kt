@@ -85,31 +85,7 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
                             .weight(.6f)
                             .padding(spacing.spaceExtraSmall)
             ) {
-                val initialZoom = 0f
-                val finalZoom = 5f
 
-                val location = country.latLng
-                val countryLatLng = LatLng(location.first, location.second)
-
-
-                val cameraPositionState = rememberCameraPositionState {
-                    position = CameraPosition.fromLatLngZoom(countryLatLng, initialZoom)
-
-                }
-
-                LaunchedEffect(key1 = true, block = {
-                    cameraPositionState.animate(
-                            update = CameraUpdateFactory.newCameraPosition(
-                                    CameraPosition(countryLatLng, finalZoom, 0f, 0f)
-                            ), durationMs = 3000
-                    )
-
-                })
-
-                GoogleMap(
-                        modifier = Modifier.fillMaxSize(),
-                        cameraPositionState = cameraPositionState
-                )
 
             }
 
