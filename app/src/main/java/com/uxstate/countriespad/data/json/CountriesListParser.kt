@@ -16,6 +16,7 @@ import javax.inject.Singleton
 
 @Singleton
 class CountriesListParser @Inject constructor() : JsonStringParser<Country> {
+
     override fun parseJson(jsonString: String): List<Country> {
 
         //lists

@@ -8,7 +8,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import com.ramcosta.composedestinations.DestinationsNavHost
-
 import com.uxstate.countriespad.presentation.ui.theme.CountriesPadTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -29,7 +28,7 @@ class MainActivity : ComponentActivity() {
 
 
                 //add the NavHost call
-                DestinationsNavHost(navGraph = NavGraphs.root)
+                DestinationsNavHost(navGraph =NavGraphs.root )
             }
         }
     }
