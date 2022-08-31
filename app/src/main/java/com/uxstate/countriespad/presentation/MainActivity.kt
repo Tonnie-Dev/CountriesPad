@@ -24,9 +24,6 @@ class MainActivity : ComponentActivity() {
                 ) {
                     
                 }
-                
-
-
                 //add the NavHost call
                 DestinationsNavHost(navGraph =NavGraphs.root )
             }

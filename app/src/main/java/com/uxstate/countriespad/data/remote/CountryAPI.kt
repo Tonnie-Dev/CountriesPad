@@ -9,6 +9,6 @@ interface CountryAPI {
 
     companion object {
 
-        val BASE_URL = "https://restcountries.com/"
+        const val BASE_URL = "https://restcountries.com/"
     }
 }
