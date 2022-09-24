@@ -73,7 +73,7 @@ class CountryRepositoryImpl @Inject constructor(
 
 
         /*past this point we need to initiate an api call*/
-        val remoteData =
+        val remoteData:List<Country>? =
 
             try {
 

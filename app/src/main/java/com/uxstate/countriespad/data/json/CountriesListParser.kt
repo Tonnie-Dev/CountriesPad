@@ -2,6 +2,7 @@ package com.uxstate.countriespad.data.json
 
 import com.uxstate.countriespad.domain.model.Country
 import org.json.JSONArray
+import org.json.JSONObject
 import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -13,6 +14,57 @@ import javax.inject.Singleton
 
 * We use singleton annotation to force one single instance
 * of this class for the entire app*/
+
+data class Variant(
+    val id: String,
+    val productId: String,
+    val isNotifyMe: Boolean
+)
+
+//custom function to parse Retrofit's response into Variant list
+fun parseJsonString(jsonString: String): List<Variant> {
+
+    //lists
+    val variantsList = mutableListOf<Variant>()
+
+    //get JsonObject passing in jsonString parameter
+    val jsonObject = JSONObject(jsonString)
+    //get the data json array reference
+    val dataJsonArray = jsonObject.getJSONArray("data")
+
+    //iterate through dataJsonArray objects
+
+    (0 until dataJsonArray.length()).forEach { i ->
+
+        //get the current object
+        val dataObject = dataJsonArray.getJSONObject(i)
+
+        //get variantArray
+        val variantArray = dataObject.getJSONArray("variants")
+
+        //secondary iteration through the variantArray
+        (0 until variantArray.length()).forEach { variantObj ->
+
+            //get anonymous object
+            val currentObject = variantArray.getJSONObject(i)
+
+            //data points
+            val id = currentObject.getString("id")
+            val productId = currentObject.getString("product_id")
+            val isNotifyMe = currentObject.getBoolean("is_notify_me")
+
+            //construct variant object from the above data points
+            val variant = Variant(id, productId, isNotifyMe)
+
+            //add the created variant object
+            variantsList.add(variant)
+
+        }
+    }
+    //return the variant objects list
+    return variantsList
+}
+
 
 @Singleton
 class CountriesListParser @Inject constructor() : JsonStringParser<Country> {
@@ -102,25 +154,21 @@ class CountriesListParser @Inject constructor() : JsonStringParser<Country> {
             val countryLng = latLngArray.getDouble(1)
             val capitalInfoObj = countryJsonObj.getJSONObject("capitalInfo")
 
-            if (capitalInfoObj.has("latlng")){
+            if (capitalInfoObj.has("latlng")) {
 
 
                 val capitalInfoArray = capitalInfoObj.getJSONArray("latlng")
 
                 capLat = countryLat
                 capLng = countryLng
-               // capLat = capitalInfoArray.getDouble(0)
-               // capLng = capitalInfoArray.getDouble(1)
+                // capLat = capitalInfoArray.getDouble(0)
+                // capLng = capitalInfoArray.getDouble(1)
 
-            }else {
+            } else {
                 capLat = countryLat
                 capLng = countryLng
 
             }
-
-
-
-
 
 
             val latLng = Pair(capLat, capLng)
