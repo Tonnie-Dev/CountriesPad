@@ -26,6 +26,7 @@ import com.uxstate.countriespad.presentation.ui_components.LoadingAnimation
 import com.uxstate.countriespad.presentation.ui_components.LottiePlaceHolder
 import com.uxstate.countriespad.util.Dimens
 import com.uxstate.countriespad.util.LocalSpacing
+import timber.log.Timber
 
 @OptIn(ExperimentalMaterial3Api::class)
 
@@ -38,6 +39,8 @@ fun OverviewScreen(
     navigator: DestinationsNavigator,
     viewModel: OverviewViewModel = hiltViewModel()
 ) {
+
+    Timber.i("Overview Screen called")
 
     val state = viewModel.state
     val spacing = LocalSpacing.current

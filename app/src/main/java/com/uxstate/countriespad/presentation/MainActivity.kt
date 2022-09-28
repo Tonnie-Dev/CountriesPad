@@ -10,10 +10,13 @@ import androidx.compose.ui.Modifier
 import com.ramcosta.composedestinations.DestinationsNavHost
 import com.uxstate.countriespad.presentation.ui.theme.CountriesPadTheme
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        Timber.i("Oncreate Called")
         super.onCreate(savedInstanceState)
         setContent {
             CountriesPadTheme {
@@ -26,6 +29,8 @@ class MainActivity : ComponentActivity() {
                 }
                 //add the NavHost call
                 DestinationsNavHost(navGraph =NavGraphs.root )
+
+
             }
         }
     }
