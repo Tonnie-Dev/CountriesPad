@@ -32,6 +32,7 @@ import com.uxstate.countriespad.util.capitalizeEachWord
 @Composable
 fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
 
+
     val spacing = LocalSpacing.current
 
     Scaffold(topBar = {
