@@ -4,12 +4,16 @@ import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
+import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -17,6 +21,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.UiMode
+import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
@@ -50,29 +55,29 @@ fun CountryCard(
     Card(
             modifier = modifier
                     .clickable { onClickCountry(country) }
-                    .padding(spacing.spaceMedium),
+                    .padding(spacing.spaceExtraSmall),
             colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
             shape = MaterialTheme.shapes.medium
     ) {
         Column(
-                modifier = Modifier
-                        .fillMaxWidth()
-                        .aspectRatio(3f / 2f)
-                        .padding(spacing.spaceExtraSmall),
-                verticalArrangement = Arrangement.SpaceBetween
+                modifier = Modifier.fillMaxSize()
+                       /* .fillMaxWidth()
+                        .aspectRatio(3f / 2f)*/
+                        .padding(spacing.spaceSmall),
+                horizontalAlignment= CenterHorizontally,
+                verticalArrangement = Arrangement.Bottom
         ) {
 
             Image(
                     painter = painter,
                     contentDescription = "${country.name} flag",
-                    contentScale = ContentScale.Fit,
+                    contentScale = ContentScale.FillBounds,
                     modifier = Modifier
                             .fillMaxWidth()
                             .aspectRatio(2f / 1f)
-                            .padding(spacing.spaceSmall)
+                            .padding( horizontal = spacing.spaceMedium)
             )
 
-            //  Spacer(modifier = Modifier.height(spacing.spaceSmall))
             Text(
                     text = country.name,
                     textAlign = TextAlign.Center,
