@@ -1,5 +1,6 @@
 package com.uxstate.countriespad.presentation.overview_screen.components
 
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -15,12 +16,14 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.UiMode
 import androidx.core.net.toUri
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.google.android.gms.maps.model.LatLng
 import com.uxstate.countriespad.R
 import com.uxstate.countriespad.domain.model.Country
+import com.uxstate.countriespad.presentation.ui.theme.CountriesPadTheme
 import com.uxstate.countriespad.util.LocalSpacing
 
 @Composable
@@ -103,4 +106,26 @@ fun CountryCardPreviewLight() {
             area = 0,
             population = 0
     ), onClickCountry = {})
+}
+
+@Preview(uiMode = UI_MODE_NIGHT_YES)
+@Composable
+fun CountryCardPreviewDark() {
+
+    CountriesPadTheme{
+    CountryCard(country = Country(
+            name = "Kenya",
+            officialName = "",
+            currencies = listOf(),
+            capital = "",
+            region = "",
+            subRegion = "",
+            languages = listOf(),
+            latLng = Pair(0.0, 0.0),
+            flagUrl = "",
+            coatOfArmsUrl = "",
+            ciocCode = "",
+            area = 0,
+            population = 0
+    ), onClickCountry = {})}
 }
