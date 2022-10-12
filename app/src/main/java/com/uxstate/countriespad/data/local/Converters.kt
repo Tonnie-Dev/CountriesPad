@@ -6,9 +6,6 @@ import androidx.room.TypeConverter
 /*Be ware of using "," as separator as sometimes your string may
 have the same character and it can be a mess.*/
 
-
-
-
 class Converters {
 
     /* takes a list of string e.g. Currency list and stores it in

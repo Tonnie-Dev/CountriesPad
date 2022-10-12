@@ -14,9 +14,11 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.net.toUri
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
+import com.google.android.gms.maps.model.LatLng
 import com.uxstate.countriespad.R
 import com.uxstate.countriespad.domain.model.Country
 import com.uxstate.countriespad.util.LocalSpacing
@@ -71,7 +73,9 @@ fun CountryCard(
             Text(
                     text = country.name,
                     textAlign = TextAlign.Center,
-                    modifier = Modifier.align(CenterHorizontally).padding(spacing.spaceExtraSmall),
+                    modifier = Modifier
+                            .align(CenterHorizontally)
+                            .padding(spacing.spaceExtraSmall),
                     style = MaterialTheme.typography.titleMedium,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
@@ -79,4 +83,24 @@ fun CountryCard(
         }
 
     }
+}
+
+@Preview
+@Composable
+fun CountryCardPreviewLight() {
+    CountryCard(country = Country(
+            name = "Kenya",
+            officialName = "",
+            currencies = listOf(),
+            capital = "",
+            region = "",
+            subRegion = "",
+            languages = listOf(),
+            latLng = Pair(0.0, 0.0),
+            flagUrl = "",
+            coatOfArmsUrl = "",
+            ciocCode = "",
+            area = 0,
+            population = 0
+    ), onClickCountry = {})
 }

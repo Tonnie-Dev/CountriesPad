@@ -81,7 +81,6 @@ dependencies {
 
 
     //Material 3
-
     implementation 'androidx.compose.material3:material3:1.0.0-rc01'
 
     // Coil
