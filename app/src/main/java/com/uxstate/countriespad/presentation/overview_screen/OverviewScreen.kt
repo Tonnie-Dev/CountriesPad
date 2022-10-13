@@ -52,25 +52,27 @@ fun OverviewScreen(
         LoadingAnimation(spacing.spaceTwoHundredDp)
     } else{
     Scaffold(topBar = {
-        MediumTopAppBar(colors = TopAppBarDefaults.largeTopAppBarColors(
+
+        SearchBox(
+                value = state.query,
+                placeholderText = stringResource(id = R.string.search_tag),
+                onQueryTextChange = { viewModel.onEvent(OverviewEvent.OnQueryChange(it)) },
+                onClearText = { viewModel.onEvent(OverviewEvent.OnClearSearchBox) }
+        )
+       /* MediumTopAppBar(colors = TopAppBarDefaults.largeTopAppBarColors(
                 containerColor = MaterialTheme.colorScheme.surfaceVariant,
                 titleContentColor = MaterialTheme.colorScheme.onSurfaceVariant
         ), title = {}, actions = {
 
             Column() {
                 Spacer(modifier = Modifier.height(spacing.spaceExtraLarge))
-                SearchBox(
-                        value = state.query,
-                        placeholderText = stringResource(id = R.string.search_tag),
-                        onQueryTextChange = { viewModel.onEvent(OverviewEvent.OnQueryChange(it)) },
-                        onClearText = { viewModel.onEvent(OverviewEvent.OnClearSearchBox) }
-                )
+
                 Spacer(modifier = Modifier.height(spacing.spaceExtraSmall))
             }
 
 
         }, modifier = Modifier.padding(1.dp)
-        )
+        )*/
 
 
     }) { paddingValues ->
