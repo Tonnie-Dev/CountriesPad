@@ -53,26 +53,37 @@ fun OverviewScreen(
     } else{
     Scaffold(topBar = {
 
-        SearchBox(
-                value = state.query,
-                placeholderText = stringResource(id = R.string.search_tag),
-                onQueryTextChange = { viewModel.onEvent(OverviewEvent.OnQueryChange(it)) },
-                onClearText = { viewModel.onEvent(OverviewEvent.OnClearSearchBox) }
-        )
-       /* MediumTopAppBar(colors = TopAppBarDefaults.largeTopAppBarColors(
+
+       MediumTopAppBar(colors = TopAppBarDefaults.largeTopAppBarColors(
                 containerColor = MaterialTheme.colorScheme.surfaceVariant,
                 titleContentColor = MaterialTheme.colorScheme.onSurfaceVariant
-        ), title = {}, actions = {
+        ), title = {
 
-            Column() {
+           Column() {
+               Spacer(modifier = Modifier.height(spacing.spaceExtraLarge))
+               SearchBox(
+                       value = state.query,
+                       placeholderText = stringResource(id = R.string.search_tag),
+                       onQueryTextChange = { viewModel.onEvent(OverviewEvent.OnQueryChange(it)) },
+                       onClearText = { viewModel.onEvent(OverviewEvent.OnClearSearchBox) }
+               )
+               Spacer(modifier = Modifier.height(spacing.spaceExtraSmall))
+           }
+
+
+       }, actions = {
+
+
+
+            /*Column() {
                 Spacer(modifier = Modifier.height(spacing.spaceExtraLarge))
 
                 Spacer(modifier = Modifier.height(spacing.spaceExtraSmall))
-            }
+            }*/
 
 
         }, modifier = Modifier.padding(1.dp)
-        )*/
+        )
 
 
     }) { paddingValues ->
