@@ -1,6 +1,7 @@
 package com.uxstate.countriespad.presentation.overview_screen
 
 import androidx.compose.animation.*
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -11,6 +12,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -54,12 +56,13 @@ fun OverviewScreen(
     Scaffold(topBar = {
 
 
-       MediumTopAppBar(colors = TopAppBarDefaults.largeTopAppBarColors(
+      LargeTopAppBar(colors = TopAppBarDefaults.largeTopAppBarColors(
                 containerColor = MaterialTheme.colorScheme.surfaceVariant,
                 titleContentColor = MaterialTheme.colorScheme.onSurfaceVariant
         ), title = {
 
-           Column() {
+                   Text(text = "This is me", modifier = Modifier.wrapContentSize().background(Color.Blue))
+         /*  Column() {
                Spacer(modifier = Modifier.height(spacing.spaceExtraLarge))
                SearchBox(
                        value = state.query,
@@ -68,21 +71,10 @@ fun OverviewScreen(
                        onClearText = { viewModel.onEvent(OverviewEvent.OnClearSearchBox) }
                )
                Spacer(modifier = Modifier.height(spacing.spaceExtraSmall))
-           }
+           }*/
 
 
-       }, actions = {
-
-
-
-            /*Column() {
-                Spacer(modifier = Modifier.height(spacing.spaceExtraLarge))
-
-                Spacer(modifier = Modifier.height(spacing.spaceExtraSmall))
-            }*/
-
-
-        }, modifier = Modifier.padding(1.dp)
+       }, modifier = Modifier.padding(1.dp)
         )
 
 
@@ -92,7 +84,7 @@ fun OverviewScreen(
         Column(
                 modifier = Modifier
                         .fillMaxSize()
-                        .padding(paddingValues)
+                        .padding(spacing.spaceExtraSmall)
         ) {
 
             //HEADER_SECTION
@@ -144,7 +136,7 @@ fun OverviewScreen(
                         }
 
 
-                    })
+                    }, modifier = Modifier.padding(paddingValues))
 
 
             //End of Column
