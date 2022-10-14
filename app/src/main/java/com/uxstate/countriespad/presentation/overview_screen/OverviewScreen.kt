@@ -1,7 +1,6 @@
 package com.uxstate.countriespad.presentation.overview_screen
 
 import androidx.compose.animation.*
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -12,9 +11,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootNavGraph
@@ -25,10 +22,7 @@ import com.uxstate.countriespad.presentation.overview_screen.components.CountryC
 import com.uxstate.countriespad.presentation.overview_screen.components.OrderPanel
 import com.uxstate.countriespad.presentation.overview_screen.components.SearchBox
 import com.uxstate.countriespad.presentation.ui_components.LoadingAnimation
-import com.uxstate.countriespad.presentation.ui_components.LottiePlaceHolder
-import com.uxstate.countriespad.util.Dimens
 import com.uxstate.countriespad.util.LocalSpacing
-import timber.log.Timber
 
 @OptIn(ExperimentalMaterial3Api::class)
 
@@ -43,53 +37,41 @@ fun OverviewScreen(
 ) {
 
 
-    Timber.i("Overview Screen called")
-
     val state = viewModel.state
     val spacing = LocalSpacing.current
-    
-    if(state.isLoading) {
+
+    if (state.isLoading) {
 
 
         LoadingAnimation(spacing.spaceTwoHundredDp)
-    } else{
-    Scaffold(topBar = {
-
-
-      LargeTopAppBar(colors = TopAppBarDefaults.largeTopAppBarColors(
-                containerColor = MaterialTheme.colorScheme.surfaceVariant,
-                titleContentColor = MaterialTheme.colorScheme.onSurfaceVariant
-        ), title = {
-
-                   Text(text = "This is me", modifier = Modifier.wrapContentSize().background(Color.Blue))
-         /*  Column() {
-               Spacer(modifier = Modifier.height(spacing.spaceExtraLarge))
-               SearchBox(
-                       value = state.query,
-                       placeholderText = stringResource(id = R.string.search_tag),
-                       onQueryTextChange = { viewModel.onEvent(OverviewEvent.OnQueryChange(it)) },
-                       onClearText = { viewModel.onEvent(OverviewEvent.OnClearSearchBox) }
-               )
-               Spacer(modifier = Modifier.height(spacing.spaceExtraSmall))
-           }*/
-
-
-       }, modifier = Modifier.padding(1.dp)
-        )
-
-
-    }) { paddingValues ->
+    } else {
 
 
         Column(
-                modifier = Modifier
-                        .fillMaxSize()
-                        .padding(spacing.spaceExtraSmall)
+                modifier = Modifier.padding()
         ) {
+
+            Surface(
+                    modifier = Modifier.weight(1.5f),
+                    color = MaterialTheme.colorScheme.surfaceVariant,
+                    contentColor = MaterialTheme.colorScheme.onSurfaceVariant
+            ) {
+
+                Box(contentAlignment = Alignment.Center) {
+                    SearchBox(
+                            value = state.query,
+                            placeholderText = stringResource(id = R.string.search_tag),
+                            onQueryTextChange = { viewModel.onEvent(OverviewEvent.OnQueryChange(it)) },
+                            onClearText = { viewModel.onEvent(OverviewEvent.OnClearSearchBox) }
+                    )
+                }
+
+            }
 
             //HEADER_SECTION
             Row(
                     modifier = Modifier
+                            .weight(.5f)
                             .fillMaxWidth()
                             .align(Alignment.End),
                     horizontalArrangement = Arrangement.End
@@ -102,6 +84,8 @@ fun OverviewScreen(
                             contentDescription = stringResource(id = R.string.sort_countries_label)
                     )
                 }
+
+
             }
 
             AnimatedVisibility(
@@ -122,28 +106,29 @@ fun OverviewScreen(
                         )
             }
 
-            Spacer(modifier = Modifier.height(spacing.spaceMedium))
+            // Spacer(modifier = Modifier.height(spacing.spaceMedium))
 
             LazyVerticalGrid(
+                    modifier = Modifier.weight(8f),
                     columns = GridCells.Fixed(2),
                     content = {
 
                         items(state.countriesData) { country ->
                             CountryCard(country = country) {
-                           navigator.navigate(DetailsScreenDestination(it))
+                                navigator.navigate(DetailsScreenDestination(it))
                             }
 
                         }
 
 
-                    }, modifier = Modifier.padding(paddingValues))
+                    })
 
 
             //End of Column
         }
 
+    }
 
-        //End of Scaffold
-    }}
+
 }
 
