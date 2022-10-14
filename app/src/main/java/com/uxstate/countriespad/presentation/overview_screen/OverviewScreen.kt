@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.List
 import androidx.compose.material3.*
@@ -12,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootNavGraph
@@ -55,8 +57,9 @@ fun OverviewScreen(
                     modifier = Modifier.weight(1.3f).padding(spacing.spaceExtraSmall),
                     color = MaterialTheme.colorScheme.surfaceVariant,
                     contentColor = MaterialTheme.colorScheme.onSurfaceVariant,
-                    shadowElevation = spacing.spaceExtraSmall
-            
+                    shadowElevation = spacing.spaceExtraSmall,
+                    shape = RoundedCornerShape(spacing.spaceSmall)
+
             ) {
 
                 Box(contentAlignment = Alignment.Center) {
@@ -76,7 +79,9 @@ fun OverviewScreen(
             Surface(modifier = Modifier.weight(.7f).padding(spacing.spaceExtraSmall),
                     color = MaterialTheme.colorScheme.surfaceVariant,
                     contentColor = MaterialTheme.colorScheme.onSurfaceVariant,
-                    shadowElevation = spacing.spaceExtraSmall) {
+                    shadowElevation = spacing.spaceExtraSmall,
+                    shape = RoundedCornerShape(spacing.spaceExtraSmall)
+            ) {
 
                 Row(
                         modifier = Modifier
