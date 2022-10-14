@@ -48,13 +48,15 @@ fun OverviewScreen(
 
 
         Column(
-                modifier = Modifier.padding()
+                modifier = Modifier.padding(spacing.spaceExtraSmall)
         ) {
 
             Surface(
-                    modifier = Modifier.weight(1.5f),
+                    modifier = Modifier.weight(1.3f).padding(spacing.spaceExtraSmall),
                     color = MaterialTheme.colorScheme.surfaceVariant,
-                    contentColor = MaterialTheme.colorScheme.onSurfaceVariant
+                    contentColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                    shadowElevation = spacing.spaceExtraSmall
+            
             ) {
 
                 Box(contentAlignment = Alignment.Center) {
@@ -68,24 +70,31 @@ fun OverviewScreen(
 
             }
 
+            Spacer(modifier = Modifier.height(spacing.spaceExtraSmall))
+
             //HEADER_SECTION
-            Row(
-                    modifier = Modifier
-                            .weight(.5f)
-                            .fillMaxWidth()
-                            .align(Alignment.End),
-                    horizontalArrangement = Arrangement.End
-                    //verticalAlignment = Alignment.CenterVertically
-            ) {
+            Surface(modifier = Modifier.weight(.7f).padding(spacing.spaceExtraSmall),
+                    color = MaterialTheme.colorScheme.surfaceVariant,
+                    contentColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                    shadowElevation = spacing.spaceExtraSmall) {
 
-                IconButton(onClick = { viewModel.onEvent(OverviewEvent.OnToggleSelectionPane) }) {
-                    Icon(
-                            imageVector = Icons.Default.List,
-                            contentDescription = stringResource(id = R.string.sort_countries_label)
-                    )
+                Row(
+                        modifier = Modifier
+                                .fillMaxWidth()
+                                .align(Alignment.End),
+                        horizontalArrangement = Arrangement.End
+                        //verticalAlignment = Alignment.CenterVertically
+                ) {
+
+                    IconButton(onClick = { viewModel.onEvent(OverviewEvent.OnToggleSelectionPane) }) {
+                        Icon(modifier = Modifier.size(spacing.spaceLarge),
+                                imageVector = Icons.Default.List,
+                                contentDescription = stringResource(id = R.string.sort_countries_label)
+                        )
+                    }
+
+
                 }
-
-
             }
 
             AnimatedVisibility(
@@ -106,7 +115,7 @@ fun OverviewScreen(
                         )
             }
 
-            // Spacer(modifier = Modifier.height(spacing.spaceMedium))
+            Spacer(modifier = Modifier.height(spacing.spaceExtraSmall))
 
             LazyVerticalGrid(
                     modifier = Modifier.weight(8f),
