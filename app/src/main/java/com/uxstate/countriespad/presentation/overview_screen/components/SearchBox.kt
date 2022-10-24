@@ -18,7 +18,7 @@ import com.uxstate.countriespad.util.LocalSpacing
 fun SearchBox(
     modifier: Modifier = Modifier,
     value: String,
-    placeholderText: String,
+   
     onQueryTextChange: (String) -> Unit,
 onClearText:() -> Unit
 ) {
