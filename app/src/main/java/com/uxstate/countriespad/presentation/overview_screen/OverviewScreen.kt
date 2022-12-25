@@ -65,7 +65,7 @@ fun OverviewScreen(
                 Box(contentAlignment = Alignment.Center) {
                     SearchBox(
                             value = state.query,
-                            placeholderText = stringResource(id = R.string.search_tag),
+
                             onQueryTextChange = { viewModel.onEvent(OverviewEvent.OnQueryChange(it)) },
                             onClearText = { viewModel.onEvent(OverviewEvent.OnClearSearchBox) }
                     )
