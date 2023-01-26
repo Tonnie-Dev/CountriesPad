@@ -131,7 +131,15 @@ class CountryRepositoryImpl @Inject constructor(
             emit(Resource.Loading(isLoading = false))
         }
 
+/*override suspend fun getAllIncludedInTotalShoppingLists(): List<ShoppingList> {
+   return withContext(Dispatchers.IO) {
+        val returnedList = shoppingListDao.getAllIncludedInTotalShoppingLists().map {
+            shoppingListMapper.mapFromEntity(it)
+        }
 
+        return@withContext returnedList
+    }
+}*/
 
     }
 

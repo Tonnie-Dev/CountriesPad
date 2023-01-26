@@ -26,5 +26,6 @@ abstract class JsonParserModule {
     is the interface implementation and the return type is the
     interface implemented by the given parameter object.*/
 
-    abstract fun provideJSONStringParser(countriesListParser: CountriesListParser):JsonStringParser<Country>
+    abstract fun provideJSONStringParser(countriesListParser: CountriesListParser)
+    :JsonStringParser<Country>
 }
