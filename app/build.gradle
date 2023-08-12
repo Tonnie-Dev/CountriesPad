@@ -1,10 +1,12 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-    id 'dagger.hilt.android.plugin'
     id 'kotlin-kapt'
     id 'kotlin-parcelize'
-    id 'com.google.devtools.ksp'
+    id 'com.google.devtools.ksp' version '1.8.10-1.0.9'
+    id 'dagger.hilt.android.plugin'
+
+
 }
 
 android {
@@ -56,11 +58,12 @@ android {
         compose true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion '1.5.1'
+        kotlinCompilerExtensionVersion '1.4.4'
     }
     packagingOptions {
         resources {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
+            exclude 'META-INF/gradle/incremental.annotation.processors'
         }
     }
     namespace 'com.uxstate.countriespad'
@@ -90,7 +93,7 @@ dependencies {
     implementation "com.google.dagger:hilt-android:2.44.2"
     kapt "com.google.dagger:hilt-compiler:2.44.2"
     implementation "androidx.hilt:hilt-navigation-compose:1.0.0"
-
+   kapt "org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.5.0"
     // Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-moshi:2.9.0'
