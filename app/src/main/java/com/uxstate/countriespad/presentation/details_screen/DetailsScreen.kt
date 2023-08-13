@@ -22,6 +22,7 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.uxstate.countriespad.R
 import com.uxstate.countriespad.domain.model.Country
 import com.uxstate.countriespad.presentation.details_screen.components.CoatOfArms
+import com.uxstate.countriespad.presentation.details_screen.components.CountryBottomSheet
 import com.uxstate.countriespad.presentation.details_screen.components.MapComposable
 import com.uxstate.countriespad.util.LocalSpacing
 import com.uxstate.countriespad.util.applyDecimalSeparator
@@ -97,7 +98,8 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
 
             }
 
-            Column(
+            CountryBottomSheet(country = country)
+           /* Column(
                     modifier = Modifier
                             .weight(0.2f)
                             .verticalScroll(rememberScrollState())
@@ -248,7 +250,7 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
                 }
 
 
-            }
+            }*/
 
 
         }

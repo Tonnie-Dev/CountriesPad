@@ -10,3 +10,10 @@ fun String.capitalizeEachWord():String {
        if (it.isLowerCase()) it.titlecase(Locale.US) else it.toString()
    } })
 }
+
+
+fun String.titleCase (delimiter:String = " "):String{
+
+
+    return this.split(delimiter).joinToString(separator = delimiter){word ->  word.replaceFirstChar(Char::titlecase)}
+}
