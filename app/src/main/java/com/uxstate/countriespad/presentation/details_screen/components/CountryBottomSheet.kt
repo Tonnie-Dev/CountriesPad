@@ -2,6 +2,7 @@ package com.uxstate.countriespad.presentation.details_screen.components
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -9,42 +10,69 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material3.BottomSheetDefaults
+import androidx.compose.material3.BottomSheetScaffold
+import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Text
-import androidx.compose.material3.rememberModalBottomSheetState
+import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.uxstate.countriespad.R
 import com.uxstate.countriespad.domain.model.Country
 import com.uxstate.countriespad.util.LocalSpacing
 import com.uxstate.countriespad.util.applyDecimalSeparator
 import com.uxstate.countriespad.util.titleCase
+import kotlinx.coroutines.launch
 
-
-val MyAppIcons = Icons.Rounded
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CountryBottomSheet(modifier: Modifier = Modifier, country: Country) {
+fun CountryBottomSheet(modifier: Modifier = Modifier, country: Country, scaffoldContent: @Composable ()-> Unit) {
 
-    val sheetState = rememberModalBottomSheetState()
+    val spacing = LocalSpacing.current
+    val scope = rememberCoroutineScope()
+    val scaffoldState = rememberBottomSheetScaffoldState()
 
-    ModalBottomSheet(
-
-            modifier = modifier,
-            sheetState = sheetState,
-            dragHandle = { BottomSheetDefaults.DragHandle() },
-            onDismissRequest = { /*TODO*/ },
-    ) {
-        BottomSheetContent(country = country)
+    BottomSheetScaffold(
+            scaffoldState = scaffoldState,
+            sheetPeekHeight = spacing.spaceExtraLarge,
+            sheetContent = {
+                Box(
+                        Modifier
+                                .fillMaxWidth()
+                                .height(128.dp),
+                        contentAlignment = Alignment.Center
+                ) {
+                    Text("Swipe up to expand sheet")
+                }
+                Column(
+                        Modifier
+                                .fillMaxWidth()
+                                .padding(64.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text("Sheet content")
+                    Spacer(Modifier.height(20.dp))
+                    Button(
+                            onClick = {
+                                scope.launch { scaffoldState.bottomSheetState.partialExpand() }
+                            }
+                    ) {
+                        Text("Click to collapse sheet")
+                    }
+                }
+            }) { innerPadding ->
+        Box(Modifier.padding(innerPadding)) {
+            scaffoldContent()
+        }
     }
 }
 
@@ -57,10 +85,12 @@ fun BottomSheetContent(modifier: Modifier = Modifier, country: Country) {
 
 
         //Row 1
-        Row (modifier = modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween){
-            LabelContainer(modifier = Modifier.weight(6f),
+        Row(modifier = modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+            LabelContainer(
+                    modifier = Modifier.weight(6f),
                     res = R.drawable.my_location,
-                    text = country.capital)
+                    text = country.capital
+            )
             LabelContainer(
                     modifier = Modifier.weight(4f),
                     res = R.drawable.money, text = stringResource(
@@ -73,7 +103,7 @@ fun BottomSheetContent(modifier: Modifier = Modifier, country: Country) {
         }
         //Row 2
 
-        Row (modifier = modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween){
+        Row(modifier = modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
             LabelContainer(
                     modifier = Modifier.weight(6f),
                     res = R.drawable.money,
@@ -113,7 +143,7 @@ fun LabelContainer(modifier: Modifier = Modifier, @DrawableRes res: Int, text: S
     ) {
         Icon(painter = painterResource(id = res), contentDescription = "Icon")
         Spacer(modifier = Modifier.height(spacing.spaceSmall))
-        Text(text = text,  style = MaterialTheme.typography.bodyMedium)
+        Text(text = text, style = MaterialTheme.typography.bodyMedium)
     }
 }
 
