@@ -9,7 +9,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.BottomSheetScaffold
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -23,6 +23,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.uxstate.countriespad.R
@@ -35,50 +37,70 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CountryBottomSheet(modifier: Modifier = Modifier, country: Country, scaffoldContent: @Composable ()-> Unit) {
+fun CountryBottomSheet(
+    modifier: Modifier = Modifier, country: Country, scaffoldContent: @Composable () -> Unit
+) {
 
     val spacing = LocalSpacing.current
     val scope = rememberCoroutineScope()
     val scaffoldState = rememberBottomSheetScaffoldState()
 
-    BottomSheetScaffold(
-            scaffoldState = scaffoldState,
-            sheetPeekHeight = spacing.spaceExtraLarge,
-            sheetContent = {
-                Box(
-                        Modifier
-                                .fillMaxWidth()
-                                .height(128.dp),
-                        contentAlignment = Alignment.Center
-                ) {
-                    Text("Swipe up to expand sheet")
-                }
-                Column(
-                        Modifier
-                                .fillMaxWidth()
-                                .padding(64.dp),
-                        horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Text("Sheet content")
-                    Spacer(Modifier.height(20.dp))
-                    Button(
-                            onClick = {
-                                scope.launch { scaffoldState.bottomSheetState.partialExpand() }
-                            }
-                    ) {
-                        Text("Click to collapse sheet")
-                    }
-                }
-            }) { innerPadding ->
+    BottomSheetScaffold(scaffoldState = scaffoldState, sheetPeekHeight = 128.dp, sheetContent = {
+        Box(
+                Modifier
+                        .fillMaxWidth()
+                        .height(spacing.spaceExtraLarge),
+                contentAlignment = Alignment.Center
+        ) {
+            CountryBottomSheetHeader(country)
+        }
+        Column(
+                Modifier
+                        .fillMaxWidth()
+                        .padding(spacing.spaceMedium),
+                horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            CountryDetailsContent(country = country)
+            Spacer(Modifier.height(spacing.spaceMedium))
+            Button(onClick = {
+                scope.launch { scaffoldState.bottomSheetState.partialExpand() }
+            }) {
+                Text("Hide Details")
+            }
+        }
+    }) { innerPadding ->
         Box(Modifier.padding(innerPadding)) {
             scaffoldContent()
         }
     }
 }
 
+@Composable
+fun CountryBottomSheetHeader(country: Country, modifier: Modifier = Modifier) {
+
+    Column(
+            modifier = modifier.fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+
+        Text(
+                text = country.officialName,
+                style = MaterialTheme.typography.titleLarge,
+                overflow = TextOverflow.Ellipsis,
+                textAlign = TextAlign.Center
+        )
+
+        Text(
+                text = country.subRegion,
+                style = MaterialTheme.typography.titleMedium,
+                textAlign = TextAlign.Center
+        )
+    }
+
+}
 
 @Composable
-fun BottomSheetContent(modifier: Modifier = Modifier, country: Country) {
+fun CountryDetailsContent(modifier: Modifier = Modifier, country: Country) {
 
 
     Column(modifier.fillMaxWidth()) {
@@ -131,7 +153,9 @@ fun BottomSheetContent(modifier: Modifier = Modifier, country: Country) {
         }
 
     }
-}
+    }
+
+
 
 @Composable
 fun LabelContainer(modifier: Modifier = Modifier, @DrawableRes res: Int, text: String) {
@@ -142,7 +166,7 @@ fun LabelContainer(modifier: Modifier = Modifier, @DrawableRes res: Int, text: S
             verticalAlignment = Alignment.CenterVertically
     ) {
         Icon(painter = painterResource(id = res), contentDescription = "Icon")
-        Spacer(modifier = Modifier.height(spacing.spaceSmall))
+        Spacer(modifier = Modifier.width(spacing.spaceSmall))
         Text(text = text, style = MaterialTheme.typography.bodyMedium)
     }
 }
@@ -177,5 +201,5 @@ fun BottomSheetContentPreview() {
             population = 1276269900
     )
 
-    BottomSheetContent(country = country)
+    CountryDetailsContent(country = country)
 }
