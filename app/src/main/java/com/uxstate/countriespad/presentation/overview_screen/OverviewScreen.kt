@@ -21,6 +21,7 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.uxstate.countriespad.R
 import com.uxstate.countriespad.presentation.destinations.DetailsScreenDestination
 import com.uxstate.countriespad.presentation.overview_screen.components.CountryCard
+import com.uxstate.countriespad.presentation.overview_screen.components.CountrySurfaceCard
 import com.uxstate.countriespad.presentation.overview_screen.components.OrderPanel
 import com.uxstate.countriespad.presentation.overview_screen.components.SearchBox
 import com.uxstate.countriespad.presentation.ui_components.LoadingAnimation
@@ -128,7 +129,7 @@ fun OverviewScreen(
                     content = {
 
                         items(state.countriesData) { country ->
-                            CountryCard(country = country) {
+                            CountrySurfaceCard(country = country) {
                                 navigator.navigate(DetailsScreenDestination(it))
                             }
 
