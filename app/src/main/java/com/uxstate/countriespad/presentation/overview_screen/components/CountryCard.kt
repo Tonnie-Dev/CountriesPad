@@ -3,17 +3,21 @@ package com.uxstate.countriespad.presentation.overview_screen.components
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
-
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
-import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -57,11 +61,12 @@ fun CountryCard(
             shape = MaterialTheme.shapes.medium
     ) {
         Column(
-                modifier = Modifier.fillMaxSize()
-                       /* .fillMaxWidth()
+                modifier = Modifier
+                        .fillMaxSize()
+                        /* .fillMaxWidth()
                         .aspectRatio(3f / 2f)*/
                         .padding(spacing.spaceSmall),
-                horizontalAlignment= CenterHorizontally,
+                horizontalAlignment = CenterHorizontally,
                 verticalArrangement = Arrangement.Bottom
         ) {
 
@@ -72,7 +77,7 @@ fun CountryCard(
                     modifier = Modifier
                             .fillMaxWidth()
                             .aspectRatio(2f / 1f)
-                            .padding( horizontal = spacing.spaceMedium)
+                            .padding(horizontal = spacing.spaceMedium)
             )
 
             Text(
@@ -87,6 +92,37 @@ fun CountryCard(
             )
         }
 
+    }
+}
+
+
+@Composable
+fun CountrySurfaceCard(country: Country) {
+    val spacing = LocalSpacing.current
+    val context = LocalContext.current
+    val painter = rememberAsyncImagePainter(
+            model = ImageRequest.Builder(context = context)
+                    .crossfade(true)
+                    .data(country.flagUrl)
+                    .build()
+    )
+
+    Surface(
+            modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(spacing.spaceSmall)
+    ) {
+
+        Column {
+            Box(modifier = Modifier.fillMaxWidth()) {
+
+
+            }
+
+            Row {
+                Text(text = country.name)
+            }
+        }
     }
 }
 
@@ -114,20 +150,21 @@ fun CountryCardPreviewLight() {
 @Composable
 fun CountryCardPreviewDark() {
 
-    CountriesPadTheme{
-    CountryCard(country = Country(
-            name = "Kenya",
-            officialName = "",
-            currencies = listOf(),
-            capital = "",
-            region = "",
-            subRegion = "",
-            languages = listOf(),
-            latLng = Pair(0.0, 0.0),
-            flagUrl = "",
-            coatOfArmsUrl = "",
-            ciocCode = "",
-            area = 0,
-            population = 0
-    ), onClickCountry = {})}
+    CountriesPadTheme {
+        CountryCard(country = Country(
+                name = "Kenya",
+                officialName = "",
+                currencies = listOf(),
+                capital = "",
+                region = "",
+                subRegion = "",
+                languages = listOf(),
+                latLng = Pair(0.0, 0.0),
+                flagUrl = "",
+                coatOfArmsUrl = "",
+                ciocCode = "",
+                area = 0,
+                population = 0
+        ), onClickCountry = {})
+    }
 }
