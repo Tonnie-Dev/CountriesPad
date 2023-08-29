@@ -20,7 +20,7 @@ import com.ramcosta.composedestinations.annotation.RootNavGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.uxstate.countriespad.R
 import com.uxstate.countriespad.presentation.destinations.DetailsScreenDestination
-import com.uxstate.countriespad.presentation.overview_screen.components.CountryCard
+import com.uxstate.countriespad.presentation.overview_screen.components.CountrySearchBar
 import com.uxstate.countriespad.presentation.overview_screen.components.CountrySurfaceCard
 import com.uxstate.countriespad.presentation.overview_screen.components.OrderPanel
 import com.uxstate.countriespad.presentation.overview_screen.components.SearchBox
@@ -49,35 +49,44 @@ fun OverviewScreen(
         LoadingAnimation(spacing.spaceTwoHundredDp)
     } else {
 
+        Surface(color = MaterialTheme.colorScheme.background) {
+
+
 
         Column(
                 modifier = Modifier.padding(spacing.spaceExtraSmall)
         ) {
+            CountrySearchBar(modifier = Modifier.weight(2f))
 
-            Surface(
-                    modifier = Modifier.weight(1.3f).padding(spacing.spaceExtraSmall),
-                    color = MaterialTheme.colorScheme.surfaceVariant,
-                    contentColor = MaterialTheme.colorScheme.onSurfaceVariant,
-                    shadowElevation = spacing.spaceExtraSmall,
-                    shape = RoundedCornerShape(spacing.spaceSmall)
+            LazyVerticalGrid(
+                    modifier = Modifier.weight(8f),
+                    columns = GridCells.Fixed(2),
+                    content = {
 
-            ) {
+                        items(state.countriesData) { country ->
+                            CountrySurfaceCard(country = country) {
+                                navigator.navigate(DetailsScreenDestination(it))
+                            }
 
-                Box(contentAlignment = Alignment.Center) {
-                    SearchBox(
-                            value = state.query,
+                        }
 
-                            onQueryTextChange = { viewModel.onEvent(OverviewEvent.OnQueryChange(it)) },
-                            onClearText = { viewModel.onEvent(OverviewEvent.OnClearSearchBox) }
-                    )
-                }
 
-            }
+                    })
+            /* SearchBox(
+                     value = state.query,
 
+                     onQueryTextChange = { viewModel.onEvent(OverviewEvent.OnQueryChange(it)) },
+                     onClearText = { viewModel.onEvent(OverviewEvent.OnClearSearchBox) }
+             )*/
+        }}
+
+/*
             Spacer(modifier = Modifier.height(spacing.spaceExtraSmall))
 
             //HEADER_SECTION
-            Surface(modifier = Modifier.weight(.7f).padding(spacing.spaceExtraSmall),
+            Surface(modifier = Modifier
+                    .weight(.7f)
+                    .padding(spacing.spaceExtraSmall),
                     color = MaterialTheme.colorScheme.surfaceVariant,
                     contentColor = MaterialTheme.colorScheme.onSurfaceVariant,
                     shadowElevation = spacing.spaceExtraSmall,
@@ -121,22 +130,9 @@ fun OverviewScreen(
                         )
             }
 
-            Spacer(modifier = Modifier.height(spacing.spaceExtraSmall))
-
-            LazyVerticalGrid(
-                    modifier = Modifier.weight(8f),
-                    columns = GridCells.Fixed(2),
-                    content = {
-
-                        items(state.countriesData) { country ->
-                            CountrySurfaceCard(country = country) {
-                                navigator.navigate(DetailsScreenDestination(it))
-                            }
-
-                        }
+            Spacer(modifier = Modifier.height(spacing.spaceExtraSmall))*/
 
 
-                    })
 
 
             //End of Column
@@ -145,5 +141,5 @@ fun OverviewScreen(
     }
 
 
-}
+
 
