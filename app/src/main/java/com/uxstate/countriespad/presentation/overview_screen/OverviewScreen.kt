@@ -56,7 +56,15 @@ fun OverviewScreen(
         Column(
                 modifier = Modifier.padding(spacing.spaceExtraSmall)
         ) {
-            CountrySearchBar(modifier = Modifier.weight(2f))
+            CountrySearchBar(
+
+                    queryText = state.query,
+                    onQueryChange = {viewModel.onEvent(OverviewEvent.OnQueryChange(it))},
+                    placeholderText = stringResource(id = R.string.search_text_placeholder),
+                    isActive = state.isActive,
+                    onActiveChange = { viewModel.onEvent(OverviewEvent.OnSearchBarActiveStateChange(it))},
+                    onDeleteText = {},
+                    onSearch = {})
 
             LazyVerticalGrid(
                     modifier = Modifier.weight(8f),

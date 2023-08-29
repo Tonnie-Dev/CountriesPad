@@ -81,6 +81,10 @@ class OverviewViewModel @Inject constructor(private val container: UseCaseContai
             }
 
 
+            is OverviewEvent.OnSearchBarActiveStateChange ->{
+
+                !event.isActive
+            }
 
         }
     }

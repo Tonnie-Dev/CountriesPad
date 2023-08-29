@@ -10,5 +10,6 @@
     <string name="coat_of_arms_label">Back</string>
     <string name="km_sup_string"> %s km\u00B2</string>
     <string name="loading_text">Loading Data…</string>
+    <string name="search_text_placeholder">Search…</string>
 
 </resources>
