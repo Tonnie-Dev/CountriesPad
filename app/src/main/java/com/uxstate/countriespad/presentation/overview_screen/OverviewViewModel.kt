@@ -35,7 +35,14 @@ class OverviewViewModel @Inject constructor(private val container: UseCaseContai
 
             is OverviewEvent.OnClearSearchBox -> {
 
-                state = state.copy(query = "")
+                if (state.query.isNotEmpty()) {
+                    state = state.copy(query = "")
+
+                }else{
+
+                    state = state.copy(isActive = !state.isActive)
+                }
+
                 getCountries(countryOrderFormat = state.countryOrderFormat)
             }
             is OverviewEvent.OnQueryChange -> {
@@ -59,6 +66,18 @@ class OverviewViewModel @Inject constructor(private val container: UseCaseContai
 
             }
 
+
+
+            is OverviewEvent.OnSearchBarActiveStateChange ->{
+
+                state  = state.copy(isActive = event.isActive)
+            }
+
+            is OverviewEvent.OnSearchBackClick -> {
+                state  = state.copy(isActive = false)
+
+            }
+
             is OverviewEvent.OnChangeOrder -> {
 
 
@@ -75,16 +94,14 @@ class OverviewViewModel @Inject constructor(private val container: UseCaseContai
                 getCountries(countryOrderFormat = state.countryOrderFormat)
 
             }
+
             is OverviewEvent.OnToggleSelectionPane -> {
                 //toggle boolean status
                 state = state.copy(isOrderPaneVisible = !state.isOrderPaneVisible)
             }
 
 
-            is OverviewEvent.OnSearchBarActiveStateChange ->{
 
-                !event.isActive
-            }
 
         }
     }
