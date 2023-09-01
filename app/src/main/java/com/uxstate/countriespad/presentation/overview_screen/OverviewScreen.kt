@@ -19,6 +19,7 @@ import com.uxstate.countriespad.presentation.overview_screen.components.CountryS
 import com.uxstate.countriespad.presentation.overview_screen.components.CountrySurfaceCard
 import com.uxstate.countriespad.presentation.ui_components.LoadingAnimation
 import com.uxstate.countriespad.util.LocalSpacing
+import com.uxstate.countriespad.util.conditional
 
 @OptIn(ExperimentalMaterial3Api::class)
 
@@ -34,6 +35,7 @@ fun OverviewScreen(
 
 
     val state = viewModel.state
+    val isSearchBarActive = state.isActive
     val spacing = LocalSpacing.current
     val countryNamesList = state.countriesData.map { it.name }
 
@@ -46,12 +48,12 @@ fun OverviewScreen(
         Surface(color = MaterialTheme.colorScheme.background) {
 
 
-            Column{
+            Column {
                 CountrySearchBar(
                         queryText = state.query,
                         onQueryChange = { viewModel.onEvent(OverviewEvent.OnQueryChange(it)) },
                         placeholderText = stringResource(id = R.string.search_text_placeholder),
-                        isActive = state.isActive,
+                        isActive = isSearchBarActive,
                         onActiveChange = {
                             viewModel.onEvent(
                                     OverviewEvent.OnSearchBarActiveStateChange(
@@ -62,8 +64,13 @@ fun OverviewScreen(
                         onDeleteText = { viewModel.onEvent(OverviewEvent.OnClearSearchBox) },
                         onSearch = {},
                         countries = countryNamesList,
-                        modifier = Modifier.fillMaxWidth().padding(spacing.spaceSmall)
-                        )
+                        onSearchBackClick = { viewModel.onEvent(OverviewEvent.OnSearchBackClick) },
+
+                        modifier = Modifier
+                                .conditional(isSearchBarActive) { fillMaxSize() }
+                                .conditional(!isSearchBarActive) { padding(spacing.spaceSmall) }
+
+                )
 
                 LazyVerticalGrid(
                         modifier = Modifier.weight(8f),

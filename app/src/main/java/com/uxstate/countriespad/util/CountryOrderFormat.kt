@@ -19,3 +19,9 @@ sealed class CountryOrderFormat(val orderType: OrderType){
         }
     }
 }
+
+sealed class OrderType{
+    object Descending:OrderType()
+    object Ascending:OrderType()
+}
+
