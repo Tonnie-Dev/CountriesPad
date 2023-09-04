@@ -81,13 +81,10 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
             ) {
 
 
-                Column(modifier = Modifier.weight(0.2f)) {
-                    CoatOfArms(country = country)
-                }
+
 
                 Column(
                         modifier = Modifier
-                                .weight(.6f)
                                 .padding(spacing.spaceExtraSmall)
                 ) {
 

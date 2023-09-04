@@ -117,11 +117,11 @@ fun CountryBottomSheetHeader(country: Country, modifier: Modifier = Modifier) {
                     .fillMaxWidth()
                     .padding(spacing.spaceSmall),
             verticalAlignment = Alignment.CenterVertically,
-
+horizontalArrangement = Arrangement.SpaceBetween
 
             ) {
 
-        Column(modifier = Modifier.weight(0.6f)) {
+        Column{
             Text(
                     text = country.officialName,
                     style = MaterialTheme.typography.labelLarge,
@@ -136,23 +136,23 @@ fun CountryBottomSheetHeader(country: Country, modifier: Modifier = Modifier) {
             )
         }
 
+        Image(
+                painter = coatOfArmsPainter,
+                contentDescription = stringResource(id = R.string.coat_of_arms_label),
+                contentScale = ContentScale.Inside,
+                modifier = Modifier.size(spacing.spaceExtraLarge + spacing.spaceMedium)
+        )
+        /* Row(modifier = Modifier.weight(0.4f), Arrangement.SpaceBetween) {
 
-        Row(modifier = Modifier.weight(0.4f), Arrangement.SpaceBetween) {
 
-            Image(
-                    painter = coatOfArmsPainter,
-                    contentDescription = stringResource(id = R.string.coat_of_arms_label),
-                    contentScale = ContentScale.Inside,
-                    modifier = Modifier.size(spacing.spaceExtraLarge + spacing.spaceMedium).weight(.5f)
-            )
-            Image(
+           Image(
                     painter = flagPainter,
                     contentDescription = stringResource(id = R.string.coat_of_arms_label),
                     contentScale = ContentScale.Inside,
                     modifier = Modifier.size(spacing.spaceExtraLarge + spacing.spaceMedium).weight(.5f)
             )
 
-        }
+        }*/
     }
 
     /*Column(
