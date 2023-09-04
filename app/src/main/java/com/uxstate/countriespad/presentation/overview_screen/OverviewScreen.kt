@@ -65,11 +65,11 @@ fun OverviewScreen(
                         onSearch = {},
                         countries = state.countriesData,
                         onSearchBackClick = { viewModel.onEvent(OverviewEvent.OnSearchBackClick) },
-                        onSelectCountry ={
+                        onSelectCountry = {
                             viewModel.onEvent(OverviewEvent.OnSelectCountry)
                             navigator.navigate(DetailsScreenDestination(it))
 
-                                         },
+                        },
                         modifier = Modifier
                                 .conditional(isSearchBarActive) { fillMaxSize() }
                                 .conditional(!isSearchBarActive) { padding(spacing.spaceSmall) }
@@ -90,72 +90,68 @@ fun OverviewScreen(
 
 
                         })
-                /* SearchBox(
-                         value = state.query,
 
-                         onQueryTextChange = { viewModel.onEvent(OverviewEvent.OnQueryChange(it)) },
-                         onClearText = { viewModel.onEvent(OverviewEvent.OnClearSearchBox) }
-                 )*/
             }
         }
-
-        /*
-                    Spacer(modifier = Modifier.height(spacing.spaceExtraSmall))
-
-                    //HEADER_SECTION
-                    Surface(modifier = Modifier
-                            .weight(.7f)
-                            .padding(spacing.spaceExtraSmall),
-                            color = MaterialTheme.colorScheme.surfaceVariant,
-                            contentColor = MaterialTheme.colorScheme.onSurfaceVariant,
-                            shadowElevation = spacing.spaceExtraSmall,
-                            shape = RoundedCornerShape(spacing.spaceExtraSmall)
-                    ) {
-
-                        Row(
-                                modifier = Modifier
-                                        .fillMaxWidth()
-                                        .align(Alignment.End),
-                                horizontalArrangement = Arrangement.End
-                                //verticalAlignment = Alignment.CenterVertically
-                        ) {
-
-                            IconButton(onClick = { viewModel.onEvent(OverviewEvent.OnToggleSelectionPane) }) {
-                                Icon(modifier = Modifier.size(spacing.spaceLarge),
-                                        imageVector = Icons.Default.List,
-                                        contentDescription = stringResource(id = R.string.sort_countries_label)
-                                )
-                            }
-
-
-                        }
-                    }
-
-                    AnimatedVisibility(
-                            visible = state.isOrderPaneVisible,
-                            enter = fadeIn() + slideInVertically(),
-                            exit = fadeOut() + slideOutVertically()
-                    ) {
-                        OrderPanel(
-                                countryOrder = state.countryOrderFormat,
-                                onOrderChange = {
-
-                                    viewModel.onEvent(OverviewEvent.OnChangeOrder(it))
-                                },
-                                modifier = Modifier
-                                        .fillMaxWidth()
-                                        .padding(spacing.spaceSmall),
-
-                                )
-                    }
-
-                    Spacer(modifier = Modifier.height(spacing.spaceExtraSmall))*/
-
-
-        //End of Column
     }
 
 }
+
+/*
+            Spacer(modifier = Modifier.height(spacing.spaceExtraSmall))
+
+            //HEADER_SECTION
+            Surface(modifier = Modifier
+                    .weight(.7f)
+                    .padding(spacing.spaceExtraSmall),
+                    color = MaterialTheme.colorScheme.surfaceVariant,
+                    contentColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                    shadowElevation = spacing.spaceExtraSmall,
+                    shape = RoundedCornerShape(spacing.spaceExtraSmall)
+            ) {
+
+                Row(
+                        modifier = Modifier
+                                .fillMaxWidth()
+                                .align(Alignment.End),
+                        horizontalArrangement = Arrangement.End
+                        //verticalAlignment = Alignment.CenterVertically
+                ) {
+
+                    IconButton(onClick = { viewModel.onEvent(OverviewEvent.OnToggleSelectionPane) }) {
+                        Icon(modifier = Modifier.size(spacing.spaceLarge),
+                                imageVector = Icons.Default.List,
+                                contentDescription = stringResource(id = R.string.sort_countries_label)
+                        )
+                    }
+
+
+                }
+            }
+
+            AnimatedVisibility(
+                    visible = state.isOrderPaneVisible,
+                    enter = fadeIn() + slideInVertically(),
+                    exit = fadeOut() + slideOutVertically()
+            ) {
+                OrderPanel(
+                        countryOrder = state.countryOrderFormat,
+                        onOrderChange = {
+
+                            viewModel.onEvent(OverviewEvent.OnChangeOrder(it))
+                        },
+                        modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(spacing.spaceSmall),
+
+                        )
+            }
+
+            Spacer(modifier = Modifier.height(spacing.spaceExtraSmall))*/
+
+
+//End of Column
+
 
 
 
