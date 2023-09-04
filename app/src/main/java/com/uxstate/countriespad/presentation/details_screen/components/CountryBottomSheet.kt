@@ -140,7 +140,7 @@ horizontalArrangement = Arrangement.SpaceBetween
                 painter = coatOfArmsPainter,
                 contentDescription = stringResource(id = R.string.coat_of_arms_label),
                 contentScale = ContentScale.Inside,
-                modifier = Modifier.size(spacing.spaceExtraLarge + spacing.spaceMedium)
+                modifier = Modifier.size(spacing.spaceExtraLarge + spacing.spaceLarge)
         )
         /* Row(modifier = Modifier.weight(0.4f), Arrangement.SpaceBetween) {
 

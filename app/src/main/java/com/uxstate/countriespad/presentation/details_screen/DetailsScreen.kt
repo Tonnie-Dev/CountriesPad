@@ -91,8 +91,8 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
                     MapComposable(
                             country = country,
                             initialZoom = 0f,
-                            finalZoom = 5f,
-                            animationDuration = 3000
+                            finalZoom = 6f,
+                            animationDuration = 4000
                     )
 
                 }
