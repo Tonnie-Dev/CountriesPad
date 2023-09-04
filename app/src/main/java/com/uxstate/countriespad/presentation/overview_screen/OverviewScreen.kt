@@ -37,7 +37,7 @@ fun OverviewScreen(
     val state = viewModel.state
     val isSearchBarActive = state.isActive
     val spacing = LocalSpacing.current
-    val countryNamesList = state.countriesData.map { it.name }
+
 
     if (state.isLoading) {
 
@@ -63,9 +63,13 @@ fun OverviewScreen(
                         },
                         onDeleteText = { viewModel.onEvent(OverviewEvent.OnClearSearchBox) },
                         onSearch = {},
-                        countries = countryNamesList,
+                        countries = state.countriesData,
                         onSearchBackClick = { viewModel.onEvent(OverviewEvent.OnSearchBackClick) },
+                        onSelectCountry ={
+                            viewModel.onEvent(OverviewEvent.OnSelectCountry)
+                            navigator.navigate(DetailsScreenDestination(it))
 
+                                         },
                         modifier = Modifier
                                 .conditional(isSearchBarActive) { fillMaxSize() }
                                 .conditional(!isSearchBarActive) { padding(spacing.spaceSmall) }

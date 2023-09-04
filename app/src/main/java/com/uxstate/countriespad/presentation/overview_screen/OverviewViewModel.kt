@@ -78,6 +78,11 @@ class OverviewViewModel @Inject constructor(private val container: UseCaseContai
 
             }
 
+            is OverviewEvent.OnSelectCountry -> {
+
+                state = state.copy(isActive = false)
+            }
+
             is OverviewEvent.OnChangeOrder -> {
 
 

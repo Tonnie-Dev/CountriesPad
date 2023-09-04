@@ -10,4 +10,6 @@ sealed class OverviewEvent (){
     data class OnChangeOrder(val countryOrderFormat: CountryOrderFormat):OverviewEvent()
     data class OnSearchBarActiveStateChange(val isActive:Boolean):OverviewEvent()
     object OnSearchBackClick:OverviewEvent()
+    object OnSelectCountry:OverviewEvent()
+
 }

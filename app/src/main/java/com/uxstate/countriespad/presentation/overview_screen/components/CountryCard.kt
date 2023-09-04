@@ -27,6 +27,7 @@ import com.uxstate.countriespad.R
 import com.uxstate.countriespad.domain.model.Country
 import com.uxstate.countriespad.presentation.ui.theme.CountriesPadTheme
 import com.uxstate.countriespad.util.LocalSpacing
+import com.uxstate.countriespad.util.country
 
 
 @Composable
@@ -94,22 +95,6 @@ fun CountrySurfaceCard(
 }
 
 
-//Common Country Variable
-val country = Country(
-        name = "Argentina",
-        officialName = "",
-        currencies = listOf(),
-        capital = "",
-        region = "",
-        subRegion = "",
-        languages = listOf(),
-        latLng = Pair(0.0, 0.0),
-        flagUrl = "",
-        coatOfArmsUrl = "",
-        ciocCode = "",
-        area = 0,
-        population = 0
-)
 
 
 @Preview
