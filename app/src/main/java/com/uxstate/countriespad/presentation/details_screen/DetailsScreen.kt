@@ -1,5 +1,7 @@
 package com.uxstate.countriespad.presentation.details_screen
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -10,8 +12,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
+import coil.compose.rememberAsyncImagePainter
+import coil.request.ImageRequest
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
@@ -35,6 +41,16 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
 
 
     val spacing = LocalSpacing.current
+    val context = LocalContext.current
+    val placeholder =
+        if (isSystemInDarkTheme()) R.drawable.flag_placeholder_dark else R.drawable.flag_placeholder_light
+    val flagPainter = rememberAsyncImagePainter(
+            model = ImageRequest.Builder(context = context)
+                    .placeholder(placeholder)
+                    .crossfade(true)
+                    .data(country.flagUrl)
+                    .build()
+    )
 
     CountryBottomSheet(country = country){
 
@@ -46,10 +62,10 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
                     ),
                     title = {
                         Text(
-                                text = country.name.uppercase(),
+                                text = country.name,
                                 overflow = TextOverflow.Ellipsis,
                                 maxLines = 1,
-                                style = MaterialTheme.typography.headlineSmall,
+                                style = MaterialTheme.typography.titleMedium,
                                 modifier = Modifier.padding(spacing.spaceSmall)
                         )
                     },
@@ -67,35 +83,37 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
 
                         }
                     },
+
                     actions = {
 
-                        //CoatOfArms(country = country)
 
+                        Image(
+                                painter = flagPainter,
+                                contentDescription = stringResource(id = R.string.coat_of_arms_label),
+                                contentScale = ContentScale.Inside,
+                                modifier = Modifier.size(spacing.spaceLarge + spacing.spaceSmall)
+                        )
+
+                        Spacer(modifier = Modifier.width(spacing.spaceLarge))
                     }
+
             )
         }) { paddingValues ->
             Column(
                     modifier = Modifier
-                            .fillMaxSize().padding(paddingValues)
+                            .fillMaxSize()
+                            .padding(paddingValues)
 
             ) {
 
+                MapComposable(
+                        country = country,
+                        initialZoom = 0f,
+                        finalZoom = 6f,
+                        animationDuration = 4000
+                )
 
 
-
-                Column(
-                        modifier = Modifier
-                                .padding(spacing.spaceExtraSmall)
-                ) {
-
-                    MapComposable(
-                            country = country,
-                            initialZoom = 0f,
-                            finalZoom = 6f,
-                            animationDuration = 4000
-                    )
-
-                }
 
 
 

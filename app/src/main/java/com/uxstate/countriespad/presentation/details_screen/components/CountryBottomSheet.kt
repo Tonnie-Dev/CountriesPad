@@ -31,7 +31,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.uxstate.countriespad.R
@@ -61,7 +60,7 @@ fun CountryBottomSheet(
                 Box(
                         modifier = modifier
                                 .fillMaxWidth()
-                                .height(spacing.spaceExtraLarge ),
+                                .height(spacing.spaceExtraLarge),
                         contentAlignment = Alignment.Center
                 ) {
                     CountryBottomSheetHeader(country)
@@ -95,14 +94,6 @@ fun CountryBottomSheetHeader(country: Country, modifier: Modifier = Modifier) {
         if (isSystemInDarkTheme()) R.drawable.flag_placeholder_dark else R.drawable.flag_placeholder_light
     val spacing = LocalSpacing.current
     val context = LocalContext.current
-    val flagPainter = rememberAsyncImagePainter(
-            model = ImageRequest.Builder(context = context)
-                    .placeholder(placeholder)
-                    .crossfade(true)
-                    .data(country.flagUrl)
-                    .build()
-    )
-
 
     val coatOfArmsPainter = rememberAsyncImagePainter(
             model = ImageRequest.Builder(context = context)
@@ -113,15 +104,15 @@ fun CountryBottomSheetHeader(country: Country, modifier: Modifier = Modifier) {
     )
 
     Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween,
             modifier = modifier
                     .fillMaxWidth()
-                    .padding(spacing.spaceSmall),
-            verticalAlignment = Alignment.CenterVertically,
-horizontalArrangement = Arrangement.SpaceBetween
+                    .padding(spacing.spaceSmall)
 
-            ) {
+    ) {
 
-        Column{
+        Column {
             Text(
                     text = country.officialName,
                     style = MaterialTheme.typography.labelLarge,
@@ -136,23 +127,17 @@ horizontalArrangement = Arrangement.SpaceBetween
             )
         }
 
-        Image(
-                painter = coatOfArmsPainter,
-                contentDescription = stringResource(id = R.string.coat_of_arms_label),
-                contentScale = ContentScale.Inside,
-                modifier = Modifier.size(spacing.spaceExtraLarge + spacing.spaceLarge)
-        )
-        /* Row(modifier = Modifier.weight(0.4f), Arrangement.SpaceBetween) {
 
 
-           Image(
-                    painter = flagPainter,
+            Image(
+                    painter = coatOfArmsPainter,
                     contentDescription = stringResource(id = R.string.coat_of_arms_label),
-                    contentScale = ContentScale.Inside,
-                    modifier = Modifier.size(spacing.spaceExtraLarge + spacing.spaceMedium).weight(.5f)
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier.size(spacing.spaceExtraLarge + spacing.spaceLarge)
             )
 
-        }*/
+
+
     }
 
     /*Column(
