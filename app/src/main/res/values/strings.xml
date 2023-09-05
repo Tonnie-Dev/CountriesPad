@@ -11,5 +11,7 @@
     <string name="km_sup_string"> %s km\u00B2</string>
     <string name="loading_text">Loading Data…</string>
     <string name="search_text_placeholder">Search…</string>
+    <string name="coat_of_arms_text">Coat of Arms</string>
+    <string name="close_icon_text">Close Icon</string>
 
 </resources>
