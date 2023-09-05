@@ -56,16 +56,16 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
 
      Scaffold(topBar = {
             CenterAlignedTopAppBar(
-                    colors = TopAppBarDefaults.largeTopAppBarColors(
-                            titleContentColor = MaterialTheme.colorScheme.onSurfaceVariant,
-                            containerColor = MaterialTheme.colorScheme.surfaceVariant
+                    colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
+                            titleContentColor = MaterialTheme.colorScheme.onSurface,
+                            containerColor = MaterialTheme.colorScheme.surface
                     ),
                     title = {
                         Text(
                                 text = country.name,
                                 overflow = TextOverflow.Ellipsis,
                                 maxLines = 1,
-                                style = MaterialTheme.typography.titleMedium,
+                                style = MaterialTheme.typography.titleLarge,
                                 modifier = Modifier.padding(spacing.spaceSmall)
                         )
                     },
