@@ -18,12 +18,14 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -31,6 +33,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.core.content.pm.ShortcutInfoCompat.Surface
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.uxstate.countriespad.R
@@ -103,61 +106,48 @@ fun CountryBottomSheetHeader(country: Country, modifier: Modifier = Modifier) {
                     .build()
     )
 
-    Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween,
-            modifier = modifier
-                    .fillMaxWidth()
-                    .padding(spacing.spaceSmall)
+   Surface(color = MaterialTheme.colorScheme.surfaceContainerLow){
 
-    ) {
+       Row(
+               verticalAlignment = Alignment.CenterVertically,
+               horizontalArrangement = Arrangement.SpaceBetween,
+               modifier = modifier
+                       .fillMaxWidth()
+                       .padding(spacing.spaceSmall)
 
-        Column {
-            Text(
-                    text = country.officialName,
-                    style = MaterialTheme.typography.labelLarge,
-                    overflow = TextOverflow.Ellipsis,
-                    textAlign = TextAlign.Left
-            )
+       ) {
 
-            Text(
-                    text = country.subRegion,
-                    style = MaterialTheme.typography.bodySmall,
-                    textAlign = TextAlign.Left
-            )
-        }
+           Column {
+               Text(
+                       text = country.officialName,
+                       style = MaterialTheme.typography.labelLarge,
+                       overflow = TextOverflow.Ellipsis,
+                       textAlign = TextAlign.Left
+               )
 
-
-
-            Image(
-                    painter = coatOfArmsPainter,
-                    contentDescription = stringResource(id = R.string.coat_of_arms_label),
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier.size(spacing.spaceExtraLarge + spacing.spaceLarge)
-            )
+               Text(
+                       text = country.subRegion,
+                       style = MaterialTheme.typography.bodySmall,
+                       textAlign = TextAlign.Left
+               )
+           }
 
 
 
+           Image(
+                   painter = coatOfArmsPainter,
+                   contentDescription = stringResource(id = R.string.coat_of_arms_label),
+                   contentScale = ContentScale.FillBounds,
+                   modifier = Modifier.size(spacing.spaceExtraLarge + spacing.spaceLarge)
+           )
+
+
+
+       }
     }
 
-    /*Column(
-            modifier = modifier.fillMaxWidth(),
-            horizontalAlignment = Alignment.CenterHorizontally
-    ) {
 
-        Text(
-                text = country.officialName,
-                style = MaterialTheme.typography.titleLarge,
-                overflow = TextOverflow.Ellipsis,
-                textAlign = TextAlign.Center
-        )
 
-        Text(
-                text = country.subRegion,
-                style = MaterialTheme.typography.titleMedium,
-                textAlign = TextAlign.Center
-        )
-    }*/
 
 }
 

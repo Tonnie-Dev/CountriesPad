@@ -72,7 +72,7 @@ fun OverviewScreen(
                         },
                         modifier = Modifier
                                 .conditional(isSearchBarActive) { fillMaxSize() }
-                                .conditional(!isSearchBarActive) { padding(spacing.spaceSmall) }
+                                .conditional(!isSearchBarActive) { fillMaxWidth().padding(spacing.spaceSmall) }
 
                 )
 
