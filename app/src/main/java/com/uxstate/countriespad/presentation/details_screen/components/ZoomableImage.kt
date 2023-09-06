@@ -28,10 +28,12 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.uxstate.countriespad.R
 import com.uxstate.countriespad.util.LocalSpacing
+import com.uxstate.countriespad.util.conditional
 
 @Composable
 fun ZoomableImage(
-    coatOfArmsUrl: String,
+    url: String,
+    isShowFlag:Boolean,
     onCloseClicked: () -> Unit
 ) {
 
@@ -80,7 +82,7 @@ fun ZoomableImage(
                                 translationY = offsetY
                         ),
                 model = ImageRequest.Builder(LocalContext.current)
-                        .data(coatOfArmsUrl)
+                        .data(url)
                         .crossfade(true)
                         .build(),
                 contentScale = ContentScale.Fit,
@@ -91,9 +93,11 @@ fun ZoomableImage(
         Row(
                 modifier = Modifier
                         .fillMaxWidth()
+                        .conditional(isShowFlag){ align(Alignment.BottomCenter)}
+                        .conditional(!isShowFlag){align(Alignment.TopCenter)}
                         .padding(horizontal = space24)
                         .padding(top = space24),
-                horizontalArrangement = Arrangement.SpaceBetween,
+                horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically
         ) {
             Button(onClick = onCloseClicked) {

@@ -2,6 +2,7 @@ package com.uxstate.countriespad.presentation.details_screen
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
@@ -38,6 +39,7 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
     val spacing = LocalSpacing.current
     val context = LocalContext.current
     var isShowCoatOfArms by remember{ mutableStateOf(false) }
+    var isShowFlag by remember{ mutableStateOf(false) }
 
     val placeholder =
         if (isSystemInDarkTheme())
@@ -90,7 +92,7 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
                                 painter = flagPainter,
                                 contentDescription = stringResource(id = R.string.coat_of_arms_label),
                                 contentScale = ContentScale.Inside,
-                                modifier = Modifier.size(spacing.spaceLarge + spacing.spaceSmall)
+                                modifier = Modifier.size(spacing.spaceLarge + spacing.spaceSmall).clickable {  }
                         )
 
                         Spacer(modifier = Modifier.width(spacing.spaceLarge))
@@ -112,13 +114,14 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
                         animationDuration = 4000
                 )
                 
-                AnimatedVisibility(visible = isShowCoatOfArms) {
+                AnimatedVisibility(visible = isShowCoatOfArms || isShowCoatOfArms) {
                     
                     
                     Dialog(onDismissRequest = { isShowCoatOfArms = false }) {
+
+                        val url = if (isShowCoatOfArms) country.coatOfArmsUrl else country.flagUrl
                         
-                        
-                        ZoomableImage(coatOfArmsUrl = country.coatOfArmsUrl) {
+                        ZoomableImage(url = url) {
                             isShowCoatOfArms = false
                         }
                     }
