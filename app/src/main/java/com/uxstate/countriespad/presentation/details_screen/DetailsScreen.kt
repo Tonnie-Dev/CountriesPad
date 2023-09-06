@@ -1,38 +1,33 @@
 package com.uxstate.countriespad.presentation.details_screen
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.ui.Alignment
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.window.Dialog
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
-import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.model.CameraPosition
-import com.google.android.gms.maps.model.LatLng
-import com.google.maps.android.compose.GoogleMap
-import com.google.maps.android.compose.rememberCameraPositionState
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.uxstate.countriespad.R
 import com.uxstate.countriespad.domain.model.Country
-import com.uxstate.countriespad.presentation.details_screen.components.CoatOfArms
 import com.uxstate.countriespad.presentation.details_screen.components.CountryBottomSheet
 import com.uxstate.countriespad.presentation.details_screen.components.MapComposable
+import com.uxstate.countriespad.presentation.details_screen.components.ZoomableImage
 import com.uxstate.countriespad.util.LocalSpacing
-import com.uxstate.countriespad.util.applyDecimalSeparator
-import com.uxstate.countriespad.util.capitalizeEachWord
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Destination()
@@ -42,8 +37,14 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
 
     val spacing = LocalSpacing.current
     val context = LocalContext.current
+    var isShowCoatOfArms by remember{ mutableStateOf(false) }
+
     val placeholder =
-        if (isSystemInDarkTheme()) R.drawable.flag_placeholder_dark else R.drawable.flag_placeholder_light
+        if (isSystemInDarkTheme())
+            R.drawable.flag_placeholder_dark
+        else
+            R.drawable.flag_placeholder_light
+
     val flagPainter = rememberAsyncImagePainter(
             model = ImageRequest.Builder(context = context)
                     .placeholder(placeholder)
@@ -52,7 +53,7 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
                     .build()
     )
 
-    CountryBottomSheet(country = country){
+    CountryBottomSheet(country = country, onShowImage = {isShowCoatOfArms = true}){
 
      Scaffold(topBar = {
             CenterAlignedTopAppBar(
@@ -70,8 +71,6 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
                         )
                     },
                     navigationIcon = {
-
-
                         IconButton(onClick = { navigator.navigateUp() }) {
 
                             Icon(
@@ -112,12 +111,18 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
                         finalZoom = 6f,
                         animationDuration = 4000
                 )
-
-
-
-
-
-
+                
+                AnimatedVisibility(visible = isShowCoatOfArms) {
+                    
+                    
+                    Dialog(onDismissRequest = { isShowCoatOfArms = false }) {
+                        
+                        
+                        ZoomableImage(coatOfArmsUrl = country.coatOfArmsUrl) {
+                            isShowCoatOfArms = false
+                        }
+                    }
+                }
 
             }
 

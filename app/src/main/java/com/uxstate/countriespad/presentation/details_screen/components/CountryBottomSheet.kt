@@ -2,6 +2,7 @@ package com.uxstate.countriespad.presentation.details_screen.components
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -25,7 +26,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -33,7 +33,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.core.content.pm.ShortcutInfoCompat.Surface
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.uxstate.countriespad.R
@@ -49,6 +48,7 @@ import kotlinx.coroutines.launch
 fun CountryBottomSheet(
     modifier: Modifier = Modifier,
     country: Country,
+    onShowImage: () -> Unit,
     scaffoldContent: @Composable () -> Unit
 ) {
 
@@ -66,7 +66,7 @@ fun CountryBottomSheet(
                                 .height(spacing.spaceExtraLarge),
                         contentAlignment = Alignment.Center
                 ) {
-                    CountryBottomSheetHeader(country)
+                    CountryBottomSheetHeader(country = country, showImage = onShowImage)
                 }
                 Column(
                         Modifier
@@ -90,7 +90,11 @@ fun CountryBottomSheet(
 }
 
 @Composable
-fun CountryBottomSheetHeader(country: Country, modifier: Modifier = Modifier) {
+fun CountryBottomSheetHeader(
+    country: Country,
+    showImage: () -> Unit,
+    modifier: Modifier = Modifier
+) {
 
 
     val placeholder =
@@ -106,47 +110,46 @@ fun CountryBottomSheetHeader(country: Country, modifier: Modifier = Modifier) {
                     .build()
     )
 
-   Surface(color = MaterialTheme.colorScheme.surfaceContainerLow){
+    Surface(color = MaterialTheme.colorScheme.surfaceContainerLow) {
 
-       Row(
-               verticalAlignment = Alignment.CenterVertically,
-               horizontalArrangement = Arrangement.SpaceBetween,
-               modifier = modifier
-                       .fillMaxWidth()
-                       .padding(spacing.spaceSmall)
+        Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween,
+                modifier = modifier
+                        .fillMaxWidth()
+                        .padding(spacing.spaceSmall)
 
-       ) {
+        ) {
 
-           Column {
-               Text(
-                       text = country.officialName,
-                       style = MaterialTheme.typography.labelLarge,
-                       overflow = TextOverflow.Ellipsis,
-                       textAlign = TextAlign.Left
-               )
+            Column {
+                Text(
+                        text = country.officialName,
+                        style = MaterialTheme.typography.labelLarge,
+                        overflow = TextOverflow.Ellipsis,
+                        textAlign = TextAlign.Left
+                )
 
-               Text(
-                       text = country.subRegion,
-                       style = MaterialTheme.typography.bodySmall,
-                       textAlign = TextAlign.Left
-               )
-           }
-
-
-
-           Image(
-                   painter = coatOfArmsPainter,
-                   contentDescription = stringResource(id = R.string.coat_of_arms_label),
-                   contentScale = ContentScale.FillBounds,
-                   modifier = Modifier.size(spacing.spaceExtraLarge + spacing.spaceLarge)
-           )
+                Text(
+                        text = country.subRegion,
+                        style = MaterialTheme.typography.bodySmall,
+                        textAlign = TextAlign.Left
+                )
+            }
 
 
 
-       }
+            Image(
+                    painter = coatOfArmsPainter,
+                    contentDescription = stringResource(id = R.string.coat_of_arms_label),
+                    contentScale = ContentScale.FillBounds,
+                    modifier = Modifier
+                            .size(spacing.spaceExtraLarge + spacing.spaceLarge)
+                            .clickable { showImage() }
+            )
+
+
+        }
     }
-
-
 
 
 }
