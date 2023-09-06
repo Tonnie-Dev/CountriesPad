@@ -31,7 +31,7 @@ import com.uxstate.countriespad.presentation.details_screen.components.ZoomableI
 import com.uxstate.countriespad.util.LocalSpacing
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Destination()
+@Destination(navArgsDelegate = DetailsNavArgs::class)
 @Composable
 fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
 
@@ -133,6 +133,9 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
 
 
     }}
+
+
+data class DetailsNavArgs( val country: Country)
 
 
 
