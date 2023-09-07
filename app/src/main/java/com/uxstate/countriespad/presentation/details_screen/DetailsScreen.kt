@@ -21,6 +21,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.window.Dialog
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.ramcosta.composedestinations.annotation.Destination
@@ -41,7 +42,7 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator, viewModel:
     val spacing = LocalSpacing.current
     val context = LocalContext.current
 
-    val state by viewModel.state.collectAsState()
+    val state by viewModel.state.collectAsStateWithLifecycle()
 
     val isShowCoatOfArms = state.isShowCoatOfArms
     val isShowFlag = state.isShowFlag
@@ -109,7 +110,7 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator, viewModel:
                                         .size(spacing.spaceLarge + spacing.spaceSmall)
                                         .clickable {
 
-                                            viewModel.onEvent(DetailsEvent.ShowFlagEvent(country.flagUrl) )
+                                            viewModel.onEvent(DetailsEvent.ShowFlagEvent(country.flagUrl))
                                             isShowImageDialog = true
                                         }
                         )
