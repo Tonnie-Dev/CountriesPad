@@ -37,17 +37,21 @@ import com.uxstate.countriespad.util.LocalSpacing
 @OptIn(ExperimentalMaterial3Api::class)
 @Destination()
 @Composable
-fun DetailsScreen(country: Country, navigator: DestinationsNavigator, viewModel: DetailsViewModel = hiltViewModel()) {
+fun DetailsScreen(
+    country: Country,
+    navigator: DestinationsNavigator,
+    viewModel: DetailsViewModel = hiltViewModel()
+) {
 
     val spacing = LocalSpacing.current
     val context = LocalContext.current
 
-    val state by viewModel.state.collectAsStateWithLifecycle()
+    val state by viewModel.state.collectAsState()
 
     val isShowCoatOfArms = state.isShowCoatOfArms
     val isShowFlag = state.isShowFlag
 
-    var isShowImageDialog by remember{ mutableStateOf(false) }
+    var isShowImageDialog by remember { mutableStateOf(false) }
 
     val placeholder =
         if (isSystemInDarkTheme())
@@ -66,12 +70,12 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator, viewModel:
     CountryBottomSheet(country = country,
 
             onShowImage = {
-        viewModel.onEvent(DetailsEvent.ShowCoatOfArmsEvent(country.coatOfArmsUrl))
+                viewModel.onEvent(DetailsEvent.ShowCoatOfArmsEvent(country.coatOfArmsUrl))
                 isShowImageDialog = true
             }
-    ){
+    ) {
 
-     Scaffold(topBar = {
+        Scaffold(topBar = {
             CenterAlignedTopAppBar(
                     colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
                             titleContentColor = MaterialTheme.colorScheme.onSurface,
@@ -131,17 +135,20 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator, viewModel:
                         country = country,
                         initialZoom = 0f,
                         finalZoom = 6f,
-                        animationDuration = 4000
+                        animationDuration = 2000
                 )
-                
+
                 AnimatedVisibility(visible = isShowImageDialog) {
-                    
-                    
+
+
                     Dialog(onDismissRequest = {}) {
 
 
-                        
-                        ZoomableImage(url = state.url, isShowFlag = isShowFlag) { isShowImageDialog = false}
+                        ZoomableImage(
+                                url = state.url,
+                                isShowFlag = isShowFlag,
+                                isShowCoatOfArms = isShowCoatOfArms
+                        ) { isShowImageDialog = false }
                     }
                 }
 
@@ -150,7 +157,8 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator, viewModel:
         }
 
 
-    }}
+    }
+}
 
 
 

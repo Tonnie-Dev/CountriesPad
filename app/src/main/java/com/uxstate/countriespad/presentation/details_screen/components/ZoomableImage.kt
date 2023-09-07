@@ -1,6 +1,8 @@
 package com.uxstate.countriespad.presentation.details_screen.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectTransformGestures
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -34,6 +36,7 @@ import com.uxstate.countriespad.util.conditional
 fun ZoomableImage(
     url: String,
     isShowFlag:Boolean,
+    isShowCoatOfArms:Boolean,
 onCloseClicked:()-> Unit
     ) {
 
@@ -46,7 +49,9 @@ onCloseClicked:()-> Unit
     var offsetY by remember { mutableFloatStateOf(0f) }
     var scale by remember { mutableFloatStateOf(1f) }
 
-
+    val interactionSource = remember {
+        MutableInteractionSource()
+    }
     Box(
             modifier = Modifier
                     .pointerInput(Unit) {
@@ -62,6 +67,10 @@ onCloseClicked:()-> Unit
                             offsetY = maxOf(minY, minOf(maxY, offsetY + pan.y))
                         }
                     }
+                    .clickable(
+                            interactionSource = interactionSource,
+                            indication = null
+                    ) { onCloseClicked() }
     ) {
 
         /* - Image to Zoom - can be zoomed in and out using pinch gestures.
@@ -90,7 +99,7 @@ onCloseClicked:()-> Unit
         )
 
         //the row is drawn on top of the AsyncImage filling the entire width
-        Row(
+    /*    Row(
                 modifier = Modifier
                         .fillMaxWidth()
                         .conditional(isShowFlag){ align(Alignment.BottomEnd)}
@@ -100,7 +109,7 @@ onCloseClicked:()-> Unit
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically
         ) {
-            Button(onClick = onCloseClicked) {
+            Button() {
                 Icon(
                         imageVector = Icons.Default.Close,
                         contentDescription = stringResource(R.string.close_icon_text)
@@ -108,6 +117,6 @@ onCloseClicked:()-> Unit
                 Text(text = "Close")
             }
 
-        }
+        }*/
     }
 }
