@@ -141,7 +141,7 @@ fun CountryBottomSheetHeader(
             Image(
                     painter = coatOfArmsPainter,
                     contentDescription = stringResource(id = R.string.coat_of_arms_label),
-                    contentScale = ContentScale.FillBounds,
+                    contentScale = ContentScale.Inside,
                     modifier = Modifier
                             .size(spacing.spaceExtraLarge + spacing.spaceLarge)
                             .clickable { showImage() }

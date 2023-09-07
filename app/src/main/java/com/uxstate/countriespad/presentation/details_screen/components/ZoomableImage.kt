@@ -98,25 +98,6 @@ onCloseClicked:()-> Unit
                 contentDescription = stringResource(R.string.coat_of_arms_text)
         )
 
-        //the row is drawn on top of the AsyncImage filling the entire width
-    /*    Row(
-                modifier = Modifier
-                        .fillMaxWidth()
-                        .conditional(isShowFlag){ align(Alignment.BottomEnd)}
-                        .conditional(!isShowFlag){align(Alignment.TopEnd)}
-                        .padding(horizontal = space24)
-                        .padding(top = space24),
-                horizontalArrangement = Arrangement.Center,
-                verticalAlignment = Alignment.CenterVertically
-        ) {
-            Button() {
-                Icon(
-                        imageVector = Icons.Default.Close,
-                        contentDescription = stringResource(R.string.close_icon_text)
-                )
-                Text(text = "Close")
-            }
 
-        }*/
     }
 }
