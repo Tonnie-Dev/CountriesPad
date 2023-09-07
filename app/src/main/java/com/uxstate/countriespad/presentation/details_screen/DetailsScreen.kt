@@ -9,6 +9,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -19,27 +20,33 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.window.Dialog
+import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.uxstate.countriespad.R
 import com.uxstate.countriespad.domain.model.Country
+import com.uxstate.countriespad.presentation.DetailsEvent
 import com.uxstate.countriespad.presentation.details_screen.components.CountryBottomSheet
 import com.uxstate.countriespad.presentation.details_screen.components.MapComposable
 import com.uxstate.countriespad.presentation.details_screen.components.ZoomableImage
 import com.uxstate.countriespad.util.LocalSpacing
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Destination(navArgsDelegate = DetailsNavArgs::class)
+@Destination()
 @Composable
-fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
-
+fun DetailsScreen(country: Country, navigator: DestinationsNavigator, viewModel: DetailsViewModel = hiltViewModel()) {
 
     val spacing = LocalSpacing.current
     val context = LocalContext.current
-    var isShowCoatOfArms by remember{ mutableStateOf(false) }
-    var isShowFlag by remember{ mutableStateOf(false) }
+
+    val state by viewModel.state.collectAsState()
+
+    val isShowCoatOfArms = state.isShowCoatOfArms
+    val isShowFlag = state.isShowFlag
+
+    var isShowImageDialog by remember{ mutableStateOf(false) }
 
     val placeholder =
         if (isSystemInDarkTheme())
@@ -55,7 +62,13 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
                     .build()
     )
 
-    CountryBottomSheet(country = country, onShowImage = {isShowCoatOfArms = true}){
+    CountryBottomSheet(country = country,
+
+            onShowImage = {
+        viewModel.onEvent(DetailsEvent.ShowCoatOfArmsEvent(country.coatOfArmsUrl))
+                isShowImageDialog = true
+            }
+    ){
 
      Scaffold(topBar = {
             CenterAlignedTopAppBar(
@@ -92,7 +105,13 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
                                 painter = flagPainter,
                                 contentDescription = stringResource(id = R.string.coat_of_arms_label),
                                 contentScale = ContentScale.Inside,
-                                modifier = Modifier.size(spacing.spaceLarge + spacing.spaceSmall).clickable {  }
+                                modifier = Modifier
+                                        .size(spacing.spaceLarge + spacing.spaceSmall)
+                                        .clickable {
+
+                                            viewModel.onEvent(DetailsEvent.ShowFlagEvent(country.flagUrl) )
+                                            isShowImageDialog = true
+                                        }
                         )
 
                         Spacer(modifier = Modifier.width(spacing.spaceLarge))
@@ -114,16 +133,14 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
                         animationDuration = 4000
                 )
                 
-                AnimatedVisibility(visible = isShowCoatOfArms || isShowCoatOfArms) {
+                AnimatedVisibility(visible = isShowImageDialog) {
                     
                     
-                    Dialog(onDismissRequest = { isShowCoatOfArms = false }) {
+                    Dialog(onDismissRequest = {}) {
 
-                        val url = if (isShowCoatOfArms) country.coatOfArmsUrl else country.flagUrl
+
                         
-                        ZoomableImage(url = url) {
-                            isShowCoatOfArms = false
-                        }
+                        ZoomableImage(url = state.url, isShowFlag = isShowFlag) { isShowImageDialog = false}
                     }
                 }
 
@@ -135,7 +152,7 @@ fun DetailsScreen(country: Country, navigator: DestinationsNavigator) {
     }}
 
 
-data class DetailsNavArgs( val country: Country)
+
 
 
 

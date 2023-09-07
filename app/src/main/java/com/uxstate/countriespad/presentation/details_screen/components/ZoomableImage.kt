@@ -34,8 +34,8 @@ import com.uxstate.countriespad.util.conditional
 fun ZoomableImage(
     url: String,
     isShowFlag:Boolean,
-    onCloseClicked: () -> Unit
-) {
+onCloseClicked:()-> Unit
+    ) {
 
     val spacing = LocalSpacing.current
     val space24 = spacing.spaceMedium + spacing.spaceSmall
@@ -93,8 +93,8 @@ fun ZoomableImage(
         Row(
                 modifier = Modifier
                         .fillMaxWidth()
-                        .conditional(isShowFlag){ align(Alignment.BottomCenter)}
-                        .conditional(!isShowFlag){align(Alignment.TopCenter)}
+                        .conditional(isShowFlag){ align(Alignment.BottomEnd)}
+                        .conditional(!isShowFlag){align(Alignment.TopEnd)}
                         .padding(horizontal = space24)
                         .padding(top = space24),
                 horizontalArrangement = Arrangement.Center,

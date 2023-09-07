@@ -3,7 +3,6 @@ package com.uxstate.countriespad.presentation.details_screen
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.uxstate.countriespad.presentation.DetailsEvent
-import com.uxstate.countriespad.presentation.navArgs
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -16,7 +15,7 @@ class DetailsViewModel @Inject constructor(handle: SavedStateHandle) : ViewModel
 
     private val _state = MutableStateFlow(DetailsState())
     val state = _state.asStateFlow()
-    val country = handle.navArgs<DetailsNavArgs>().country
+
 
 
     fun onEvent(event:DetailsEvent){
@@ -27,13 +26,13 @@ class DetailsViewModel @Inject constructor(handle: SavedStateHandle) : ViewModel
 
                 _state.update { it.copy(
                         isShowFlag = true,
-                        url = country.flagUrl
+                        url = event.url
                 ) }
             }
             is DetailsEvent.ShowCoatOfArmsEvent -> {
 
 
-                _state.update { it.copy(isShowCoatOfArms = true, url = country.coatOfArmsUrl) }
+                _state.update { it.copy(isShowCoatOfArms = true, url = event.url) }
             }
         }
     }

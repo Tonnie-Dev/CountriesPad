@@ -2,6 +2,6 @@ package com.uxstate.countriespad.presentation
 
 sealed class DetailsEvent {
 
-    object ShowFlagEvent : DetailsEvent()
-    object ShowCoatOfArmsEvent : DetailsEvent()
+    data class ShowFlagEvent(val url:String) : DetailsEvent()
+    data class ShowCoatOfArmsEvent (val url:String): DetailsEvent()
 }
