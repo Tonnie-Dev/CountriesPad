@@ -1,8 +1,8 @@
 pluginManagement {
     repositories {
-        gradlePluginPortal()
         google()
         mavenCentral()
+        gradlePluginPortal()
     }
 }
 dependencyResolutionManagement {
@@ -12,5 +12,10 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
+
 rootProject.name = "CountriesPad"
-include ':app'
+include(":app")
+
+
+
+
