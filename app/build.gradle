@@ -1,26 +1,24 @@
 plugins {
-    id 'com.android.application'
-    id 'org.jetbrains.kotlin.android'
-
-    id 'kotlin-parcelize'
-    id 'com.google.devtools.ksp'
-    id 'dagger.hilt.android.plugin'
-    // id 'kotlin-kapt'
-
+    id("com.android.application")
+    id("org.jetbrains.kotlin.android")
+    id("kotlin-parcelize")
+    id("com.google.devtools.ksp")
+    id("dagger.hilt.android.plugin")
+    
 }
 
 android {
-    compileSdk 34
+    compileSdk = 34
     defaultConfig {
-        applicationId "com.uxstate.countriespad"
-        minSdk 21
-        targetSdk 34
-        versionCode 1
-        versionName "1.0"
+        applicationId ="com.uxstate.countriespad"
+        minSdk = 21
+        targetSdk =34
+        versionCode  =1
+        versionName ="1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner ="androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
-            useSupportLibrary true
+            useSupportLibrary = true
         }
     }
 
@@ -38,99 +36,107 @@ android {
             }
         }
     }
+
     buildTypes {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            minifyEnabled = false
+            proguardFiles(
+                    getDefaultProguardFile("proguard-android-optimize.txt"),
+                    "proguard-rules.pro"
+            )
         }
     }
 
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_18
-        targetCompatibility JavaVersion.VERSION_18
+        sourceCompatibility =JavaVersion.VERSION_18
+        targetCompatibility= JavaVersion.VERSION_18
 
     }
     kotlinOptions {
-        jvmTarget = '18'
+        jvmTarget = "18"
     }
     buildFeatures {
-        compose true
+        compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion '1.5.0'
+        kotlinCompilerExtensionVersion = "1.5.0"
     }
-    packagingOptions {
+
+    packaging {
         resources {
-            excludes += '/META-INF/{AL2.0,LGPL2.1}'
-            exclude 'META-INF/gradle/incremental.annotation.processors'
+            it.excludes += "/META-INF/{AL2.0,LGPL2.1}"
+
         }
     }
-    namespace 'com.uxstate.countriespad'
+
+
+    namespace = "com.uxstate.countriespad"
 }
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.10.1'
-    implementation "androidx.compose.ui:ui:$compose_version"
-    implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
-    implementation "androidx.lifecycle:lifecycle-runtime-compose:2.6.0"
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.1'
-    implementation 'androidx.activity:activity-compose:1.7.2'
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
-    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
-    debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
-    debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_version"
+    implementation("androidx.core:core-ktx:1.10.1")
+    implementation("androidx.compose.ui:ui:1.5.0")
+    implementation("androidx.compose.ui:ui-tooling-preview:1.5.0")
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.6.0")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
+    implementation("androidx.activity:activity-compose:1.7.2")
+    testImplementation("junit:junit:4.13.2")
+    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.5.0")
+    debugImplementation("androidx.compose.ui:ui-tooling:1.5.0")
+    debugImplementation("androidx.compose.ui:ui-test-manifest:1.5.0")
 
     //Material 3
-    implementation 'androidx.compose.material3:material3:1.2.0-alpha05'
+    implementation("androidx.compose.material3:material3:1.2.0-alpha05")
 
     // Coil
-    implementation "io.coil-kt:coil-compose:2.2.2"
+    implementation("io.coil-kt:coil-compose:2.2.2")
 
     // Dagger Hilt
-    implementation "com.google.dagger:hilt-android:2.48"
-    ksp "com.google.dagger:hilt-compiler:2.48"
-    // kapt "com.google.dagger:hilt-compiler:2.44.2"
-    implementation "androidx.hilt:hilt-navigation-compose:1.0.0"
+    implementation("com.google.dagger:hilt-android:2.48")
+    ksp("com.google.dagger:hilt-compiler:2.48")
+    // kapt("com.google.dagger:hilt-compiler:2.44.2")
+    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
 
     // Retrofit
-    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation 'com.squareup.retrofit2:converter-moshi:2.9.0'
-    implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.7'
-    implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.7'
-    implementation 'com.squareup.retrofit2:converter-scalars:2.9.0'
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-moshi:2.9.0")
+    implementation("com.squareup.okhttp3:okhttp:5.0.0-alpha.7")
+    implementation("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.7")
+    implementation("com.squareup.retrofit2:converter-scalars:2.9.0")
 
-    //Moshi Library Dependencies - Core Moshi JSON Library and Moshi's Kotlin support and converter factory
-    implementation "com.squareup.moshi:moshi:1.12.0"
-    implementation "com.squareup.moshi:moshi-kotlin:1.12.0"
+    //Moshi Library Dependencies - Core Moshi JSON Library and Moshi")s Kotlin support and converter factory
+    implementation("com.squareup.moshi:moshi:1.12.0")
+    implementation("com.squareup.moshi:moshi-kotlin:1.12.0")
 
     // Room components
-    implementation "androidx.room:room-runtime:2.5.2"
-    ksp "androidx.room:room-compiler:2.5.2"
-    implementation "androidx.room:room-ktx:2.5.2"
+    implementation("androidx.room:room-runtime:2.5.2")
+    ksp("androidx.room:room-compiler:2.5.2")
+    implementation("androidx.room:room-ktx:2.5.2")
 
     // Kotlin Extensions and Coroutines support for Room
-    implementation "androidx.room:room-ktx:2.5.2"
+    implementation("androidx.room:room-ktx:2.5.2")
 
     //Timber
-    implementation 'com.jakewharton.timber:timber:5.0.1'
+    implementation("com.jakewharton.timber:timber:5.0.1")
 
     //Flow Layout
-    implementation 'com.google.accompanist:accompanist-flowlayout:0.24.9-beta'
+    implementation("com.google.accompanist:accompanist-flowlayout:0.24.9-beta")
 
     //Lottie Animation
-    implementation "com.airbnb.android:lottie-compose:5.0.1"
+    implementation("com.airbnb.android:lottie-compose:5.0.1")
 
     // Compose Nav Destinations
-    implementation 'io.github.raamcosta.compose-destinations:core:1.9.42-beta'
-    ksp 'io.github.raamcosta.compose-destinations:ksp:1.9.42-beta'
+    implementation("io.github.raamcosta.compose-destinations:core:1.9.42-beta")
+    ksp("io.github.raamcosta.compose-destinations:ksp:1.9.42-beta")
 
     //Maps Compose library
-    implementation 'com.google.maps.android:maps-compose:2.5.3'
-    implementation 'com.google.android.gms:play-services-maps:18.1.0'
+    implementation("com.google.maps.android:maps-compose:2.5.3")
+    implementation("com.google.android.gms:play-services-maps:18.1.0")
 
 
 }
