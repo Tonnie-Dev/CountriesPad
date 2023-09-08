@@ -15,6 +15,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
+import com.joelkanyi.jcomposecountrycodepicker.component.KomposeCountryCodePicker
 import com.uxstate.countriespad.R
 import com.uxstate.countriespad.domain.model.Country
 import com.uxstate.countriespad.util.LocalSpacing
@@ -22,11 +23,16 @@ import com.uxstate.countriespad.util.LocalSpacing
 @Composable
 fun CoatOfArms(country: Country, modifier: Modifier = Modifier) {
 
+    KomposeCountryCodePicker {
+
+    }
     val spacing = LocalSpacing.current
     Row(
-            modifier = modifier.fillMaxSize().padding(
-                    spacing.spaceSmall
-            ), horizontalArrangement = Arrangement.SpaceBetween,
+            modifier = modifier
+                    .fillMaxSize()
+                    .padding(
+                            spacing.spaceSmall
+                    ), horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
     ) {
 
@@ -64,7 +70,9 @@ fun CoatOfArms(country: Country, modifier: Modifier = Modifier) {
                     painter = coatOfArmsPainter,
                     contentDescription = stringResource(id = R.string.coat_of_arms_label),
                     contentScale = ContentScale.Fit,
-                    modifier = Modifier.fillMaxSize().padding(spacing.spaceSmall)
+                    modifier = Modifier
+                            .fillMaxSize()
+                            .padding(spacing.spaceSmall)
 
 
             )
@@ -97,7 +105,9 @@ fun CoatOfArms(country: Country, modifier: Modifier = Modifier) {
                     painter = flagPainter,
                     contentDescription = stringResource(id = R.string.coat_of_arms_label),
                     contentScale = ContentScale.Fit,
-                    modifier = Modifier.fillMaxSize().padding(spacing.spaceSmall)
+                    modifier = Modifier
+                            .fillMaxSize()
+                            .padding(spacing.spaceSmall)
 
             )
         }
