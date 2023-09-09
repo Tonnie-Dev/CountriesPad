@@ -35,8 +35,10 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.uxstate.countriespad.R
 import com.uxstate.countriespad.domain.model.Country
+import com.uxstate.countriespad.presentation.destinations.CodePickerScreenDestination
 import com.uxstate.countriespad.util.LocalSpacing
 import com.uxstate.countriespad.util.applyDecimalSeparator
 import com.uxstate.countriespad.util.titleCase
@@ -48,6 +50,7 @@ import kotlinx.coroutines.launch
 fun CountryBottomSheet(
     modifier: Modifier = Modifier,
     country: Country,
+    navigator: DestinationsNavigator,
     onShowImage: () -> Unit,
     scaffoldContent: @Composable () -> Unit
 ) {
@@ -77,7 +80,9 @@ fun CountryBottomSheet(
                     CountryDetailsContent(country = country)
                     Spacer(Modifier.height(spacing.spaceMedium))
                     Button(onClick = {
-                        scope.launch { scaffoldState.bottomSheetState.partialExpand() }
+                       // scope.launch { scaffoldState.bottomSheetState.partialExpand() }
+                        navigator.navigate(CodePickerScreenDestination)
+
                     }) {
                         Text("Hide Details")
                     }
@@ -110,7 +115,7 @@ fun CountryBottomSheetHeader(
                     .build()
     )
 
-    Surface(color = MaterialTheme.colorScheme.surfaceContainerLow) {
+    Surface(/*color = MaterialTheme.colorScheme.surfaceContainerLow*/) {
 
         Row(
                 verticalAlignment = Alignment.CenterVertically,

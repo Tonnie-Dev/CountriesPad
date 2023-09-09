@@ -68,7 +68,7 @@ fun DetailsScreen(
     )
 
     CountryBottomSheet(country = country,
-
+navigator = navigator,
             onShowImage = {
                 viewModel.onEvent(DetailsEvent.ShowCoatOfArmsEvent(country.coatOfArmsUrl))
                 isShowImageDialog = true

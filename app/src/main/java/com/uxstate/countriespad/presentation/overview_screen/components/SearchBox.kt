@@ -57,7 +57,7 @@ fun CountrySearchBar(
 
     SearchBar(
 
-            colors = SearchBarDefaults.colors(containerColor = MaterialTheme.colorScheme.surfaceContainerHigh),
+           /* colors = SearchBarDefaults.colors(containerColor = MaterialTheme.colorScheme.surfaceContainerHigh),*/
             query = queryText,
             onQueryChange = onQueryChange,
             onSearch = onSearch,
@@ -131,7 +131,7 @@ fun CountryBar(modifier: Modifier = Modifier, country: Country, onClickCountry: 
         R.drawable.flag_placeholder_light
 
     Surface(
-            color = MaterialTheme.colorScheme.surfaceContainerHigh,
+            /*color = MaterialTheme.colorScheme.surfaceContainerHigh,*/
             modifier = modifier.clickable { onClickCountry(country) }) {
         Row(
                 modifier = Modifier
