@@ -5,15 +5,14 @@ pluginManagement {
         gradlePluginPortal()
     }
 
-    plugins {
-        id("de.fayard.refreshVersions") version "0.60.2"
-    }
+    
 }
 
 plugins {
-    id("de.fayard.refreshVersions")
-}
+    // See https://jmfayard.github.io/refreshVersions
+    id("de.fayard.refreshVersions") version "0.60.2"
 
+}
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
