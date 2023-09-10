@@ -80,8 +80,8 @@ fun CountryBottomSheet(
                     CountryDetailsContent(country = country)
                     Spacer(Modifier.height(spacing.spaceMedium))
                     Button(onClick = {
-                      scope.launch { scaffoldState.bottomSheetState.partialExpand() }
-                       // navigator.navigate(CodePickerScreenDestination)
+                      //scope.launch { scaffoldState.bottomSheetState.partialExpand() }
+                        navigator.navigate(CodePickerScreenDestination)
 
                     }) {
                         Text("Hide Details")
