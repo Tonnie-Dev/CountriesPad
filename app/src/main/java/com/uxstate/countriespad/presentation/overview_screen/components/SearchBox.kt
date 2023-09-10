@@ -57,7 +57,7 @@ fun CountrySearchBar(
 
     SearchBar(
 
-           /* colors = SearchBarDefaults.colors(containerColor = MaterialTheme.colorScheme.surfaceContainerHigh),*/
+         colors = SearchBarDefaults.colors(containerColor = MaterialTheme.colorScheme.surfaceContainerHigh),
             query = queryText,
             onQueryChange = onQueryChange,
             onSearch = onSearch,

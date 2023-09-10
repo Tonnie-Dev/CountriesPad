@@ -7,6 +7,7 @@ import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import com.joelkanyi.jcomposecountrycodepicker.component.CountryCodePicker
@@ -15,9 +16,7 @@ import com.joelkanyi.jcomposecountrycodepicker.component.KomposeCountryCodePicke
 @Composable
 fun CountryCodePicker() {
 
-    var phoneNumber = remember {
-        mutableStateOf("0723")
-    }
+    var phoneNumber = rememberSaveable { mutableStateOf("") }
     KomposeCountryCodePicker(
             modifier = Modifier
                     .fillMaxWidth(),

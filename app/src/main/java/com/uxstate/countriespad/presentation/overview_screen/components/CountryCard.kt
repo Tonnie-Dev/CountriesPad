@@ -59,7 +59,7 @@ fun CountrySurfaceCard(
             modifier = modifier
                     .clickable { onClickCountry(country) }
                     .fillMaxWidth(),
-            /*color = MaterialTheme.colorScheme.surfaceContainerLowest*/
+            color = MaterialTheme.colorScheme.surfaceContainerLowest
 
     ) {
 
