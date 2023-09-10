@@ -30,3 +30,4 @@ include(":app")
 
 
 
+include(":core:ui")

@@ -8,11 +8,11 @@ plugins {
 }
 
 android {
-    compileSdk = 34
+    compileSdk = ProjectConfig.compileSdk
     defaultConfig {
         applicationId ="com.uxstate.countriespad"
-        minSdk = 21
-        targetSdk =34
+        minSdk = ProjectConfig.minSdk
+        targetSdk =ProjectConfig.targetSdk
         versionCode  =1
         versionName ="1.0"
         multiDexEnabled = true
@@ -61,7 +61,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.3"
+        kotlinCompilerExtensionVersion = ProjectConfig.kotlinCompilerExtensionVersion
     }
 
     packaging {
