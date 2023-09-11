@@ -138,7 +138,13 @@ dependencies {
     implementation(libs.maps.compose)
     implementation(libs.play.services.maps)
 
+    //Kompose Country Code Picker
     implementation(libs.komposecountrycodepicker)
 
+    //Multi Dex
     implementation(libs.multidex)
+
+    //Modules
+
+    implementation(project(":core:ui"))
 }
