@@ -1,6 +1,6 @@
 package com.uxstate.countriespad.data.json
 
-import com.uxstate.countriespad.domain.model.Country
+import com.uxstate.util.model.Country
 import org.json.JSONArray
 import org.json.JSONObject
 import timber.log.Timber
@@ -16,12 +16,12 @@ import javax.inject.Singleton
 * of this class for the entire app*/
 
 @Singleton
-class CountriesListParser @Inject constructor() : JsonStringParser<Country> {
+class CountriesListParser @Inject constructor() : JsonStringParser<com.uxstate.util.model.Country> {
 
-    override fun parseJson(jsonString: String): List<Country> {
+    override fun parseJson(jsonString: String): List<com.uxstate.util.model.Country> {
 
         //lists
-        val countriesList = mutableListOf<Country>()
+        val countriesList = mutableListOf<com.uxstate.util.model.Country>()
         val countriesJsonArray = JSONArray(jsonString)
 
         //iterate through the jsonArray
@@ -136,7 +136,7 @@ class CountriesListParser @Inject constructor() : JsonStringParser<Country> {
 
 
             //construct country object from the above data points
-            val country = Country(
+            val country = com.uxstate.util.model.Country(
                     name = name,
                     officialName = officialName,
                     currencies = currencyList,

@@ -1,4 +1,4 @@
-package com.uxstate.countriespad.domain.model
+package com.uxstate.util.model
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

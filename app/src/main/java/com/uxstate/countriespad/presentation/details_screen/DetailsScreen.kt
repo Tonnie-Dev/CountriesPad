@@ -26,7 +26,7 @@ import coil.request.ImageRequest
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.uxstate.countriespad.R
-import com.uxstate.countriespad.domain.model.Country
+import com.uxstate.util.model.Country
 import com.uxstate.countriespad.presentation.details_screen.components.CountryBottomSheet
 import com.uxstate.countriespad.presentation.details_screen.components.MapComposable
 import com.uxstate.countriespad.presentation.details_screen.components.ZoomableImage
@@ -36,7 +36,7 @@ import com.uxstate.ui.theme.LocalSpacing
 @Destination()
 @Composable
 fun DetailsScreen(
-    country: Country,
+    country: com.uxstate.util.model.Country,
     navigator: DestinationsNavigator,
     viewModel: DetailsViewModel = hiltViewModel()
 ) {

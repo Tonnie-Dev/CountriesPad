@@ -1,7 +1,6 @@
-package com.uxstate.countriespad.util
+package com.uxstate.util
 
 import androidx.compose.ui.Modifier
-import com.uxstate.countriespad.domain.model.Country
 import java.util.Locale
 
 fun String.capitalizeEachWord():String {
@@ -33,7 +32,7 @@ fun Modifier.conditional(condition:Boolean, modifier:Modifier.()-> Modifier): Mo
 
 
 //Common Country Variable
-val country = Country(
+val country = com.uxstate.util.model.Country(
         name = "Argentina",
         officialName = "",
         currencies = listOf(),

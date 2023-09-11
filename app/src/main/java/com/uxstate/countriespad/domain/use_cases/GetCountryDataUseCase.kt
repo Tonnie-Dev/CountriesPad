@@ -1,10 +1,10 @@
 package com.uxstate.countriespad.domain.use_cases
 
-import com.uxstate.countriespad.domain.model.Country
+import com.uxstate.util.model.Country
 import com.uxstate.countriespad.domain.repository.CountryRepository
-import com.uxstate.countriespad.util.CountryOrderFormat
-import com.uxstate.countriespad.util.OrderType
-import com.uxstate.countriespad.util.Resource
+import com.uxstate.util.CountryOrderFormat
+import com.uxstate.util.OrderType
+import com.uxstate.util.Resource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
@@ -12,12 +12,12 @@ import kotlinx.coroutines.flow.map
 //always depend on abstractions
 class GetCountryDataUseCase(
     private val repository: CountryRepository,
-    private val countryOrderFormat: CountryOrderFormat = CountryOrderFormat.ByName(
-            orderType = OrderType.Ascending
+    private val countryOrderFormat: com.uxstate.util.CountryOrderFormat = com.uxstate.util.CountryOrderFormat.ByName(
+            orderType = com.uxstate.util.OrderType.Ascending
     )
 ) {
 
-    operator fun invoke(query: String, fetchFromRemote: Boolean): Flow<Resource<List<Country>>> {
+    operator fun invoke(query: String, fetchFromRemote: Boolean): Flow<com.uxstate.util.Resource<List<com.uxstate.util.model.Country>>> {
 
         return repository.getCountriesData(query = query, fetchFromRemote = fetchFromRemote)
        /* return mapCountryResponse(
@@ -29,11 +29,11 @@ class GetCountryDataUseCase(
     }
 
     private fun mapCountryResponse(
-        response: Flow<Resource<List<Country>>>,
-        countryOrderFormat: CountryOrderFormat = CountryOrderFormat.ByName(
-                orderType = OrderType.Ascending
+        response: Flow<com.uxstate.util.Resource<List<com.uxstate.util.model.Country>>>,
+        countryOrderFormat: com.uxstate.util.CountryOrderFormat = com.uxstate.util.CountryOrderFormat.ByName(
+                orderType = com.uxstate.util.OrderType.Ascending
         )
-    ): Flow<Resource<List<Country>>> = flow {
+    ): Flow<com.uxstate.util.Resource<List<com.uxstate.util.model.Country>>> = flow {
 
         response.map {
             it.data
@@ -42,39 +42,39 @@ class GetCountryDataUseCase(
                 .map { countries ->
                     when (countryOrderFormat.orderType) {
 
-                        is OrderType.Ascending -> {
+                        is com.uxstate.util.OrderType.Ascending -> {
 
                             when (countryOrderFormat) {
 
-                                is CountryOrderFormat.ByName -> {
+                                is com.uxstate.util.CountryOrderFormat.ByName -> {
 
-                                    emit(Resource.Success(countries?.sortedBy { it.name.lowercase() }))
+                                    emit(com.uxstate.util.Resource.Success(countries?.sortedBy { it.name.lowercase() }))
                                 }
-                                is CountryOrderFormat.ByPopulation -> {
-                                    emit(Resource.Success(countries?.sortedBy { it.population }))
+                                is com.uxstate.util.CountryOrderFormat.ByPopulation -> {
+                                    emit(com.uxstate.util.Resource.Success(countries?.sortedBy { it.population }))
 
                                 }
-                                is CountryOrderFormat.ByArea -> {
-                                    emit(Resource.Success(countries?.sortedBy { it.area }))
+                                is com.uxstate.util.CountryOrderFormat.ByArea -> {
+                                    emit(com.uxstate.util.Resource.Success(countries?.sortedBy { it.area }))
 
                                 }
                             }
 
                         }
-                        is OrderType.Descending -> {
+                        is com.uxstate.util.OrderType.Descending -> {
                             when (countryOrderFormat) {
 
-                                is CountryOrderFormat.ByName -> {
-                                    emit(Resource.Success(countries?.sortedByDescending { it.name.lowercase() }))
+                                is com.uxstate.util.CountryOrderFormat.ByName -> {
+                                    emit(com.uxstate.util.Resource.Success(countries?.sortedByDescending { it.name.lowercase() }))
 
                                 }
-                                is CountryOrderFormat.ByPopulation -> {
+                                is com.uxstate.util.CountryOrderFormat.ByPopulation -> {
 
-                                    emit(Resource.Success(countries?.sortedByDescending { it.population }))
+                                    emit(com.uxstate.util.Resource.Success(countries?.sortedByDescending { it.population }))
                                 }
-                                is CountryOrderFormat.ByArea -> {
+                                is com.uxstate.util.CountryOrderFormat.ByArea -> {
 
-                                    emit(Resource.Success(countries?.sortedByDescending { it.area }))
+                                    emit(com.uxstate.util.Resource.Success(countries?.sortedByDescending { it.area }))
                                 }
                             }
                         }

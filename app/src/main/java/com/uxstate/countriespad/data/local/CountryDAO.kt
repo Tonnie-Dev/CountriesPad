@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.uxstate.countriespad.domain.model.Country
+import com.uxstate.util.model.Country
 
 @Dao
 interface CountryDAO {

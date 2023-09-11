@@ -37,18 +37,18 @@ import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.uxstate.countriespad.R
-import com.uxstate.countriespad.domain.model.Country
+import com.uxstate.util.model.Country
 import com.uxstate.countriespad.presentation.destinations.CodePickerScreenDestination
 import com.uxstate.ui.theme.LocalSpacing
-import com.uxstate.countriespad.util.applyDecimalSeparator
-import com.uxstate.countriespad.util.titleCase
+import com.uxstate.util.applyDecimalSeparator
+import com.uxstate.util.titleCase
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CountryBottomSheet(
     modifier: Modifier = Modifier,
-    country: Country,
+    country: com.uxstate.util.model.Country,
     navigator: DestinationsNavigator,
     onShowImage: () -> Unit,
     scaffoldContent: @Composable () -> Unit
@@ -95,7 +95,7 @@ fun CountryBottomSheet(
 
 @Composable
 fun CountryBottomSheetHeader(
-    country: Country,
+    country: com.uxstate.util.model.Country,
     showImage: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -159,7 +159,7 @@ fun CountryBottomSheetHeader(
 }
 
 @Composable
-fun CountryDetailsContent(modifier: Modifier = Modifier, country: Country) {
+fun CountryDetailsContent(modifier: Modifier = Modifier, country: com.uxstate.util.model.Country) {
 
 
     Column(modifier.fillMaxWidth()) {
@@ -243,7 +243,7 @@ fun LabelContainerPreview() {
 @Composable
 fun BottomSheetContentPreview() {
 
-    val country = Country(
+    val country = com.uxstate.util.model.Country(
             name = "China",
             officialName = "People's Republic of China",
             currencies = listOf("Yun", "Yen", "USD", "Eur"),

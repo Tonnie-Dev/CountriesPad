@@ -23,17 +23,17 @@ import androidx.compose.ui.tooling.preview.Preview
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.uxstate.countriespad.R
-import com.uxstate.countriespad.domain.model.Country
+import com.uxstate.util.model.Country
 import com.uxstate.ui.theme.CountriesPadTheme
 import com.uxstate.ui.theme.LocalSpacing
-import com.uxstate.countriespad.util.country
+import com.uxstate.util.country
 
 
 @Composable
 fun CountrySurfaceCard(
-    country: Country,
+    country: com.uxstate.util.model.Country,
     modifier: Modifier = Modifier,
-    onClickCountry: (Country) -> Unit,
+    onClickCountry: (com.uxstate.util.model.Country) -> Unit,
 ) {
 
 
@@ -101,7 +101,7 @@ fun CountrySurfaceCard(
 fun CountrySurfaceCardPreviewLight() {
     CountriesPadTheme {
 
-        CountrySurfaceCard(country = country) {}
+        CountrySurfaceCard(country = com.uxstate.util.country) {}
     }
 
 }
@@ -111,7 +111,7 @@ fun CountrySurfaceCardPreviewLight() {
 fun CountrySurfaceCardPreviewDark() {
     CountriesPadTheme {
 
-        CountrySurfaceCard(country = country) {}
+        CountrySurfaceCard(country = com.uxstate.util.country) {}
     }
 
 }

@@ -1,13 +1,13 @@
 package com.uxstate.countriespad.data.mapper
 
 import com.uxstate.countriespad.data.local.CountryEntity
-import com.uxstate.countriespad.domain.model.Country
+import com.uxstate.util.model.Country
 
 //countryEntity to country model
 
-fun CountryEntity.toCountry():Country {
+fun CountryEntity.toCountry(): com.uxstate.util.model.Country {
 
-    return Country(
+    return com.uxstate.util.model.Country(
             name = this.name,
             currencies = this.currencies,
             capital = this.capital,
@@ -24,7 +24,7 @@ fun CountryEntity.toCountry():Country {
     )
 }
 
-fun Country.toCountryEntity():CountryEntity{
+fun com.uxstate.util.model.Country.toCountryEntity():CountryEntity{
 
     return CountryEntity(
             name = this.name,

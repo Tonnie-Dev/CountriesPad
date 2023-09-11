@@ -17,11 +17,11 @@ import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.joelkanyi.jcomposecountrycodepicker.component.KomposeCountryCodePicker
 import com.uxstate.countriespad.R
-import com.uxstate.countriespad.domain.model.Country
+import com.uxstate.util.model.Country
 import com.uxstate.ui.theme.LocalSpacing
 
 @Composable
-fun CoatOfArms(country: Country, modifier: Modifier = Modifier) {
+fun CoatOfArms(country: com.uxstate.util.model.Country, modifier: Modifier = Modifier) {
 
     KomposeCountryCodePicker {
 

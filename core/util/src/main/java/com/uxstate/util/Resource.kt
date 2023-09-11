@@ -1,4 +1,4 @@
-package com.uxstate.countriespad.util
+package com.uxstate.util
 
 
 sealed class Resource<T>(val data: T? = null, val errorMessage: String? = null) {
@@ -10,7 +10,7 @@ sealed class Resource<T>(val data: T? = null, val errorMessage: String? = null) 
     class Success<T>(data: T?) : Resource<T>(data)
 
     //it has a property which will be called from ViewModel
-    class Loading<T>(val isLoading: Boolean = true) :Resource<T>()
+    class Loading<T>(val isLoading: Boolean = true) : Resource<T>()
 }
 
 

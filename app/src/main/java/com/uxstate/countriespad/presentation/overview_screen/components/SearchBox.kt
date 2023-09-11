@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Close
@@ -32,9 +31,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.uxstate.countriespad.R
-import com.uxstate.countriespad.domain.model.Country
+import com.uxstate.util.model.Country
 import com.uxstate.ui.theme.LocalSpacing
-import com.uxstate.countriespad.util.country
+import com.uxstate.util.country
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -43,13 +42,13 @@ fun CountrySearchBar(
     queryText: String,
     placeholderText: String,
     isActive: Boolean,
-    countries: List<Country>,
+    countries: List<com.uxstate.util.model.Country>,
     onQueryChange: (text: String) -> Unit,
     onActiveChange: (Boolean) -> Unit,
     onDeleteText: () -> Unit,
     onSearch: (String) -> Unit,
     onSearchBackClick: () -> Unit,
-    onSelectCountry: (Country) -> Unit
+    onSelectCountry: (com.uxstate.util.model.Country) -> Unit
 
 ) {
 
@@ -121,7 +120,7 @@ fun CountrySearchBar(
 
 
 @Composable
-fun CountryBar(modifier: Modifier = Modifier, country: Country, onClickCountry: (Country) -> Unit) {
+fun CountryBar(modifier: Modifier = Modifier, country: com.uxstate.util.model.Country, onClickCountry: (com.uxstate.util.model.Country) -> Unit) {
 
     val spacing = LocalSpacing.current
     val context = LocalContext.current
@@ -173,7 +172,7 @@ fun CountryBar(modifier: Modifier = Modifier, country: Country, onClickCountry: 
 @Composable
 fun CountryBarPreviewLight() {
 
-    CountryBar(country = country){}
+    CountryBar(country = com.uxstate.util.country){}
 
 
 }
@@ -182,7 +181,7 @@ fun CountryBarPreviewLight() {
 @Composable
 fun CountryBarPreviewDark() {
 
-    CountryBar(country = country){}
+    CountryBar(country = com.uxstate.util.country){}
 
 
 }

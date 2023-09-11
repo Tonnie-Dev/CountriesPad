@@ -1,7 +1,7 @@
 package com.uxstate.countriespad.domain.repository
 
-import com.uxstate.countriespad.domain.model.Country
-import com.uxstate.countriespad.util.Resource
+import com.uxstate.util.model.Country
+import com.uxstate.util.Resource
 import kotlinx.coroutines.flow.Flow
 
 
@@ -10,5 +10,5 @@ interface CountryRepository {
 
 
     //get country data
-    fun getCountriesData(query:String,fetchFromRemote: Boolean): Flow<Resource<List<Country>>>
+    fun getCountriesData(query:String,fetchFromRemote: Boolean): Flow<com.uxstate.util.Resource<List<com.uxstate.util.model.Country>>>
 }

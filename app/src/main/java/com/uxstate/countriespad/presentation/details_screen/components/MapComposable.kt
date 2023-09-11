@@ -10,11 +10,11 @@ import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.GoogleMap
 import com.google.maps.android.compose.rememberCameraPositionState
-import com.uxstate.countriespad.domain.model.Country
+import com.uxstate.util.model.Country
 
 @Composable
 fun MapComposable(
-    country: Country,
+    country: com.uxstate.util.model.Country,
     modifier: Modifier = Modifier,
     initialZoom: Float,
     finalZoom: Float,

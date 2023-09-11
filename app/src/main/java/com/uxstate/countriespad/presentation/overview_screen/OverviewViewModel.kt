@@ -6,8 +6,8 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.uxstate.countriespad.domain.use_cases.UseCaseContainer
-import com.uxstate.countriespad.util.CountryOrderFormat
-import com.uxstate.countriespad.util.Resource
+import com.uxstate.util.CountryOrderFormat
+import com.uxstate.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -114,7 +114,8 @@ class OverviewViewModel @Inject constructor(private val container: UseCaseContai
     private fun getCountries(
         query: String = state.query,
         fetchFromRemote: Boolean = false,
-        countryOrderFormat: CountryOrderFormat)
+        countryOrderFormat: com.uxstate.util.CountryOrderFormat
+    )
      {
 
 
@@ -122,17 +123,17 @@ class OverviewViewModel @Inject constructor(private val container: UseCaseContai
                 .onEach { result ->
                     state = when (result) {
 
-                        is Resource.Loading -> {
+                        is com.uxstate.util.Resource.Loading -> {
 
                             state.copy(isLoading = result.isLoading)
                         }
-                        is Resource.Error -> {
+                        is com.uxstate.util.Resource.Error -> {
 
                             state.copy(
                                     errorMessage = result.errorMessage ?: "Unknown Error Occurred"
                             )
                         }
-                        is Resource.Success -> {
+                        is com.uxstate.util.Resource.Success -> {
                             // state.copy(countriesData = container.filterUseCase(it,countryOrderFormat))
 
                             //state.copy(countriesData = result.data?: emptyList())
