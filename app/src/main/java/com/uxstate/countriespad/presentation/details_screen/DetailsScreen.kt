@@ -21,18 +21,16 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.window.Dialog
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.uxstate.countriespad.R
 import com.uxstate.countriespad.domain.model.Country
-import com.uxstate.countriespad.presentation.DetailsEvent
 import com.uxstate.countriespad.presentation.details_screen.components.CountryBottomSheet
 import com.uxstate.countriespad.presentation.details_screen.components.MapComposable
 import com.uxstate.countriespad.presentation.details_screen.components.ZoomableImage
-import com.uxstate.countriespad.util.LocalSpacing
+import com.uxstate.ui.theme.LocalSpacing
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Destination()

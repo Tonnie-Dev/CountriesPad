@@ -99,7 +99,6 @@ dependencies {
     // Dagger Hilt
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
-    // kapt(libs.hilt.compiler)
     implementation(libs.hilt.navigation.compose)
 
     // Retrofit
@@ -147,4 +146,5 @@ dependencies {
     //Modules
 
     implementation(project(":core:ui"))
+
 }

@@ -33,7 +33,7 @@ import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.uxstate.countriespad.R
 import com.uxstate.countriespad.domain.model.Country
-import com.uxstate.countriespad.util.LocalSpacing
+import com.uxstate.ui.theme.LocalSpacing
 import com.uxstate.countriespad.util.country
 
 @OptIn(ExperimentalMaterial3Api::class)

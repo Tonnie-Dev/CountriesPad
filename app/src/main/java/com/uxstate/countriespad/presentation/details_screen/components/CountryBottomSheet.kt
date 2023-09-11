@@ -39,10 +39,9 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.uxstate.countriespad.R
 import com.uxstate.countriespad.domain.model.Country
 import com.uxstate.countriespad.presentation.destinations.CodePickerScreenDestination
-import com.uxstate.countriespad.util.LocalSpacing
+import com.uxstate.ui.theme.LocalSpacing
 import com.uxstate.countriespad.util.applyDecimalSeparator
 import com.uxstate.countriespad.util.titleCase
-import kotlinx.coroutines.launch
 
 
 @OptIn(ExperimentalMaterial3Api::class)

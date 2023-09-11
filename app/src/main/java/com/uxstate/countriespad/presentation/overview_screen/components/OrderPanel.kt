@@ -7,12 +7,10 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import com.uxstate.countriespad.R
 import com.uxstate.countriespad.util.CountryOrderFormat
-import com.uxstate.countriespad.util.LocalSpacing
+import com.uxstate.ui.theme.LocalSpacing
 import com.uxstate.countriespad.util.OrderType
-import timber.log.Timber
 
 @Composable
 fun OrderPanel(

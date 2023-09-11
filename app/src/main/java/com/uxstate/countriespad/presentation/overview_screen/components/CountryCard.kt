@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.SearchBar
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -25,8 +24,8 @@ import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.uxstate.countriespad.R
 import com.uxstate.countriespad.domain.model.Country
-import com.uxstate.countriespad.presentation.ui.theme.CountriesPadTheme
-import com.uxstate.countriespad.util.LocalSpacing
+import com.uxstate.ui.theme.CountriesPadTheme
+import com.uxstate.ui.theme.LocalSpacing
 import com.uxstate.countriespad.util.country
 
 

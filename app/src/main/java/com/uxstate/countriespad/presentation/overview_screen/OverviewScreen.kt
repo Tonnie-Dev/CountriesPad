@@ -18,7 +18,7 @@ import com.uxstate.countriespad.presentation.destinations.DetailsScreenDestinati
 import com.uxstate.countriespad.presentation.overview_screen.components.CountrySearchBar
 import com.uxstate.countriespad.presentation.overview_screen.components.CountrySurfaceCard
 import com.uxstate.countriespad.presentation.ui_components.LoadingAnimation
-import com.uxstate.countriespad.util.LocalSpacing
+import com.uxstate.ui.theme.LocalSpacing
 import com.uxstate.countriespad.util.conditional
 
 @OptIn(ExperimentalMaterial3Api::class)

@@ -1,4 +1,4 @@
-package com.uxstate.countriespad.util
+package com.uxstate.ui.theme
 
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.ui.unit.Dp

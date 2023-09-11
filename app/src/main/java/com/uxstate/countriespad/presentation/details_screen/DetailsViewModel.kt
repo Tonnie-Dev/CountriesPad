@@ -2,7 +2,6 @@ package com.uxstate.countriespad.presentation.details_screen
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import com.uxstate.countriespad.presentation.DetailsEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -18,7 +17,7 @@ class DetailsViewModel @Inject constructor(handle: SavedStateHandle) : ViewModel
 
 
 
-    fun onEvent(event:DetailsEvent){
+    fun onEvent(event: DetailsEvent){
 
         when(event){
 

@@ -1,4 +1,4 @@
-package com.uxstate.countriespad.presentation.ui.theme
+package com.uxstate.ui.theme
 
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.ui.unit.Dp
@@ -13,4 +13,4 @@ data class Elevation (val level0:Dp = 0.0.dp,
 
 
 
-val LocalElevation = compositionLocalOf {  Elevation()}
+val LocalElevation = compositionLocalOf {  Elevation() }
