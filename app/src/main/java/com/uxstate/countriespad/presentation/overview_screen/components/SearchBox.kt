@@ -53,7 +53,7 @@ fun CountrySearchBar(
 
 ) {
 
-    // TODO: Apply Search Bar Colors 
+
 
     SearchBar(
 
