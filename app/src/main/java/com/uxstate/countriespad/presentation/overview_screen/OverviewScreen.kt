@@ -4,6 +4,7 @@ import androidx.compose.animation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -13,13 +14,11 @@ import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootNavGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.uxstate.countriespad.R
+import com.uxstate.countriespad.presentation.destinations.DetailsScreenDestination
 import com.uxstate.countriespad.presentation.overview_screen.components.CountrySearchBar
 import com.uxstate.countriespad.presentation.overview_screen.components.CountrySurfaceCard
-import com.uxstate.countriespad.presentation.ui_components.LoadingAnimation
 import com.uxstate.ui.theme.LocalSpacing
 import com.uxstate.util.conditional
-
-@OptIn(ExperimentalMaterial3Api::class)
 
 
 @RootNavGraph(start = true)
@@ -40,7 +39,6 @@ fun OverviewScreen(
     if (state.isLoading) {
 
 
-        LoadingAnimation(spacing.spaceTwoHundredDp)
     } else {
 
         Surface(color = MaterialTheme.colorScheme.background) {
