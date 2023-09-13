@@ -1,4 +1,4 @@
-package com.uxstate.countriespad.presentation.overview_screen.components
+package com.uxstate.overview.components
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape

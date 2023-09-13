@@ -15,7 +15,6 @@ android {
         targetSdk =ProjectConfig.targetSdk
         versionCode  =1
         versionName ="1.0"
-        multiDexEnabled = true
         testInstrumentationRunner ="androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
@@ -78,23 +77,23 @@ android {
 dependencies {
 
     implementation(libs.core.ktx)
-    implementation(libs.ui)
-    implementation(libs.ui.tooling.preview)
-    implementation(libs.lifecycle.runtime.compose)
+    implementation(libs.compose.ui)
+    implementation(libs.compose.ui.tooling.preview)
+    implementation(libs.compose.runtime)
     implementation(libs.lifecycle.runtime.ktx)
-    implementation(libs.activity.compose)
+    implementation(libs.compose.activity)
     testImplementation(libs.junit.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
     androidTestImplementation(libs.ui.test.junit4)
-    debugImplementation(libs.ui.tooling)
+    debugImplementation(libs.compose.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
 
     //Material 3
     implementation(libs.material3)
 
     // Coil
-    implementation(libs.coil.compose)
+    implementation(libs.compose.coil)
 
     // Dagger Hilt
     implementation(libs.hilt.android)
@@ -130,18 +129,17 @@ dependencies {
     implementation(libs.lottie.compose)
 
     // Compose Nav Destinations
-    implementation(libs.io.github.raamcosta.compose.destinations.core)
-    ksp(libs.ksp)
+    implementation(libs.compose.destinations.core)
+    ksp(libs.compose.destinations.core)
 
     //Maps Compose library
-    implementation(libs.maps.compose)
+    implementation(libs.compose.maps)
     implementation(libs.play.services.maps)
 
     //Kompose Country Code Picker
     implementation(libs.komposecountrycodepicker)
 
-    //Multi Dex
-    implementation(libs.multidex)
+
 
     //Modules
 

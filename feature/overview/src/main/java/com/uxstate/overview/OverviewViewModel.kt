@@ -1,4 +1,4 @@
-package com.uxstate.countriespad.presentation.overview_screen
+package com.uxstate.overview
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf

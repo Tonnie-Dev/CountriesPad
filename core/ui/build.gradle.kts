@@ -41,6 +41,6 @@ android {
 
 dependencies {
     implementation(libs.material3)
-    implementation(libs.activity.compose)
+    implementation(libs.compose.activity)
     implementation(libs.lottie.compose)
 }

@@ -1,4 +1,4 @@
-package com.uxstate.countriespad.presentation.overview_screen
+package com.uxstate.overview
 
 import androidx.compose.animation.*
 import androidx.compose.foundation.layout.*
@@ -13,10 +13,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootNavGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import com.uxstate.countriespad.R
 import com.uxstate.countriespad.presentation.destinations.DetailsScreenDestination
-import com.uxstate.countriespad.presentation.overview_screen.components.CountrySearchBar
-import com.uxstate.countriespad.presentation.overview_screen.components.CountrySurfaceCard
+import com.uxstate.overview.components.CountrySearchBar
+import com.uxstate.overview.components.CountrySurfaceCard
 import com.uxstate.ui.theme.LocalSpacing
 import com.uxstate.util.conditional
 
