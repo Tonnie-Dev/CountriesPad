@@ -25,10 +25,10 @@ import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import com.uxstate.util.model.Country
 import com.uxstate.details.components.CountryBottomSheet
 import com.uxstate.details.components.MapComposable
 import com.uxstate.details.components.ZoomableImage
+import com.uxstate.ui.R
 import com.uxstate.ui.theme.LocalSpacing
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -65,7 +65,7 @@ fun DetailsScreen(
     )
 
     CountryBottomSheet(country = country,
-navigator = navigator,
+            navigator = navigator,
             onShowImage = {
                 viewModel.onEvent(DetailsEvent.ShowCoatOfArmsEvent(country.coatOfArmsUrl))
                 isShowImageDialog = true

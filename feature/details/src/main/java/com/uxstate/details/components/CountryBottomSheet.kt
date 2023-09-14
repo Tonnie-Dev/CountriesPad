@@ -36,9 +36,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import com.uxstate.countriespad.R
-import com.uxstate.util.model.Country
-import com.uxstate.countriespad.presentation.destinations.CodePickerScreenDestination
+import com.uxstate.ui.R
 import com.uxstate.ui.theme.LocalSpacing
 import com.uxstate.util.applyDecimalSeparator
 import com.uxstate.util.titleCase
@@ -80,7 +78,9 @@ fun CountryBottomSheet(
                     Spacer(Modifier.height(spacing.spaceMedium))
                     Button(onClick = {
                       //scope.launch { scaffoldState.bottomSheetState.partialExpand() }
-                        navigator.navigate(CodePickerScreenDestination)
+
+                        // TODO: Fix Navigation
+                        //navigator.navigate(CodePickerScreenDestination)
 
                     }) {
                         Text("Hide Details")
@@ -99,8 +99,6 @@ fun CountryBottomSheetHeader(
     showImage: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-
-
     val placeholder =
         if (isSystemInDarkTheme()) R.drawable.flag_placeholder_dark else R.drawable.flag_placeholder_light
     val spacing = LocalSpacing.current

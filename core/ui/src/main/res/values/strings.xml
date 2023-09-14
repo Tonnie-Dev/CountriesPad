@@ -4,4 +4,8 @@
     <string name="area_label">Area</string>
     <string name="name_label">Name</string>
     <string name="search_text_placeholder">Search…</string>
+    <string name="back_label">Back</string>
+    <string name="coat_of_arms_label">Back</string>
+    <string name="coat_of_arms_text">Coat of Arms</string>
+    <string name="km_sup_string"> %s km\u00B2</string>
 </resources>
