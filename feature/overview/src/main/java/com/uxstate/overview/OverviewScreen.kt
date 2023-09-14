@@ -13,11 +13,11 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootNavGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import com.uxstate.countriespad.presentation.destinations.DetailsScreenDestination
 import com.uxstate.overview.components.CountrySearchBar
 import com.uxstate.overview.components.CountrySurfaceCard
 import com.uxstate.ui.theme.LocalSpacing
 import com.uxstate.util.conditional
+import com.uxstate.ui.R
 
 
 @RootNavGraph(start = true)
@@ -62,7 +62,9 @@ fun OverviewScreen(
                         onSearchBackClick = { viewModel.onEvent(OverviewEvent.OnSearchBackClick) },
                         onSelectCountry = {
                             viewModel.onEvent(OverviewEvent.OnSelectCountry)
-                            navigator.navigate(DetailsScreenDestination(it))
+
+                            // TODO: Fix Navigate Code
+                          //  navigator.navigate(DetailsScreenDestination(it))
 
                         },
                         modifier = Modifier
@@ -78,7 +80,9 @@ fun OverviewScreen(
 
                             items(state.countriesData) { country ->
                                 CountrySurfaceCard(country = country) {
-                                    navigator.navigate(DetailsScreenDestination(it))
+
+                                    // TODO: Fix Navigation Code
+                                   // navigator.navigate(DetailsScreenDestination(it))
                                 }
 
                             }

@@ -1,4 +1,4 @@
-package com.uxstate.countriespad.presentation.details_screen.components
+package com.uxstate.details.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*

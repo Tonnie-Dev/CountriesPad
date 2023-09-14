@@ -1,4 +1,4 @@
-package com.uxstate.countriespad.domain.use_cases
+package com.uxstate.util.use_cases
 
 import com.uxstate.util.model.Country
 import com.uxstate.util.CountryOrderFormat

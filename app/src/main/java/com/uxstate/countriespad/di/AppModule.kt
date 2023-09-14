@@ -5,9 +5,9 @@ import androidx.room.Room
 import com.uxstate.countriespad.data.local.CountryDatabase
 import com.uxstate.countriespad.data.remote.CountryAPI
 import com.uxstate.countriespad.domain.repository.CountryRepository
-import com.uxstate.countriespad.domain.use_cases.FilterUseCase
-import com.uxstate.countriespad.domain.use_cases.GetCountryDataUseCase
-import com.uxstate.countriespad.domain.use_cases.UseCaseContainer
+import com.uxstate.util.use_cases.FilterUseCase
+import com.uxstate.util.use_cases.GetCountryDataUseCase
+import com.uxstate.util.use_cases.UseCaseContainer
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -56,5 +56,6 @@ object AppModule {
                 getCountryDataUseCase = GetCountryDataUseCase(repository = repository)
         )
     }
+
 
 }

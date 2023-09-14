@@ -5,9 +5,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.uxstate.countriespad.domain.use_cases.UseCaseContainer
-import com.uxstate.util.CountryOrderFormat
-import com.uxstate.util.Resource
+import com.uxstate.util.use_cases.GetCountryDataUseCase
+import com.uxstate.util.use_cases.UseCaseContainer
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -38,13 +37,14 @@ class OverviewViewModel @Inject constructor(private val container: UseCaseContai
                 if (state.query.isNotEmpty()) {
                     state = state.copy(query = "")
 
-                }else{
+                } else {
 
                     state = state.copy(isActive = !state.isActive)
                 }
 
                 getCountries(countryOrderFormat = state.countryOrderFormat)
             }
+
             is OverviewEvent.OnQueryChange -> {
                 //update query value
                 state = state.copy(query = event.query)
@@ -67,14 +67,13 @@ class OverviewViewModel @Inject constructor(private val container: UseCaseContai
             }
 
 
+            is OverviewEvent.OnSearchBarActiveStateChange -> {
 
-            is OverviewEvent.OnSearchBarActiveStateChange ->{
-
-                state  = state.copy(isActive = event.isActive)
+                state = state.copy(isActive = event.isActive)
             }
 
             is OverviewEvent.OnSearchBackClick -> {
-                state  = state.copy(isActive = false)
+                state = state.copy(isActive = false)
 
             }
 
@@ -86,8 +85,8 @@ class OverviewViewModel @Inject constructor(private val container: UseCaseContai
             is OverviewEvent.OnChangeOrder -> {
 
 
-                if (state.countryOrderFormat::class==event.countryOrderFormat::class
-                    && state.countryOrderFormat.orderType==event.countryOrderFormat.orderType
+                if (state.countryOrderFormat::class == event.countryOrderFormat::class
+                    && state.countryOrderFormat.orderType == event.countryOrderFormat.orderType
                 ) {
 
                     //do nothing since the order hasn't changed
@@ -104,8 +103,6 @@ class OverviewViewModel @Inject constructor(private val container: UseCaseContai
                 //toggle boolean status
                 state = state.copy(isOrderPaneVisible = !state.isOrderPaneVisible)
             }
-
-
 
 
         }

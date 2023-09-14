@@ -31,10 +31,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
-import com.uxstate.countriespad.R
-import com.uxstate.util.model.Country
+import com.uxstate.ui.R
 import com.uxstate.ui.theme.LocalSpacing
-import com.uxstate.util.country
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

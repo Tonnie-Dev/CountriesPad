@@ -1,4 +1,4 @@
-package com.uxstate.countriespad.presentation.details_screen
+package com.uxstate.details
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
@@ -25,11 +25,10 @@ import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import com.uxstate.countriespad.R
 import com.uxstate.util.model.Country
-import com.uxstate.countriespad.presentation.details_screen.components.CountryBottomSheet
-import com.uxstate.countriespad.presentation.details_screen.components.MapComposable
-import com.uxstate.countriespad.presentation.details_screen.components.ZoomableImage
+import com.uxstate.details.components.CountryBottomSheet
+import com.uxstate.details.components.MapComposable
+import com.uxstate.details.components.ZoomableImage
 import com.uxstate.ui.theme.LocalSpacing
 
 @OptIn(ExperimentalMaterial3Api::class)

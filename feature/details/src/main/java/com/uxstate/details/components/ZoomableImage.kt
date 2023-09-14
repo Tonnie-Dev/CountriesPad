@@ -1,4 +1,4 @@
-package com.uxstate.countriespad.presentation.details_screen.components
+package com.uxstate.details.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectTransformGestures

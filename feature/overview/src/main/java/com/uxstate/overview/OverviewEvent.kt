@@ -1,7 +1,5 @@
 package com.uxstate.overview
 
-import com.uxstate.util.CountryOrderFormat
-
 sealed class OverviewEvent (){
 
     data class OnQueryChange(val query:String): OverviewEvent()

@@ -1,2 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="population_label">Population</string>
+    <string name="area_label">Area</string>
+    <string name="name_label">Name</string>
+    <string name="search_text_placeholder">Search…</string>
+</resources>

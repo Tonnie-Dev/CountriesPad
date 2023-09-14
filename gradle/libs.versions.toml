@@ -3,183 +3,68 @@
 [plugins]
 
 com-android-application = { id = "com.android.application", version = "8.1.1" }
-##                                                               ⬆ = "8.2.0-alpha01" }
-##                                                               ⬆ = "8.2.0-alpha02" }
-##                                                               ⬆ = "8.2.0-alpha03" }
-##                                                               ⬆ = "8.2.0-alpha04" }
-##                                                               ⬆ = "8.2.0-alpha05" }
-##                                                               ⬆ = "8.2.0-alpha06" }
-##                                                               ⬆ = "8.2.0-alpha07" }
-##                                                               ⬆ = "8.2.0-alpha08" }
-##                                                               ⬆ = "8.2.0-alpha09" }
-##                                                               ⬆ = "8.2.0-alpha10" }
-##                                                               ⬆ = "8.2.0-alpha11" }
-##                                                               ⬆ = "8.2.0-alpha12" }
-##                                                               ⬆ = "8.2.0-alpha13" }
-##                                                               ⬆ = "8.2.0-alpha14" }
-##                                                               ⬆ = "8.2.0-alpha15" }
-##                                                               ⬆ = "8.2.0-alpha16" }
-##                                                               ⬆ = "8.2.0-beta01" }
-##                                                               ⬆ = "8.2.0-beta02" }
-##                                                               ⬆ = "8.2.0-beta03" }
-##                                                               ⬆ = "8.3.0-alpha01" }
-##                                                               ⬆ = "8.3.0-alpha02" }
-##                                                               ⬆ = "8.3.0-alpha03" }
+
 
 com-android-library = { id = "com.android.library", version = "8.1.1" }
-##                                                       ⬆ = "8.2.0-alpha01" }
-##                                                       ⬆ = "8.2.0-alpha02" }
-##                                                       ⬆ = "8.2.0-alpha03" }
-##                                                       ⬆ = "8.2.0-alpha04" }
-##                                                       ⬆ = "8.2.0-alpha05" }
-##                                                       ⬆ = "8.2.0-alpha06" }
-##                                                       ⬆ = "8.2.0-alpha07" }
-##                                                       ⬆ = "8.2.0-alpha08" }
-##                                                       ⬆ = "8.2.0-alpha09" }
-##                                                       ⬆ = "8.2.0-alpha10" }
-##                                                       ⬆ = "8.2.0-alpha11" }
-##                                                       ⬆ = "8.2.0-alpha12" }
-##                                                       ⬆ = "8.2.0-alpha13" }
-##                                                       ⬆ = "8.2.0-alpha14" }
-##                                                       ⬆ = "8.2.0-alpha15" }
-##                                                       ⬆ = "8.2.0-alpha16" }
-##                                                       ⬆ = "8.2.0-beta01" }
-##                                                       ⬆ = "8.2.0-beta02" }
-##                                                       ⬆ = "8.2.0-beta03" }
-##                                                       ⬆ = "8.3.0-alpha01" }
-##                                                       ⬆ = "8.3.0-alpha02" }
-##                                                       ⬆ = "8.3.0-alpha03" }
+
 
 org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version = "1.9.10" }
-##                                                                         ⬆ = "1.9.20-Beta" }
+
 
 com-google-dagger-hilt-android = { id = "com.google.dagger.hilt.android", version = "2.48" }
 
 com-google-devtools-ksp = { id = "com.google.devtools.ksp", version = "1.9.10-1.0.13" }
-##                                                               ⬆ = "1.9.20-Beta-1.0.13" }
+
 
 [versions]
 
 google-dagger = "2.48"
 kotlin = "1.9.10"
-##  ⬆ = "1.9.20-Beta"
+
 androidx-room = "2.5.2"
-##         ⬆ = "2.6.0-alpha01"
-##         ⬆ = "2.6.0-alpha02"
-##         ⬆ = "2.6.0-alpha03"
-##         ⬆ = "2.6.0-beta01"
+
 
 androidx-test-ext-junit = "1.1.5"
-##                   ⬆ = "1.2.0-alpha01"
+
 
 androidx-test-espresso = "3.5.1"
-##                  ⬆ = "3.6.0-alpha01"
+
 
 androidx-compose-ui = "1.5.1"
-##               ⬆ = "1.6.0-alpha01"
-##               ⬆ = "1.6.0-alpha02"
-##               ⬆ = "1.6.0-alpha03"
-##               ⬆ = "1.6.0-alpha04"
-##               ⬆ = "1.6.0-alpha05"
+
 
 androidx-core = "1.12.0"
 
 androidx-lifecycle = "2.6.2"
-##              ⬆ = "2.7.0-alpha01"
-##              ⬆ = "2.7.0-alpha02"
+
 
 androidx-activity = "1.7.2"
-##             ⬆ = "1.8.0-alpha01"
-##             ⬆ = "1.8.0-alpha02"
-##             ⬆ = "1.8.0-alpha03"
-##             ⬆ = "1.8.0-alpha04"
-##             ⬆ = "1.8.0-alpha05"
-##             ⬆ = "1.8.0-alpha06"
-##             ⬆ = "1.8.0-alpha07"
-##             ⬆ = "1.8.0-beta01"
+
 
 androidx-compose-material3 = "1.2.0-alpha03"
-##                      ⬆ = "1.2.0-alpha04"
-##                      ⬆ = "1.2.0-alpha05"
-##                      ⬆ = "1.2.0-alpha06"
-##                      ⬆ = "1.2.0-alpha07"
+
 
 coil-kt = "2.2.2"
-##   ⬆ = "2.3.0"
-##   ⬆ = "2.4.0"
+
 
 androidx-hilt-navigation-compose = "1.0.0"
-##                            ⬆ = "1.1.0-alpha01"
+
 
 retrofit2 = "2.9.0"
 
 okhttp3 = "5.0.0-alpha.7"
-##   ⬆ = "5.0.0-alpha.8"
-##   ⬆ = "5.0.0-alpha.9"
-##   ⬆ = "5.0.0-alpha.10"
-##   ⬆ = "5.0.0-alpha.11"
+
 
 moshi = "1.12.0"
-## ⬆ = "1.13.0"
-## ⬆ = "1.14.0"
-## ⬆ = "1.15.0"
+
 
 jakewharton-timber = "5.0.1"
 
 google-accompanist = "0.24.9-beta"
-##              ⬆ = "0.24.10-beta"
-##              ⬆ = "0.24.11-rc"
-##              ⬆ = "0.24.12-rc"
-##              ⬆ = "0.24.13-rc"
-##              ⬆ = "0.25.0"
-##              ⬆ = "0.25.1"
-##              ⬆ = "0.26.0-alpha"
-##              ⬆ = "0.26.1-alpha"
-##              ⬆ = "0.26.2-beta"
-##              ⬆ = "0.26.3-beta"
-##              ⬆ = "0.26.4-beta"
-##              ⬆ = "0.26.5-rc"
-##              ⬆ = "0.27.0"
-##              ⬆ = "0.27.1"
-##              ⬆ = "0.28.0"
-##              ⬆ = "0.29.0-alpha"
-##              ⬆ = "0.29.1-alpha"
-##              ⬆ = "0.29.2-rc"
-##              ⬆ = "0.30.0"
-##              ⬆ = "0.30.1"
-##              ⬆ = "0.31.0-alpha"
-##              ⬆ = "0.31.1-alpha"
-##              ⬆ = "0.31.2-alpha"
-##              ⬆ = "0.31.3-beta"
-##              ⬆ = "0.31.4-beta"
-##              ⬆ = "0.31.5-beta"
-##              ⬆ = "0.31.6-rc"
-##              ⬆ = "0.32.0"
-##              ⬆ = "0.33.0-alpha"
-##              ⬆ = "0.33.1-alpha"
+
 
 google-android-maps-compose = "2.5.3"
-##                       ⬆ = "2.6.0"
-##                       ⬆ = "2.7.0"
-##                       ⬆ = "2.7.1"
-##                       ⬆ = "2.7.2"
-##                       ⬆ = "2.7.3"
-##                       ⬆ = "2.7.4"
-##                       ⬆ = "2.8.0"
-##                       ⬆ = "2.8.1"
-##                       ⬆ = "2.9.0"
-##                       ⬆ = "2.9.1"
-##                       ⬆ = "2.10.0"
-##                       ⬆ = "2.11.0"
-##                       ⬆ = "2.11.1"
-##                       ⬆ = "2.11.2"
-##                       ⬆ = "2.11.3"
-##                       ⬆ = "2.11.4"
-##                       ⬆ = "2.11.5"
-##                       ⬆ = "2.12.0"
-##                       ⬆ = "2.13.0"
-##                       ⬆ = "2.13.1"
-##                       ⬆ = "2.14.0"
+
 
 google-android-play-services-maps = "18.1.0"
 
@@ -194,10 +79,6 @@ material = "1.9.0"
 [libraries]
 
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "androidx-room" }
-hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "google-dagger" }
-
-
-
 
 
 kotlin-parcelize-runtime = { group = "org.jetbrains.kotlin", name = "kotlin-parcelize-runtime", version.ref = "kotlin" }
@@ -220,22 +101,20 @@ compose-destinations-core = "io.github.raamcosta.compose-destinations:core:1.9.4
 
 compose-destinations-ksp = "io.github.raamcosta.compose-destinations:ksp:1.9.42-beta"
 
+
+hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "google-dagger" }
+hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "google-dagger" }
+hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "androidx-hilt-navigation-compose" }
+
+
+
 ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest", version.ref = "androidx-compose-ui" }
 
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidx-core" }
 
-
 lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "androidx-lifecycle" }
 
 
-
-
-
-
-
-hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "google-dagger" }
-
-hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "androidx-hilt-navigation-compose" }
 
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit2" }
 
@@ -261,13 +140,9 @@ accompanist-flowlayout = { group = "com.google.accompanist", name = "accompanist
 
 lottie-compose = "com.airbnb.android:lottie-compose:5.0.1"
 
-
-
 play-services-maps = { group = "com.google.android.gms", name = "play-services-maps", version.ref = "google-android-play-services-maps" }
 
 komposecountrycodepicker = "com.github.JoelKanyi:KomposeCountryCodePicker:1.0.3"
-
-
 
 junit-junit = { group = "junit", name = "junit", version.ref = "junit-junit" }
 
@@ -280,8 +155,8 @@ symbol-processing = "com.google.devtools.ksp:symbol-processing:1.9.10-1.0.13"
 
 symbol-processing-api = "com.google.devtools.ksp:symbol-processing-api:1.9.10-1.0.13"
 
-
 symbol-processing-cmdline = "com.google.devtools.ksp:symbol-processing-cmdline:1.9.10-1.0.13"
+
 
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }

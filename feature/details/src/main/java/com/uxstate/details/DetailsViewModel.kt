@@ -1,4 +1,4 @@
-package com.uxstate.countriespad.presentation.details_screen
+package com.uxstate.details
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel

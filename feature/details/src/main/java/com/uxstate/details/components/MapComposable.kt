@@ -1,4 +1,4 @@
-package com.uxstate.countriespad.presentation.details_screen.components
+package com.uxstate.details.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize

@@ -1,4 +1,4 @@
-package com.uxstate.countriespad.presentation.details_screen
+package com.uxstate.details
 
 sealed class DetailsEvent {
 

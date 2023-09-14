@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.uxstate.overview"
+    namespace = "com.uxstate.details"
     compileSdk = ProjectConfig.compileSdk
 
     defaultConfig {
@@ -42,23 +42,5 @@ android {
 
 dependencies {
 
-    //implementation(libs.core.ktx)
-   // implementation(libs.appcompat)
-
-    implementation(libs.compose.ui)
-    implementation(libs.compose.ui.tooling.preview)
-    implementation(libs.compose.activity)
-    implementation(libs.compose.coil)
-    implementation(libs.compose.destinations.core)
-    implementation(libs.compose.destinations.ksp)
-    implementation(libs.material3)
-    implementation(libs.hilt.android)
-    implementation(libs.hilt.compiler)
-    implementation(libs.hilt.navigation.compose)
-
-
-    //modules
-    implementation(project(":core:ui"))
-    implementation (project(":core:util:"))
 
 }

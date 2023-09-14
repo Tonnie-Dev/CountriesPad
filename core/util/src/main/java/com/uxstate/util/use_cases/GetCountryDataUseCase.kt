@@ -1,10 +1,6 @@
-package com.uxstate.countriespad.domain.use_cases
+package com.uxstate.util.use_cases
 
-import com.uxstate.util.model.Country
 import com.uxstate.countriespad.domain.repository.CountryRepository
-import com.uxstate.util.CountryOrderFormat
-import com.uxstate.util.OrderType
-import com.uxstate.util.Resource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map

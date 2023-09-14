@@ -2,15 +2,11 @@
     <string name="app_name">CountriesPad</string>
     <string name="search_tag">Search …</string>
     <string name="clear_tag">Clear</string>
-    <string name="population_label">Population</string>
-    <string name="area_label">Area</string>
-    <string name="name_label">Name</string>
     <string name="sort_countries_label">Reorder</string>
     <string name="back_label">Back</string>
     <string name="coat_of_arms_label">Back</string>
     <string name="km_sup_string"> %s km\u00B2</string>
     <string name="loading_text">Loading Data…</string>
-    <string name="search_text_placeholder">Search…</string>
     <string name="coat_of_arms_text">Coat of Arms</string>
     <string name="close_icon_text">Close Icon</string>
 
