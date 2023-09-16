@@ -1,4 +1,4 @@
-package com.uxstate.countriespad.presentation.phone_picker_screen
+package com.uxstate.validator
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.MaterialTheme

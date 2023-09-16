@@ -21,6 +21,7 @@
             <option value="$PROJECT_DIR$/feature" />
             <option value="$PROJECT_DIR$/feature/details" />
             <option value="$PROJECT_DIR$/feature/overview" />
+            <option value="$PROJECT_DIR$/feature/validator" />
           </set>
         </option>
       </GradleProjectSettings>
