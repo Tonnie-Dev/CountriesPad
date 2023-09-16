@@ -1,7 +1,7 @@
 package com.uxstate.countriespad.di
 
-import com.uxstate.countriespad.data.repository.CountryRepositoryImpl
-import com.uxstate.countriespad.domain.repository.CountryRepository
+import com.uxstate.source.repository_impl.CountryRepositoryImpl
+import com.uxstate.source.repository.CountryRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -26,5 +26,5 @@ abstract class RepositoryModule {
     is the interface implementation and the return type is the
     interface implemented by the given parameter object.*/
 
-  abstract  fun provideCountryRepository(repositoryImpl: CountryRepositoryImpl):CountryRepository
+  abstract  fun provideCountryRepository(repositoryImpl: CountryRepositoryImpl): CountryRepository
 }

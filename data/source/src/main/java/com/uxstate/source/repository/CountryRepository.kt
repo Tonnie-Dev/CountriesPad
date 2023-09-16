@@ -1,4 +1,4 @@
-package com.uxstate.countriespad.domain.repository
+package com.uxstate.source.repository
 
 import com.uxstate.util.model.Country
 import com.uxstate.util.Resource

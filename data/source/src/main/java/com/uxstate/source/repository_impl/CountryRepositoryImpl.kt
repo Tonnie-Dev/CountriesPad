@@ -1,10 +1,10 @@
-package com.uxstate.countriespad.data.repository
+package com.uxstate.source.repository_impl
 
-import com.uxstate.countriespad.data.json.JsonStringParser
-import com.uxstate.countriespad.data.local.CountryDatabase
-import com.uxstate.countriespad.data.mapper.toCountry
-import com.uxstate.countriespad.data.mapper.toCountryEntity
-import com.uxstate.countriespad.data.remote.CountryAPI
+import com.uxstate.source.json.JsonStringParser
+import com.uxstate.source.local.CountryDatabase
+import com.uxstate.source.mapper.toCountry
+import com.uxstate.source.mapper.toCountryEntity
+import com.uxstate.source.remote.CountryAPI
 import com.uxstate.util.model.Country
 import com.uxstate.countriespad.domain.repository.CountryRepository
 import com.uxstate.util.Resource

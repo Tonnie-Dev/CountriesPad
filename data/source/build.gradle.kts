@@ -37,6 +37,10 @@ dependencies {
 
     //Libs
 
+    implementation(libs.hilt.android)
+    implementation(libs.hilt.compiler)
+    //implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
     //Modules
 
 }

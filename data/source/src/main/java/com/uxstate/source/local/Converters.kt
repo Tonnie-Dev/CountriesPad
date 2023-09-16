@@ -1,4 +1,4 @@
-package com.uxstate.countriespad.data.local
+package com.uxstate.source.local
 
 import androidx.room.TypeConverter
 

@@ -78,6 +78,10 @@ material = "1.9.0"
 
 [libraries]
 
+room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "androidx-room" }
+
+room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "androidx-room" }
+
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "androidx-room" }
 
 
@@ -130,9 +134,7 @@ moshi = { group = "com.squareup.moshi", name = "moshi", version.ref = "moshi" }
 
 moshi-kotlin = { group = "com.squareup.moshi", name = "moshi-kotlin", version.ref = "moshi" }
 
-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "androidx-room" }
 
-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "androidx-room" }
 
 timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "jakewharton-timber" }
 

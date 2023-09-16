@@ -1,7 +1,7 @@
 package com.uxstate.countriespad.di
 
-import com.uxstate.countriespad.data.json.CountriesListParser
-import com.uxstate.countriespad.data.json.JsonStringParser
+import com.uxstate.source.json.CountriesListParser
+import com.uxstate.source.json.JsonStringParser
 import com.uxstate.util.model.Country
 import dagger.Binds
 import dagger.Module
@@ -27,5 +27,5 @@ abstract class JsonParserModule {
     interface implemented by the given parameter object.*/
 
     abstract fun provideJSONStringParser(countriesListParser: CountriesListParser)
-    :JsonStringParser<com.uxstate.util.model.Country>
+    : JsonStringParser<Country>
 }

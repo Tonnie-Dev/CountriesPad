@@ -1,4 +1,4 @@
-package com.uxstate.countriespad.data.json
+package com.uxstate.source.json
 
 import com.uxstate.util.model.Country
 import org.json.JSONArray

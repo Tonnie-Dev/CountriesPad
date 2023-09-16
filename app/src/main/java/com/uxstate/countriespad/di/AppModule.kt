@@ -2,9 +2,9 @@ package com.uxstate.countriespad.di
 
 import android.app.Application
 import androidx.room.Room
-import com.uxstate.countriespad.data.local.CountryDatabase
-import com.uxstate.countriespad.data.remote.CountryAPI
-import com.uxstate.countriespad.domain.repository.CountryRepository
+import com.uxstate.source.local.CountryDatabase
+import com.uxstate.source.remote.CountryAPI
+import com.uxstate.source.repository.CountryRepository
 import com.uxstate.util.use_cases.FilterUseCase
 import com.uxstate.util.use_cases.GetCountryDataUseCase
 import com.uxstate.util.use_cases.UseCaseContainer

@@ -1,4 +1,4 @@
-package com.uxstate.countriespad.data.remote
+package com.uxstate.source.remote
 
 import retrofit2.http.GET
 
