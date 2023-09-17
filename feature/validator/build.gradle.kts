@@ -53,8 +53,8 @@ dependencies {
     implementation(libs.compose.runtime)
     implementation(libs.material3)
     implementation(libs.compose.destinations.core)
-    implementation(libs.compose.destinations.ksp)
+    ksp(libs.compose.destinations.ksp)
     implementation(libs.komposecountrycodepicker)
-
+    androidTestImplementation(libs.junit4.ui.test)
 
 }

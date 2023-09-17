@@ -49,7 +49,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideUseCaseContainer(repository: CountryRepository): UseCaseContainer {
+    fun provideUseCaseContainer(): UseCaseContainer {
 
         return UseCaseContainer(
                 filterUseCase = FilterUseCase()
@@ -64,7 +64,12 @@ object AppModule {
         return GetCountryDataUseCase(repository)
     }
 
+    @Provides
+    @Singleton
+    fun provideFilterUseCase():FilterUseCase {
 
+        return FilterUseCase()
+    }
 
 
 }

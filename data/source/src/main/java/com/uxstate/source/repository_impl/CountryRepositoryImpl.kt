@@ -5,9 +5,7 @@ import com.uxstate.source.local.CountryDatabase
 import com.uxstate.source.mapper.toCountry
 import com.uxstate.source.mapper.toCountryEntity
 import com.uxstate.source.remote.CountryAPI
-import com.uxstate.util.model.Country
-import com.uxstate.countriespad.domain.repository.CountryRepository
-import com.uxstate.util.Resource
+import com.uxstate.source.repository.CountryRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
@@ -129,16 +127,6 @@ class CountryRepositoryImpl @Inject constructor(
             )
             emit(com.uxstate.util.Resource.Loading(isLoading = false))
         }
-
-/*override suspend fun getAllIncludedInTotalShoppingLists(): List<ShoppingList> {
-   return withContext(Dispatchers.IO) {
-        val returnedList = shoppingListDao.getAllIncludedInTotalShoppingLists().map {
-            shoppingListMapper.mapFromEntity(it)
-        }
-
-        return@withContext returnedList
-    }
-}*/
 
     }
 

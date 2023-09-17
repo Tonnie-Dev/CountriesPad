@@ -43,4 +43,5 @@ dependencies {
     implementation(libs.material3)
     implementation(libs.compose.activity)
     implementation(libs.lottie.compose)
+    androidTestImplementation(libs.junit4.ui.test)
 }

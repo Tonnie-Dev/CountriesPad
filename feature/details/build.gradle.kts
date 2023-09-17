@@ -51,7 +51,8 @@ dependencies {
 
     //Libs
     implementation(libs.compose.destinations.core)
-    implementation(libs.compose.destinations.ksp)
+    ksp (libs.compose.destinations.ksp)
+
     implementation(libs.compose.runtime)
     implementation(libs.compose.ui)
     implementation(libs.compose.ui.tooling.preview)
@@ -62,7 +63,7 @@ dependencies {
     implementation(libs.hilt.android)
     implementation(libs.hilt.compiler)
     implementation(libs.hilt.navigation.compose)
-
+    androidTestImplementation(libs.junit4.ui.test)
     //modules
     implementation(project(":core:ui"))
     implementation(project(":core:util"))

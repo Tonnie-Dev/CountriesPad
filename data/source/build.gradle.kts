@@ -41,8 +41,11 @@ dependencies {
     implementation(libs.hilt.compiler)
     //implementation(libs.room.runtime)
     implementation(libs.room.ktx)
-
-
+    implementation(libs.retrofit)
+    /*implementation(libs.converter.moshi)
+    implementation(libs.okhttp)
+    implementation(libs.logging.interceptor)*/
+    androidTestImplementation(libs.junit4.ui.test)
     //Modules
     implementation(project(":core:util"))
 

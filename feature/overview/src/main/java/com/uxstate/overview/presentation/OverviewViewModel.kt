@@ -5,7 +5,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.uxstate.util.use_cases.UseCaseContainer
+import com.uxstate.overview.domain.use_cases.GetCountryDataUseCase
+import com.uxstate.util.use_cases.FilterUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -15,7 +16,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class OverviewViewModel @Inject constructor(private val container: UseCaseContainer) : ViewModel() {
+class OverviewViewModel @Inject constructor(private val getCountryDataUseCase: GetCountryDataUseCase, private val filterUseCase:FilterUseCase) : ViewModel() {
 
 
     var state by mutableStateOf(OverviewState())
@@ -115,7 +116,7 @@ class OverviewViewModel @Inject constructor(private val container: UseCaseContai
      {
 
 
-        container.getCountryDataUseCase(query, fetchFromRemote)
+         getCountryDataUseCase(query, fetchFromRemote)
                 .onEach { result ->
                     state = when (result) {
 
@@ -136,7 +137,7 @@ class OverviewViewModel @Inject constructor(private val container: UseCaseContai
 
 
                             state.copy(
-                                    countriesData = container.filterUseCase(
+                                    countriesData = filterUseCase(
                                             result.data ?: emptyList(), countryOrderFormat
                                     )
                             )
