@@ -31,6 +31,11 @@ import com.uxstate.details.components.ZoomableImage
 import com.uxstate.ui.R
 import com.uxstate.ui.theme.LocalSpacing
 
+interface DetailsScreenNavigator{
+
+    fun navigateBackToOverviewScreen()
+    fun navigateToValidator()
+}
 @OptIn(ExperimentalMaterial3Api::class)
 @Destination()
 @Composable

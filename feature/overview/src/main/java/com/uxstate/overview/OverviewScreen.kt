@@ -19,6 +19,11 @@ import com.uxstate.ui.theme.LocalSpacing
 import com.uxstate.util.conditional
 import com.uxstate.ui.R
 
+interface OverviewScreenNavigator {
+
+    fun navigateToDetailsScreen()
+}
+
 
 @RootNavGraph(start = true)
 @Destination()

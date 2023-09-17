@@ -42,7 +42,7 @@ object NavGraphs {
     }
 
     //Root NavGraph showing Overview as the starting screen
-    
+
     val root = object : NavGraphSpec {
         override val route = "root"
         override val startRoute = overview
