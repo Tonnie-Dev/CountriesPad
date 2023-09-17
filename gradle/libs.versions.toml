@@ -127,7 +127,10 @@ play-services-maps = { group = "com.google.android.gms", name = "play-services-m
 
 komposecountrycodepicker = "com.github.JoelKanyi:KomposeCountryCodePicker:1.0.3"
 
-junit-junit = { group = "junit", name = "junit", version.ref = "junit-junit" }
+junit-core = { group = "junit", name = "junit", version.ref = "junit-junit" }
+junit4-ui-test= { group = "androidx.compose.ui", name = "ui-test-junit4", version.ref = "androidx-compose-ui" }
+
+junit-androidx = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-ext-junit" }
 
 androidx-compose-compiler-compiler = { group = "androidx.compose.compiler", name = "compiler", version.ref = "androidx-compose-compiler" }
 
@@ -142,11 +145,11 @@ symbol-processing-cmdline = "com.google.devtools.ksp:symbol-processing-cmdline:1
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
-androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-ext-junit" }
+
 
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "androidx-test-espresso" }
 
-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4", version.ref = "androidx-compose-ui" }
+
 
 io-github-raamcosta-compose-destinations-core = "io.github.raamcosta.compose-destinations:core:1.9.42-beta"
 

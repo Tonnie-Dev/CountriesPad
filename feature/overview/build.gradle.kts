@@ -48,8 +48,6 @@ android {
 
 dependencies {
 
-    //implementation(libs.core.ktx)
-   // implementation(libs.appcompat)
 
     implementation(libs.compose.ui)
     implementation(libs.compose.ui.tooling.preview)
@@ -66,5 +64,6 @@ dependencies {
     //modules
     implementation(project(":core:ui"))
     implementation (project(":core:util:"))
+    implementation (project(":data:source:"))
 
 }

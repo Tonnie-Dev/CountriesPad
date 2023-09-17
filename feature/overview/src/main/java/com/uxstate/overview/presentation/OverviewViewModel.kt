@@ -1,11 +1,10 @@
-package com.uxstate.overview
+package com.uxstate.overview.presentation
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.uxstate.util.use_cases.GetCountryDataUseCase
 import com.uxstate.util.use_cases.UseCaseContainer
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job

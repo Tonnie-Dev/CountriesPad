@@ -2,7 +2,6 @@ package com.uxstate.countriespad.navigation
 
 import com.ramcosta.composedestinations.spec.DestinationSpec
 import com.ramcosta.composedestinations.spec.NavGraphSpec
-import com.ramcosta.composedestinations.spec.Route
 import com.uxstate.countriespad.presentation.destinations.DetailsScreenDestination
 import com.uxstate.countriespad.presentation.destinations.OverviewScreenDestination
 
@@ -34,7 +33,8 @@ object NavGraphs {
 
     val validator = object : NavGraphSpec {
 
-        override val route = "details"
+        // TODO: Fix Destination
+        override val route = "validator"
         override val startRoute = DetailsScreenDestination
         override val destinationsByRoute = listOf<DestinationSpec<*>>(DetailsScreenDestination)
                 .associateBy { it.route }

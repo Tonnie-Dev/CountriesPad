@@ -1,4 +1,4 @@
-package com.uxstate.overview.components
+package com.uxstate.overview.presentation.components
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -9,6 +9,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.uxstate.ui.R
 import com.uxstate.ui.theme.LocalSpacing
+import com.uxstate.util.CountryOrderFormat
+import com.uxstate.util.OrderType
 
 @Composable
 fun OrderPanel(
@@ -33,8 +35,8 @@ val spacing = LocalSpacing.current
             Row(modifier = modifier.fillMaxWidth()) {
                 //R1
                 CustomRadioButton(text = stringResource(id = R.string.name_label),
-                        selected = countryOrder is com.uxstate.util.CountryOrderFormat.ByName,
-                        onSelected = { onOrderChange(com.uxstate.util.CountryOrderFormat.ByName(countryOrder.orderType)) })
+                        selected = countryOrder is CountryOrderFormat.ByName,
+                        onSelected = { onOrderChange(CountryOrderFormat.ByName(countryOrder.orderType)) })
 
 
 
@@ -45,9 +47,9 @@ val spacing = LocalSpacing.current
                 CustomRadioButton(
 
                         text = stringResource(id = R.string.area_label),
-                        selected = countryOrder is com.uxstate.util.CountryOrderFormat.ByArea,
+                        selected = countryOrder is CountryOrderFormat.ByArea,
 
-                        onSelected = { onOrderChange(com.uxstate.util.CountryOrderFormat.ByArea(countryOrder.orderType)) }
+                        onSelected = { onOrderChange(CountryOrderFormat.ByArea(countryOrder.orderType)) }
                 )
 
                 Spacer(modifier = Modifier.width(spacing.spaceSmall))
@@ -56,8 +58,8 @@ val spacing = LocalSpacing.current
 
                 CustomRadioButton(
                         text = stringResource(id = R.string.population_label),
-                        selected = countryOrder is com.uxstate.util.CountryOrderFormat.ByPopulation,
-                        onSelected = { onOrderChange(com.uxstate.util.CountryOrderFormat.ByPopulation(countryOrder.orderType)) }
+                        selected = countryOrder is CountryOrderFormat.ByPopulation,
+                        onSelected = { onOrderChange(CountryOrderFormat.ByPopulation(countryOrder.orderType)) }
                 )
 
             }
@@ -71,8 +73,8 @@ val spacing = LocalSpacing.current
 
                 CustomRadioButton(
                         text = "Ascending",
-                        selected = countryOrder.orderType is com.uxstate.util.OrderType.Ascending,
-                        onSelected = { onOrderChange(countryOrder.copy(com.uxstate.util.OrderType.Ascending)) }
+                        selected = countryOrder.orderType is OrderType.Ascending,
+                        onSelected = { onOrderChange(countryOrder.copy(OrderType.Ascending)) }
                 )
                 Spacer(modifier = Modifier.width(spacing.spaceSmall))
 
@@ -80,8 +82,8 @@ val spacing = LocalSpacing.current
 
                 CustomRadioButton(
                         text = "Descending",
-                        selected = countryOrder.orderType is com.uxstate.util.OrderType.Descending,
-                        onSelected = { onOrderChange(countryOrder.copy(com.uxstate.util.OrderType.Descending)) }
+                        selected = countryOrder.orderType is OrderType.Descending,
+                        onSelected = { onOrderChange(countryOrder.copy(OrderType.Descending)) }
                 )
             }
 

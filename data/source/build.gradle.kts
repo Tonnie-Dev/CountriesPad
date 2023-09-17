@@ -41,6 +41,9 @@ dependencies {
     implementation(libs.hilt.compiler)
     //implementation(libs.room.runtime)
     implementation(libs.room.ktx)
+
+
     //Modules
+    implementation(project(":core:util"))
 
 }

@@ -82,10 +82,10 @@ dependencies {
     implementation(libs.compose.runtime)
     implementation(libs.lifecycle.runtime.ktx)
     implementation(libs.compose.activity)
-    testImplementation(libs.junit.junit)
-    androidTestImplementation(libs.androidx.test.ext.junit)
+    testImplementation(libs.junit.core)
+    androidTestImplementation(libs.junit.androidx)
     androidTestImplementation(libs.espresso.core)
-    androidTestImplementation(libs.ui.test.junit4)
+    androidTestImplementation(libs.junit4.ui.test)
     debugImplementation(libs.compose.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
 
@@ -137,14 +137,13 @@ dependencies {
 
     //Accompanist Animation
     implementation libs.accompanist.nav.animation
+
     //Maps Compose library
     implementation(libs.compose.maps)
     implementation(libs.play.services.maps)
 
     //Kompose Country Code Picker
     implementation(libs.komposecountrycodepicker)
-
-
 
     //Modules
     implementation(project(":core:ui"))

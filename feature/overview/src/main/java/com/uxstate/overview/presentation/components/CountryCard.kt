@@ -1,4 +1,4 @@
-package com.uxstate.overview.components
+package com.uxstate.overview.presentation.components
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.Image
@@ -25,7 +25,7 @@ import coil.request.ImageRequest
 import com.uxstate.ui.R
 import com.uxstate.ui.theme.CountriesPadTheme
 import com.uxstate.ui.theme.LocalSpacing
-
+import com.uxstate.util.country
 
 
 @Composable
@@ -100,7 +100,7 @@ fun CountrySurfaceCard(
 fun CountrySurfaceCardPreviewLight() {
     CountriesPadTheme {
 
-        CountrySurfaceCard(country = com.uxstate.util.country) {}
+        CountrySurfaceCard(country = country) {}
     }
 
 }
@@ -110,7 +110,7 @@ fun CountrySurfaceCardPreviewLight() {
 fun CountrySurfaceCardPreviewDark() {
     CountriesPadTheme {
 
-        CountrySurfaceCard(country = com.uxstate.util.country) {}
+        CountrySurfaceCard(country = country) {}
     }
 
 }

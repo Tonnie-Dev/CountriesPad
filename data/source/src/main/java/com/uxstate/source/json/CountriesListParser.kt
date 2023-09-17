@@ -2,8 +2,7 @@ package com.uxstate.source.json
 
 import com.uxstate.util.model.Country
 import org.json.JSONArray
-import org.json.JSONObject
-import timber.log.Timber
+
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -18,10 +17,10 @@ import javax.inject.Singleton
 @Singleton
 class CountriesListParser @Inject constructor() : JsonStringParser<com.uxstate.util.model.Country> {
 
-    override fun parseJson(jsonString: String): List<com.uxstate.util.model.Country> {
+    override fun parseJson(jsonString: String): List<Country> {
 
         //lists
-        val countriesList = mutableListOf<com.uxstate.util.model.Country>()
+        val countriesList = mutableListOf<Country>()
         val countriesJsonArray = JSONArray(jsonString)
 
         //iterate through the jsonArray

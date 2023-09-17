@@ -1,4 +1,4 @@
-package com.uxstate.overview.components
+package com.uxstate.overview.presentation.components
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.Image
@@ -33,6 +33,7 @@ import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.uxstate.ui.R
 import com.uxstate.ui.theme.LocalSpacing
+import com.uxstate.util.country
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -171,7 +172,7 @@ fun CountryBar(modifier: Modifier = Modifier, country: com.uxstate.util.model.Co
 @Composable
 fun CountryBarPreviewLight() {
 
-    CountryBar(country = com.uxstate.util.country){}
+    CountryBar(country = country){}
 
 
 }
@@ -180,7 +181,7 @@ fun CountryBarPreviewLight() {
 @Composable
 fun CountryBarPreviewDark() {
 
-    CountryBar(country = com.uxstate.util.country){}
+    CountryBar(country = country){}
 
 
 }

@@ -43,5 +43,10 @@ android {
 
 dependencies {
 
+    //Libs
 implementation(libs.compose.ui)
+    androidTestImplementation(libs.junit4.ui.test)
+    //Modules
+
+   // implementation(project(":data:source"))
 }

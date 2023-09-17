@@ -1,4 +1,4 @@
-package com.uxstate.overview
+package com.uxstate.overview.presentation
 
 sealed class OverviewEvent (){
 
