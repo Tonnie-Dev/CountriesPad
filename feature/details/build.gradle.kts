@@ -2,7 +2,9 @@
 plugins {
     alias(libs.plugins.com.android.library)
     alias(libs.plugins.org.jetbrains.kotlin.android)
+    alias(libs.plugins.com.google.devtools.ksp)
 }
+
 
 android {
     namespace = "com.uxstate.details"
@@ -37,6 +39,11 @@ android {
     }
     composeOptions {
         kotlinCompilerExtensionVersion = ProjectConfig.kotlinCompilerExtensionVersion
+    }
+
+    ksp {
+        arg("compose-destinations.moduleName", "details")
+        arg("compose-destinations.mode", "destinations")
     }
 }
 

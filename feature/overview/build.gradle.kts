@@ -2,6 +2,7 @@
 plugins {
     alias(libs.plugins.com.android.library)
     alias(libs.plugins.org.jetbrains.kotlin.android)
+    alias(libs.plugins.com.google.devtools.ksp)
 }
 
 android {
@@ -37,6 +38,11 @@ android {
     }
     composeOptions {
         kotlinCompilerExtensionVersion = ProjectConfig.kotlinCompilerExtensionVersion
+    }
+
+    ksp {
+        arg("compose-destinations.moduleName", "overview")
+        arg("compose-destinations.mode", "destinations")
     }
 }
 
