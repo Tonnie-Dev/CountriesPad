@@ -132,6 +132,11 @@ dependencies {
     implementation(libs.compose.destinations.core)
     ksp(libs.compose.destinations.core)
 
+    //Compose Animation
+    implementation libs.compose.animation
+
+    //Accompanist Animation
+    implementation libs.accompanist.nav.animation
     //Maps Compose library
     implementation(libs.compose.maps)
     implementation(libs.play.services.maps)
