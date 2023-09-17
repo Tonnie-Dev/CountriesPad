@@ -30,17 +30,20 @@ import com.uxstate.details.components.MapComposable
 import com.uxstate.details.components.ZoomableImage
 import com.uxstate.ui.R
 import com.uxstate.ui.theme.LocalSpacing
+import com.uxstate.util.model.Country
 
 interface DetailsScreenNavigator{
 
     fun navigateBackToOverviewScreen()
     fun navigateToValidator()
 }
+
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Destination()
 @Composable
 fun DetailsScreen(
-    country: com.uxstate.util.model.Country,
+    country: Country,
     navigator: DestinationsNavigator,
     viewModel: DetailsViewModel = hiltViewModel()
 ) {

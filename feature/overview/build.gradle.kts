@@ -57,7 +57,7 @@ dependencies {
    ksp(libs.compose.destinations.ksp)
     implementation(libs.material3)
     implementation(libs.hilt.android)
-    implementation(libs.hilt.compiler)
+    ksp(libs.hilt.compiler)
     implementation(libs.hilt.navigation.compose)
     androidTestImplementation(libs.junit4.ui.test)
 

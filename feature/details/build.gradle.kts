@@ -61,8 +61,8 @@ dependencies {
     implementation(libs.play.services.maps)
     implementation(libs.material3)
     implementation(libs.hilt.android)
-    implementation(libs.hilt.compiler)
     implementation(libs.hilt.navigation.compose)
+    ksp(libs.hilt.compiler)
     androidTestImplementation(libs.junit4.ui.test)
     //modules
     implementation(project(":core:ui"))

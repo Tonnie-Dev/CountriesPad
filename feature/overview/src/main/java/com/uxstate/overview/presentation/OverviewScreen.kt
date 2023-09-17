@@ -17,10 +17,11 @@ import com.uxstate.overview.presentation.components.CountrySurfaceCard
 import com.uxstate.ui.theme.LocalSpacing
 import com.uxstate.util.conditional
 import com.uxstate.ui.R
+import com.uxstate.util.model.Country
 
 interface OverviewScreenNavigator {
 
-    fun navigateToDetailsScreen()
+    fun navigateToDetailsScreen(country: Country)
 }
 
 

@@ -3,11 +3,14 @@ package com.uxstate.countriespad
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
+import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.ramcosta.composedestinations.DestinationsNavHost
+import com.uxstate.countriespad.navigation.AppNavigation
 
 import com.uxstate.ui.theme.CountriesPadTheme
 
@@ -16,6 +19,7 @@ import timber.log.Timber
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    @OptIn(ExperimentalAnimationApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
 
         Timber.i("Oncreate Called")
@@ -30,8 +34,14 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier.fillMaxSize(),
                         color = MaterialTheme.colorScheme.background
                 ) {
-                    //add the NavHost call
-                    DestinationsNavHost(navGraph = NavGraphs.root)
+
+                    val navController = rememberAnimatedNavController()
+                    //DestinationsNavHost(navGraph = NavGraphs.root, startRoute = getStartDestination())
+                    AppNavigation(
+                            navController = navController,
+                            modifier = Modifier
+                                    .fillMaxSize()
+                    )
                 }
 
 

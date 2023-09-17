@@ -59,7 +59,7 @@ junit-junit = "4.13.2"
 
 androidx-compose-compiler = "1.5.3"
 appcompat = "1.6.1"
-material = "1.9.0"
+
 
 androidx-compose-animation = "1.4.3"
 
@@ -143,32 +143,10 @@ symbol-processing-api = "com.google.devtools.ksp:symbol-processing-api:1.9.10-1.
 symbol-processing-cmdline = "com.google.devtools.ksp:symbol-processing-cmdline:1.9.10-1.0.13"
 
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
-material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+accompanist-nav-animation = { group = "com.google.accompanist", name = "accompanist-navigation-animation", version.ref = "google-accompanist" }
 
 
 
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "androidx-test-espresso" }
 
 
-
-io-github-raamcosta-compose-destinations-core = "io.github.raamcosta.compose-destinations:core:1.9.42-beta"
-
-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "androidx-compose-ui" }
-
-ui = { group = "androidx.compose.ui", name = "ui", version.ref = "androidx-compose-ui" }
-
-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview", version.ref = "androidx-compose-ui" }
-
-lifecycle-runtime-compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
-
-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "androidx-activity" }
-
-coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil-kt" }
-
-
-
-accompanist-nav-animation = { group = "com.google.accompanist", name = "accompanist-navigation-animation", version.ref = "google-accompanist" }
-
-maps-compose = { group = "com.google.maps.android", name = "maps-compose", version.ref = "google-android-maps-compose" }
-
-ksp = "io.github.raamcosta.compose-destinations:ksp:1.9.42-beta"
