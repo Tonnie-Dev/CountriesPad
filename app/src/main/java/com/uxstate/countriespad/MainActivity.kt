@@ -1,4 +1,4 @@
-package com.uxstate.countriespad.presentation
+package com.uxstate.countriespad
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -8,6 +8,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import com.ramcosta.composedestinations.DestinationsNavHost
+import com.uxstate.countriespad.presentation.NavGraphs
 import com.uxstate.ui.theme.CountriesPadTheme
 
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,7 +31,7 @@ class MainActivity : ComponentActivity() {
                         color = MaterialTheme.colorScheme.background
                 ) {
                     //add the NavHost call
-                    DestinationsNavHost(navGraph =NavGraphs.root )
+                    DestinationsNavHost(navGraph = NavGraphs.root)
                 }
 
 
