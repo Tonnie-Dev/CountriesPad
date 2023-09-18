@@ -26,11 +26,11 @@ android {
         }
     }
 
-        compileOptions {
-            sourceCompatibility =JavaVersion.VERSION_18
-            targetCompatibility= JavaVersion.VERSION_18
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_18
+        targetCompatibility = JavaVersion.VERSION_18
 
-        }
+    }
 
     kotlinOptions {
         jvmTarget = "18"
@@ -57,7 +57,7 @@ dependencies {
     implementation(libs.compose.activity)
     implementation(libs.compose.coil)
     implementation(libs.compose.destinations.core)
-   ksp(libs.compose.destinations.ksp)
+    ksp(libs.compose.destinations.ksp)
     implementation(libs.material3)
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
@@ -66,7 +66,7 @@ dependencies {
 
     //modules
     implementation(project(":core:ui"))
-    implementation (project(":core:util:"))
-    implementation (project(":data:source:"))
+    implementation(project(":core:util:"))
+    implementation(project(":data:source:"))
 
 }

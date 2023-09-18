@@ -22,6 +22,7 @@ import com.uxstate.util.model.Country
 interface OverviewScreenNavigator {
 
     fun navigateToDetailsScreen(country: Country)
+    fun navigateToValidatorScree()
 }
 
 

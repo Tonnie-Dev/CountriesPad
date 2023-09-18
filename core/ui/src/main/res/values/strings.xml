@@ -8,4 +8,7 @@
     <string name="coat_of_arms_label">Back</string>
     <string name="coat_of_arms_text">Coat of Arms</string>
     <string name="km_sup_string"> %s km\u00B2</string>
+    <string name="home_text">Home</string>
+    <string name="checker_text">Checker</string>
+    <string name="compare_text">Compare</string>
 </resources>
