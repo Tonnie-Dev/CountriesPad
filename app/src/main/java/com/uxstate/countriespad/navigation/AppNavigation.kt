@@ -1,25 +1,24 @@
 package com.uxstate.countriespad.navigation
 
+
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
-
+import com.google.accompanist.navigation.material.ExperimentalMaterialNavigationApi
 import com.ramcosta.composedestinations.DestinationsNavHost
 import com.ramcosta.composedestinations.animations.defaults.RootNavGraphDefaultAnimations
 import com.ramcosta.composedestinations.animations.rememberAnimatedNavHostEngine
 import com.ramcosta.composedestinations.navigation.dependency
-import com.ramcosta.composedestinations.rememberNavHostEngine
 
 
+@OptIn( ExperimentalAnimationApi::class, ExperimentalMaterialNavigationApi::class)
 @ExperimentalAnimationApi
 @Composable
 internal fun AppNavigation(
     navController: NavHostController,
     modifier: Modifier = Modifier,
 ) {
-
-
 
     val navHostEngine = rememberAnimatedNavHostEngine(
             rootDefaultAnimations = RootNavGraphDefaultAnimations(
