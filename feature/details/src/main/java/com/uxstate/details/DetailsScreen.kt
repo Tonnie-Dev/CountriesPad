@@ -44,7 +44,7 @@ interface DetailsScreenNavigator{
 @Composable
 fun DetailsScreen(
     country: Country,
-    navigator: DestinationsNavigator,
+    navigator: DetailsScreenNavigator,
     viewModel: DetailsViewModel = hiltViewModel()
 ) {
 
@@ -73,7 +73,7 @@ fun DetailsScreen(
     )
 
     CountryBottomSheet(country = country,
-            navigator = navigator,
+           onClickButton = {navigator.navigateToValidator()},
             onShowImage = {
                 viewModel.onEvent(DetailsEvent.ShowCoatOfArmsEvent(country.coatOfArmsUrl))
                 isShowImageDialog = true
@@ -96,7 +96,7 @@ fun DetailsScreen(
                         )
                     },
                     navigationIcon = {
-                        IconButton(onClick = { navigator.navigateUp() }) {
+                        IconButton(onClick = { navigator.navigateBackToOverviewScreen()}) {
 
                             Icon(
                                     imageVector = Icons.Default.ArrowBack,

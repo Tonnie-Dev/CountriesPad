@@ -47,8 +47,8 @@ import com.uxstate.util.titleCase
 fun CountryBottomSheet(
     modifier: Modifier = Modifier,
     country: com.uxstate.util.model.Country,
-    navigator: DestinationsNavigator,
     onShowImage: () -> Unit,
+     onClickButton:()-> Unit,
     scaffoldContent: @Composable () -> Unit
 ) {
 
@@ -76,13 +76,7 @@ fun CountryBottomSheet(
                 ) {
                     CountryDetailsContent(country = country)
                     Spacer(Modifier.height(spacing.spaceMedium))
-                    Button(onClick = {
-                      //scope.launch { scaffoldState.bottomSheetState.partialExpand() }
-
-                        // TODO: Fix Navigation
-                        //navigator.navigate(CodePickerScreenDestination)
-
-                    }) {
+                    Button(onClick = onClickButton) {
                         Text("Hide Details")
                     }
                 }

@@ -30,7 +30,7 @@ interface OverviewScreenNavigator {
 
 @Composable
 fun OverviewScreen(
-    navigator: DestinationsNavigator,
+    navigator: OverviewScreenNavigator,
     viewModel: OverviewViewModel = hiltViewModel()
 ) {
 
@@ -68,8 +68,8 @@ fun OverviewScreen(
                         onSelectCountry = {
                             viewModel.onEvent(OverviewEvent.OnSelectCountry)
 
-                            // TODO: Fix Navigate Code
-                          //  navigator.navigate(DetailsScreenDestination(it))
+                           navigator.navigateToDetailsScreen(it)
+
 
                         },
                         modifier = Modifier
@@ -86,7 +86,7 @@ fun OverviewScreen(
                             items(state.countriesData) { country ->
                                 CountrySurfaceCard(country = country) {
 
-                                    // TODO: Fix Navigation Code
+                                    navigator.navigateToDetailsScreen(it)
                                    // navigator.navigate(DetailsScreenDestination(it))
                                 }
 

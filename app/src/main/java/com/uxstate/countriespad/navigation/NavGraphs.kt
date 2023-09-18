@@ -35,7 +35,7 @@ object NavGraphs {
 
     val validator = object : NavGraphSpec {
 
-        // TODO: Fix Destination
+
         override val route = "validator"
         override val startRoute = ValidatorScreenDestination
         override val destinationsByRoute = listOf<DestinationSpec<*>>(ValidatorScreenDestination)
