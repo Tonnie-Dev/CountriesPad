@@ -26,11 +26,12 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility =JavaVersion.VERSION_18
+        targetCompatibility= JavaVersion.VERSION_18
+
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "18"
     }
 }
 
@@ -42,6 +43,7 @@ dependencies {
     ksp(libs.hilt.compiler)
     //implementation(libs.room.runtime)
     implementation(libs.room.ktx)
+    ksp(libs.room.compiler)
     implementation(libs.retrofit)
     /*implementation(libs.converter.moshi)
     implementation(libs.okhttp)

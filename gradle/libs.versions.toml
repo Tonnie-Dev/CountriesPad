@@ -145,8 +145,8 @@ symbol-processing-cmdline = "com.google.devtools.ksp:symbol-processing-cmdline:1
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 accompanist-nav-animation = { group = "com.google.accompanist", name = "accompanist-navigation-animation", version.ref = "google-accompanist" }
 
-
-
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "androidx-test-espresso" }
+
+## THE END
 
 
