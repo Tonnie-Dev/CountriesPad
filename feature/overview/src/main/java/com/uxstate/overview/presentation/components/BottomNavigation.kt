@@ -1,6 +1,5 @@
 package com.uxstate.overview.presentation.components
 
-import android.graphics.drawable.Icon
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Info
@@ -8,7 +7,6 @@ import androidx.compose.material.icons.filled.Phone
 import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.Phone
-import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.runtime.Composable
@@ -51,15 +49,18 @@ fun BottomNavigationBar(navigator: OverviewScreenNavigator) {
 
             NavigationBarItem(
                     selected = selectedIndex == index,
-                    onClick = { when(selectedIndex) {
+                    onClick = {
+                        when (selectedIndex) {
 
-                        1 -> navigator.navigateToValidatorScree()
+                            1 -> navigator.navigateToValidatorScree()
+                        }
+                    },
+                    icon = {
+                        androidx.compose.material3.Icon(
+                                imageVector = if (selectedIndex == index) item.selectedIcon else item.unSelectedIcon,
+                                contentDescription = item.title
+                        )
                     }
-                         },
-                    icon = { androidx.compose.material3.Icon(
-                            imageVector = if (selectedIndex == index) item.selectedIcon else item.unSelectedIcon,
-                            contentDescription = item.title
-                    ) }
             )
         }
 

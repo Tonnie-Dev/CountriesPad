@@ -151,6 +151,7 @@ dependencies {
     implementation(project(":feature:overview"))
     implementation(project(":feature:details"))
     implementation(project(":feature:validator"))
+    implementation(project(":feature:stats"))
     implementation(project(":data:source"))
 
 
