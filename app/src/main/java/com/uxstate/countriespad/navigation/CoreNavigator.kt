@@ -31,5 +31,9 @@ navController.navigate(OverviewScreenDestination)
         navController.navigate(DetailsScreenDestination(country))
     }
 
+    override fun navigateToValidatorScree() {
+        TODO("Not yet implemented")
+    }
+
 
 }

@@ -12,6 +12,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootNavGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import com.uxstate.overview.presentation.components.BottomNavigationBar
 import com.uxstate.overview.presentation.components.CountrySearchBar
 import com.uxstate.overview.presentation.components.CountrySurfaceCard
 import com.uxstate.ui.theme.LocalSpacing
@@ -40,65 +41,68 @@ fun OverviewScreen(
     val isSearchBarActive = state.isActive
     val spacing = LocalSpacing.current
 
-
-    if (state.isLoading) {
-
-
-    } else {
-
-        Surface(color = MaterialTheme.colorScheme.background) {
+    Scaffold(bottomBar = {BottomNavigationBar(navigator = navigator)}) { paddingValues ->
+        if (state.isLoading) {
 
 
-            Column {
-                CountrySearchBar(
-                        queryText = state.query,
-                        onQueryChange = { viewModel.onEvent(OverviewEvent.OnQueryChange(it)) },
-                        placeholderText = stringResource(id = R.string.search_text_placeholder),
-                        isActive = isSearchBarActive,
-                        onActiveChange = {
-                            viewModel.onEvent(
-                                    OverviewEvent.OnSearchBarActiveStateChange(
-                                            it
-                                    )
-                            )
-                        },
-                        onDeleteText = { viewModel.onEvent(OverviewEvent.OnClearSearchBox) },
-                        onSearch = {},
-                        countries = state.countriesData,
-                        onSearchBackClick = { viewModel.onEvent(OverviewEvent.OnSearchBackClick) },
-                        onSelectCountry = {
-                            viewModel.onEvent(OverviewEvent.OnSelectCountry)
+        } else {
 
-                           navigator.navigateToDetailsScreen(it)
+            Surface(color = MaterialTheme.colorScheme.background, modifier = Modifier.padding(paddingValues)) {
 
 
-                        },
-                        modifier = Modifier
-                                .conditional(isSearchBarActive) { fillMaxSize() }
-                                .conditional(!isSearchBarActive) { fillMaxWidth().padding(spacing.spaceSmall) }
+                Column {
+                    CountrySearchBar(
+                            queryText = state.query,
+                            onQueryChange = { viewModel.onEvent(OverviewEvent.OnQueryChange(it)) },
+                            placeholderText = stringResource(id = R.string.search_text_placeholder),
+                            isActive = isSearchBarActive,
+                            onActiveChange = {
+                                viewModel.onEvent(
+                                        OverviewEvent.OnSearchBarActiveStateChange(
+                                                it
+                                        )
+                                )
+                            },
+                            onDeleteText = { viewModel.onEvent(OverviewEvent.OnClearSearchBox) },
+                            onSearch = {},
+                            countries = state.countriesData,
+                            onSearchBackClick = { viewModel.onEvent(OverviewEvent.OnSearchBackClick) },
+                            onSelectCountry = {
+                                viewModel.onEvent(OverviewEvent.OnSelectCountry)
 
-                )
+                                navigator.navigateToDetailsScreen(it)
 
-                LazyVerticalGrid(
-                        modifier = Modifier.weight(8f),
-                        columns = GridCells.Fixed(2),
-                        content = {
 
-                            items(state.countriesData) { country ->
-                                CountrySurfaceCard(country = country) {
+                            },
+                            modifier = Modifier
+                                    .conditional(isSearchBarActive) { fillMaxSize() }
+                                    .conditional(!isSearchBarActive) { fillMaxWidth().padding(spacing.spaceSmall) }
 
-                                    navigator.navigateToDetailsScreen(it)
-                                   // navigator.navigate(DetailsScreenDestination(it))
+                    )
+
+                    LazyVerticalGrid(
+                            modifier = Modifier.weight(8f),
+                            columns = GridCells.Fixed(2),
+                            content = {
+
+                                items(state.countriesData) { country ->
+                                    CountrySurfaceCard(country = country) {
+
+                                        navigator.navigateToDetailsScreen(it)
+                                        // navigator.navigate(DetailsScreenDestination(it))
+                                    }
+
                                 }
 
-                            }
 
+                            })
 
-                        })
-
+                }
             }
         }
     }
+
+
 
 }
 
