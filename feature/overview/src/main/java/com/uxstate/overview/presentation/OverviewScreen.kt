@@ -6,12 +6,15 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootNavGraph
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.uxstate.overview.presentation.components.BottomNavigationBar
 import com.uxstate.overview.presentation.components.CountrySearchBar
 import com.uxstate.overview.presentation.components.CountrySurfaceCard
@@ -23,7 +26,9 @@ import com.uxstate.util.model.Country
 interface OverviewScreenNavigator {
 
     fun navigateToDetailsScreen(country: Country)
-    fun navigateToValidatorScree()
+    fun navigateToValidatorScreen()
+    fun navigateToStatsScreen()
+
 }
 
 
@@ -40,8 +45,24 @@ fun OverviewScreen(
     val state = viewModel.state
     val isSearchBarActive = state.isActive
     val spacing = LocalSpacing.current
+    val configuration = LocalConfiguration.current
+    val useBottomNavigation by remember {
+        derivedStateOf { configuration.smallestScreenWidthDp < 600 }
+    }
+    Scaffold(bottomBar = {
+        if (useBottomNavigation) {
+            BottomNavigationBar(navigator = navigator)
 
-    Scaffold(bottomBar = {BottomNavigationBar(navigator = navigator)}) { paddingValues ->
+        }else{
+            // TODO: Fix this Navigation bar height
+
+            //Modifier.navigation Bar Height()
+        }
+
+        }
+
+
+       ) { paddingValues ->
         if (state.isLoading) {
 
 
@@ -76,7 +97,11 @@ fun OverviewScreen(
                             },
                             modifier = Modifier
                                     .conditional(isSearchBarActive) { fillMaxSize() }
-                                    .conditional(!isSearchBarActive) { fillMaxWidth().padding(spacing.spaceSmall) }
+                                    .conditional(!isSearchBarActive) {
+                                        fillMaxWidth().padding(
+                                                spacing.spaceSmall
+                                        )
+                                    }
 
                     )
 

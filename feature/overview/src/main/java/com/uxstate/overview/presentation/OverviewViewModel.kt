@@ -82,6 +82,11 @@ class OverviewViewModel @Inject constructor(private val getCountryDataUseCase: G
                 getCountries(countryOrderFormat = state.countryOrderFormat)
             }
 
+
+            is OverviewEvent.OnNavBarDestinationChange -> {
+                state = state.copy(navSelectedIndex = event.navIndex)
+
+            }
             is OverviewEvent.OnChangeOrder -> {
 
 

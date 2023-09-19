@@ -11,6 +11,7 @@ data class OverviewState(
     val isActive:Boolean = false,
     val errorMessage: String = "",
     val isOrderPaneVisible: Boolean = false,
-    val countryOrderFormat: com.uxstate.util.CountryOrderFormat = com.uxstate.util.CountryOrderFormat.ByName(
+    val navSelectedIndex:Int = 0,
+    val countryOrderFormat: CountryOrderFormat = CountryOrderFormat.ByName(
             com.uxstate.util.OrderType.Ascending)
 )

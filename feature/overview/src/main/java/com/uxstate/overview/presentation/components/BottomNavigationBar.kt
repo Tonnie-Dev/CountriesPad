@@ -7,13 +7,12 @@ import androidx.compose.material.icons.filled.Phone
 import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.Phone
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import com.uxstate.overview.presentation.OverviewScreenNavigator
@@ -21,9 +20,14 @@ import com.uxstate.ui.R
 
 
 @Composable
-fun BottomNavigationBar(navigator: OverviewScreenNavigator) {
+fun BottomNavigationBar(
+    navigator: OverviewScreenNavigator,
+    selectedIndex: Int,
+     onDestinationChange:(navIndex:Int)-> Unit
+) {
 
-    var selectedIndex by rememberSaveable { mutableIntStateOf(0) }
+    val containerColor = MaterialTheme.colorScheme.surfaceContainer
+    val contentColor: Color = MaterialTheme.colorScheme.onSurface
 
     val items = listOf(
             BottomNavigationItem(
@@ -43,7 +47,7 @@ fun BottomNavigationBar(navigator: OverviewScreenNavigator) {
             )
     )
 
-    NavigationBar() {
+    NavigationBar(containerColor = containerColor, contentColor = contentColor) {
 
         items.forEachIndexed { index, item ->
 
@@ -52,11 +56,11 @@ fun BottomNavigationBar(navigator: OverviewScreenNavigator) {
                     onClick = {
                         when (selectedIndex) {
 
-                            1 -> navigator.navigateToValidatorScree()
+                            1 -> navigator.navigateToValidatorScreen()
                         }
                     },
                     icon = {
-                        androidx.compose.material3.Icon(
+                       Icon(
                                 imageVector = if (selectedIndex == index) item.selectedIcon else item.unSelectedIcon,
                                 contentDescription = item.title
                         )
