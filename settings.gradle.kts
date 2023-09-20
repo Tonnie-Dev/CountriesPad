@@ -25,7 +25,6 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "CountriesPad"
-include(":app")
 
 
 
@@ -33,7 +32,6 @@ include(":app")
 include(":core:ui")
 include(":core:util")
 include(":feature:overview")
-include(":feature:details")
 include(":data:source")
 include(":feature:validator")
 include(":feature:stats")

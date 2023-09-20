@@ -1,4 +1,4 @@
-package com.uxstate.overview.presentation
+package com.uxstate.overview.presentation.home_screen
 
 sealed class OverviewEvent() {
 
@@ -12,6 +12,6 @@ sealed class OverviewEvent() {
     data object OnSearchBackClick : OverviewEvent()
     data object OnSelectCountry : OverviewEvent()
 
-    data class OnNavBarDestinationChange(val navIndex:Int):OverviewEvent()
+    data class OnNavBarDestinationChange(val navIndex:Int): OverviewEvent()
 
 }

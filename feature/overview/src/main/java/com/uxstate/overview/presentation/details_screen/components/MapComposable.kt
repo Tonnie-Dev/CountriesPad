@@ -1,4 +1,4 @@
-package com.uxstate.details.components
+package com.uxstate.overview.presentation.details_screen.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize

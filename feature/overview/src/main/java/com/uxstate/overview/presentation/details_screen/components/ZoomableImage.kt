@@ -1,4 +1,4 @@
-package com.uxstate.details.components
+package com.uxstate.overview.presentation.details_screen.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectTransformGestures

@@ -1,4 +1,4 @@
-package com.uxstate.overview.presentation
+package com.uxstate.overview.presentation.home_screen
 
 import com.uxstate.util.model.Country
 import com.uxstate.util.CountryOrderFormat

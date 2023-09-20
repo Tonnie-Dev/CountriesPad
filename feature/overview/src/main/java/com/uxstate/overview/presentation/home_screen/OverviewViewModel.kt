@@ -1,4 +1,4 @@
-package com.uxstate.overview.presentation
+package com.uxstate.overview.presentation.home_screen
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf

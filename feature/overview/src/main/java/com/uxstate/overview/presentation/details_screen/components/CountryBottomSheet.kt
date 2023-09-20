@@ -1,4 +1,4 @@
-package com.uxstate.details.components
+package com.uxstate.overview.presentation.details_screen.components
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
@@ -35,7 +35,6 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.uxstate.ui.R
 import com.uxstate.ui.theme.LocalSpacing
 import com.uxstate.util.applyDecimalSeparator

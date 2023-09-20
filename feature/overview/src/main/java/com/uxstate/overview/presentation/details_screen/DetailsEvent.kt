@@ -1,4 +1,4 @@
-package com.uxstate.details
+package com.uxstate.overview.presentation.details_screen
 
 sealed class DetailsEvent {
 

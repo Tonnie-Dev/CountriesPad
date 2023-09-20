@@ -1,4 +1,4 @@
-package com.uxstate.details
+package com.uxstate.overview.presentation.details_screen
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
@@ -24,10 +24,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.ramcosta.composedestinations.annotation.Destination
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import com.uxstate.details.components.CountryBottomSheet
-import com.uxstate.details.components.MapComposable
-import com.uxstate.details.components.ZoomableImage
+import com.uxstate.overview.presentation.details_screen.components.CountryBottomSheet
+import com.uxstate.overview.presentation.details_screen.components.MapComposable
+import com.uxstate.overview.presentation.details_screen.components.ZoomableImage
 import com.uxstate.ui.R
 import com.uxstate.ui.theme.LocalSpacing
 import com.uxstate.util.model.Country

@@ -1,4 +1,4 @@
-package com.uxstate.overview.presentation.components
+package com.uxstate.overview.presentation.home_screen.components
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
@@ -15,7 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
-import com.uxstate.overview.presentation.OverviewScreenNavigator
+import com.uxstate.overview.presentation.home_screen.OverviewScreenNavigator
 import com.uxstate.ui.R
 
 
@@ -23,7 +23,7 @@ import com.uxstate.ui.R
 fun BottomNavigationBar(
     navigator: OverviewScreenNavigator,
     selectedIndex: Int,
-     onDestinationChange:(navIndex:Int)-> Unit
+    onDestinationChange:(navIndex:Int)-> Unit
 ) {
 
     val containerColor = MaterialTheme.colorScheme.surfaceContainer

@@ -1,4 +1,4 @@
-package com.uxstate.overview.presentation.components
+package com.uxstate.overview.presentation.home_screen.components
 
 
 import androidx.compose.foundation.layout.Row
