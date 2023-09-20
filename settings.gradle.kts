@@ -25,7 +25,7 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "CountriesPad"
-
+include(":app")
 
 
 
