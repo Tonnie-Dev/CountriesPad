@@ -42,12 +42,15 @@ android {
     }
 
     ksp {
-        arg("compose-destinations.moduleName", "overview")
+        arg("compose-destinations.moduleName", "stats")
         arg("compose-destinations.mode", "destinations")
     }
 }
 
 dependencies {
-
-
+    implementation(libs.compose.ui)
+    implementation(libs.compose.ui.tooling.preview)
+    implementation(libs.compose.destinations.core)
+    ksp(libs.compose.destinations.ksp)
+    implementation(libs.material3)
 }

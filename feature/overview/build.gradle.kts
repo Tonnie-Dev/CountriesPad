@@ -56,6 +56,8 @@ dependencies {
     implementation(libs.compose.ui.tooling.preview)
     implementation(libs.compose.activity)
     implementation(libs.compose.coil)
+    implementation(libs.compose.maps)
+    implementation(libs.play.services.maps)
     implementation(libs.compose.destinations.core)
     ksp(libs.compose.destinations.ksp)
     implementation(libs.material3)

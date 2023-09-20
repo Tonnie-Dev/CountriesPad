@@ -28,7 +28,8 @@ interface OverviewScreenNavigator {
     fun navigateToDetailsScreen(country: Country)
     fun navigateToValidatorScreen()
     fun navigateToStatsScreen()
-
+    fun navigateBackToOverviewScreen()
+    fun navigateToValidator()
 }
 
 
@@ -51,7 +52,7 @@ fun OverviewScreen(
     }
     Scaffold(bottomBar = {
         if (useBottomNavigation) {
-            BottomNavigationBar(navigator = navigator)
+            BottomNavigationBar(navigator = navigator, selectedIndex = state.navSelectedIndex){}
 
         }else{
             // TODO: Fix this Navigation bar height

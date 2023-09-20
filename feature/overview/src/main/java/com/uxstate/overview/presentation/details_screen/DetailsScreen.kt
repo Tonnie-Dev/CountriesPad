@@ -27,15 +27,11 @@ import com.ramcosta.composedestinations.annotation.Destination
 import com.uxstate.overview.presentation.details_screen.components.CountryBottomSheet
 import com.uxstate.overview.presentation.details_screen.components.MapComposable
 import com.uxstate.overview.presentation.details_screen.components.ZoomableImage
+import com.uxstate.overview.presentation.home_screen.OverviewScreenNavigator
 import com.uxstate.ui.R
 import com.uxstate.ui.theme.LocalSpacing
 import com.uxstate.util.model.Country
 
-interface DetailsScreenNavigator{
-
-    fun navigateBackToOverviewScreen()
-    fun navigateToValidator()
-}
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -43,7 +39,7 @@ interface DetailsScreenNavigator{
 @Composable
 fun DetailsScreen(
     country: Country,
-    navigator: DetailsScreenNavigator,
+    navigator: OverviewScreenNavigator,
     viewModel: DetailsViewModel = hiltViewModel()
 ) {
 
