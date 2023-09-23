@@ -1,6 +1,7 @@
 package com.uxstate.ui.ui_components
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.width
@@ -15,7 +16,7 @@ import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.uxstate.ui.theme.CountriesPadTheme
 import com.uxstate.ui.theme.LocalSpacing
@@ -25,7 +26,8 @@ fun CountryButton(
     hasIcon: Boolean = false,
     isEnabled: Boolean = true,
     modifier: Modifier = Modifier,
-    imageVector: ImageVector? = null,
+    @DrawableRes
+    icon: Int? = null,
     buttonContainerColor: Color = MaterialTheme.colorScheme.primary,
     buttonText: String,
     onClick: () -> Unit
@@ -33,12 +35,12 @@ fun CountryButton(
 
     val spacing = LocalSpacing.current
 
-    val contentColor: Color = MaterialTheme.colorScheme.contentColorFor( buttonContainerColor)
+    val contentColor: Color = MaterialTheme.colorScheme.contentColorFor(buttonContainerColor)
     Button(
             onClick = onClick,
             modifier = modifier,
             enabled = isEnabled,
-            colors = ButtonDefaults.buttonColors(containerColor=buttonContainerColor)
+            colors = ButtonDefaults.buttonColors(containerColor = buttonContainerColor)
     ) {
 
         //val contentColor: Color = MaterialTheme.colorScheme.contentColorFor(containerColor)
@@ -46,14 +48,13 @@ fun CountryButton(
         if (hasIcon) {
 
 
+            icon?.let {
 
-                imageVector?.let {
+                Icon(painter = painterResource(id = it), contentDescription = buttonText)
+            }
 
-                    Icon(imageVector = it, contentDescription = buttonText)
-                }
-
-                Spacer(modifier = Modifier.width(spacing.spaceExtraSmall))
-                Text(text = buttonText)
+            Spacer(modifier = Modifier.width(spacing.spaceExtraSmall))
+            Text(text = buttonText)
 
         } else {
 

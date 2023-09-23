@@ -12,20 +12,25 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.ramcosta.composedestinations.annotation.Destination
+import com.uxstate.stats.components.ScreenContent
 import com.uxstate.ui.R
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Destination
 @Composable
-fun StatsScreen() {
+fun StatsScreen(viewModel: StatsViewModel = hiltViewModel()) {
+
+    val state = viewModel.state.collectAsState()
 
     var isAscending by rememberSaveable { mutableStateOf(false) }
     Scaffold(topBar = {
@@ -38,7 +43,7 @@ fun StatsScreen() {
                 },
 
                 actions = {
-                    IconButton(onClick = { /*TODO*/ }) {
+                    IconButton(onClick = { viewModel.onEvent(StatsScreenEvent.OrderToggle) }) {
                         Icon(
                                 imageVector = if (isAscending)
                                     Icons.Filled.KeyboardArrowUp
@@ -55,6 +60,9 @@ fun StatsScreen() {
                 })
     }) { paddingValues ->
 
-        Text(text = "Stats", modifier = Modifier.padding(paddingValues))
+        ScreenContent(
+                modifier = Modifier.padding(paddingValues),
+                onAreaButtonClick = { viewModel::onEvent},
+                onPopulationButtonClick = {viewModel::onEvent})
     }
 }

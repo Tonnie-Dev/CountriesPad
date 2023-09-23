@@ -57,6 +57,8 @@ fun CountryBottomSheet(
 
     BottomSheetScaffold(
             scaffoldState = scaffoldState,
+
+            // TODO: Fix Peek Height for BottomSheetScaffold
             sheetPeekHeight = spacing.spaceOneHundredDp + spacing.spaceMedium,
             sheetContent = {
                 Box(
@@ -153,6 +155,8 @@ fun CountryBottomSheetHeader(
 fun CountryDetailsContent(modifier: Modifier = Modifier, country: com.uxstate.util.model.Country) {
 
 
+    // TODO: wrap this composable with surface
+
     Column(modifier.fillMaxWidth()) {
 
 
@@ -178,7 +182,7 @@ fun CountryDetailsContent(modifier: Modifier = Modifier, country: com.uxstate.ut
         Row(modifier = modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
             LabelContainer(
                     modifier = Modifier.weight(6f),
-                    res = R.drawable.money,
+                    res = R.drawable.area,
                     text = country.currencies.joinToString(", ")
                             .titleCase(" ")
             )
