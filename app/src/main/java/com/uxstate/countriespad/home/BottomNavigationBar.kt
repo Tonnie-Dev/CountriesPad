@@ -1,4 +1,4 @@
-package com.uxstate.overview.presentation.home_screen.components
+package com.uxstate.countriespad.home
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
@@ -10,6 +10,7 @@ import androidx.compose.material.icons.outlined.Phone
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarDefaults
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.material3.contentColorFor
@@ -18,37 +19,43 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
-import com.uxstate.overview.presentation.home_screen.OverviewScreenNavigator
+import com.ramcosta.composedestinations.spec.NavGraphSpec
+import com.uxstate.countriespad.navigation.NavGraphs
 import com.uxstate.ui.R
 
 
 @Composable
-fun BottomNavigationBar(
-    navigator: OverviewScreenNavigator,
-    onDestinationChange: (navIndex: Int) -> Unit
+internal fun BottomNavigationBar(
+    selectedNavigation: NavGraphSpec,
+    onNavigationSelected: (NavGraphSpec) -> Unit,
+    modifier: Modifier = Modifier
 ) {
-    var selectedItemIndex by rememberSaveable { mutableIntStateOf(0) }
+  //  var selectedItemIndex by rememberSaveable { mutableIntStateOf(0) }
 
-    val containerColor = MaterialTheme.colorScheme.surfaceContainer
-    //val containerColor = NavigationBarDefaults.containerColor
+    //val containerColor = MaterialTheme.colorScheme.surfaceContainer
+    val containerColor = NavigationBarDefaults.containerColor
     val contentColor: Color = MaterialTheme.colorScheme.contentColorFor(containerColor)
 
     val items = listOf(
             BottomNavigationItem(
                     title = stringResource(id = R.string.home_text),
+                    screen = NavGraphs.overview,
                     selectedIcon = Icons.Filled.Home,
                     unSelectedIcon = Icons.Outlined.Home
             ),
             BottomNavigationItem(
                     title = stringResource(id = R.string.checker_text),
+                    screen = NavGraphs.validator,
                     selectedIcon = Icons.Filled.Phone,
                     unSelectedIcon = Icons.Outlined.Phone
             ),
             BottomNavigationItem(
                     title = stringResource(id = R.string.compare_text),
+                    screen = NavGraphs.stats,
                     selectedIcon = Icons.Filled.Info,
                     unSelectedIcon = Icons.Outlined.Info
             )
@@ -58,11 +65,13 @@ fun BottomNavigationBar(
 
         items.forEachIndexed { index, item ->
 
-            val isSelected = selectedItemIndex == index
+            val isSelected = selectedNavigation == item.screen
             NavigationBarItem(
-                    selected = selectedItemIndex == index,
+                    selected = isSelected,
                     onClick = {
-                        selectedItemIndex = index
+
+                        onNavigationSelected(item.screen)
+                       // selectedItemIndex = index
 
                         //  onDestinationChange(selectedItemIndex)
                         /* when (selectedItemIndex) {
@@ -93,6 +102,7 @@ fun BottomNavigationBar(
 
 data class BottomNavigationItem(
     val title: String,
+    val screen:NavGraphSpec,
     val selectedIcon: ImageVector,
     val unSelectedIcon: ImageVector
 

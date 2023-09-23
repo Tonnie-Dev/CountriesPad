@@ -1,4 +1,4 @@
-package com.uxstate.overview.presentation.home_screen.components
+package com.uxstate.overview.presentation.overview_screen.components
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.Image

@@ -1,8 +1,6 @@
-package com.uxstate.overview.presentation.home_screen
+package com.uxstate.overview.presentation.overview_screen
 
-import com.uxstate.util.model.Country
 import com.uxstate.util.CountryOrderFormat
-import com.uxstate.util.OrderType
 
 data class OverviewState(
     val query: String = "",

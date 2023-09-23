@@ -1,4 +1,4 @@
-package com.uxstate.overview.presentation.home_screen
+package com.uxstate.overview.presentation.overview_screen
 
 sealed class OverviewEvent() {
 

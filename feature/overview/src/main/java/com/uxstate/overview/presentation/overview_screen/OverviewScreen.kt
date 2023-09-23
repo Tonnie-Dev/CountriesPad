@@ -1,4 +1,4 @@
-package com.uxstate.overview.presentation.home_screen
+package com.uxstate.overview.presentation.overview_screen
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -8,28 +8,19 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.State
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
-import androidx.navigation.NavDestination
-import androidx.navigation.NavDestination.Companion.hierarchy
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootNavGraph
-import com.ramcosta.composedestinations.spec.NavGraphSpec
-import com.uxstate.overview.presentation.home_screen.components.BottomNavigationBar
-import com.uxstate.overview.presentation.home_screen.components.CountrySearchBar
-import com.uxstate.overview.presentation.home_screen.components.CountrySurfaceCard
+import com.uxstate.overview.presentation.overview_screen.components.CountrySearchBar
+import com.uxstate.overview.presentation.overview_screen.components.CountrySurfaceCard
 import com.uxstate.ui.R
 import com.uxstate.ui.theme.LocalSpacing
 import com.uxstate.util.conditional
@@ -62,46 +53,11 @@ fun OverviewScreen(
     val useBottomNavigation by remember {
         derivedStateOf { configuration.smallestScreenWidthDp < 600 }
     }
-
-    LaunchedEffect(key1 = state.navSelectedIndex, block = {
-
-
-        when (state.navSelectedIndex){
-
-            0 -> Unit
-            1 -> navigator.navigateToValidatorScreen()
-            2 -> navigator.navigateToStatsScreen()
-        }
-
-    })
-    Scaffold(bottomBar = {
-        if (useBottomNavigation) {
-            BottomNavigationBar(
-                    navigator = navigator,
-
-            )
-            {
-                viewModel.onEvent(OverviewEvent.OnNavBarDestinationChange(it))
-            }
-
-        } else {
-            // TODO: Fix this Navigation bar height
-
-            //Modifier.navigation Bar Height()
-        }
-
-    }
-
-
-    ) { paddingValues ->
-        if (state.isLoading) {
-
-
-        } else {
+    
 
             Surface(
                     color = MaterialTheme.colorScheme.background,
-                    modifier = Modifier.padding(paddingValues)
+
             ) {
 
 
@@ -159,42 +115,8 @@ fun OverviewScreen(
                 }
             }
         }
-    }
-    @Stable
-    @Composable
-    private fun NavController.currentScreenAsState(): State<NavGraphSpec> {
-        val selectedItem = remember { mutableStateOf(NavGraphs.discover) }
 
-        DisposableEffect(this) {
-            val listener = NavController.OnDestinationChangedListener { _, destination, _ ->
 
-                backQueue.print()
-
-                selectedItem.value = destination.navGraph()
-            }
-            addOnDestinationChangedListener(listener)
-
-            onDispose {
-                removeOnDestinationChangedListener(listener)
-            }
-        }
-
-        return selectedItem
-    }
-
-    fun NavDestination.navGraph(): NavGraphSpec {
-        hierarchy.forEach { destination ->
-            NavGraphs.root.nestedNavGraphs.forEach { navGraph ->
-                if (destination.route == navGraph.route) {
-                    return navGraph
-                }
-            }
-        }
-
-        throw RuntimeException("Unknown nav graph for destination $route")
-    }
-
-}
 
 /*
             Spacer(modifier = Modifier.height(spacing.spaceExtraSmall))

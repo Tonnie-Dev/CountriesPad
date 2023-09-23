@@ -4,7 +4,7 @@ import androidx.navigation.NavController
 import com.ramcosta.composedestinations.navigation.navigate
 import com.uxstate.overview.presentation.destinations.DetailsScreenDestination
 import com.uxstate.overview.presentation.destinations.OverviewScreenDestination
-import com.uxstate.overview.presentation.home_screen.OverviewScreenNavigator
+import com.uxstate.overview.presentation.overview_screen.OverviewScreenNavigator
 import com.uxstate.stats.destinations.StatsScreenDestination
 import com.uxstate.util.model.Country
 import com.uxstate.validator.destinations.ValidatorScreenDestination
