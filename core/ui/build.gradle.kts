@@ -43,6 +43,9 @@ android {
 dependencies {
     implementation(libs.material3)
     implementation(libs.compose.activity)
+    implementation(libs.compose.ui)
+    implementation(libs.compose.ui.tooling)
+    implementation(libs.compose.ui.tooling.preview)
     implementation(libs.lottie.compose)
     androidTestImplementation(libs.junit4.ui.test)
 }
