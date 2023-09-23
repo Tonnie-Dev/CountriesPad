@@ -8,7 +8,7 @@ import javax.inject.Inject
 class StatsViewModel @Inject constructor() : ViewModel() {
 
 
-    
+
 
     fun onEvent(event:StatsScreenEvent){
 
