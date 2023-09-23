@@ -10,6 +10,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.ramcosta.composedestinations.DestinationsNavHost
+import com.uxstate.countriespad.home.Home
 import com.uxstate.countriespad.navigation.AppNavigation
 
 import com.uxstate.ui.theme.CountriesPadTheme
@@ -33,13 +34,9 @@ class MainActivity : ComponentActivity() {
                         color = MaterialTheme.colorScheme.background
                 ) {
 
-                    val navController = rememberAnimatedNavController()
-                    //DestinationsNavHost(navGraph = NavGraphs.root, startRoute = getStartDestination())
-                    AppNavigation(
-                            navController = navController,
-                            modifier = Modifier
-                                    .fillMaxSize()
-                    )
+
+                    Home()
+
                 }
 
 

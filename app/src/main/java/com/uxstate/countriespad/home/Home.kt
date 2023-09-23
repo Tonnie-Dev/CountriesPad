@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.Stable
@@ -23,8 +22,8 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavOptionsBuilder
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.ramcosta.composedestinations.navigation.navigate
-import com.ramcosta.composedestinations.navigation.navigateTo
 import com.ramcosta.composedestinations.spec.NavGraphSpec
+import com.uxstate.countriespad.navigation.AppNavigation
 import com.uxstate.countriespad.navigation.NavGraphs
 
 @OptIn(ExperimentalAnimationApi::class)
@@ -36,16 +35,13 @@ internal fun Home() {
 
     val useBottomNavigation by remember {
         derivedStateOf { config.smallestScreenWidthDp < 600 }
-
     }
 
-
-    Scaffold (bottomBar = {
-
+    Scaffold(bottomBar = {
         if (useBottomNavigation) {
             val currentSelectedItem by navController.currentScreenAsState()
-
-            BottomNavigationBar(  selectedNavigation = currentSelectedItem,
+            BottomNavigationBar(
+                    selectedNavigation = currentSelectedItem,
                     onNavigationSelected = { selected ->
                         navController.navigate(selected, fun NavOptionsBuilder.() {
                             launchSingleTop = true
@@ -56,24 +52,22 @@ internal fun Home() {
                             }
                         })
                     },
-                    modifier = Modifier.fillMaxWidth())
-    }else {
+                    modifier = Modifier.fillMaxWidth()
+            )
+        } else {
 
-            // TODO: Fix if not use nav
+            // TODO: Fix if not use BottomNavigation
             /*Spacer(
-                    Modifier
-                            .navigationBarsHeight()
+                    Modifier.navigationBarsHeight()
                             .fillMaxWidth()
             )*/
         }
 
 
+    }) { paddingValues ->
 
+        AppNavigation(navController = navController, modifier = Modifier.padding(paddingValues))
 
-}){ paddingValues ->
-
-
-        Text(text = "", modifier = Modifier.padding(paddingValues))
     }
 
 }

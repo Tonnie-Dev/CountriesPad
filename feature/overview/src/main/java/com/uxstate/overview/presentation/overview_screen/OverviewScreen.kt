@@ -45,15 +45,11 @@ fun OverviewScreen(
     viewModel: OverviewViewModel = hiltViewModel()
 ) {
 
-
     val state = viewModel.state
     val isSearchBarActive = state.isActive
     val spacing = LocalSpacing.current
-    val configuration = LocalConfiguration.current
-    val useBottomNavigation by remember {
-        derivedStateOf { configuration.smallestScreenWidthDp < 600 }
-    }
-    
+
+
 
             Surface(
                     color = MaterialTheme.colorScheme.background,
