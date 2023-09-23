@@ -11,4 +11,7 @@
     <string name="home_text">Home</string>
     <string name="checker_text">Checker</string>
     <string name="compare_text">Compare</string>
+    <string name="stats_text">Stats</string>
+    <string name="ascending_text">Ascending</string>
+    <string name="descending_text">Descending</string>
 </resources>
