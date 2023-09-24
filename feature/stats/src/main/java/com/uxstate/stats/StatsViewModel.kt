@@ -1,14 +1,15 @@
 package com.uxstate.stats
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.uxstate.source.use_case.FetchCountryDataUseCase
 import com.uxstate.util.CountryOrderFormat
-import com.uxstate.util.OrderType
 import com.uxstate.util.Resource
 import com.uxstate.util.use_cases.FilterUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
 import javax.inject.Inject
@@ -22,6 +23,12 @@ class StatsViewModel @Inject constructor(
 
     private val _state = MutableStateFlow(StatsScreenState())
     val state = _state.asStateFlow()
+
+    init {
+
+
+        getCountries(_state.value.countryOrderFormat)
+    }
 
     fun onEvent(event: StatsScreenEvent) {
 
@@ -47,9 +54,8 @@ class StatsViewModel @Inject constructor(
 
                 _state.update {
                     it.copy(
-
-                            isAreaButtonEnabled = false,
                             isPopulationButtonEnabled = true,
+                            isAreaButtonEnabled = false,
                             countryOrderFormat = CountryOrderFormat.ByPopulation(it.sortOrder)
 
                     )
@@ -62,6 +68,7 @@ class StatsViewModel @Inject constructor(
 
                 _state.update { it.copy(sortOrder = event.sortType) }
             }
+
             is StatsScreenEvent.OnChangeOrder -> {
 
 
@@ -86,6 +93,8 @@ class StatsViewModel @Inject constructor(
     }
 
     private fun getCountries(format: CountryOrderFormat) {
+
+
         fetchDataUseCase(query = "", fetchFromRemote = false).onEach {
 
             result ->
@@ -109,6 +118,7 @@ class StatsViewModel @Inject constructor(
 
                 is Resource.Error -> {
 
+
                     _state.update {
                         it.copy(
                                 errorMessage = result.errorMessage ?: "Unknown Error Occurred"
@@ -118,6 +128,7 @@ class StatsViewModel @Inject constructor(
 
             }
         }
+                .launchIn(viewModelScope)
 
 
     }

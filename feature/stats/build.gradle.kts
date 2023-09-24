@@ -60,6 +60,7 @@ dependencies {
     implementation(libs.hilt.navigation.compose)
     ksp(libs.hilt.compiler)
     implementation(libs.compose.coil)
+    implementation(libs.timber)
 
     //Modules
     implementation(project(":core:ui"))

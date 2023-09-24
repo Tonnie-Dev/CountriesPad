@@ -22,7 +22,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.uxstate.stats.components.ScreenContent
+import com.uxstate.stats.components.country
 import com.uxstate.ui.R
+import com.uxstate.util.CountryOrderFormat
+import timber.log.Timber
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -32,7 +35,7 @@ fun StatsScreen(viewModel: StatsViewModel = hiltViewModel()) {
 
     val state by viewModel.state.collectAsState()
 
-    var isAscending by rememberSaveable { mutableStateOf(false) }
+    val isAscending = state.sortOrder== CountryOrderFormat.ByArea
     Scaffold(topBar = {
         CenterAlignedTopAppBar(
                 title = {
@@ -59,11 +62,12 @@ fun StatsScreen(viewModel: StatsViewModel = hiltViewModel()) {
                     }
                 })
     }) { paddingValues ->
+        
 
         ScreenContent(
                 modifier = Modifier.padding(paddingValues),
-                onAreaButtonClick = { viewModel::onEvent },
-                onPopulationButtonClick = { viewModel::onEvent },
+                onAreaButtonClick = {viewModel.onEvent(StatsScreenEvent.AreaButtonToggle) },
+                onPopulationButtonClick =  {viewModel.onEvent(StatsScreenEvent.PopulationButtonToggle)},
                 isAreaButtonEnabled = state.isAreaButtonEnabled,
                 isPopulationButtonEnabled = state.isPopulationButtonEnabled,
                 countries = state.countryData

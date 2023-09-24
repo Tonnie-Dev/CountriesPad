@@ -11,6 +11,6 @@ data class StatsScreenState(
     val errorMessage:String = "",
     val isLoading:Boolean = true,
     val sortOrder:OrderType = OrderType.Ascending,
-    val countryOrderFormat: CountryOrderFormat = CountryOrderFormat.ByName(
+    val countryOrderFormat: CountryOrderFormat = CountryOrderFormat.ByArea(
             OrderType.Ascending
 ))

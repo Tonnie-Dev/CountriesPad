@@ -50,8 +50,6 @@ fun countryDataRow(modifier: Modifier = Modifier, country: Country, isDataByArea
     )
 
 
-
-
     Surface(color = MaterialTheme.colorScheme.surfaceContainerHigh, modifier = modifier) {
         Row(
                 modifier = Modifier
@@ -61,7 +59,7 @@ fun countryDataRow(modifier: Modifier = Modifier, country: Country, isDataByArea
                 verticalAlignment = Alignment.CenterVertically
         ) {
 
-
+            Row {
                 Image(
                         painter = painter,
                         contentDescription = "${country.name} flag",
@@ -71,8 +69,15 @@ fun countryDataRow(modifier: Modifier = Modifier, country: Country, isDataByArea
                                 .width(spacing.spaceExtraLarge)
 
                 )
+                
+                Spacer(modifier = Modifier.width(spacing.spaceSmall))
+                Text(
+                        text = country.name,
+                        style = MaterialTheme.typography.bodyLarge
+                )
+            }
 
-
+                
 
             if (isDataByArea) {
 
