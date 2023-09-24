@@ -10,5 +10,5 @@ interface CountryRepository {
 
 
     //get country data
-    fun getCountriesData(query:String,fetchFromRemote: Boolean): Flow<com.uxstate.util.Resource<List<com.uxstate.util.model.Country>>>
+    fun getCountriesData(query:String,fetchFromRemote: Boolean): Flow<Resource<List<Country>>>
 }

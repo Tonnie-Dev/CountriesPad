@@ -36,7 +36,7 @@ class StatsViewModel @Inject constructor() : ViewModel() {
 
                             isAreaButtonEnabled = false,
                             isPopulationButtonEnabled =true
-                          
+
                     )
                 }
             }
