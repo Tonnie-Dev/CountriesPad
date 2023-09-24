@@ -124,7 +124,7 @@ fun CountryBar(modifier: Modifier = Modifier, country: com.uxstate.util.model.Co
 
     val spacing = LocalSpacing.current
     val context = LocalContext.current
-    val placeholder = if (isSystemInDarkTheme())
+    val placeHolder = if (isSystemInDarkTheme())
         R.drawable.flag_placeholder_dark
     else
         R.drawable.flag_placeholder_light
@@ -141,10 +141,10 @@ fun CountryBar(modifier: Modifier = Modifier, country: com.uxstate.util.model.Co
             val painter = rememberAsyncImagePainter(
                     model = ImageRequest.Builder(context = context)
                             .data(country.flagUrl)
+                            .error(placeHolder)
+                            .placeholder(placeHolder)
                             .crossfade(true)
-                            .placeholder(placeholder)
-                            .build()
-            )
+                            .build())
 
             Image(
                     painter = painter,
