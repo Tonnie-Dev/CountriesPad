@@ -7,8 +7,5 @@ sealed class StatsScreenEvent{
 
     data object AreaButtonToggle:StatsScreenEvent()
     data object PopulationButtonToggle:StatsScreenEvent()
-    data object OrderToggle:StatsScreenEvent()
-    data class OnChangeOrder(val countryOrderFormat: CountryOrderFormat) :
-        StatsScreenEvent()
     data object OnSort: StatsScreenEvent()
 }

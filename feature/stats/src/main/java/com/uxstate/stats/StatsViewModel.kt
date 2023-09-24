@@ -66,59 +66,27 @@ class StatsViewModel @Inject constructor(
             is StatsScreenEvent.OnSort -> {
 
 
-                if (_state.value.sortOrder == OrderType.Ascending){
+                if (_state.value.sortOrder == OrderType.Ascending) {
 
                     _state.update { it.copy(sortOrder = OrderType.Descending) }
                     _state.update { it.copy(countryOrderFormat = it.countryOrderFormat.copy(it.sortOrder)) }
-                }
-
-
-
-
-
-                else{
+                } else {
 
                     _state.update {
-                        it.copy(
-                                sortOrder = OrderType.Ascending
-
-                        )
-                    }
+                        it.copy(sortOrder = OrderType.Ascending) }
 
                     _state.update { it.copy(countryOrderFormat = it.countryOrderFormat.copy(it.sortOrder)) }
                 }
 
-
                 getCountries()
 
 
             }
 
-            is StatsScreenEvent.OnChangeOrder -> {
-
-
-                if (_state.value.countryOrderFormat::class == event.countryOrderFormat::class
-                    && _state.value.countryOrderFormat.orderType == event.countryOrderFormat.orderType
-                ) {
-
-                    //do nothing since the order hasn't changed
-                    return
-                }
-
-                //else load countries with the new event's order
-
-                _state.update { it.copy(countryOrderFormat = event.countryOrderFormat) }
-
-                getCountries()
-
-            }
-
-            is StatsScreenEvent.OrderToggle -> {}
         }
     }
 
     private fun getCountries() {
-
 
         fetchDataUseCase(query = "", fetchFromRemote = false).onEach {
 
