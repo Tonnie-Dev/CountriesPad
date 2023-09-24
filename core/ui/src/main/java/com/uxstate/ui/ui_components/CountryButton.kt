@@ -2,22 +2,27 @@ package com.uxstate.ui.ui_components
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.annotation.DrawableRes
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.uxstate.ui.R
 import com.uxstate.ui.theme.CountriesPadTheme
 import com.uxstate.ui.theme.LocalSpacing
 
@@ -34,13 +39,19 @@ fun CountryButton(
 ) {
 
     val spacing = LocalSpacing.current
+    val animatedButtonColor by animateColorAsState(
+            targetValue = if (isEnabled) buttonContainerColor else Color.LightGray,
+            animationSpec = tween(400, 0, LinearEasing), label = ""
+    )
 
-    val contentColor: Color = MaterialTheme.colorScheme.contentColorFor(buttonContainerColor)
+    val contentColor: Color = MaterialTheme.colorScheme.contentColorFor(animatedButtonColor)
     Button(
             onClick = onClick,
-            modifier = modifier,
-            enabled = isEnabled,
-            colors = ButtonDefaults.buttonColors(containerColor = buttonContainerColor)
+            modifier = modifier.animateContentSize(),
+            colors = ButtonDefaults.buttonColors(
+                    containerColor = animatedButtonColor,
+                    contentColor = contentColor
+            )
     ) {
 
         //val contentColor: Color = MaterialTheme.colorScheme.contentColorFor(containerColor)
@@ -78,7 +89,15 @@ fun CountryButtonPrevLight() {
             CountryButton(
                     buttonText = "Press Me",
                     hasIcon = true,
-                    imageVector = Icons.Default.Close
+                    icon = R.drawable.area
+            ) {
+
+            }
+
+            CountryButton(
+                    buttonText = "Press Me",
+                    hasIcon = true,
+                    icon = R.drawable.people
             ) {
 
             }

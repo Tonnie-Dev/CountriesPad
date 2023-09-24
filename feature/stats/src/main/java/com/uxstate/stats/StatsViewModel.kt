@@ -13,20 +13,34 @@ class StatsViewModel @Inject constructor() : ViewModel() {
     private val _state = MutableStateFlow(StatsScreenState())
     val state = _state.asStateFlow()
 
+    fun onEvent(event: StatsScreenEvent) {
 
-
-    fun onEvent(event:StatsScreenEvent){
-
-        when(event){
+        when (event) {
 
             is StatsScreenEvent.AreaButtonToggle -> {
 
-                _state.update { it.copy(isAreaButtonEnabled = true, isPopulationButtonEnabled = false) }
+                _state.update {
+                    it.copy(
+
+                            isAreaButtonEnabled = true,
+                                    isPopulationButtonEnabled =false
+
+                    )
+                }
             }
+
             is StatsScreenEvent.PopulationButtonToggle -> {
 
-                _state.update { it.copy(isAreaButtonEnabled = false, isPopulationButtonEnabled = true) }
+                _state.update {
+                    it.copy(
+
+                            isAreaButtonEnabled = false,
+                            isPopulationButtonEnabled =true
+                          
+                    )
+                }
             }
+
             is StatsScreenEvent.OrderToggle -> {}
         }
     }

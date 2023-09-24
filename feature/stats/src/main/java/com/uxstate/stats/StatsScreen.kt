@@ -20,6 +20,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.viewModelScope
 import com.ramcosta.composedestinations.annotation.Destination
 import com.uxstate.stats.components.ScreenContent
 import com.uxstate.ui.R
@@ -30,7 +31,7 @@ import com.uxstate.ui.R
 @Composable
 fun StatsScreen(viewModel: StatsViewModel = hiltViewModel()) {
 
-    val state = viewModel.state.collectAsState()
+    val state by viewModel.state.collectAsState()
 
     var isAscending by rememberSaveable { mutableStateOf(false) }
     Scaffold(topBar = {
@@ -62,7 +63,10 @@ fun StatsScreen(viewModel: StatsViewModel = hiltViewModel()) {
 
         ScreenContent(
                 modifier = Modifier.padding(paddingValues),
-                onAreaButtonClick = { viewModel::onEvent},
-                onPopulationButtonClick = {viewModel::onEvent})
+                onAreaButtonClick = { viewModel.onEvent(StatsScreenEvent.AreaButtonToggle)},
+                onPopulationButtonClick = {viewModel.onEvent(StatsScreenEvent.PopulationButtonToggle)},
+        isAreaButtonEnabled  = state.isAreaButtonEnabled,
+        isPopulationButtonEnabled = state.isPopulationButtonEnabled)
+
     }
 }

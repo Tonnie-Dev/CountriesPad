@@ -1,8 +1,10 @@
 package com.uxstate.stats.components
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.icons.Icons
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -24,19 +26,22 @@ internal fun ScreenContent(
     Column(modifier = modifier.fillMaxSize()) {
 
 
-        Row {
+        Row (horizontalArrangement = Arrangement.SpaceAround, modifier = Modifier.fillMaxWidth()){
 
             CountryButton(
                     buttonText = stringResource(id = R.string.area_label),
                     onClick = onAreaButtonClick,
                     hasIcon = isAreaButtonEnabled,
                     isEnabled = isAreaButtonEnabled,
-                    imageVector = Icons.Default.
+                    icon =  R.drawable.area
             )
 
             CountryButton(
                     buttonText = stringResource(id = R.string.population_label),
-                    onClick = onPopulationButtonClick
+                    onClick = onPopulationButtonClick,
+                    hasIcon = isPopulationButtonEnabled,
+                    isEnabled = isPopulationButtonEnabled,
+                    icon =  R.drawable.people
             )
         }
     }
