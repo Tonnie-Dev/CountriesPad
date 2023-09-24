@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.uxstate.source.use_case.FetchCountryDataUseCase
 import com.uxstate.util.CountryOrderFormat
+import com.uxstate.util.OrderType
 import com.uxstate.util.Resource
 import com.uxstate.util.use_cases.FilterUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -26,8 +27,7 @@ class StatsViewModel @Inject constructor(
 
     init {
 
-
-        getCountries(_state.value.countryOrderFormat)
+        getCountries()
     }
 
     fun onEvent(event: StatsScreenEvent) {
@@ -38,7 +38,6 @@ class StatsViewModel @Inject constructor(
 
                 _state.update {
                     it.copy(
-
                             isAreaButtonEnabled = true,
                             isPopulationButtonEnabled = false,
                             countryOrderFormat = CountryOrderFormat.ByArea(it.sortOrder)
@@ -47,7 +46,7 @@ class StatsViewModel @Inject constructor(
 
                 }
 
-                getCountries(_state.value.countryOrderFormat)
+                getCountries()
             }
 
             is StatsScreenEvent.PopulationButtonToggle -> {
@@ -61,12 +60,38 @@ class StatsViewModel @Inject constructor(
                     )
                 }
 
-                getCountries(_state.value.countryOrderFormat)
+                getCountries()
             }
 
             is StatsScreenEvent.OnSort -> {
 
-                _state.update { it.copy(sortOrder = event.sortType) }
+
+                if (_state.value.sortOrder == OrderType.Ascending){
+
+                    _state.update { it.copy(sortOrder = OrderType.Descending) }
+                    _state.update { it.copy(countryOrderFormat = it.countryOrderFormat.copy(it.sortOrder)) }
+                }
+
+
+
+
+
+                else{
+
+                    _state.update {
+                        it.copy(
+                                sortOrder = OrderType.Ascending
+
+                        )
+                    }
+
+                    _state.update { it.copy(countryOrderFormat = it.countryOrderFormat.copy(it.sortOrder)) }
+                }
+
+
+                getCountries()
+
+
             }
 
             is StatsScreenEvent.OnChangeOrder -> {
@@ -84,7 +109,7 @@ class StatsViewModel @Inject constructor(
 
                 _state.update { it.copy(countryOrderFormat = event.countryOrderFormat) }
 
-                getCountries(format = _state.value.countryOrderFormat)
+                getCountries()
 
             }
 
@@ -92,7 +117,7 @@ class StatsViewModel @Inject constructor(
         }
     }
 
-    private fun getCountries(format: CountryOrderFormat) {
+    private fun getCountries() {
 
 
         fetchDataUseCase(query = "", fetchFromRemote = false).onEach {
@@ -105,7 +130,8 @@ class StatsViewModel @Inject constructor(
                     _state.update {
                         it.copy(
                                 countryData = filterDataUseCase(
-                                        countries = result.data ?: emptyList()
+                                        countries = result.data ?: emptyList(),
+                                        orderFormat = _state.value.countryOrderFormat
                                 )
                         )
                     }

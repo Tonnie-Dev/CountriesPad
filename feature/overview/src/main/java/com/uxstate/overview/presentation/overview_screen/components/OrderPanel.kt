@@ -12,6 +12,8 @@ import com.uxstate.ui.theme.LocalSpacing
 import com.uxstate.util.CountryOrderFormat
 import com.uxstate.util.OrderType
 
+
+// TODO: Delete this file
 @Composable
 fun OrderPanel(
     modifier: Modifier = Modifier,

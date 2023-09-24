@@ -20,6 +20,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
@@ -59,7 +61,7 @@ fun countryDataRow(modifier: Modifier = Modifier, country: Country, isDataByArea
                 verticalAlignment = Alignment.CenterVertically
         ) {
 
-            Row {
+            Row (modifier = Modifier.weight(.7f)){
                 Image(
                         painter = painter,
                         contentDescription = "${country.name} flag",
@@ -73,11 +75,13 @@ fun countryDataRow(modifier: Modifier = Modifier, country: Country, isDataByArea
                 Spacer(modifier = Modifier.width(spacing.spaceSmall))
                 Text(
                         text = country.name,
-                        style = MaterialTheme.typography.bodyLarge
+                        style = MaterialTheme.typography.bodyLarge,
+                        overflow = TextOverflow.Ellipsis,
+                        maxLines = 1
+
                 )
             }
 
-                
 
             if (isDataByArea) {
 
@@ -85,12 +89,17 @@ fun countryDataRow(modifier: Modifier = Modifier, country: Country, isDataByArea
                         text = stringResource(
                                 id = R.string.km_sup_string,
                                 country.area.applyDecimalSeparator()
-                        ), style = MaterialTheme.typography.bodySmall
+                        ), style = MaterialTheme.typography.bodySmall,
+                        textAlign = TextAlign.End,
+                        modifier = Modifier.weight(.3f)
                 )
             } else {
                 Text(
                         text = country.population.applyDecimalSeparator(),
-                        style = MaterialTheme.typography.bodySmall
+                        style = MaterialTheme.typography.bodySmall,
+                        textAlign = TextAlign.End,
+                        modifier = Modifier.weight(.3f)
+
                 )
 
             }

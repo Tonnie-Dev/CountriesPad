@@ -10,5 +10,5 @@ sealed class StatsScreenEvent{
     data object OrderToggle:StatsScreenEvent()
     data class OnChangeOrder(val countryOrderFormat: CountryOrderFormat) :
         StatsScreenEvent()
-    data class OnSort(val sortType:OrderType): StatsScreenEvent()
+    data object OnSort: StatsScreenEvent()
 }

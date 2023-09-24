@@ -25,6 +25,7 @@ import com.uxstate.stats.components.ScreenContent
 import com.uxstate.stats.components.country
 import com.uxstate.ui.R
 import com.uxstate.util.CountryOrderFormat
+import com.uxstate.util.OrderType
 import timber.log.Timber
 
 
@@ -35,7 +36,7 @@ fun StatsScreen(viewModel: StatsViewModel = hiltViewModel()) {
 
     val state by viewModel.state.collectAsState()
 
-    val isAscending = state.sortOrder== CountryOrderFormat.ByArea
+    val isAscending = state.sortOrder == OrderType.Ascending
     Scaffold(topBar = {
         CenterAlignedTopAppBar(
                 title = {
@@ -46,7 +47,7 @@ fun StatsScreen(viewModel: StatsViewModel = hiltViewModel()) {
                 },
 
                 actions = {
-                    IconButton(onClick = { viewModel.onEvent(StatsScreenEvent.OrderToggle) }) {
+                    IconButton(onClick = { viewModel.onEvent(StatsScreenEvent.OnSort) }) {
                         Icon(
                                 imageVector = if (isAscending)
                                     Icons.Filled.KeyboardArrowUp
@@ -62,7 +63,7 @@ fun StatsScreen(viewModel: StatsViewModel = hiltViewModel()) {
                     }
                 })
     }) { paddingValues ->
-        
+
 
         ScreenContent(
                 modifier = Modifier.padding(paddingValues),
