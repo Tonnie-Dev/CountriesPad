@@ -7,6 +7,7 @@ import com.uxstate.source.remote.CountryAPI
 import com.uxstate.source.repository.CountryRepository
 import com.uxstate.util.use_cases.FilterUseCase
 import com.uxstate.overview.domain.use_cases.GetCountryDataUseCase
+import com.uxstate.source.use_case.FetchCountryDataUseCase
 import com.uxstate.util.use_cases.UseCaseContainer
 import dagger.Module
 import dagger.Provides
@@ -45,7 +46,7 @@ object AppModule {
                 .build()
     }
 
-    //Use Case Container
+ /*   //Use Case Container
 
     @Provides
     @Singleton
@@ -57,13 +58,13 @@ object AppModule {
     }
 
 
-    @Provides
+   @Provides
     @Singleton
     fun provideGetCountryDataUseCase(repository: CountryRepository):GetCountryDataUseCase {
 
         return GetCountryDataUseCase(repository)
     }
-
+*/
     @Provides
     @Singleton
     fun provideFilterUseCase():FilterUseCase {
@@ -71,5 +72,12 @@ object AppModule {
         return FilterUseCase()
     }
 
+
+    @Provides
+    @Singleton
+    fun provideFetchCountryDataUseCase(repository: CountryRepository): FetchCountryDataUseCase {
+
+        return  FetchCountryDataUseCase(repository)
+    }
 
 }

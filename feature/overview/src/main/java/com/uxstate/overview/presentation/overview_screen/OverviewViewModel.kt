@@ -5,7 +5,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.uxstate.overview.domain.use_cases.GetCountryDataUseCase
+import com.uxstate.source.use_case.FetchCountryDataUseCase
+import com.uxstate.util.CountryOrderFormat
+import com.uxstate.util.Resource
 import com.uxstate.util.use_cases.FilterUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
@@ -16,7 +18,8 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class OverviewViewModel @Inject constructor(private val getCountryDataUseCase: GetCountryDataUseCase, private val filterUseCase:FilterUseCase) : ViewModel() {
+class OverviewViewModel @Inject constructor(private val getCountryDataUseCase: FetchCountryDataUseCase,
+                                            private val filterUseCase:FilterUseCase) : ViewModel() {
 
 
     var state by mutableStateOf(OverviewState())
@@ -87,27 +90,9 @@ class OverviewViewModel @Inject constructor(private val getCountryDataUseCase: G
                 state = state.copy(navSelectedIndex = event.navIndex)
 
             }
-            is OverviewEvent.OnChangeOrder -> {
 
 
-                if (state.countryOrderFormat::class == event.countryOrderFormat::class
-                    && state.countryOrderFormat.orderType == event.countryOrderFormat.orderType
-                ) {
 
-                    //do nothing since the order hasn't changed
-                    return
-                }
-
-                //else load countries with the new event's order
-                state = state.copy(countryOrderFormat = event.countryOrderFormat)
-                getCountries(countryOrderFormat = state.countryOrderFormat)
-
-            }
-
-            is OverviewEvent.OnToggleSelectionPane -> {
-                //toggle boolean status
-                state = state.copy(isOrderPaneVisible = !state.isOrderPaneVisible)
-            }
 
 
         }
@@ -116,7 +101,7 @@ class OverviewViewModel @Inject constructor(private val getCountryDataUseCase: G
     private fun getCountries(
         query: String = state.query,
         fetchFromRemote: Boolean = false,
-        countryOrderFormat: com.uxstate.util.CountryOrderFormat
+        countryOrderFormat: CountryOrderFormat
     )
      {
 
@@ -125,17 +110,17 @@ class OverviewViewModel @Inject constructor(private val getCountryDataUseCase: G
                 .onEach { result ->
                     state = when (result) {
 
-                        is com.uxstate.util.Resource.Loading -> {
+                        is Resource.Loading -> {
 
                             state.copy(isLoading = result.isLoading)
                         }
-                        is com.uxstate.util.Resource.Error -> {
+                        is Resource.Error -> {
 
                             state.copy(
                                     errorMessage = result.errorMessage ?: "Unknown Error Occurred"
                             )
                         }
-                        is com.uxstate.util.Resource.Success -> {
+                        is Resource.Success -> {
                             // state.copy(countriesData = container.filterUseCase(it,countryOrderFormat))
 
                             //state.copy(countriesData = result.data?: emptyList())

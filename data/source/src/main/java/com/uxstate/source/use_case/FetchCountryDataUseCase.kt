@@ -1,4 +1,4 @@
-package com.uxstate.util.use_cases
+package com.uxstate.source.use_case
 
 
 
@@ -14,15 +14,15 @@ import kotlinx.coroutines.flow.map
 
 //private val data: Flow<Resource<List<Country>>>,
 //always depend on abstractions
-class FetchDataUseCase (
-    private val data: Flow<Resource<List<Country>>>,
+class FetchCountryDataUseCase (
+    private val repository: CountryRepository,
   private val countryOrderFormat: CountryOrderFormat = CountryOrderFormat.ByName(
             orderType = OrderType.Ascending))
 {
 
     operator fun invoke(query: String, fetchFromRemote: Boolean): Flow<Resource<List<Country>>> {
 
-        return data
+        return repository.getCountriesData(query= query,fetchFromRemote =fetchFromRemote)
 
     }
 

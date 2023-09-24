@@ -45,69 +45,66 @@ fun OverviewScreen(
     val isSearchBarActive = state.isActive
     val spacing = LocalSpacing.current
 
-
-
-            Surface(
-                    color = MaterialTheme.colorScheme.background,
+    Surface(
+            color = MaterialTheme.colorScheme.background,
 
             ) {
 
 
-                Column {
-                    CountrySearchBar(
-                            queryText = state.query,
-                            onQueryChange = { viewModel.onEvent(OverviewEvent.OnQueryChange(it)) },
-                            placeholderText = stringResource(id = R.string.search_text_placeholder),
-                            isActive = isSearchBarActive,
-                            onActiveChange = {
-                                viewModel.onEvent(
-                                        OverviewEvent.OnSearchBarActiveStateChange(
-                                                it
-                                        )
+        Column {
+            CountrySearchBar(
+                    queryText = state.query,
+                    onQueryChange = { viewModel.onEvent(OverviewEvent.OnQueryChange(it)) },
+                    placeholderText = stringResource(id = R.string.search_text_placeholder),
+                    isActive = isSearchBarActive,
+                    onActiveChange = {
+                        viewModel.onEvent(
+                                OverviewEvent.OnSearchBarActiveStateChange(
+                                        it
                                 )
-                            },
-                            onDeleteText = { viewModel.onEvent(OverviewEvent.OnClearSearchBox) },
-                            onSearch = {},
-                            countries = state.countriesData,
-                            onSearchBackClick = { viewModel.onEvent(OverviewEvent.OnSearchBackClick) },
-                            onSelectCountry = {
-                                viewModel.onEvent(OverviewEvent.OnSelectCountry)
+                        )
+                    },
+                    onDeleteText = { viewModel.onEvent(OverviewEvent.OnClearSearchBox) },
+                    onSearch = {},
+                    countries = state.countriesData,
+                    onSearchBackClick = { viewModel.onEvent(OverviewEvent.OnSearchBackClick) },
+                    onSelectCountry = {
+                        viewModel.onEvent(OverviewEvent.OnSelectCountry)
+
+                        navigator.navigateToDetailsScreen(it)
+
+
+                    },
+                    modifier = Modifier
+                            .conditional(isSearchBarActive) { fillMaxSize() }
+                            .conditional(!isSearchBarActive) {
+                                fillMaxWidth().padding(
+                                        spacing.spaceSmall
+                                )
+                            }
+
+            )
+
+            LazyVerticalGrid(
+                    modifier = Modifier.weight(8f),
+                    columns = GridCells.Fixed(2),
+                    content = {
+
+                        items(state.countriesData) { country ->
+                            CountrySurfaceCard(country = country) {
 
                                 navigator.navigateToDetailsScreen(it)
+                                // navigator.navigate(DetailsScreenDestination(it))
+                            }
+
+                        }
 
 
-                            },
-                            modifier = Modifier
-                                    .conditional(isSearchBarActive) { fillMaxSize() }
-                                    .conditional(!isSearchBarActive) {
-                                        fillMaxWidth().padding(
-                                                spacing.spaceSmall
-                                        )
-                                    }
+                    })
 
-                    )
-
-                    LazyVerticalGrid(
-                            modifier = Modifier.weight(8f),
-                            columns = GridCells.Fixed(2),
-                            content = {
-
-                                items(state.countriesData) { country ->
-                                    CountrySurfaceCard(country = country) {
-
-                                        navigator.navigateToDetailsScreen(it)
-                                        // navigator.navigate(DetailsScreenDestination(it))
-                                    }
-
-                                }
-
-
-                            })
-
-                }
-            }
         }
-
+    }
+}
 
 
 /*

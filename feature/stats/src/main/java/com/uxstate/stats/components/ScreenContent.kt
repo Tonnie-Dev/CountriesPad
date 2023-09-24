@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.uxstate.ui.R
 import com.uxstate.ui.ui_components.CountryButton
+import com.uxstate.util.model.Country
 
 @Composable
 internal fun ScreenContent(
@@ -19,6 +20,7 @@ internal fun ScreenContent(
     isPopulationButtonEnabled:Boolean,
     onAreaButtonClick: () -> Unit,
     onPopulationButtonClick: () -> Unit,
+    countries:List<Country>
 
 ) {
 

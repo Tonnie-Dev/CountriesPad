@@ -21,7 +21,7 @@ sealed class CountryOrderFormat(val orderType: OrderType){
 }
 
 sealed class OrderType{
-    object Descending: OrderType()
-    object Ascending: OrderType()
+    data object Descending: OrderType()
+    data object Ascending: OrderType()
 }
 
