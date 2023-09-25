@@ -32,7 +32,7 @@ import com.uxstate.util.applyDecimalSeparator
 import com.uxstate.util.model.Country
 
 @Composable
-fun countryDataRow(modifier: Modifier = Modifier, country: Country, isDataByArea: Boolean) {
+fun CountryDataRow(modifier: Modifier = Modifier, country: Country, isDataByArea: Boolean) {
 
     val spacing = LocalSpacing.current
     val context = LocalContext.current
@@ -135,9 +135,9 @@ fun CountryDataRowPrevLight() {
     CountriesPadTheme {
 
         Column {
-            countryDataRow(country = country, isDataByArea = false)
+            CountryDataRow(country = country, isDataByArea = false)
 
-            countryDataRow(country = country, isDataByArea = true)
+            CountryDataRow(country = country, isDataByArea = true)
         }
 
     }
@@ -150,9 +150,9 @@ fun CountryDataRowPrevDark() {
     CountriesPadTheme {
 
         Column {
-            countryDataRow(country = country, isDataByArea = false)
+            CountryDataRow(country = country, isDataByArea = false)
 
-            countryDataRow(country = country, isDataByArea = true)
+            CountryDataRow(country = country, isDataByArea = true)
         }
     }
 }

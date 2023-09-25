@@ -2,8 +2,11 @@ package com.uxstate.countriespad.home
 
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.windowInsetsBottomHeight
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
@@ -57,10 +60,9 @@ internal fun Home() {
         } else {
 
             // TODO: Fix if not use BottomNavigation
-            /*Spacer(
-                    Modifier.navigationBarsHeight()
-                            .fillMaxWidth()
-            )*/
+            Spacer(
+                    Modifier.windowInsetsBottomHeight(WindowInsets.navigationBars)
+            )
         }
 
 
