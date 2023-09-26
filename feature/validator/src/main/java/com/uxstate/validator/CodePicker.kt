@@ -65,6 +65,15 @@ val spacing = LocalSpacing.current
             Text(text = "Full Phone Number:", style = MaterialTheme.typography.titleSmall)
             Text(text = CountryCodePicker.getFullPhoneNumber(), style = MaterialTheme.typography.titleLarge)
         }
+
+
+        val isValid = CountryCodePicker.isPhoneNumberValid()
+        val status = if (isValid) "Looks Good" else "Invalid Number"
+        val statusTextColor = if(isValid) Color.Green else MaterialTheme.colorScheme.error
+        Row(horizontalArrangement = Arrangement.SpaceBetween, modifier = Modifier.padding(spacing.spaceSmall).fillMaxWidth())  {
+            Text(text = "Full Phone Number:", style = MaterialTheme.typography.titleSmall)
+            Text(text = status, style = MaterialTheme.typography.titleMedium, color = statusTextColor)
+        }
 /*
     Text(text = CountryCodePicker.getCountryPhoneCodeWithoutPrefix())
     Text(text = CountryCodePicker.getCountryPhoneCode())
