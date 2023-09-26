@@ -58,7 +58,7 @@ fun CountryBottomSheet(
     BottomSheetScaffold(
             scaffoldState = scaffoldState,
 
-            // TODO: Fix Peek Height for BottomSheetScaffold
+           // TODO: Fix Peek Height for BottomSheetScaffold
             sheetPeekHeight = spacing.spaceOneHundredDp + spacing.spaceMedium,
             sheetContent = {
                 Box(
@@ -171,7 +171,7 @@ fun CountryDetailsContent(modifier: Modifier = Modifier, country: com.uxstate.ut
             // TODO: Put the Correct Drawble for Area
             LabelContainer(
                     modifier = Modifier.weight(4f),
-                    res = R.drawable.money, text = stringResource(
+                    res = R.drawable.area, text = stringResource(
                     id = R.string.km_sup_string,
                     country.area.applyDecimalSeparator()
             )
@@ -181,11 +181,11 @@ fun CountryDetailsContent(modifier: Modifier = Modifier, country: com.uxstate.ut
         }
         //Row 2
 
-        // TODO: Put the Correct for Currency
+
         Row(modifier = modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
             LabelContainer(
                     modifier = Modifier.weight(6f),
-                    res = R.drawable.area,
+                    res = R.drawable.money,
                     text = country.currencies.joinToString(", ")
                             .titleCase(" ")
             )
