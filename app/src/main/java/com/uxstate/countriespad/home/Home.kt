@@ -59,7 +59,7 @@ internal fun Home() {
             )
         } else {
 
-            // TODO: Fix if not use BottomNavigation
+
             Spacer(
                     Modifier.windowInsetsBottomHeight(WindowInsets.navigationBars)
             )
