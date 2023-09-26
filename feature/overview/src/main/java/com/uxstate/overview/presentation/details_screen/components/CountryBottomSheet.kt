@@ -39,6 +39,7 @@ import com.uxstate.ui.R
 import com.uxstate.ui.theme.LocalSpacing
 import com.uxstate.util.applyDecimalSeparator
 import com.uxstate.util.titleCase
+import kotlinx.coroutines.launch
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -47,7 +48,6 @@ fun CountryBottomSheet(
     modifier: Modifier = Modifier,
     country: com.uxstate.util.model.Country,
     onShowImage: () -> Unit,
-     onClickButton:()-> Unit,
     scaffoldContent: @Composable () -> Unit
 ) {
 
@@ -77,7 +77,7 @@ fun CountryBottomSheet(
                 ) {
                     CountryDetailsContent(country = country)
                     Spacer(Modifier.height(spacing.spaceMedium))
-                    Button(onClick = onClickButton) {
+                    Button(onClick = {scope.launch { scaffoldState.bottomSheetState.partialExpand() }}) {
                         Text("Hide Details")
                     }
                 }
