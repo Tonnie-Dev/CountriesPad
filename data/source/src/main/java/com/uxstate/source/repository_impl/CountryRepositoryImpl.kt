@@ -6,6 +6,8 @@ import com.uxstate.source.mapper.toCountry
 import com.uxstate.source.mapper.toCountryEntity
 import com.uxstate.source.remote.CountryAPI
 import com.uxstate.source.repository.CountryRepository
+import com.uxstate.util.Resource
+import com.uxstate.util.model.Country
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
@@ -25,7 +27,7 @@ noting we will be injecting the interface and not the impl
 class CountryRepositoryImpl @Inject constructor(
     db: CountryDatabase,
     private val api: CountryAPI,
-    private val countryJsonParser: JsonStringParser<com.uxstate.util.model.Country>
+    private val countryJsonParser: JsonStringParser<Country>
 ) : CountryRepository {
 
     private val dao = db.countryDAO
@@ -33,10 +35,10 @@ class CountryRepositoryImpl @Inject constructor(
     override fun getCountriesData(
         query: String,
         fetchFromRemote: Boolean
-    ): Flow<com.uxstate.util.Resource<List<com.uxstate.util.model.Country>>> = flow {
+    ): Flow<Resource<List<Country>>> = flow {
 
         //emit loading status true
-        emit(com.uxstate.util.Resource.Loading(isLoading = true))
+        emit(Resource.Loading(isLoading = true))
 
         //get countries from the cache
         val localCachedData = dao.getCountriesData(query)
@@ -47,7 +49,7 @@ class CountryRepositoryImpl @Inject constructor(
         be an empty list*/
 
         //therefore we emit a success
-        emit(com.uxstate.util.Resource.Success(localCachedData.map { it.toCountry() }))
+        emit(Resource.Success(localCachedData.map { it.toCountry() }))
 
         /*Check if we actually need API Call. Blank query matches all
         entries in the db and returns all entries*/
@@ -62,7 +64,7 @@ class CountryRepositoryImpl @Inject constructor(
 
             //stop loading
 
-            emit(com.uxstate.util.Resource.Loading(isLoading = false))
+            emit(Resource.Loading(isLoading = false))
 
             //and return control to flow
             return@flow
@@ -70,7 +72,7 @@ class CountryRepositoryImpl @Inject constructor(
 
 
         /*past this point we need to initiate an api call*/
-        val remoteData:List<com.uxstate.util.model.Country>? =
+        val remoteData:List<Country>? =
 
             try {
 
@@ -82,7 +84,7 @@ class CountryRepositoryImpl @Inject constructor(
             catch (e: HttpException) {
                 e.printStackTrace()
                 emit(
-                        com.uxstate.util.Resource.Error(
+                        Resource.Error(
                                 errorMessage = e.localizedMessage ?: """
                     Unknown Error Occurred, please try again
                 """.trimIndent()
@@ -98,7 +100,7 @@ class CountryRepositoryImpl @Inject constructor(
                 e.printStackTrace()
 
                 emit(
-                        com.uxstate.util.Resource.Error(
+                        Resource.Error(
                                 errorMessage = e.localizedMessage ?: """
                 
                     Could not load data, please check your internet connection
@@ -121,11 +123,11 @@ class CountryRepositoryImpl @Inject constructor(
 
             //sticking to ONE-SINGLE-SOURCE-OF-TRUTH we emit from cache
             emit(
-                    com.uxstate.util.Resource.Success(
+                    Resource.Success(
                             dao.getCountriesData("")
                                     .map { countryEntity -> countryEntity.toCountry() })
             )
-            emit(com.uxstate.util.Resource.Loading(isLoading = false))
+            emit(Resource.Loading(isLoading = false))
         }
 
     }
