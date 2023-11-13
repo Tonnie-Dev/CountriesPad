@@ -23,7 +23,7 @@ import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavOptionsBuilder
-import com.google.accompanist.navigation.animation.rememberAnimatedNavController
+import androidx.navigation.compose.rememberNavController
 import com.ramcosta.composedestinations.navigation.navigate
 import com.ramcosta.composedestinations.spec.NavGraphSpec
 import com.uxstate.countriespad.navigation.AppNavigation
@@ -33,7 +33,7 @@ import com.uxstate.countriespad.navigation.NavGraphs
 @Composable
 internal fun Home() {
 
-    val navController = rememberAnimatedNavController()
+    val navController = rememberNavController()
     val config = LocalConfiguration.current
 
     val useBottomNavigation by remember {

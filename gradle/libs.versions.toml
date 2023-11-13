@@ -26,6 +26,7 @@ androidx-test-ext-junit = "1.1.5"
 androidx-test-espresso = "3.5.1"
 
 androidx-compose-ui = "1.5.1"
+compose-navigation = "2.7.5"
 
 androidx-core = "1.12.0"
 
@@ -87,6 +88,8 @@ compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling
 compose-maps = { group = "com.google.maps.android", name = "maps-compose", version.ref = "google-android-maps-compose" }
 
 compose-animation = { group = "androidx.compose.animation", name = "animation", version.ref = "androidx-compose-animation" }
+
+compose-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "compose-navigation" }
 
 compose-coil = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil-kt" }
 

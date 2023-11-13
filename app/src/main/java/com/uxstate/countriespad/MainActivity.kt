@@ -8,13 +8,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import com.google.accompanist.navigation.animation.rememberAnimatedNavController
-import com.ramcosta.composedestinations.DestinationsNavHost
 import com.uxstate.countriespad.home.Home
-import com.uxstate.countriespad.navigation.AppNavigation
-
 import com.uxstate.ui.theme.CountriesPadTheme
-
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 

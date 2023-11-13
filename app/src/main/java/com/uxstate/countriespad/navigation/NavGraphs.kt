@@ -10,7 +10,7 @@ import com.uxstate.validator.destinations.ValidatorScreenDestination
 
 object NavGraphs {
 
-    //Overview's Module NavGraph - defines NavGraph by instantiating NavGraphSpecs
+    //overview's module NavGraph - defines NavGraph by instantiating NavGraphSpecs
     val overview = object :NavGraphSpec{
 
         override val route = "overview"
@@ -24,7 +24,7 @@ object NavGraphs {
 
     }
 
-    //Validator's Module NavGraph - defines NavGraph by instantiating NavGraphSpecs
+    //validator's module NavGraph
     val validator = object : NavGraphSpec {
 
 
@@ -34,7 +34,7 @@ object NavGraphs {
                 .associateBy { it.route }
 
     }
-
+    //stat's module NavGraph
     val stats = object :NavGraphSpec{
         override val route = "stats"
         override val startRoute =StatsScreenDestination

@@ -128,15 +128,19 @@ dependencies {
     //Lottie Animation
     implementation(libs.lottie.compose)
 
-    // Compose Nav Destinations
+    // Compose Destinations and KSP Libs
     implementation(libs.compose.destinations.core)
     ksp(libs.compose.destinations.core)
 
-    //Compose Animation
-    implementation libs.compose.animation
+    //AndroidX Compose Navigation Lib
+    implementation(libs.compose.navigation)
+
+    //AndroidX Compose Animation Lib
+    implementation (libs.compose.animation)
+
 
     //Accompanist Animation
-    implementation libs.accompanist.nav.animation
+    //implementation libs.accompanist.nav.animation
 
     //Maps Compose library
     implementation(libs.compose.maps)
