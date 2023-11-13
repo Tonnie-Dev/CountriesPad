@@ -11,28 +11,13 @@ import com.uxstate.validator.destinations.ValidatorScreenDestination
 
 
 class CoreNavigator(private val navController: NavController) : OverviewScreenNavigator {
+
     override fun navigateBackToOverviewScreen() {
         navController.navigate(OverviewScreenDestination)
-
     }
-
-
-    override fun navigateToValidator() {
-        navController.navigate(ValidatorScreenDestination)
-    }
-
 
     override fun navigateToDetailsScreen(country: Country) {
         navController.navigate(DetailsScreenDestination(country))
     }
-
-    override fun navigateToValidatorScreen() {
-        navController.navigate(ValidatorScreenDestination)
-    }
-
-    override fun navigateToStatsScreen() {
-        navController.navigate(StatsScreenDestination)
-    }
-
 
 }
