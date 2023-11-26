@@ -26,14 +26,34 @@ android {
 
     signingConfigs {
 
-        val secretsFile = project.rootProject.file("secrets.properties")
+       /* val secretsFile = project.rootProject.file("secrets.properties")
         val properties = Properties()
         properties.load(secretsFile.inputStream())
+
+        val keyAlias = properties.getProperty("KEY_ALIAS")
+        val keyPassword = properties.getProperty("KEY_PASSWORD")
+        val storeFile = properties.getProperty("STORE_FILE")
+        val storePassword = properties.getProperty("STORE_PASSWORD")
         create("release") {
-            keyAlias = "release"
-            keyPassword = "my release key password"
-            storeFile = file("/home/miles/keystore.jks")
-            storePassword = "my keystore password"
+            this.keyAlias = keyAlias
+            this.keyPassword = keyPassword
+            this.storeFile = file(storeFile)
+            this.storePassword = storePassword
+        }*/
+
+        create("release") {
+            val tmpFilePath = System.getProperty("user.home") + "/work/_temp/keystore/"
+            val allFilesFromDir = File(tmpFilePath).listFiles()
+
+            if (allFilesFromDir != null) {
+                val keystoreFile = allFilesFromDir.first()
+                keystoreFile.renameTo(File("keystore/your_keystore.jks"))
+            }
+
+            storeFile = file("keystore/your_keystore.jks")
+            storePassword = System.getenv("SIGNING_STORE_PASSWORD")
+            keyAlias = System.getenv("SIGNING_KEY_ALIAS")
+            keyPassword = System.getenv("SIGNING_KEY_PASSWORD")
         }
     }
 
