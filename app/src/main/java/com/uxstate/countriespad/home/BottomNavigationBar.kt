@@ -1,5 +1,6 @@
 package com.uxstate.countriespad.home
 
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Info
@@ -8,21 +9,22 @@ import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.Phone
 import androidx.compose.material3.Icon
+import androidx.compose.material3.LocalAbsoluteTonalElevation
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarDefaults
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.contentColorFor
+import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.ramcosta.composedestinations.spec.NavGraphSpec
 import com.uxstate.countriespad.navigation.NavGraphs
 import com.uxstate.ui.R
@@ -34,9 +36,6 @@ internal fun BottomNavigationBar(
     onNavigationSelected: (NavGraphSpec) -> Unit,
     modifier: Modifier = Modifier
 ) {
-  //  var selectedItemIndex by rememberSaveable { mutableIntStateOf(0) }
-
-    //val containerColor = MaterialTheme.colorScheme.surfaceContainer
     val containerColor = NavigationBarDefaults.containerColor
     val contentColor: Color = MaterialTheme.colorScheme.contentColorFor(containerColor)
 
@@ -61,25 +60,28 @@ internal fun BottomNavigationBar(
             )
     )
 
-    NavigationBar(containerColor = containerColor, contentColor = contentColor) {
+    NavigationBar() {
 
-        items.forEachIndexed { index, item ->
+        items.forEach { item ->
 
             val isSelected = selectedNavigation == item.screen
             NavigationBarItem(
+                    modifier = Modifier.weight(1f),
+
                     selected = isSelected,
                     onClick = {
-
                         onNavigationSelected(item.screen)
-                       // selectedItemIndex = index
 
-                        //  onDestinationChange(selectedItemIndex)
-                        /* when (selectedItemIndex) {
-
-                             1 -> onDestinationChange(1)
-                             2 -> onDestinationChange(2)
-                         }*/
                     },
+
+                    label = {
+                        Text(
+                                text = item.title,
+                                fontSize = 10.sp,
+                                color = if (isSelected) MaterialTheme.colorScheme.primary else contentColor
+                        )
+                    },
+                    alwaysShowLabel = true,
                     icon = {
                         Icon(
                                 imageVector = if (isSelected) item.selectedIcon else item.unSelectedIcon,
@@ -87,12 +89,7 @@ internal fun BottomNavigationBar(
                                 tint = if (isSelected) MaterialTheme.colorScheme.primary else contentColor
                         )
                     },
-                    label = {
-                        Text(
-                                text = item.title,
-                                color = if (isSelected) MaterialTheme.colorScheme.primary else contentColor
-                        )
-                    }
+
             )
         }
 
@@ -102,7 +99,7 @@ internal fun BottomNavigationBar(
 
 data class BottomNavigationItem(
     val title: String,
-    val screen:NavGraphSpec,
+    val screen: NavGraphSpec,
     val selectedIcon: ImageVector,
     val unSelectedIcon: ImageVector
 

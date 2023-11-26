@@ -10,6 +10,8 @@ import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph
+
+
 private val NavDestination.hostNavGraph: NavGraph
 
     get() = hierarchy.first { it is NavGraph } as NavGraph
@@ -21,10 +23,12 @@ fun AnimatedContentTransitionScope<*>.defaultDiaryEnterTransition(
 ): EnterTransition {
     val initialNavGraph = initial.destination.hostNavGraph
     val targetNavGraph = target.destination.hostNavGraph
+
     // If we're crossing nav graphs (bottom navigation graphs), we crossfade
     if (initialNavGraph.id != targetNavGraph.id) {
         return fadeIn()
     }
+
     // Otherwise we're in the same nav graph, we can imply a direction
     return fadeIn() + slideIntoContainer(AnimatedContentTransitionScope.SlideDirection.Start)
 }
@@ -34,6 +38,7 @@ fun AnimatedContentTransitionScope<*>.defaultDiaryExitTransition(
     initial: NavBackStackEntry,
     target: NavBackStackEntry,
 ): ExitTransition {
+
     val initialNavGraph = initial.destination.hostNavGraph
     val targetNavGraph = target.destination.hostNavGraph
     // If we're crossing nav graphs (bottom navigation graphs), we crossfade

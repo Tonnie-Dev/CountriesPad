@@ -19,6 +19,7 @@ internal fun AppNavigation(
     navController: NavHostController,
     modifier: Modifier = Modifier,
 ) {
+    //pass your enter/exit transitions here
 
     val navHostEngine = rememberAnimatedNavHostEngine(
             rootDefaultAnimations = RootNavGraphDefaultAnimations(
