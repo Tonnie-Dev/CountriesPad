@@ -1,3 +1,4 @@
+import java.util.Properties
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -19,27 +20,28 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+
+
     }
 
+    signingConfigs {
 
-    //Kotlin Block - makes sure that the KSP Plugin looks at
-// the right paths when it comes to generated classes
-
-    kotlin {
-        sourceSets {
-            debug {
-                kotlin.srcDir("build/generated/ksp/debug/kotlin")
-            }
-            release {
-                kotlin.srcDir("build/generated/ksp/release/kotlin")
-            }
+        val secretsFile = project.rootProject.file("secrets.properties")
+        val properties = Properties()
+        properties.load(secretsFile.inputStream())
+        create("release") {
+            keyAlias = "release"
+            keyPassword = "my release key password"
+            storeFile = file("/home/miles/keystore.jks")
+            storePassword = "my keystore password"
         }
     }
+
 
     buildTypes {
         release {
 
-            minifyEnabled = false
+            isMinifyEnabled = false
             proguardFiles(
                     getDefaultProguardFile("proguard-android-optimize.txt"),
                     "proguard-rules.pro"
@@ -65,8 +67,7 @@ android {
 
     packaging {
         resources {
-            it.excludes += "/META-INF/{AL2.0,LGPL2.1}"
-
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
 
