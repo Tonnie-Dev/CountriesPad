@@ -1,6 +1,0 @@
-name: Deploy Countries Pad
-on: workflow_dispatch
-
-jobs:
-   build:
-      runs-on: ubuntu-latest
