@@ -1,6 +1,7 @@
 name: Deploy Countries Pad
 
-on: workflow_dispatch
+on:
+   workflow_dispatch:
 
 jobs:
    
