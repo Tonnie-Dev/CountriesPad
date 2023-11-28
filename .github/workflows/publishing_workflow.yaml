@@ -14,6 +14,7 @@ jobs:
                  TMP_KEYSTORE_FILE_PATH="${RUNNER_TEMP}"/keystore
                  mkdir "${TMP_KEYSTORE_FILE_PATH}"
                  echo $ENCODED_STRING | base64 -di > "${TMP_KEYSTORE_FILE_PATH}"/your_keystore_file.jks
+                 
          - uses: actions/checkout@v3
          
          - name: Setup JDK 17
@@ -27,19 +28,28 @@ jobs:
          - name: Setup Gradle Cache
            uses: gradle/gradle-build-action@v2
            with:
-              gradle-home-cache-cleanup:true
-         - name: build prodRelease
+              gradle-home-cache-cleanup: true
+              
+              
+         - name: Bump Version Code
+           uses: chkfung/android-version-actions@v1.1
+           with:
+              gradlePath: app/build.gradle
+              versionCode: ${{ github.run_number }}
+              
+              
+         - name: Build prodRelease
            run: ./gradlew app:bundleProdRelease
            env:
               SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
               SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
               SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
               
-         - name: upload artifact to be downloaded
+         - name: Upload app bundle as artifact
            uses: actions/upload-artifact@v2
            with:
               name: app-bundle
-              path: app/build/outputs/bundle/rodRelease/app-prod-release.aab
+              path: app/build/outputs/bundle/prodRelease/app-prod-release.aab
               
    deploy:
       needs: build
@@ -58,4 +68,4 @@ jobs:
               serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACCOUNT_JSON }}
               packageName: com.uxstate
               releaseFiles: app-prod-release.aab
-              track: internal
+              track: production
