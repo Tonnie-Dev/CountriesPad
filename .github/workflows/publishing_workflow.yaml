@@ -11,7 +11,7 @@ jobs:
          - name: Decode Keystore
            env:
               ENCODED_STRING: ${{ secrets.KEYSTORE }}
-              runs: |
+              run: |
                  TMP_KEYSTORE_FILE_PATH="${RUNNER_TEMP}"/keystore
                  mkdir "${TMP_KEYSTORE_FILE_PATH}"
                  echo $ENCODED_STRING | base64 -di > "${TMP_KEYSTORE_FILE_PATH}"/your_keystore_file.jks
@@ -23,6 +23,7 @@ jobs:
            with:
               distribution: temurin
               java-version: 17
+              
          - name: Make gradlew executable
            run: chmod +x ./gradlew
       
