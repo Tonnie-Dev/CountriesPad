@@ -34,11 +34,12 @@ jobs:
               versionCode: ${{ github.run_number }}
               versionName: 1.0.0
          - name: Build prodRelease
-           run: ./gradlew app:bundleProdRelease
+           run: ./gradlew bundleRelease --stacktrace
            env:
               SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
               SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
               SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
+              
          - name: Upload app bundle as artifact
            uses: actions/upload-artifact@v2
            with:
