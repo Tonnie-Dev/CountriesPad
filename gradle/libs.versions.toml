@@ -129,7 +129,7 @@ lottie-compose = "com.airbnb.android:lottie-compose:5.0.1"
 
 play-services-maps = { group = "com.google.android.gms", name = "play-services-maps", version.ref = "google-android-play-services-maps" }
 
-komposecountrycodepicker = "com.github.JoelKanyi:KomposeCountryCodePicker:1.0.3"
+komposecountrycodepicker = "com.github.JoelKanyi:KomposeCountryCodePicker:1.0.6"
 
 junit-core = { group = "junit", name = "junit", version.ref = "junit-junit" }
 junit4-ui-test= { group = "androidx.compose.ui", name = "ui-test-junit4", version.ref = "androidx-compose-ui" }
