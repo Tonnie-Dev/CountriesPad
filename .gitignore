@@ -14,5 +14,5 @@
 .cxx
 local.properties
 secrets.properties
-your_signing_keystore
+your_keystore.jks
 

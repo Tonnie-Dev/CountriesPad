@@ -54,6 +54,8 @@ android {
             storePassword = System.getenv("SIGNING_STORE_PASSWORD")
             keyAlias = System.getenv("SIGNING_KEY_ALIAS")
             keyPassword = System.getenv("SIGNING_KEY_PASSWORD")
+
+
         }
     }
 
@@ -177,6 +179,5 @@ dependencies {
     implementation(project(":feature:validator"))
     implementation(project(":feature:stats"))
     implementation(project(":data:source"))
-
 
 }
