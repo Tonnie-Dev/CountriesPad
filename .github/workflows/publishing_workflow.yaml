@@ -52,17 +52,7 @@ jobs:
                name: app-bundle
                path: app/build/outputs/bundle/release/app-release.aab
          
-#         - name: Sign AAB
-#           id: sign
-#           uses: r0adkll/sign-android-release@v1
-#           with:
-#              releaseDirectory: app/build/outputs/bundle/release/app-release.aab
-#              signingKeyBase64: ${{ secrets.KEYSTORE }}
-#              alias: ${{ secrets.SIGNING_KEY_ALIAS }}
-#              keyStorePassword: ${{ secrets.SIGNING_STORE_PASSWORD }}
-#              keyPassword: ${{ secrets.SIGNING_KEY_PASSWORD }}
-           
-           
+    
         
    
    deploy:
@@ -82,3 +72,20 @@ jobs:
               packageName: com.uxstate
               releaseFiles: app-release.aab
               track: production
+              
+              
+              
+              
+              
+              
+              #         - name: Sign AAB
+              #           id: sign
+              #           uses: r0adkll/sign-android-release@v1
+              #           with:
+              #              releaseDirectory: app/build/outputs/bundle/release/app-release.aab
+              #              signingKeyBase64: ${{ secrets.KEYSTORE }}
+              #              alias: ${{ secrets.SIGNING_KEY_ALIAS }}
+              #              keyStorePassword: ${{ secrets.SIGNING_STORE_PASSWORD }}
+              #              keyPassword: ${{ secrets.SIGNING_KEY_PASSWORD }}
+
+

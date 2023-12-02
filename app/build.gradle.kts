@@ -25,9 +25,21 @@ android {
     }
 
     signingConfigs {
+        val secretsFile = project.rootProject.file("secrets.properties")
+        val properties = Properties()
+        properties.load(secretsFile.inputStream())
 
-
+        val keyAlias = properties.getProperty("KEY_ALIAS")
+        val keyPassword = properties.getProperty("KEY_PASSWORD")
+        val storeFile = properties.getProperty("STORE_FILE")
+        val storePassword = properties.getProperty("STORE_PASSWORD")
         create("release") {
+            this.keyAlias = keyAlias
+            this.keyPassword = keyPassword
+            this.storeFile = file(storeFile)
+            this.storePassword = storePassword
+
+       /* create("release") {
             val tmpFilePath = System.getProperty("user.home") + "/work/_temp/keystore/"
             val allFilesFromDir = File(tmpFilePath).listFiles()
 
@@ -42,7 +54,7 @@ android {
             keyPassword = System.getenv("SIGNING_KEY_PASSWORD")
 
 
-        }
+        }*/
     }
 
 
@@ -166,7 +178,7 @@ dependencies {
     implementation(project(":feature:stats"))
     implementation(project(":data:source"))
 
-}
+}}
 
 
 
