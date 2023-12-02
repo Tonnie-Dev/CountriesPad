@@ -15,45 +15,52 @@ jobs:
               mkdir "${TMP_KEYSTORE_FILE_PATH}"
             
               echo $ENCODED_STRING | base64 -di > "${TMP_KEYSTORE_FILE_PATH}"/your_keystore_file.jks
+              
          - uses: actions/checkout@v3
+         
          - name: Setup JDK 18
            uses: actions/setup-java@v3
            with:
               distribution: temurin
               java-version: 18
+              
          - name: Make gradlew executable
            run: chmod +x ./gradlew
+           
          - name: Setup Gradle Cache
            uses: gradle/gradle-build-action@v2
            with:
               gradle-home-cache-cleanup: true
+              
          - name: Bump Version Code
            uses: chkfung/android-version-actions@v1.2.1
            with:
               gradlePath: app/build.gradle.kts
               versionCode: ${{ github.run_number }}
               versionName: 1.0.0
-#         - name: Build prodRelease
-#           run: ./gradlew bundleRelease --stacktrace
-#           env:
-#              SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
-#              SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
-#              SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
+              
+         - name: Build prodRelease
+           run: ./gradlew bundleRelease --stacktrace
+           env:
+              SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
+              SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
+              SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
+              
          -  name: Upload app bundle as artifact
             uses: actions/upload-artifact@v2
             with:
                name: app-bundle
                path: app/build/outputs/bundle/release/app-release.aab
          
-         - name: Sign AAB
-           id: sign
-           uses: r0adkll/sign-android-release@v1
-           with:
-              releaseDirectory: app/build/outputs/bundle/release/app-release.aab
-              signingKeyBase64: ${{ secrets.KEYSTORE }}
-              alias: ${{ secrets.SIGNING_KEY_ALIAS }}
-              keyStorePassword: ${{ secrets.SIGNING_STORE_PASSWORD }}
-              keyPassword: ${{ secrets.SIGNING_KEY_PASSWORD }}
+#         - name: Sign AAB
+#           id: sign
+#           uses: r0adkll/sign-android-release@v1
+#           with:
+#              releaseDirectory: app/build/outputs/bundle/release/app-release.aab
+#              signingKeyBase64: ${{ secrets.KEYSTORE }}
+#              alias: ${{ secrets.SIGNING_KEY_ALIAS }}
+#              keyStorePassword: ${{ secrets.SIGNING_STORE_PASSWORD }}
+#              keyPassword: ${{ secrets.SIGNING_KEY_PASSWORD }}
            
            
         
