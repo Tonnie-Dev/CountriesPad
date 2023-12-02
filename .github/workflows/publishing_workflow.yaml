@@ -39,6 +39,12 @@ jobs:
 #              SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
 #              SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
 #              SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
+         -  name: Upload app bundle as artifact
+            uses: actions/upload-artifact@v2
+            with:
+               name: app-bundle
+               path: app/build/outputs/bundle/release/app-release.aab
+         
          - name: Sign AAB
            id: sign
            uses: r0adkll/sign-android-release@v1
@@ -50,11 +56,7 @@ jobs:
               keyPassword: ${{ secrets.SIGNING_KEY_PASSWORD }}
            
            
-         - name: Upload app bundle as artifact
-           uses: actions/upload-artifact@v2
-           with:
-              name: app-bundle
-              path: app/build/outputs/bundle/release/app-release.aab
+        
    
    deploy:
       needs: build
