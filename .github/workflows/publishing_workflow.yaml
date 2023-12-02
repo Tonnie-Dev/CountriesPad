@@ -40,7 +40,7 @@ jobs:
               versionName: 1.0.0
               
          - name: Build prodRelease
-           run: ./gradlew bundleRelease --stacktrace
+           run: ./gradlew app:bundleRelease
            env:
               SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
               SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
