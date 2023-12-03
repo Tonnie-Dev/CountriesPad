@@ -40,7 +40,11 @@ jobs:
               versionName: 1.0.0
               
          - name: Build prodRelease
-           run: ./gradlew bundleRelease
+           run: ./gradlew :app:assembleRelease -x test
+#           run: ./gradlew bundleRelease
+         
+         - name: Verify Signature
+           run: $ANDROID_SDK_ROOT/build-tools/33.0.1/apksigner verify --print-certs app/build/outputs/bundle/release/app-release.aab
            env:
               SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
               SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
