@@ -58,10 +58,10 @@ android {
 
         }
 
-        getByName("release") {
+        /*getByName("release") {
             signingConfig = signingConfigs.getByName("release")
 
-        }
+        }*/
     }
 
 
