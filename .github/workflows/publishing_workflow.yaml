@@ -47,22 +47,7 @@ jobs:
               SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
               SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
               SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
-         
-         -  name: Check AAB Existence
-            run: ls -l app/build/outputs/bundle/release/
-            
-         - name: Extract the contents of the AAB
-           run: unzip -l app/build/outputs/bundle/release/app-release.aab
-         
-         
-         - name: Download bundletool
-           run: >
-                  wget https://github.com/google/bundletool/releases/download/1.15.6/bundletool-all-1.15.6.jar -O bundletool.jar
-                  chmod +x bundletool.jar
-                  
-         -  name: Verify AAB Signing
-            run: java -jar bundletool.jar validate --bundle=app/build/outputs/bundle/release/app-release.aab
-         
+                 
          -  name: Upload app bundle as artifact
             uses: actions/upload-artifact@v2
             with:
