@@ -51,6 +51,9 @@ jobs:
          -  name: Check AAB Existence
             run: ls -l app/build/outputs/bundle/release/
             
+         - name: Extract the contents of the AAB
+           run: unzip -l app/build/outputs/bundle/release/app-release.aab
+         
          -  name: Verify Signature
             run: $ANDROID_SDK_ROOT/build-tools/33.0.1/apksigner verify --print-certs --verbose app/build/outputs/bundle/release/app-release.aab
             
