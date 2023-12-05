@@ -54,11 +54,10 @@ jobs:
          - name: Extract the contents of the AAB
            run: unzip -l app/build/outputs/bundle/release/app-release.aab
          
-#         -  name: Verify Signature
-#            run: bundletool validate --bundle= app/build/outputs/bundle/release/app-release.aab
+         
          - name: Download bundletool
            run: >
-                  wget https://github.com/google/bundletool/releases/download/1.10.0/bundletool-all-1.10.0.jar -O bundletool.jar
+                  wget https://github.com/google/bundletool/releases/download/1.15.6/bundletool-all-1.15.6.jar -O bundletool.jar
                   chmod +x bundletool.jar
                   
          -  name: Verify AAB Signing
