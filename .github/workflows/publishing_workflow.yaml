@@ -49,7 +49,7 @@ jobs:
               SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
          
          -  name: Verify Signature
-            run: $ANDROID_SDK_ROOT/build-tools/33.0.1/apksigner verify --print-certs app\build\outputs\bundle\release\app-release.aab
+            run: $ANDROID_SDK_ROOT/build-tools/33.0.1/apksigner verify --print-certs app/build/outputs/bundle/release/app-release.aab
             
          -  name: Upload app bundle as artifact
             uses: actions/upload-artifact@v2
