@@ -54,10 +54,11 @@ jobs:
               releaseDirectory: app/build/outputs/bundle/release
               signingKeyBase64: ${{ secrets.KEYSTORE }}
               alias: ${{ secrets.SIGNING_KEY_ALIAS }}
-              keyStorePassword: ${{ secrets.SIGNING_STORE_PASSWORD }}
+              keyStorePassword: ${{ secrets.SINING_STORE_PASSWORD }}
               keyPassword: ${{ secrets.SIGNING_KEY_PASSWORD }}
               
          - run: echo "Build status report=${{ job.status }}."
+         
          -  name: Upload app bundle as artifact
             uses: actions/upload-artifact@v2
             with:
