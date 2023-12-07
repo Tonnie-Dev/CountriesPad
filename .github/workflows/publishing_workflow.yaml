@@ -41,11 +41,6 @@ jobs:
               
          - name: Build prodRelease
            run: ./gradlew bundleRelease
-#
-#           env:
-#              SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
-#              SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
-#              SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
          
          - name: Sign AAb
            id: sign
@@ -54,7 +49,7 @@ jobs:
               releaseDirectory: app/build/outputs/bundle/release
               signingKeyBase64: ${{ secrets.KEYSTORE }}
               alias: ${{ secrets.SIGNING_KEY_ALIAS }}
-              keyStorePassword: ${{ secrets.SINING_STORE_PASSWORD }}
+              keyStorePassword: ${{ secrets.SIGNING_STORE_PASSWORD }}
               keyPassword: ${{ secrets.SIGNING_KEY_PASSWORD }}
               
          - run: echo "Build status report=${{ job.status }}."
@@ -90,15 +85,5 @@ jobs:
               
               
               
-              
-              #         - name: Sign AAB
-              #           id: sign
-              #           uses: r0adkll/sign-android-release@v1
-              #           with:
-              #              releaseDirectory: app/build/outputs/bundle/release/app-release.aab
-              #              signingKeyBase64: ${{ secrets.KEYSTORE }}
-              #              alias: ${{ secrets.SIGNING_KEY_ALIAS }}
-              #              keyStorePassword: ${{ secrets.SIGNING_STORE_PASSWORD }}
-              #              keyPassword: ${{ secrets.SIGNING_KEY_PASSWORD }}
-
+          
 

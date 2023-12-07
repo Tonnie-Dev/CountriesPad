@@ -47,6 +47,7 @@ android {
 
 
     buildTypes {
+
         release {
 
             isMinifyEnabled = false
@@ -54,14 +55,11 @@ android {
                     getDefaultProguardFile("proguard-android-optimize.txt"),
                     "proguard-rules.pro"
             )
+            signingConfig = signingConfigs.getByName("debug")
 
 
         }
 
-        /*getByName("release") {
-            signingConfig = signingConfigs.getByName("release")
-
-        }*/
     }
 
 
@@ -177,17 +175,3 @@ dependencies {
 
 
 
-/* val secretsFile = project.rootProject.file("secrets.properties")
-      val properties = Properties()
-      properties.load(secretsFile.inputStream())
-
-      val keyAlias = properties.getProperty("KEY_ALIAS")
-      val keyPassword = properties.getProperty("KEY_PASSWORD")
-      val storeFile = properties.getProperty("STORE_FILE")
-      val storePassword = properties.getProperty("STORE_PASSWORD")
-      create("release") {
-          this.keyAlias = keyAlias
-          this.keyPassword = keyPassword
-          this.storeFile = file(storeFile)
-          this.storePassword = storePassword
-      }*/
