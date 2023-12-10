@@ -10,9 +10,8 @@ jobs:
       runs-on: ubuntu-latest
       steps:
       
-      
          # Step 1 - Read Keystore from GitHub Secrets, decrypt from base64 string and
-         # avail it to the workflow - put it in a temporary folder
+         # avail it to the workflow - place it in a temporary folder
          - name: Decode Keystore
            env:
               ENCODED_STRING: ${{ secrets.KEYSTORE }}
@@ -23,7 +22,7 @@ jobs:
             
               echo $ENCODED_STRING | base64 -di > "${TMP_KEYSTORE_FILE_PATH}"/your_keystore_file.jks
               
-          # Step 2 - Checkout the repository, making it available to the workflow:
+          # Step 2 - Checkout the repository, making it available to the workflow
          - uses: actions/checkout@v3
          
          # Step 3 - Setup Java
@@ -33,7 +32,7 @@ jobs:
               distribution: temurin
               java-version: 18
           
-          # Step 4 - Setup Gradle to allow workflow access the gradlew file/ grant execution permission
+          # Step 4 - Setup Gradle to allow workflow access and execute gradlew file
          - name: Make gradlew executable
            run: chmod +x ./gradlew
          
@@ -43,7 +42,7 @@ jobs:
            with:
               gradle-home-cache-cleanup: true
               
-         # Override the version code and version name
+         # Step 6 - Override the version code and version name
          - name: Bump Version Code
            uses: chkfung/android-version-actions@v1.2.1
            with:
@@ -51,11 +50,11 @@ jobs:
               versionCode: ${{ github.run_number }}
               versionName: 1.0.0
           
-          # Build App Bundle
+          # Step 7 - Build App Bundle
          - name: Build prodRelease
            run: ./gradlew bundleRelease
          
-         # Sign AAB
+         # Step 8 - Sign AAB
          - name: Sign AAb
            id: sign
            uses: r0adkll/sign-android-release@v1
@@ -66,10 +65,10 @@ jobs:
               keyStorePassword: ${{ secrets.SIGNING_STORE_PASSWORD }}
               keyPassword: ${{ secrets.SIGNING_KEY_PASSWORD }}
               
-          # Print out the Job Status
+          # Step 9 - Print out the Job Status
          - run: echo "Build status report=${{ job.status }}."
          
-         # Save AAB after Build job is complete to publish it as a Github release in the next job
+         # Step 10 - Save AAB after Build job is complete to publish it as a Github release in the next job
          -  name: Upload app bundle as artifact
             uses: actions/upload-artifact@v2
             with:
@@ -83,13 +82,17 @@ jobs:
       needs: build
       runs-on: ubuntu-latest
       steps:
+         
+         # Step 1 - Checkout
          - uses: actions/checkout@v3
+         
+         # Step 2 - Download aab
          - name: Download app bundle from artifact
            uses: actions/download-artifact@v2
            with:
               name: app-bundle
           
-          # Uploads the AAB to play console
+          # Upload the AAB to play console
          - name: Publish to Play Store
            uses: r0adkll/upload-google-play@v1
            with:
