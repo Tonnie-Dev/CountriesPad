@@ -18,7 +18,7 @@ class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalAnimationApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
 
-        Timber.i("Oncreate Called")
+  val x = BuildConfig.GOOGLE_MAPS_API_KEY
         super.onCreate(savedInstanceState)
         setContent {
             CountriesPadTheme {
@@ -28,7 +28,6 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier.fillMaxSize(),
                         color = MaterialTheme.colorScheme.background
                 ) {
-
 
                     Home()
 

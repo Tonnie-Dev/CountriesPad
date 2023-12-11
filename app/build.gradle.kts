@@ -21,7 +21,7 @@ android {
             useSupportLibrary = true
         }
 
-
+        //resValue(type = "String", name ="GOOGLE_MAPS_API_KEY", value = googleMapsKey)
     }
 
     signingConfigs {
@@ -49,15 +49,42 @@ android {
     buildTypes {
 
         release {
+            manifestPlaceholders += mapOf()
+            //load the values from .properties file
+            val mapsKeyFile = project.rootProject.file("mapskey.properties")
+            val properties = Properties()
+            properties.load(mapsKeyFile.inputStream())
 
+            //return empty key in case something goes wrong
+            val googleMapsKey = properties.getProperty("GOOGLE_MAPS_API_KEY") ?: ""
+
+            buildConfigField(type = "String", name ="GOOGLE_MAPS_API_KEY", value = googleMapsKey)
+
+            manifestPlaceholders["GOOGLE_MAPS_API_KEY"] = googleMapsKey
             isMinifyEnabled = false
             proguardFiles(
                     getDefaultProguardFile("proguard-android-optimize.txt"),
                     "proguard-rules.pro"
             )
-            //signingConfig = signingConfigs.getByName("debug")
+            signingConfig = signingConfigs.getByName("debug")
+            resValue("string", "google_maps_key", googleMapsKey)
 
 
+        }
+
+        debug{
+            //load the values from .properties file
+            val mapsKeyFile = project.rootProject.file("mapskey.properties")
+            val properties = Properties()
+            properties.load(mapsKeyFile.inputStream())
+
+            //return empty key in case something goes wrong
+            val googleMapsKey = properties.getProperty("GOOGLE_MAPS_API_KEY") ?: ""
+
+            buildConfigField(type = "String", name ="GOOGLE_MAPS_API_KEY", value = googleMapsKey)
+
+            manifestPlaceholders["GOOGLE_MAPS_API_KEY"] = googleMapsKey
+            resValue("string", "google_maps_key", googleMapsKey)
         }
 
     }

@@ -29,7 +29,11 @@
         </activity>
 
         <meta-data android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyD0dKeyraNbjqI8eOabjVC7xfzLSPDC1Zs"/>
+            android:value="${GOOGLE_MAPS_API_KEY}"/>
     </application>
 
 </manifest>
+   <!-- AIzaSyD0dKeyraNbjqI8eOabjVC7xfzLSPDC1Zs-->
+<!--
+<meta-data android:name="com.google.android.geo.API_KEY"
+android:value="${GOOGLE_MAPS_API_KEY}"/>-->
