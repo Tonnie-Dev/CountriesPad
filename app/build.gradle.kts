@@ -21,7 +21,22 @@ android {
             useSupportLibrary = true
         }
 
-        //resValue(type = "String", name ="GOOGLE_MAPS_API_KEY", value = googleMapsKey)
+        //load the values from .properties file
+        val mapsKeyFile = project.rootProject.file("mapskey.properties")
+        val properties = Properties()
+        properties.load(mapsKeyFile.inputStream())
+
+        //fetch the map key
+        val apiKey = properties.getProperty("GOOGLE_MAPS_API_KEY") ?: ""
+
+       // create a map of manifest placeholders
+        manifestPlaceholders["googleKey"] = apiKey
+
+        // define the resource value
+        resValue(type = "string", name = "googleKey", value = apiKey)
+
+
+
     }
 
     signingConfigs {
@@ -49,43 +64,19 @@ android {
     buildTypes {
 
         release {
-            manifestPlaceholders += mapOf()
-            //load the values from .properties file
-            val mapsKeyFile = project.rootProject.file("mapskey.properties")
-            val properties = Properties()
-            properties.load(mapsKeyFile.inputStream())
 
-            //return empty key in case something goes wrong
-            val googleMapsKey = properties.getProperty("GOOGLE_MAPS_API_KEY") ?: ""
-
-            buildConfigField(type = "String", name ="GOOGLE_MAPS_API_KEY", value = googleMapsKey)
-
-            manifestPlaceholders["GOOGLE_MAPS_API_KEY"] = googleMapsKey
             isMinifyEnabled = false
             proguardFiles(
                     getDefaultProguardFile("proguard-android-optimize.txt"),
                     "proguard-rules.pro"
             )
             signingConfig = signingConfigs.getByName("debug")
-            resValue("string", "google_maps_key", googleMapsKey)
+
 
 
         }
 
-        debug{
-            //load the values from .properties file
-            val mapsKeyFile = project.rootProject.file("mapskey.properties")
-            val properties = Properties()
-            properties.load(mapsKeyFile.inputStream())
 
-            //return empty key in case something goes wrong
-            val googleMapsKey = properties.getProperty("GOOGLE_MAPS_API_KEY") ?: ""
-
-            buildConfigField(type = "String", name ="GOOGLE_MAPS_API_KEY", value = googleMapsKey)
-
-            manifestPlaceholders["GOOGLE_MAPS_API_KEY"] = googleMapsKey
-            resValue("string", "google_maps_key", googleMapsKey)
-        }
 
     }
 

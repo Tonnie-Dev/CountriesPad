@@ -13,12 +13,13 @@ import com.uxstate.ui.theme.CountriesPadTheme
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
+
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalAnimationApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
-
-  val x = BuildConfig.GOOGLE_MAPS_API_KEY
+        //Timber.i("The key is ${BuildConfig.GOOGLE_MAPS_API_KEY}")
+Timber.i("Xxx")
         super.onCreate(savedInstanceState)
         setContent {
             CountriesPadTheme {
@@ -30,6 +31,7 @@ class MainActivity : ComponentActivity() {
                 ) {
 
                     Home()
+
 
                 }
 
