@@ -1,3 +1,4 @@
+import org.jetbrains.kotlin.gradle.utils.API
 import java.util.Properties
 plugins {
     id("com.android.application")
@@ -5,6 +6,7 @@ plugins {
     id("kotlin-parcelize")
     id("com.google.devtools.ksp")
     id("dagger.hilt.android.plugin")
+    id ("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 
 }
 
@@ -21,20 +23,19 @@ android {
             useSupportLibrary = true
         }
 
-        //load the values from .properties file
+   //load the values from .properties file
         val mapsKeyFile = project.rootProject.file("mapskey.properties")
         val properties = Properties()
         properties.load(mapsKeyFile.inputStream())
 
         //fetch the map key
-        val apiKey = properties.getProperty("GOOGLE_MAPS_API_KEY") ?: ""
-
-       // create a map of manifest placeholders
-        manifestPlaceholders["googleKey"] = apiKey
+        val apiKey = properties.getProperty("GOOGLE_MAPS_API_KEY")
 
         // define the resource value
         resValue(type = "string", name = "googleKey", value = apiKey)
 
+
+      manifestPlaceholders["googleKey"] = apiKey
 
 
     }
