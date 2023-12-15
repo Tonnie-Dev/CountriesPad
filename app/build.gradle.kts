@@ -6,8 +6,7 @@ plugins {
     id("kotlin-parcelize")
     id("com.google.devtools.ksp")
     id("dagger.hilt.android.plugin")
-    id ("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
-
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
 
 android {
@@ -29,13 +28,12 @@ android {
         properties.load(mapsKeyFile.inputStream())
 
         //fetch the map key
-        val apiKey = properties.getProperty("GOOGLE_MAPS_API_KEY")
+        val apiKey = properties.getProperty("MAPS_API_KEY") ?: ""
 
         // define the resource value
-        resValue(type = "string", name = "googleKey", value = apiKey)
+      // resValue(type = "string", name = "googleKey", value = apiKey)
 
-
-      manifestPlaceholders["googleKey"] = apiKey
+        manifestPlaceholders["google"] = apiKey
 
 
     }
