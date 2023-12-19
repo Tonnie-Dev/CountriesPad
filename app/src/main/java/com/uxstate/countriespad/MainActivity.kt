@@ -18,8 +18,7 @@ import timber.log.Timber
 class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalAnimationApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
-        Timber.i("The key is ${BuildConfig.GOOGLE_MAPS_API_KEY}")
-Timber.i("Xxx")
+    
         super.onCreate(savedInstanceState)
         setContent {
             CountriesPadTheme {
