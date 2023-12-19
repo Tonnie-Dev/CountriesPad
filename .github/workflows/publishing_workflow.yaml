@@ -22,12 +22,15 @@ jobs:
 #
 #              echo $ENCODED_STRING | base64 -di > "${TMP_KEYSTORE_FILE_PATH}"/your_keystore_file.jks
               
-          # Step 2 - Checkout the repository, making it available to the workflow
+          # Step 1 - Checkout the repository, making it available to the workflow
          - uses: actions/checkout@v3
          
-         # Step 2 - Checkout the repository, making it available to the workflow
-         -  name: Get maps key from secrets
-            run: echo "${{secret.MAPS_API_KEY }}" > $GITHUB_WORKSPACE/mapskey.properties
+         # Step 2 - retrieves the contents of MAPS_API_KEY secret from GitHub Secrets
+         # and save it as mapskey.properties file in the workflow workspace.
+         
+         -  name: Get mapskey.properties from secrets
+            run: echo "${{ secret.MAPS_API_KEY }}" > $GITHUB_WORKSPACE/mapskey.properties
+            
          
          # Step 3 - Setup Java
          - name: Setup JDK 18
