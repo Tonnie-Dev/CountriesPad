@@ -29,7 +29,7 @@ jobs:
          # and save it as mapskey.properties file in the workflow workspace.
          
          -  name: Get mapskey.properties from secrets
-            run: echo "${{ secret.MAPS_API_KEY }}" > $GITHUB_WORKSPACE/mapskey.properties
+            run: echo "${{ secrets.MAPS_API_KEY }}" > $GITHUB_WORKSPACE/mapskey.properties
             
          
          # Step 3 - Setup Java
