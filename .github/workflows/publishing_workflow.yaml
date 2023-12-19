@@ -10,17 +10,17 @@ jobs:
       runs-on: ubuntu-latest
       steps:
       
-         # Step 1 - Read Keystore from GitHub Secrets, decrypt from base64 string and
-         # avail it to the workflow - place it in a temporary folder
-         - name: Decode Keystore
-           env:
-              ENCODED_STRING: ${{ secrets.KEYSTORE }}
-           run: >
-              TMP_KEYSTORE_FILE_PATH="${RUNNER_TEMP}"/keystore
-            
-              mkdir "${TMP_KEYSTORE_FILE_PATH}"
-            
-              echo $ENCODED_STRING | base64 -di > "${TMP_KEYSTORE_FILE_PATH}"/your_keystore_file.jks
+#         # Step 1 - Read Keystore from GitHub Secrets, decrypt from base64 string and
+#         # avail it to the workflow - place it in a temporary folder
+#         - name: Decode Keystore
+#           env:
+#              ENCODED_STRING: ${{ secrets.KEYSTORE }}
+#           run: >
+#              TMP_KEYSTORE_FILE_PATH="${RUNNER_TEMP}"/keystore
+#
+#              mkdir "${TMP_KEYSTORE_FILE_PATH}"
+#
+#              echo $ENCODED_STRING | base64 -di > "${TMP_KEYSTORE_FILE_PATH}"/your_keystore_file.jks
               
           # Step 2 - Checkout the repository, making it available to the workflow
          - uses: actions/checkout@v3
