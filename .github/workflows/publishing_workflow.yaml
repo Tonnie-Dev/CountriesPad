@@ -37,7 +37,7 @@ jobs:
            uses: actions/setup-java@v3
            with:
               distribution: temurin
-              java-version: 18
+              java-version: 20
           
           # Step 4 - Setup Gradle to allow workflow access and execute gradlew file
          - name: Make gradlew executable
