@@ -1,7 +1,7 @@
 name: Deploy Countries Pad
 on:
    workflow_dispatch:
-   
+
 # Job 1 - Build Signed AAB
 
 jobs:
@@ -9,104 +9,87 @@ jobs:
       name: Job 1 - Build Signed AAB
       runs-on: ubuntu-latest
       steps:
-      
-#         # Step 1 - Read Keystore from GitHub Secrets, decrypt from base64 string and
-#         # avail it to the workflow - place it in a temporary folder
-#         - name: Decode Keystore
-#           env:
-#              ENCODED_STRING: ${{ secrets.KEYSTORE }}
-#           run: >
-#              TMP_KEYSTORE_FILE_PATH="${RUNNER_TEMP}"/keystore
-#
-#              mkdir "${TMP_KEYSTORE_FILE_PATH}"
-#
-#              echo $ENCODED_STRING | base64 -di > "${TMP_KEYSTORE_FILE_PATH}"/your_keystore_file.jks
-              
-          # Step 1 - Checkout the repository, making it available to the workflow
-         - uses: actions/checkout@v3
          
-         # Step 2 - retrieves the contents of MAPS_API_KEY secret from GitHub Secrets
+         # Step 1 - Checkout the repository, making it available to the workflow
+         -  uses: actions/checkout@v3
+         
+         # Step 2 [Optional] retrieves the contents of MAPS_API_KEY secret from GitHub Secrets
          # and save it as mapskey.properties file in the workflow workspace.
          
          -  name: Get mapskey.properties from secrets
             run: echo "${{ secrets.MAPS_API_KEY }}" > $GITHUB_WORKSPACE/mapskey.properties
-            
          
-         # Step 3 - Setup Java
-         - name: Setup JDK 18
-           uses: actions/setup-java@v3
-           with:
-              distribution: temurin
-              java-version: 20
-          
-          # Step 4 - Setup Gradle to allow workflow access and execute gradlew file
-         - name: Make gradlew executable
-           run: chmod +x ./gradlew
+         # Step 3 - Setup Java 20
+         -  name: Setup JDK 20
+            uses: actions/setup-java@v3
+            with:
+               distribution: temurin
+               java-version: 20
          
-         # Step 5 - Setup Gradle cache to improve the speed of the workflows
-         - name: Setup Gradle Cache
-           uses: gradle/gradle-build-action@v2
-           with:
-              gradle-home-cache-cleanup: true
-              
-         # Step 6 - Override the version code and version name
-         - name: Bump Version Code
-           uses: chkfung/android-version-actions@v1.2.1
-           with:
-              gradlePath: app/build.gradle.kts
-              versionCode: ${{ github.run_number }}
-              versionName: 1.0.0
-          
-          # Step 7 - Build App Bundle
-         - name: Build prodRelease
-           run: ./gradlew bundleRelease
+         # Step 4 - Setup Gradle to allow workflow access and execute gradlew file
+         -  name: Make gradlew executable
+            run: chmod +x ./gradlew
          
-         # Step 8 - Sign AAB
-         - name: Sign AAb
-           id: sign
-           uses: r0adkll/sign-android-release@v1
-           with:
-              releaseDirectory: app/build/outputs/bundle/release
-              signingKeyBase64: ${{ secrets.KEYSTORE }}
-              alias: ${{ secrets.SIGNING_KEY_ALIAS }}
-              keyStorePassword: ${{ secrets.SIGNING_STORE_PASSWORD }}
-              keyPassword: ${{ secrets.SIGNING_KEY_PASSWORD }}
-              
-          # Step 9 - Print out the Job Status
-         - run: echo "Build status report=${{ job.status }}."
+         # Step 5 - Setup Gradle cache to improve the speed of the workflow
+         -  name: Setup Gradle Cache
+            uses: gradle/gradle-build-action@v2
+            with:
+               gradle-home-cache-cleanup: true
          
-         # Step 10 - Save AAB after Build job is complete to publish it as a Github release in the next job
+         # Step 6 - Override the version code
+         -  name: Bump Version Code
+            uses: chkfung/android-version-actions@v1.2.1
+            with:
+               gradlePath: app/build.gradle.kts
+               versionCode: ${{ github.run_number }}
+               versionName: 1.0.0
+         
+         # Step 7 - Build App Bundle
+         -  name: Build prodRelease
+            run: ./gradlew bundleRelease
+         
+         # Step 8 - Sign the AAB
+         -  name: Sign AAb
+            id: sign
+            uses: r0adkll/sign-android-release@v1
+            with:
+               releaseDirectory: app/build/outputs/bundle/release
+               signingKeyBase64: ${{ secrets.KEYSTORE }}
+               alias: ${{ secrets.SIGNING_KEY_ALIAS }}
+               keyStorePassword: ${{ secrets.SIGNING_STORE_PASSWORD }}
+               keyPassword: ${{ secrets.SIGNING_KEY_PASSWORD }}
+         
+         # Step 9 - Save AAB after Build job is complete to publish it as a Github release in the next job
          -  name: Upload app bundle as artifact
             uses: actions/upload-artifact@v2
             with:
                name: app-bundle
                path: app/build/outputs/bundle/release/app-release.aab
          
-    
-        
+         # Step 10 - Print out the Job Status
+         -  run: echo Build status report=${{ job.status }}
+   
    # Job 2 - Deploy to Playstore
    deploy:
+      name: Job 2 - Deploy aab to playstore
       needs: build
       runs-on: ubuntu-latest
       steps:
          
-         # Step 1 - Checkout
-        # - uses: actions/checkout@v3
+         # Step 1 - Download aab
+         -  name: Download app bundle from artifact
+            uses: actions/download-artifact@v2
+            with:
+               name: app-bundle
          
-         # Step 2 - Download aab
-         - name: Download app bundle from artifact
-           uses: actions/download-artifact@v2
-           with:
-              name: app-bundle
-          
-          # Upload the AAB to play console
-         - name: Publish to Play Store
-           uses: r0adkll/upload-google-play@v1
-           with:
-              serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACCOUNT_JSON }}
-              packageName: com.uxstate.countriespad
-              releaseFiles: ${{ github.workspace }}/app-release.aab
-              track: production
+         # Step 2 - Upload aab to play console
+         -  name: Publish to Play Store
+            uses: r0adkll/upload-google-play@v1
+            with:
+               serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACCOUNT_JSON }}
+               packageName: com.uxstate.countriespad
+               releaseFiles: ${{ github.workspace }}/app-release.aab
+               track: production
               
               
               

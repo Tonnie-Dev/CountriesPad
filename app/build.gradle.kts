@@ -1,4 +1,4 @@
-import org.jetbrains.kotlin.gradle.utils.API
+
 import java.util.Properties
 plugins {
     id("com.android.application")
@@ -30,33 +30,10 @@ android {
         //fetch the map key
         val apiKey = properties.getProperty("MAPS_API_KEY") ?: ""
 
-
         manifestPlaceholders["google"] = apiKey
 
 
     }
-
- /*   signingConfigs {
-
-       create("release") {
-
-            val tmpFilePath = System.getProperty("user.home") + "/work/_temp/keystore/"
-            val allFilesFromDir = File(tmpFilePath).listFiles()
-
-            if (allFilesFromDir != null) {
-                val keystoreFile = allFilesFromDir.first()
-                keystoreFile.renameTo(File("keystore/your_keystore.jks"))
-            }
-
-            storeFile = file("keystore/your_keystore.jks")
-            storePassword = System.getenv("SIGNING_STORE_PASSWORD")
-            keyAlias = System.getenv("SIGNING_KEY_ALIAS")
-            keyPassword = System.getenv("SIGNING_KEY_PASSWORD")
-
-
-        }
-    }*/
-
 
     buildTypes {
 
@@ -69,9 +46,7 @@ android {
             )
 
         }
-
-
-
+        
     }
 
 
