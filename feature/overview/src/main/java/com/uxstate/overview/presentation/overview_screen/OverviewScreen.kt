@@ -1,17 +1,26 @@
 package com.uxstate.overview.presentation.overview_screen
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.MoreVert
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.material3.minimumInteractiveComponentSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootNavGraph
@@ -26,7 +35,7 @@ interface OverviewScreenNavigator {
 
     fun navigateToDetailsScreen(country: Country)
     fun navigateBackToOverviewScreen()
-    
+
 }
 
 
@@ -50,38 +59,49 @@ fun OverviewScreen(
 
 
         Column {
-            CountrySearchBar(
-                    queryText = state.query,
-                    onQueryChange = { viewModel.onEvent(OverviewEvent.OnQueryChange(it)) },
-                    placeholderText = stringResource(id = R.string.search_text_placeholder),
-                    isActive = isSearchBarActive,
-                    onActiveChange = {
-                        viewModel.onEvent(
-                                OverviewEvent.OnSearchBarActiveStateChange(
-                                        it
-                                )
-                        )
-                    },
-                    onDeleteText = { viewModel.onEvent(OverviewEvent.OnClearSearchBox) },
-                    onSearch = {},
-                    countries = state.countriesData,
-                    onSearchBackClick = { viewModel.onEvent(OverviewEvent.OnSearchBackClick) },
-                    onSelectCountry = {
-                        viewModel.onEvent(OverviewEvent.OnSelectCountry)
 
-                        navigator.navigateToDetailsScreen(it)
+            Row(horizontalArrangement = Arrangement.SpaceBetween) {
+
+                CountrySearchBar(
+                        queryText = state.query,
+                        onQueryChange = { viewModel.onEvent(OverviewEvent.OnQueryChange(it)) },
+                        placeholderText = stringResource(id = R.string.search_text_placeholder),
+                        isActive = isSearchBarActive,
+                        onActiveChange = {
+                            viewModel.onEvent(
+                                    OverviewEvent.OnSearchBarActiveStateChange(
+                                            it
+                                    )
+                            )
+                        },
+                        onDeleteText = { viewModel.onEvent(OverviewEvent.OnClearSearchBox) },
+                        onSearch = {},
+                        countries = state.countriesData,
+                        onSearchBackClick = { viewModel.onEvent(OverviewEvent.OnSearchBackClick) },
+                        onSelectCountry = {
+                            viewModel.onEvent(OverviewEvent.OnSelectCountry)
+
+                            navigator.navigateToDetailsScreen(it)
 
 
-                    },
-                    modifier = Modifier
-                            .conditional(isSearchBarActive) { fillMaxSize() }
-                            .conditional(!isSearchBarActive) {
-                                fillMaxWidth().padding(
-                                        spacing.spaceSmall
-                                )
-                            }
+                        },
+                        modifier = Modifier
+                                .conditional(isSearchBarActive) { fillMaxSize() }
+                                .conditional(!isSearchBarActive) {
+                                    fillMaxWidth().padding(
+                                            spacing.spaceSmall
+                                    )
+                                }
 
-            )
+                )
+
+                Icon(
+                        imageVector = Icons.Default.MoreVert,
+                        contentDescription = stringResource(R.string.more_settings),
+                        modifier = Modifier.size(30.dp),
+                        tint = Color.White
+                )
+            }
 
             LazyVerticalGrid(
                     modifier = Modifier.weight(8f),
@@ -92,7 +112,7 @@ fun OverviewScreen(
                             CountrySurfaceCard(country = country) {
 
                                 navigator.navigateToDetailsScreen(it)
-                                // navigator.navigate(DetailsScreenDestination(it))
+
                             }
 
                         }
@@ -105,60 +125,6 @@ fun OverviewScreen(
 }
 
 
-/*
-            Spacer(modifier = Modifier.height(spacing.spaceExtraSmall))
-
-            //HEADER_SECTION
-            Surface(modifier = Modifier
-                    .weight(.7f)
-                    .padding(spacing.spaceExtraSmall),
-                    color = MaterialTheme.colorScheme.surfaceVariant,
-                    contentColor = MaterialTheme.colorScheme.onSurfaceVariant,
-                    shadowElevation = spacing.spaceExtraSmall,
-                    shape = RoundedCornerShape(spacing.spaceExtraSmall)
-            ) {
-
-                Row(
-                        modifier = Modifier
-                                .fillMaxWidth()
-                                .align(Alignment.End),
-                        horizontalArrangement = Arrangement.End
-                        //verticalAlignment = Alignment.CenterVertically
-                ) {
-
-                    IconButton(onClick = { viewModel.onEvent(OverviewEvent.OnToggleSelectionPane) }) {
-                        Icon(modifier = Modifier.size(spacing.spaceLarge),
-                                imageVector = Icons.Default.List,
-                                contentDescription = stringResource(id = R.string.sort_countries_label)
-                        )
-                    }
-
-
-                }
-            }
-
-            AnimatedVisibility(
-                    visible = state.isOrderPaneVisible,
-                    enter = fadeIn() + slideInVertically(),
-                    exit = fadeOut() + slideOutVertically()
-            ) {
-                OrderPanel(
-                        countryOrder = state.countryOrderFormat,
-                        onOrderChange = {
-
-                            viewModel.onEvent(OverviewEvent.OnChangeOrder(it))
-                        },
-                        modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(spacing.spaceSmall),
-
-                        )
-            }
-
-            Spacer(modifier = Modifier.height(spacing.spaceExtraSmall))*/
-
-
-//End of Column
 
 
 
