@@ -48,6 +48,6 @@ dependencies {
     androidTestImplementation(libs.junit4.ui.test)
 
     //Modules
-
+    implementation(project(":core:ui"))
 
 }

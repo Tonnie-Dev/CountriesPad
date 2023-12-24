@@ -15,5 +15,9 @@
     <string name="ascending_text">Ascending</string>
     <string name="descending_text">Descending</string>
 
+    <!-- settings screen -->
+    <string name="light">Light</string>
+    <string name="dark">Dark</string>
+    <string name="system_default">System Default</string>
 
 </resources>
