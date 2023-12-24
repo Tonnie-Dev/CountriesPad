@@ -71,7 +71,7 @@ jobs:
    
    # Job 2 - Deploy to Playstore
    deploy:
-      name: Job 2 - Deploy aab to playstore
+      name: Job_2 - Deploy aab to playstore
       needs: build
       runs-on: ubuntu-latest
       steps:

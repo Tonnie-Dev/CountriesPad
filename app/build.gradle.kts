@@ -1,5 +1,5 @@
-
 import java.util.Properties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -12,12 +12,12 @@ plugins {
 android {
     compileSdk = ProjectConfig.compileSdk
     defaultConfig {
-        applicationId ="com.uxstate.countriespad"
+        applicationId = "com.uxstate.countriespad"
         minSdk = ProjectConfig.minSdk
-        targetSdk =ProjectConfig.targetSdk
-        versionCode  =2
-        versionName ="2.0"
-        testInstrumentationRunner ="androidx.test.runner.AndroidJUnitRunner"
+        targetSdk = ProjectConfig.targetSdk
+        versionCode = 2
+        versionName = "2.0"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -30,7 +30,8 @@ android {
         //fetch the map key
         val apiKey = properties.getProperty("MAPS_API_KEY") ?: ""
 
-        manifestPlaceholders["google"] = apiKey
+        //inject the key dynamically into the manifest
+        manifestPlaceholders["GOOGLE_KEY"] = apiKey
 
 
     }
@@ -46,13 +47,13 @@ android {
             )
 
         }
-        
+
     }
 
 
     compileOptions {
-        sourceCompatibility =JavaVersion.VERSION_18
-        targetCompatibility= JavaVersion.VERSION_18
+        sourceCompatibility = JavaVersion.VERSION_18
+        targetCompatibility = JavaVersion.VERSION_18
 
     }
     kotlinOptions {
@@ -137,7 +138,7 @@ dependencies {
     implementation(libs.compose.navigation)
 
     //AndroidX Compose Animation Lib
-    implementation (libs.compose.animation)
+    implementation(libs.compose.animation)
 
 
     //Accompanist Animation
