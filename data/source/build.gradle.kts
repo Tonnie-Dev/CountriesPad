@@ -40,14 +40,13 @@ dependencies {
 
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
-    //implementation(libs.room.runtime)
     implementation(libs.room.ktx)
     ksp(libs.room.compiler)
     implementation(libs.retrofit)
-    /*implementation(libs.converter.moshi)
-    implementation(libs.okhttp)
-    implementation(libs.logging.interceptor)*/
     androidTestImplementation(libs.junit4.ui.test)
+    implementation(libs.data.store)
+
+
     //Modules
     implementation(project(":core:util"))
 

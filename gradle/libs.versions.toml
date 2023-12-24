@@ -16,7 +16,8 @@ com-google-devtools-ksp = { id = "com.google.devtools.ksp", version = "1.9.21-1.
 [versions]
 
 google-dagger = "2.50"
-kotlin = "2.0.0-Beta2"
+
+data-store="1.1.0-alpha07"
 
 androidx-room = "2.6.1"
 
@@ -271,4 +272,6 @@ junit-androidx = { group = "androidx.test.ext", name = "junit", version.ref = "a
 
 
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "androidx-test-espresso" }
+
+data-store = { group = "androidx.datastore", name= "datastore-preferences", version.ref = "data-store"}
 
