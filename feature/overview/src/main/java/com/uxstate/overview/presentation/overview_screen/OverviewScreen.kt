@@ -1,26 +1,19 @@
 package com.uxstate.overview.presentation.overview_screen
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.MoreVert
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.minimumInteractiveComponentSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootNavGraph
@@ -58,50 +51,48 @@ fun OverviewScreen(
             ) {
 
 
-        Column {
-
-            Row(horizontalArrangement = Arrangement.SpaceBetween) {
-
-                CountrySearchBar(
-                        queryText = state.query,
-                        onQueryChange = { viewModel.onEvent(OverviewEvent.OnQueryChange(it)) },
-                        placeholderText = stringResource(id = R.string.search_text_placeholder),
-                        isActive = isSearchBarActive,
-                        onActiveChange = {
-                            viewModel.onEvent(
-                                    OverviewEvent.OnSearchBarActiveStateChange(
-                                            it
-                                    )
-                            )
-                        },
-                        onDeleteText = { viewModel.onEvent(OverviewEvent.OnClearSearchBox) },
-                        onSearch = {},
-                        countries = state.countriesData,
-                        onSearchBackClick = { viewModel.onEvent(OverviewEvent.OnSearchBackClick) },
-                        onSelectCountry = {
-                            viewModel.onEvent(OverviewEvent.OnSelectCountry)
-
-                            navigator.navigateToDetailsScreen(it)
+        Column(
+                modifier = Modifier
+                        .statusBarsPadding()
+                        //.navigationBarsPadding()
+                        .fillMaxSize()
+        ) {
 
 
-                        },
-                        modifier = Modifier
-                                .conditional(isSearchBarActive) { fillMaxSize() }
-                                .conditional(!isSearchBarActive) {
-                                    fillMaxWidth().padding(
-                                            spacing.spaceSmall
-                                    )
-                                }
+            CountrySearchBar(
+                    queryText = state.query,
+                    onQueryChange = { viewModel.onEvent(OverviewEvent.OnQueryChange(it)) },
+                    placeholderText = stringResource(id = R.string.search_text_placeholder),
+                    isActive = isSearchBarActive,
+                    onActiveChange = {
+                        viewModel.onEvent(
+                                OverviewEvent.OnSearchBarActiveStateChange(
+                                        it
+                                )
+                        )
+                    },
+                    onDeleteText = { viewModel.onEvent(OverviewEvent.OnClearSearchBox) },
+                    onSearch = {},
+                    countries = state.countriesData,
+                    onSearchBackClick = { viewModel.onEvent(OverviewEvent.OnSearchBackClick) },
+                    onSelectCountry = {
+                        viewModel.onEvent(OverviewEvent.OnSelectCountry)
 
-                )
+                        navigator.navigateToDetailsScreen(it)
 
-                Icon(
-                        imageVector = Icons.Default.MoreVert,
-                        contentDescription = stringResource(R.string.more_settings),
-                        modifier = Modifier.size(30.dp),
-                        tint = Color.White
-                )
-            }
+
+                    },
+                    modifier = Modifier
+                            .conditional(isSearchBarActive) { fillMaxSize() }
+                            .conditional(!isSearchBarActive) {
+                                fillMaxWidth().padding(
+                                        spacing.spaceSmall
+                                )
+                            }
+
+            )
+
+
 
             LazyVerticalGrid(
                     modifier = Modifier.weight(8f),
