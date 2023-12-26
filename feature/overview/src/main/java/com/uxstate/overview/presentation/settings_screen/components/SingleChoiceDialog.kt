@@ -1,7 +1,7 @@
 package com.uxstate.overview.presentation.settings_screen.components
 
 import android.content.res.Configuration
-import androidx.compose.foundation.layout.Column
+import androidx.annotation.StringRes
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Text
@@ -15,14 +15,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.uxstate.ui.theme.LocalSpacing
 import com.uxstate.ui.R
 import com.uxstate.ui.theme.CountriesPadTheme
+import com.uxstate.ui.theme.LocalSpacing
 
 @Composable
 fun SingleChoiceDialog(
     title: String,
-    options: List<String>,
+    @StringRes options: List<Int>,
     initialSelectedOptionIndex: Int,
     onConfirmOption: (index: Int) -> Unit,
     onDismiss: () -> Unit
@@ -49,18 +49,13 @@ fun SingleChoiceDialog(
             text = {
 
 
+                CountryRadioGroup(
+                        initialSelectedOptionIndex = selectedOptionIndex,
+                        options = options
+                ) {
 
-                CountryRadioGroup()
-                /*Column {
-                    options.forEachIndexed { i, option ->
-
-
-                        LabelledRadioButton(
-                                text = option,
-                                isSelected = selectedOptionIndex == i,
-                                onClick = { selectedOptionIndex = i })
-                    }
-                }*/
+                    selectedOptionIndex = it
+                }
 
 
             }
@@ -72,11 +67,11 @@ fun SingleChoiceDialog(
 @Composable
 fun SingleChoiceDialogPreviewLight() {
 
-    CountriesPadTheme{
+    CountriesPadTheme {
 
         SingleChoiceDialog(
                 title = "Theme",
-                options = listOf("Dark", "Light", "System"),
+                options = listOf(R.string.system_default, R.string.light, R.string.dark),
                 initialSelectedOptionIndex = 0,
                 onConfirmOption = {}
         ) {
@@ -95,7 +90,7 @@ fun SingleChoiceDialogPreviewDark() {
 
         SingleChoiceDialog(
                 title = "Theme",
-                options = listOf("Dark", "Light", "System"),
+                options = listOf(R.string.system_default, R.string.light, R.string.dark),
                 initialSelectedOptionIndex = 0,
                 onConfirmOption = {}
         ) {

@@ -65,6 +65,7 @@ dependencies {
     ksp(libs.hilt.compiler)
     implementation(libs.hilt.navigation.compose)
     androidTestImplementation(libs.junit4.ui.test)
+    implementation(libs.timber)
 
     //modules
     implementation(project(":core:ui"))

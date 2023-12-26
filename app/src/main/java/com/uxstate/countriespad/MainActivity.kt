@@ -7,12 +7,18 @@ import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.uxstate.countriespad.home.Home
+import com.uxstate.overview.presentation.settings_screen.SettingsViewModel
 import com.uxstate.ui.theme.CountriesPadTheme
+import com.uxstate.util.model.ThemeMode
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -32,8 +38,22 @@ class MainActivity : ComponentActivity() {
                         darkScrim = Color.TRANSPARENT
                 )
         )
+
+
         setContent {
-            CountriesPadTheme {
+
+            val viewModel:SettingsViewModel = hiltViewModel()
+            val state by viewModel.state.collectAsStateWithLifecycle()
+
+            val isDark = when(state.appPrefs.themeMode){
+
+                // returns true if the system is in dark theme
+                ThemeMode.SYSTEM_DEFAULT -> isSystemInDarkTheme()
+                ThemeMode.DARK_THEME -> true
+                ThemeMode.LIGHT_THEME -> false
+
+            }
+            CountriesPadTheme(darkTheme =isDark) {
 
                 // A surface container using the 'background' color from the theme
                 Surface(

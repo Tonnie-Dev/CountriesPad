@@ -20,7 +20,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.uxstate.overview.presentation.settings_screen.components.SettingsContent
+import com.uxstate.overview.presentation.settings_screen.components.SingleChoiceDialog
 import com.uxstate.ui.R
+import com.uxstate.util.model.ThemeMode
+import timber.log.Timber
 
 interface SettingsScreenNavigator {
 
@@ -38,8 +41,8 @@ fun SettingsScreen(
 
     val state by viewModel.state.collectAsState()
     val isShowDialog = state.isShowThemeDialog
-
-
+    val currentThemeMode = state.appPrefs.themeMode
+    
 
     Scaffold(topBar = {
         CenterAlignedTopAppBar(
@@ -55,25 +58,28 @@ fun SettingsScreen(
                         )
                     }
                 })
-    }) {
+    }) { paddingValues ->
 
         SettingsContent(
-                modifier = Modifier.padding(it),
+                modifier = Modifier.padding(paddingValues),
                 appPreferences = state.appPrefs,
                 actions = viewModel
         )
-        
-        
-        if (isShowDialog){
-            
-          /* SingleChoiceDialog(
+
+
+        if (isShowDialog) {
+
+            SingleChoiceDialog(
                     title = stringResource(id = R.string.theme_text),
-                    options = ,
-                    initialSelectedOptionIndex = ,
-                    onConfirmOption =
+                    options = ThemeMode.entries.map { it.themeResName },
+                    initialSelectedOptionIndex = ThemeMode.entries.indexOf(currentThemeMode),
+                    onConfirmOption = { index ->
+
+                        viewModel.onThemeChange(themeMode = ThemeMode.entries[index])
+                    }
             ) {
-                
-            }*/
+
+            }
         }
 
     }
