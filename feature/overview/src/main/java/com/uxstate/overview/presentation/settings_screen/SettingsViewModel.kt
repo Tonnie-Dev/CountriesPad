@@ -3,12 +3,17 @@ package com.uxstate.overview.presentation.settings_screen
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.uxstate.overview.presentation.settings_screen.components.SettingsActions
 import com.uxstate.source.prefs.DataStoreOps
+import com.uxstate.util.model.AppPrefs
 import com.uxstate.util.model.ThemeMode
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -18,19 +23,34 @@ class SettingsViewModel @Inject constructor(private val dataStoreOps: DataStoreO
     val state = _state.asStateFlow()
 
 
-    private observePrefsFlow(){
+    private fun observePrefsFlow(){
 
+viewModelScope.launch {
 
+    dataStoreOps.appPrefs.collectLatest {
+
+        prefs ->
+        _state.update { it.copy(appPrefs = prefs ) }
+    }
+}
     }
     override fun onThemeSettingsClick() {
-        TODO("Not yet implemented")
+       _state.update { it.copy(isShowThemeDialog = true) }
     }
 
     override fun onThemeChange(themeMode: ThemeMode) {
-        TODO("Not yet implemented")
+
+        viewModelScope.launch {
+
+            dataStoreOps.updateTheme(themeMode =themeMode)
+
+        }
+
+        _state.update { it.copy(isShowThemeDialog = false) }
+
     }
 
     override fun onDismissThemeSelectionDialog() {
-        TODO("Not yet implemented")
+        _state.update { it.copy(isShowThemeDialog = false) }
     }
 }
