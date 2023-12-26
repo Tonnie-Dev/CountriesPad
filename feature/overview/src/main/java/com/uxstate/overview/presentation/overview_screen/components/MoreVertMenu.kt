@@ -3,9 +3,14 @@ package com.uxstate.overview.presentation.overview_screen.components
 import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MoreVert
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
@@ -18,15 +23,20 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.uxstate.ui.R
+import com.uxstate.ui.theme.LocalSpacing
 
 @Composable
 fun MoreVertMenu(modifier: Modifier = Modifier, onSettingsClick: () -> Unit) {
 
-    Column (modifier = modifier){
+    val spacing = LocalSpacing.current
+
+    Column(modifier = modifier) {
 
         var isExpanded by remember { mutableStateOf(false) }
 
@@ -46,8 +56,19 @@ fun MoreVertMenu(modifier: Modifier = Modifier, onSettingsClick: () -> Unit) {
         ) {
 
             DropdownMenuItem(
-                    text = { Text(text = stringResource(id = R.string.more_settings)) },
-                    onClick = { isExpanded = false; onSettingsClick()}
+                    text = {
+                        Row(horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
+                            Icon(
+                                    imageVector = Icons.Default.Settings,
+                                    contentDescription = stringResource(
+                                            id = R.string.settings_text
+                                    )
+                            )
+                            Spacer(modifier = Modifier.width(spacing.spaceExtraSmall))
+                            Text(text = stringResource(id = R.string.settings_text))
+                        }
+                    },
+                    onClick = { isExpanded = false; onSettingsClick() }
             )
         }
 

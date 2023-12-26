@@ -4,6 +4,7 @@ import com.ramcosta.composedestinations.spec.DestinationSpec
 import com.ramcosta.composedestinations.spec.NavGraphSpec
 import com.uxstate.overview.presentation.destinations.DetailsScreenDestination
 import com.uxstate.overview.presentation.destinations.OverviewScreenDestination
+import com.uxstate.overview.presentation.destinations.SettingsScreenDestination
 import com.uxstate.stats.destinations.StatsScreenDestination
 import com.uxstate.validator.destinations.ValidatorScreenDestination
 
@@ -18,7 +19,8 @@ object NavGraphs {
         override val startRoute = OverviewScreenDestination
         override val destinationsByRoute= listOf<DestinationSpec<*>>(
                 OverviewScreenDestination,
-                DetailsScreenDestination
+                DetailsScreenDestination,
+                SettingsScreenDestination
         )
                 .associateBy{it.route}
 

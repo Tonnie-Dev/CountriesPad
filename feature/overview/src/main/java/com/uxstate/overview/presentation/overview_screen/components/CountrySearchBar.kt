@@ -1,5 +1,6 @@
 package com.uxstate.overview.presentation.overview_screen.components
 
+import android.content.res.Configuration.UI_MODE_NIGHT_NO
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -10,33 +11,26 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Close
-import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SearchBar
 import androidx.compose.material3.SearchBarDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.minimumInteractiveComponentSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.uxstate.ui.R
@@ -56,7 +50,8 @@ fun CountrySearchBar(
     onDeleteText: () -> Unit,
     onSearch: (String) -> Unit,
     onSearchBackClick: () -> Unit,
-    onSelectCountry: (com.uxstate.util.model.Country) -> Unit
+    onSelectCountry: (com.uxstate.util.model.Country) -> Unit,
+     onSettingsMenuClick:()-> Unit
 
 ) {
 
@@ -127,17 +122,15 @@ fun CountrySearchBar(
 
 
         }
-       MoreVertMenu {
-
-       }
+       MoreVertMenu (onSettingsClick =  onSettingsMenuClick)
     }
 
 
 }
 
-@Preview
+@Preview(uiMode = UI_MODE_NIGHT_NO, showBackground = true)
 @Composable
-fun CountrySearchBarLightPrev() {
+fun CountrySearchBarPreviewLight() {
     CountrySearchBar(
 
             queryText = "",
@@ -149,8 +142,28 @@ fun CountrySearchBarLightPrev() {
             onDeleteText = {},
             onSearch = {},
             onSearchBackClick = {},
-            onSelectCountry = {})
+            onSelectCountry = {},
+            onSettingsMenuClick ={})
 }
+
+@Preview(uiMode = UI_MODE_NIGHT_YES, showBackground = true)
+@Composable
+fun CountrySearchBarPreviewDark() {
+    CountrySearchBar(
+
+            queryText = "",
+            placeholderText = "",
+            isActive = false,
+            countries = listOf(),
+            onQueryChange = {},
+            onActiveChange = {},
+            onDeleteText = {},
+            onSearch = {},
+            onSearchBackClick = {},
+            onSelectCountry = {},
+            onSettingsMenuClick ={})
+}
+
 
 @Composable
 fun CountryBar(

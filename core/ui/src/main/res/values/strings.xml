@@ -26,15 +26,16 @@
     <string name="share_application">Share Us</string>
     <string name="invite_friends">Invite your friends to join us</string>
     <string name="report_issue">Report an issue</string>
-    <string name="help_us">Help us to make SkyCast</string>
+    <string name="help_us">Help us to make CountriesPad Better</string>
     <string name="rate_us">Rate us</string>
     <string name="give_feedback">Share your feedback with us</string>
     <string name="version">Version: 1.0</string>
     <string name="app_version">Current app version</string>
     <string name="close">Close</string>
     <string name="ok_text">OK</string>
-    <string name="settings">Settings</string>
+    <string name="settings_text">Settings</string>
     <string name="back_text">Back</string>
     <string name="more_settings">More</string>
+    <string name="theme_text">Theme</string>
 
 </resources>

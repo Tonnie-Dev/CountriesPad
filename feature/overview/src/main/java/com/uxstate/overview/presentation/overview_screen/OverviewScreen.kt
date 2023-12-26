@@ -28,6 +28,7 @@ interface OverviewScreenNavigator {
 
     fun navigateToDetailsScreen(country: Country)
     fun navigateBackToOverviewScreen()
+    fun navigateToSettingsScreen()
 
 }
 
@@ -88,7 +89,8 @@ fun OverviewScreen(
                                 fillMaxWidth().padding(
                                         spacing.spaceSmall
                                 )
-                            }
+                            },
+                    onSettingsMenuClick = { navigator.navigateToSettingsScreen() }
 
             )
 
