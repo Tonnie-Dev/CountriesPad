@@ -50,7 +50,6 @@ android {
 
 dependencies {
     implementation(libs.compose.destinations.core)
-    implementation(project(":"))
     ksp(libs.compose.destinations.ksp)
     implementation(AndroidX.navigation.compose)
     implementation(libs.compose.ui)

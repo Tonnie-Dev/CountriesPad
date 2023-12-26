@@ -31,14 +31,12 @@ fun CountryRadioGroup(
         mutableStateOf(radioOptions[0])
     }
 
-    Column(Modifier.selectableGroup()) {
+    Column(modifier.selectableGroup()) {
         radioOptions.forEach { text ->
-
 
             Row(
                     Modifier
                             .fillMaxWidth()
-                            .height(56.dp)
                             .selectable(
                                     selected = (text == selectedOption),
                                     onClick = { onOptionSelected(text) },

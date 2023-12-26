@@ -1,5 +1,7 @@
 package com.uxstate.countriespad.di
 
+import com.uxstate.source.prefs.DataStoreOps
+import com.uxstate.source.prefs.DataStoreOpsImpl
 import com.uxstate.source.repository_impl.CountryRepositoryImpl
 import com.uxstate.source.repository.CountryRepository
 import dagger.Binds
@@ -27,4 +29,8 @@ abstract class RepositoryModule {
     interface implemented by the given parameter object.*/
 
   abstract  fun provideCountryRepository(repositoryImpl: CountryRepositoryImpl): CountryRepository
+
+  @Binds
+  @Singleton
+  abstract fun provideDataStoreOps(dataStoreOpsImpl: DataStoreOpsImpl):DataStoreOps
 }
