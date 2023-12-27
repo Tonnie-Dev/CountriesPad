@@ -1,14 +1,12 @@
 package com.uxstate.source.remote
 
+import com.uxstate.util.REST_COUNTRIES_ENDPOINT
 import retrofit2.http.GET
 
 interface CountryAPI {
 
-    @GET("v3.1/all")
+    @GET(REST_COUNTRIES_ENDPOINT )
     suspend fun getCountriesJsonString():String
 
-    companion object {
 
-        const val BASE_URL = "https://restcountries.com/"
-    }
 }

@@ -23,7 +23,6 @@ import com.uxstate.overview.presentation.settings_screen.components.SettingsCont
 import com.uxstate.overview.presentation.settings_screen.components.SingleChoiceDialog
 import com.uxstate.ui.R
 import com.uxstate.util.model.ThemeMode
-import timber.log.Timber
 
 interface SettingsScreenNavigator {
 
@@ -42,7 +41,7 @@ fun SettingsScreen(
     val state by viewModel.state.collectAsState()
     val isShowDialog = state.isShowThemeDialog
     val currentThemeMode = state.appPrefs.themeMode
-    
+
 
     Scaffold(topBar = {
         CenterAlignedTopAppBar(

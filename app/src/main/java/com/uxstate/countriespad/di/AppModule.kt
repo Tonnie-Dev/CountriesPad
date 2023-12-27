@@ -2,6 +2,7 @@ package com.uxstate.countriespad.di
 
 import android.app.Application
 import androidx.room.Room
+import com.uxstate.countriespad.BuildConfig
 import com.uxstate.source.local.CountryDatabase
 import com.uxstate.source.remote.CountryAPI
 import com.uxstate.source.repository.CountryRepository
@@ -57,7 +58,7 @@ object AppModule {
     fun provideCountryAPI(okHttpClient: OkHttpClient): CountryAPI {
         //no converter as Retrofit is just returning raw JSON String
         return Retrofit.Builder()
-                .baseUrl(CountryAPI.BASE_URL)
+                .baseUrl(com.uxstate.source.BuildConfig.BASE_URL)
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .client(okHttpClient)
                 .build()
