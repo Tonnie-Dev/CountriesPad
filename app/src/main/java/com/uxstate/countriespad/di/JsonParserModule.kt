@@ -1,7 +1,7 @@
 package com.uxstate.countriespad.di
 
-import com.uxstate.source.json.CountriesListParser
-import com.uxstate.source.json.JsonStringParser
+import com.uxstate.source.remote.json.CountriesListParser
+import com.uxstate.source.remote.json.JsonStringParser
 import com.uxstate.util.model.Country
 import dagger.Binds
 import dagger.Module

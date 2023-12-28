@@ -1,11 +1,10 @@
-package com.uxstate.source.repository_impl
+package com.uxstate.source.repository
 
-import com.uxstate.source.json.JsonStringParser
+import com.uxstate.source.remote.json.JsonStringParser
 import com.uxstate.source.local.CountryDatabase
 import com.uxstate.source.mapper.toCountry
 import com.uxstate.source.mapper.toCountryEntity
-import com.uxstate.source.remote.CountryAPI
-import com.uxstate.source.repository.CountryRepository
+import com.uxstate.source.remote.api.CountryAPI
 import com.uxstate.util.Resource
 import com.uxstate.util.model.Country
 import kotlinx.coroutines.flow.Flow

@@ -1,4 +1,4 @@
-package com.uxstate.source.json
+package com.uxstate.source.remote.json
 
 import com.uxstate.util.model.Country
 import org.json.JSONArray
@@ -15,7 +15,7 @@ import javax.inject.Singleton
 * of this class for the entire app*/
 
 @Singleton
-class CountriesListParser @Inject constructor() : JsonStringParser<com.uxstate.util.model.Country> {
+class CountriesListParser @Inject constructor() : JsonStringParser<Country> {
 
     override fun parseJson(jsonString: String): List<Country> {
 

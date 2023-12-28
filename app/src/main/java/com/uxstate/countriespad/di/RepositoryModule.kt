@@ -2,7 +2,7 @@ package com.uxstate.countriespad.di
 
 import com.uxstate.source.prefs.DataStoreOps
 import com.uxstate.source.prefs.DataStoreOpsImpl
-import com.uxstate.source.repository_impl.CountryRepositoryImpl
+import com.uxstate.source.repository.CountryRepositoryImpl
 import com.uxstate.source.repository.CountryRepository
 import dagger.Binds
 import dagger.Module

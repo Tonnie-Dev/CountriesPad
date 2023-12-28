@@ -1,4 +1,4 @@
-package com.uxstate.source.json
+package com.uxstate.source.remote.json
 
 interface JsonStringParser<T> {
 

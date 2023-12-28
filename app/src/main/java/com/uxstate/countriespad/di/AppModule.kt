@@ -2,14 +2,11 @@ package com.uxstate.countriespad.di
 
 import android.app.Application
 import androidx.room.Room
-import com.uxstate.countriespad.BuildConfig
 import com.uxstate.source.local.CountryDatabase
-import com.uxstate.source.remote.CountryAPI
+import com.uxstate.source.remote.api.CountryAPI
 import com.uxstate.source.repository.CountryRepository
 import com.uxstate.util.use_cases.FilterUseCase
-import com.uxstate.overview.domain.use_cases.GetCountryDataUseCase
 import com.uxstate.source.use_case.FetchCountryDataUseCase
-import com.uxstate.util.use_cases.UseCaseContainer
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

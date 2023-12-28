@@ -1,4 +1,4 @@
-package com.uxstate.source.remote
+package com.uxstate.source.remote.api
 
 import com.uxstate.util.REST_COUNTRIES_ENDPOINT
 import retrofit2.http.GET
