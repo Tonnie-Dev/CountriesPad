@@ -12,6 +12,7 @@ import kotlinx.coroutines.withContext
 import java.io.IOException
 import javax.inject.Inject
 
+//This class makes the actual network call
 @RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
 class RemoteDataSourceImpl @Inject constructor(
     private val api: CountryAPI,

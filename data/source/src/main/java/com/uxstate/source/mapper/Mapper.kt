@@ -1,7 +1,6 @@
 package com.uxstate.source.mapper
 
-import com.uxstate.source.local.CountryEntity
-import com.uxstate.util.model.Country
+import com.uxstate.source.local.entity.CountryEntity
 
 //countryEntity to country model
 

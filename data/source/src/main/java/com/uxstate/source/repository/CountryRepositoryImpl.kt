@@ -1,7 +1,7 @@
 package com.uxstate.source.repository
 
 import com.uxstate.source.remote.json.JsonStringParser
-import com.uxstate.source.local.CountryDatabase
+import com.uxstate.source.local.db.CountryDatabase
 import com.uxstate.source.mapper.toCountry
 import com.uxstate.source.mapper.toCountryEntity
 import com.uxstate.source.remote.api.CountryAPI

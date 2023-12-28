@@ -1,4 +1,4 @@
-package com.uxstate.source.local
+package com.uxstate.source.local.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

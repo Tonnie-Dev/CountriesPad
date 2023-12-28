@@ -1,4 +1,4 @@
-package com.uxstate.source.local
+package com.uxstate.source.local.converter
 
 import androidx.room.TypeConverter
 

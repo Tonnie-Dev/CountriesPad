@@ -1,9 +1,10 @@
-package com.uxstate.source.local
+package com.uxstate.source.local.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.uxstate.source.local.entity.CountryEntity
 
 
 @Dao

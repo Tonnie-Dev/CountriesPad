@@ -2,7 +2,7 @@ package com.uxstate.countriespad.di
 
 import android.app.Application
 import androidx.room.Room
-import com.uxstate.source.local.CountryDatabase
+import com.uxstate.source.local.db.CountryDatabase
 import com.uxstate.source.remote.api.CountryAPI
 import com.uxstate.source.repository.CountryRepository
 import com.uxstate.util.use_cases.FilterUseCase
