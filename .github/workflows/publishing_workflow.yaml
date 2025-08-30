@@ -1,88 +1,81 @@
 name: Deploy Countries Pad
 on:
-   workflow_dispatch:
-
-# Job 1 - Build Signed AAB
-
+   workflow_dispatch: null
 jobs:
    build:
       name: Job 1 - Build Signed AAB
       runs-on: ubuntu-latest
       steps:
-         
-         # Step 1 - Checkout the repository, making it available to the workflow
          -  uses: actions/checkout@v3
          
-         # Step 2 [Optional] retrieves the contents of MAPS_API_KEY secret from GitHub Secrets
-         # and save it as mapskey.properties file in the workflow workspace.
-         
-         -  name: Get mapskey.properties from secrets
-            run: echo "${{ secrets.MAPS_API_KEY }}" > $GITHUB_WORKSPACE/mapskey.properties
-         
-         # Step 3 - Setup Java 20
-         -  name: Setup JDK 20
+         -  name: Setup JDK 17
             uses: actions/setup-java@v3
             with:
                distribution: temurin
-               java-version: 20
+               java-version: 17
          
-         # Step 4 - Setup Gradle to allow workflow access and execute gradlew file
+         -  name: Set up Android SDK
+            uses: android-actions/setup-android@v2
+         
          -  name: Make gradlew executable
             run: chmod +x ./gradlew
          
-         # Step 5 - Setup Gradle cache to improve the speed of the workflow
          -  name: Setup Gradle Cache
             uses: gradle/gradle-build-action@v2
             with:
                gradle-home-cache-cleanup: true
          
-         # Step 6 - Override the version code
+         
+         -  name: Extract versionCode and versionName
+            id: get_versions
+            run: |
+               ./gradlew -q printVersionCodeAndName > version_output.txt
+               cat version_output.txt
+               echo "VERSION_CODE=$(grep VERSION_CODE version_output.txt | cut -d '=' -f2)" >> $GITHUB_ENV
+               echo "VERSION_NAME=$(grep VERSION_NAME version_output.txt | cut -d '=' -f2)" >> $GITHUB_ENV
+         
          -  name: Bump Version Code
             uses: chkfung/android-version-actions@v1.2.1
             with:
                gradlePath: app/build.gradle.kts
-               versionCode: ${{ github.run_number }}
-               versionName: 1.0.0
+               versionCode: ${{ env.VERSION_CODE }}
+               versionName: ${{ env.VERSION_NAME }}
          
-         # Step 7 - Build App Bundle
          -  name: Build prodRelease
             run: ./gradlew bundleRelease
+            continue-on-error: false  # Fail if build fails
          
-         # Step 8 - Sign the AAB
-         -  name: Sign AAb
+         -  name: Sign AAB
             id: sign
             uses: r0adkll/sign-android-release@v1
             with:
                releaseDirectory: app/build/outputs/bundle/release
-               signingKeyBase64: ${{ secrets.KEYSTORE }}
-               alias: ${{ secrets.SIGNING_KEY_ALIAS }}
-               keyStorePassword: ${{ secrets.SIGNING_STORE_PASSWORD }}
-               keyPassword: ${{ secrets.SIGNING_KEY_PASSWORD }}
+               signingKeyBase64: '${{ secrets.KEYSTORE }}'
+               alias: '${{ secrets.SIGNING_KEY_ALIAS }}'
+               keyStorePassword: '${{ secrets.SIGNING_STORE_PASSWORD }}'
+               keyPassword: '${{ secrets.SIGNING_KEY_PASSWORD }}'
          
-         # Step 9 - Save AAB after Build job is complete to publish it as a Github release in the next job
          -  name: Upload app bundle as artifact
-            uses: actions/upload-artifact@v2
+            uses: actions/upload-artifact@v4
             with:
                name: app-bundle
                path: app/build/outputs/bundle/release/app-release.aab
-         
-         # Step 10 - Print out the Job Status
-         -  run: echo Build status report=${{ job.status }}
+               retention-days: 2
+            continue-on-error: false  # Fail if upload fails
    
-   # Job 2 - Deploy to Playstore
    deploy:
-      name: Job_2 - Deploy aab to playstore
+      name: Job_2 - Deploy AAB to playstore
       needs: build
       runs-on: ubuntu-latest
+      
       steps:
-         
-         # Step 1 - Download aab
          -  name: Download app bundle from artifact
-            uses: actions/download-artifact@v2
+            uses: actions/download-artifact@v4
             with:
                name: app-bundle
+               path: ${{ github.workspace }}
+               continue-on-error: false  # Fail if download fails
          
-         # Step 2 - Upload aab to play console
          -  name: Publish to Play Store
             uses: r0adkll/upload-google-play@v1
             with:

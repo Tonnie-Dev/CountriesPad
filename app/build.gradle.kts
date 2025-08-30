@@ -15,7 +15,7 @@ android {
         applicationId = "com.uxstate.countriespad"
         minSdk = ProjectConfig.minSdk
         targetSdk = ProjectConfig.targetSdk
-        versionCode = 2
+        versionCode = 64
         versionName = "2.1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -75,6 +75,16 @@ android {
 
     namespace = "com.uxstate.countriespad"
 }
+
+
+
+tasks.register("printVersionCodeAndName") {
+    doLast {
+        println("VERSION_CODE=${android.defaultConfig.versionCode}")
+        println("VERSION_NAME=${android.defaultConfig.versionName}")
+    }
+}
+
 
 dependencies {
 
