@@ -4,7 +4,7 @@
 
 
 
-com-android-library = { id = "com.android.library", version = "8.1.1" }
+com-android-library = { id = "com.android.library", version = "8.12.2" }
 
 org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version = "1.9.21" }
 
