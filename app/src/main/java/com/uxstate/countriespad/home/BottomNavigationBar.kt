@@ -46,12 +46,12 @@ internal fun BottomNavigationBar(
                     selectedIcon = Icons.Filled.Home,
                     unSelectedIcon = Icons.Outlined.Home
             ),
-            BottomNavigationItem(
+            /*BottomNavigationItem(
                     title = stringResource(id = R.string.checker_text),
                     screen = NavGraphs.validator,
                     selectedIcon = Icons.Filled.Phone,
                     unSelectedIcon = Icons.Outlined.Phone
-            ),
+            ),*/
             BottomNavigationItem(
                     title = stringResource(id = R.string.compare_text),
                     screen = NavGraphs.stats,

@@ -159,13 +159,13 @@ dependencies {
     implementation(libs.play.services.maps)
 
     //Kompose Country Code Picker
-    implementation(libs.komposecountrycodepicker)
+   // implementation(libs.komposecountrycodepicker)
 
     //Modules
     implementation(project(":core:ui"))
     implementation(project(":core:util"))
     implementation(project(":feature:overview"))
-    implementation(project(":feature:validator"))
+   // implementation(project(":feature:validator"))
     implementation(project(":feature:stats"))
     implementation(project(":data:source"))
 

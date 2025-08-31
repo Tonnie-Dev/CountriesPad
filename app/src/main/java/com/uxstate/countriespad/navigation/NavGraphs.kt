@@ -6,8 +6,6 @@ import com.uxstate.overview.presentation.destinations.DetailsScreenDestination
 import com.uxstate.overview.presentation.destinations.OverviewScreenDestination
 import com.uxstate.overview.presentation.destinations.SettingsScreenDestination
 import com.uxstate.stats.destinations.StatsScreenDestination
-import com.uxstate.validator.destinations.ValidatorScreenDestination
-
 
 object NavGraphs {
 
@@ -26,7 +24,7 @@ object NavGraphs {
 
     }
 
-    //validator's module NavGraph
+  /*  //validator's module NavGraph
     val validator = object : NavGraphSpec {
 
 
@@ -35,7 +33,7 @@ object NavGraphs {
         override val destinationsByRoute = listOf<DestinationSpec<*>>(ValidatorScreenDestination)
                 .associateBy { it.route }
 
-    }
+    }*/
     //stat's module NavGraph
     val stats = object :NavGraphSpec{
         override val route = "stats"
@@ -50,7 +48,7 @@ object NavGraphs {
         override val route = "root"
         override val startRoute = overview
         override val destinationsByRoute = emptyMap<String, DestinationSpec<*>>()
-        override val nestedNavGraphs = listOf(overview, validator,stats )
+        override val nestedNavGraphs = listOf(overview,stats )
     }
 
 }
