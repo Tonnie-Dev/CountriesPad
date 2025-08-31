@@ -26,7 +26,21 @@ class RemoteDataSourceImpl @Inject constructor(
 
 
             try {
-                val countriesData = api.getCountriesJsonString()
+
+                val fields = listOf(
+                        "name",
+                        /*"cca2",*/
+                        "cca3",
+                        "capital",
+                        "region",
+                        "subregion",
+                        "population",
+                        "area",
+                        "flags",
+                        "languages",
+                        "latlng"
+                ).joinToString(",")
+                val countriesData = api.getCountriesJsonString(fields)
                 Resource.Success(data = countryJsonParser.parseJson(countriesData))
             } catch (httpException: HttpException) {
 
