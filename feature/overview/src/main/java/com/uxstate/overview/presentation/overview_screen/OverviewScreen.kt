@@ -58,7 +58,7 @@ fun OverviewScreen(
         ) {
 
 
-  /*          CountrySearchBar(
+            CountrySearchBar(
                     queryText = state.query,
                     onQueryChange = { viewModel.onEvent(OverviewEvent.OnQueryChange(it)) },
                     placeholderText = stringResource(id = R.string.search_text_placeholder),
@@ -90,7 +90,7 @@ fun OverviewScreen(
                             },
                     onSettingsMenuClick = { navigator.navigateToSettingsScreen() }
 
-            )*/
+            )
 
 
 
