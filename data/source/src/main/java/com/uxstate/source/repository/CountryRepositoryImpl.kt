@@ -74,6 +74,7 @@ class CountryRepositoryImpl @Inject constructor(
         val remoteData:List<Country>? =
 
             try {
+                val url = "https://tonnie-dev.github.io/CountriesPad/mock-data/countries.json"
                 val fields = listOf(
                         "name",
                         /*"cca2",*/
@@ -87,7 +88,7 @@ class CountryRepositoryImpl @Inject constructor(
                         "languages",
                         "latlng"
                 ).joinToString(",")
-                val jsonString = api.getCountriesJsonString(fields)
+                val jsonString = api.getCountriesJsonString(url)
                 countryJsonParser.parseJson(jsonString = jsonString)
 
             }

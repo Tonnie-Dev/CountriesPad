@@ -26,7 +26,7 @@ class RemoteDataSourceImpl @Inject constructor(
 
 
             try {
-
+val url = "https://tonnie-dev.github.io/CountriesPad/mock-data/countries.json"
                 val fields = listOf(
                         "name",
                         /*"cca2",*/
@@ -40,7 +40,7 @@ class RemoteDataSourceImpl @Inject constructor(
                         "languages",
                         "latlng"
                 ).joinToString(",")
-                val countriesData = api.getCountriesJsonString(fields)
+                val countriesData = api.getCountriesJsonString(url)
                 Resource.Success(data = countryJsonParser.parseJson(countriesData))
             } catch (httpException: HttpException) {
 
